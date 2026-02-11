@@ -4,7 +4,7 @@ namespace Narsil\Cms\Implementations\Requests;
 
 #region USE
 
-use Narsil\Cms\Contracts\Requests\MediaFormRequest as Contract;
+use Narsil\Cms\Contracts\Requests\AssetFormRequest as Contract;
 use Narsil\Cms\Implementations\AbstractFormRequest;
 
 #endregion
@@ -13,7 +13,7 @@ use Narsil\Cms\Implementations\AbstractFormRequest;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class MediaFormRequest extends AbstractFormRequest implements Contract
+class AssetFormRequest extends AbstractFormRequest implements Contract
 {
     #region PUBLIC METHODS
 

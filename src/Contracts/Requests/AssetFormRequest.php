@@ -14,7 +14,7 @@ use Narsil\Cms\Contracts\FormRequest;
  *
  * @see vendor/narsil/cms/config/narsil/bindings/requests.php
  */
-interface MediaFormRequest extends FormRequest
+interface AssetFormRequest extends FormRequest
 {
     //
 }

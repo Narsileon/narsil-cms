@@ -11,6 +11,7 @@ return [
     |
     */
 
+    \Narsil\Cms\Contracts\Forms\AssetForm::class => \Narsil\Cms\Implementations\Forms\AssetForm::class,
     \Narsil\Cms\Contracts\Forms\BlockElementForm::class => \Narsil\Cms\Implementations\Forms\BlockElementForm::class,
     \Narsil\Cms\Contracts\Forms\BlockForm::class => \Narsil\Cms\Implementations\Forms\BlockForm::class,
     \Narsil\Cms\Contracts\Forms\ConditionForm::class => \Narsil\Cms\Implementations\Forms\ConditionForm::class,
@@ -20,7 +21,6 @@ return [
     \Narsil\Cms\Contracts\Forms\FooterForm::class => \Narsil\Cms\Implementations\Forms\FooterForm::class,
     \Narsil\Cms\Contracts\Forms\HeaderForm::class => \Narsil\Cms\Implementations\Forms\HeaderForm::class,
     \Narsil\Cms\Contracts\Forms\HostForm::class => \Narsil\Cms\Implementations\Forms\HostForm::class,
-    \Narsil\Cms\Contracts\Forms\MediaForm::class => \Narsil\Cms\Implementations\Forms\MediaForm::class,
     \Narsil\Cms\Contracts\Forms\PermissionForm::class => \Narsil\Cms\Implementations\Forms\PermissionForm::class,
     \Narsil\Cms\Contracts\Forms\PublishForm::class => \Narsil\Cms\Implementations\Forms\PublishForm::class,
     \Narsil\Cms\Contracts\Forms\RoleForm::class => \Narsil\Cms\Implementations\Forms\RoleForm::class,

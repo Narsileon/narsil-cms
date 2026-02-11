@@ -11,6 +11,7 @@ return [
     |
     */
 
+    \Narsil\Cms\Contracts\Requests\AssetFormRequest::class => \Narsil\Cms\Implementations\Requests\AssetFormRequest::class,
     \Narsil\Cms\Contracts\Requests\BlockFormRequest::class => \Narsil\Cms\Implementations\Requests\BlockFormRequest::class,
     \Narsil\Cms\Contracts\Requests\ConfigurationFormRequest::class => \Narsil\Cms\Implementations\Requests\ConfigurationFormRequest::class,
     \Narsil\Cms\Contracts\Requests\EntityFormRequest::class => \Narsil\Cms\Implementations\Requests\EntityFormRequest::class,
@@ -18,7 +19,6 @@ return [
     \Narsil\Cms\Contracts\Requests\FooterFormRequest::class => \Narsil\Cms\Implementations\Requests\FooterFormRequest::class,
     \Narsil\Cms\Contracts\Requests\HeaderFormRequest::class => \Narsil\Cms\Implementations\Requests\HeaderFormRequest::class,
     \Narsil\Cms\Contracts\Requests\HostFormRequest::class => \Narsil\Cms\Implementations\Requests\HostFormRequest::class,
-    \Narsil\Cms\Contracts\Requests\MediaFormRequest::class => \Narsil\Cms\Implementations\Requests\MediaFormRequest::class,
     \Narsil\Cms\Contracts\Requests\PermissionFormRequest::class => \Narsil\Cms\Implementations\Requests\PermissionFormRequest::class,
     \Narsil\Cms\Contracts\Requests\RoleFormRequest::class => \Narsil\Cms\Implementations\Requests\RoleFormRequest::class,
     \Narsil\Cms\Contracts\Requests\SitePageFormRequest::class => \Narsil\Cms\Implementations\Requests\SitePageFormRequest::class,

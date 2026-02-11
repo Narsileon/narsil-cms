@@ -23,6 +23,6 @@ return [
     \Narsil\Cms\Models\Policies\Role::class => \Narsil\Cms\Policies\RolePolicy::class,
     \Narsil\Cms\Models\Sites\Site::class => \Narsil\Cms\Policies\SitePolicy::class,
     \Narsil\Cms\Models\Sites\SitePage::class => \Narsil\Cms\Policies\SitePagePolicy::class,
-    \Narsil\Cms\Models\Storages\Media::class => \Narsil\Cms\Policies\MediaPolicy::class,
+    \Narsil\Cms\Models\Storages\Asset::class => \Narsil\Cms\Policies\AssetPolicy::class,
     \Narsil\Cms\Models\User::class => \Narsil\Cms\Policies\UserPolicy::class,
 ];

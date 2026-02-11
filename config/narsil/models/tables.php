@@ -20,6 +20,6 @@ return [
     \Narsil\Cms\Models\Hosts\Host::TABLE => \Narsil\Cms\Implementations\Tables\HostTable::class,
     \Narsil\Cms\Models\Policies\Permission::TABLE => \Narsil\Cms\Implementations\Tables\PermissionTable::class,
     \Narsil\Cms\Models\Policies\Role::TABLE => \Narsil\Cms\Implementations\Tables\RoleTable::class,
-    \Narsil\Cms\Models\Storages\Media::TABLE => \Narsil\Cms\Implementations\Tables\MediaTable::class,
+    \Narsil\Cms\Models\Storages\Asset::TABLE => \Narsil\Cms\Implementations\Tables\AssetTable::class,
     \Narsil\Cms\Models\User::TABLE => \Narsil\Cms\Implementations\Tables\UserTable::class,
 ];

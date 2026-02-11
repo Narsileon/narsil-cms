@@ -6,7 +6,6 @@ namespace Narsil\Cms\Implementations\Menus;
 
 use Narsil\Base\Support\TranslationsBag;
 use Narsil\Cms\Contracts\Menus\Sidebar as Contract;
-use Narsil\Cms\Enums\DiskEnum;
 use Narsil\Cms\Enums\Policies\PermissionEnum;
 use Narsil\Cms\Implementations\AbstractMenu;
 use Narsil\Cms\Models\Collections\Block;
@@ -20,7 +19,7 @@ use Narsil\Cms\Models\Hosts\Host;
 use Narsil\Cms\Models\Policies\Permission;
 use Narsil\Cms\Models\Policies\Role;
 use Narsil\Cms\Models\Sites\Site;
-use Narsil\Cms\Models\Storages\Media;
+use Narsil\Cms\Models\Storages\Asset;
 use Narsil\Cms\Models\User;
 use Narsil\Cms\Services\ModelService;
 use Narsil\Cms\Services\PermissionService;
@@ -67,7 +66,6 @@ class Sidebar extends AbstractMenu implements Contract
         $this->addSiteGroup();
         $this->addGlobalsGroup();
         $this->addCollectionsGroup();
-        $this->addFilesGroup();
         $this->addStructuresGroup();
         $this->addManagementGroup();
         $this->addToolsGroup();
@@ -110,55 +108,6 @@ class Sidebar extends AbstractMenu implements Contract
     /**
      * @return void
      */
-    protected function addFilesGroup(): void
-    {
-        $group = trans(ModelService::getTableLabel(Media::TABLE));
-
-        $this
-            ->add(
-                new MenuItem(DiskEnum::DOCUMENTS->value)
-                    ->group($group)
-                    ->icon('file')
-                    ->label(ModelService::getTableLabel(DiskEnum::DOCUMENTS->value))
-                    ->route('media.index')
-                    ->parameters([
-                        'disk' => DiskEnum::DOCUMENTS->value
-                    ])
-                    ->permissions([
-                        PermissionService::getHandle(Media::TABLE, PermissionEnum::VIEW_ANY->value)
-                    ])
-            )
-            ->add(
-                new MenuItem(DiskEnum::IMAGES->value)
-                    ->group($group)
-                    ->icon('image')
-                    ->label(ModelService::getTableLabel(DiskEnum::IMAGES->value))
-                    ->route('media.index')
-                    ->parameters([
-                        'disk' => DiskEnum::IMAGES->value
-                    ])
-                    ->permissions([
-                        PermissionService::getHandle(Media::TABLE, PermissionEnum::VIEW_ANY->value)
-                    ])
-            )
-            ->add(
-                new MenuItem(DiskEnum::VIDEOS->value)
-                    ->group($group)
-                    ->icon('video')
-                    ->label(ModelService::getTableLabel(DiskEnum::VIDEOS->value))
-                    ->route('media.index')
-                    ->parameters([
-                        'disk' => DiskEnum::VIDEOS->value
-                    ])
-                    ->permissions([
-                        PermissionService::getHandle(Media::TABLE, PermissionEnum::VIEW_ANY->value)
-                    ])
-            );
-    }
-
-    /**
-     * @return void
-     */
     protected function addGlobalsGroup(): void
     {
         $group = trans('narsil-cms::ui.globals');
@@ -179,6 +128,14 @@ class Sidebar extends AbstractMenu implements Contract
                 ->route('footers.index')
                 ->permissions([
                     PermissionService::getHandle(Footer::TABLE, PermissionEnum::VIEW_ANY->value)
+                ]))
+            ->add(new MenuItem(Asset::TABLE)
+                ->group($group)
+                ->icon('file')
+                ->label(ModelService::getTableLabel(Asset::TABLE))
+                ->route('assets.index')
+                ->permissions([
+                    PermissionService::getHandle(Asset::TABLE, PermissionEnum::VIEW_ANY->value)
                 ]));
     }
 

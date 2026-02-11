@@ -6,10 +6,9 @@ namespace Narsil\Cms\Models\Storages;
 
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Storage;
+use Narsil\Base\Traits\HasUuidKey;
 use Narsil\Cms\Traits\HasIdentifier;
 use Narsil\Cms\Traits\HasTranslations;
-use Narsil\Base\Traits\HasUuidKey;
 
 #endregion
 
@@ -17,7 +16,7 @@ use Narsil\Base\Traits\HasUuidKey;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class Media extends Model
+class Asset extends Model
 {
     use HasIdentifier;
     use HasTranslations;
@@ -35,7 +34,6 @@ class Media extends Model
         $this->appends = [
             self::ATTRIBUTE_EXTENSION,
             self::ATTRIBUTE_FILENAME,
-            self::ATTRIBUTE_SOURCE,
         ];
 
         $this->translatable = [
@@ -54,7 +52,7 @@ class Media extends Model
      *
      * @var string
      */
-    final public const TABLE = 'media';
+    final public const TABLE = 'assets';
 
     #region • COLUMNS
 
@@ -64,13 +62,6 @@ class Media extends Model
      * @var string
      */
     final public const ALT = 'alt';
-
-    /**
-     * The name of the "disk" column.
-     *
-     * @var string
-     */
-    final public const DISK = 'disk';
 
     /**
      * The name of the "path" column.
@@ -96,13 +87,6 @@ class Media extends Model
      * @var string
      */
     final public const ATTRIBUTE_FILENAME = 'filename';
-
-    /**
-     * The name of the "src" attribute.
-     *
-     * @var string
-     */
-    final public const ATTRIBUTE_SOURCE = 'src';
 
     #endregion
 
@@ -138,21 +122,6 @@ class Media extends Model
             get: function ()
             {
                 return pathinfo($this->{self::PATH}, PATHINFO_FILENAME);
-            },
-        );
-    }
-
-    /**
-     * Get the "src" attribute.
-     *
-     * @return string
-     */
-    protected function src(): Attribute
-    {
-        return Attribute::make(
-            get: function ()
-            {
-                return Storage::url($this->{self::DISK} . '/' . $this->{self::PATH});
             },
         );
     }

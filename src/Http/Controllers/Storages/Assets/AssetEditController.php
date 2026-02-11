@@ -1,6 +1,6 @@
 <?php
 
-namespace Narsil\Cms\Http\Controllers\Storages;
+namespace Narsil\Cms\Http\Controllers\Storages\Assets;
 
 #region USE
 
@@ -10,8 +10,8 @@ use Inertia\Response;
 use Narsil\Cms\Enums\RequestMethodEnum;
 use Narsil\Cms\Enums\Policies\PermissionEnum;
 use Narsil\Cms\Http\Controllers\RenderController;
-use Narsil\Cms\Implementations\Forms\MediaForm;
-use Narsil\Cms\Models\Storages\Media;
+use Narsil\Cms\Implementations\Forms\AssetForm;
+use Narsil\Cms\Models\Storages\Asset;
 use Narsil\Cms\Services\ModelService;
 
 #endregion
@@ -20,23 +20,22 @@ use Narsil\Cms\Services\ModelService;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class MediaEditController extends RenderController
+class AssetEditController extends RenderController
 {
     #region PUBLIC METHODS
 
     /**
      * @param Request $request
-     * @param string $disk
-     * @param Media $media
+     * @param Asset $asset
      *
      * @return JsonResponse|Response
      */
-    public function __invoke(Request $request, string $disk, Media $media): JsonResponse|Response
+    public function __invoke(Request $request, Asset $asset): JsonResponse|Response
     {
-        $this->authorize(PermissionEnum::UPDATE, $media);
+        $this->authorize(PermissionEnum::UPDATE, $asset);
 
-        $data = $this->getData($media);
-        $form = $this->getForm($media);
+        $data = $this->getData($asset);
+        $form = $this->getForm($asset);
 
         return $this->render('narsil/cms::resources/form', [
             'data' => $data,
@@ -51,13 +50,13 @@ class MediaEditController extends RenderController
     /**
      * Get the associated data.
      *
-     * @param Media $media
+     * @param Asset $asset
      *
      * @return array<string,mixed>
      */
-    protected function getData(Media $media): array
+    protected function getData(Asset $asset): array
     {
-        $data = $media->toArrayWithTranslations();
+        $data = $asset->toArrayWithTranslations();
 
         return $data;
     }
@@ -67,30 +66,23 @@ class MediaEditController extends RenderController
      */
     protected function getDescription(): string
     {
-        $disk = request('disk');
-
-        return ModelService::getModelLabel($disk);
+        return ModelService::getModelLabel(Asset::class);
     }
 
     /**
      * Get the associated form.
      *
-     * @param Media $media
+     * @param Asset $asset
      *
-     * @return MediaForm
+     * @return AssetForm
      */
-    protected function getForm(Media $media): MediaForm
+    protected function getForm(Asset $asset): AssetForm
     {
-        $disk = request('disk');
-
-        $form = app(MediaForm::class, [
-            'disk' => $disk,
-        ])
-            ->action(route('media.store', [
-                'id' => $media->{Media::UUID},
-                'disk' => $disk,
+        $form = app(AssetForm::class)
+            ->action(route('assets.store', [
+                'id' => $asset->{Asset::UUID},
             ]))
-            ->id($media->{Media::UUID})
+            ->id($asset->{Asset::UUID})
             ->method(RequestMethodEnum::PATCH->value)
             ->submitLabel(trans('narsil-cms::ui.update'));
 
@@ -102,9 +94,7 @@ class MediaEditController extends RenderController
      */
     protected function getTitle(): string
     {
-        $disk = request('disk');
-
-        return ModelService::getModelLabel($disk);
+        return ModelService::getModelLabel(Asset::class);
     }
 
     #endregion

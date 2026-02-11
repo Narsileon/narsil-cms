@@ -14,7 +14,7 @@ use Narsil\Cms\Contracts\Form;
  *
  * @see vendor/narsil/cms/config/narsil/bindings/forms.php
  */
-interface MediaForm extends Form
+interface AssetForm extends Form
 {
     //
 }

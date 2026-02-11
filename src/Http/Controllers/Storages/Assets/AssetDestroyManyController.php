@@ -1,6 +1,6 @@
 <?php
 
-namespace Narsil\Cms\Http\Controllers\Storages;
+namespace Narsil\Cms\Http\Controllers\Storages\Assets;
 
 #region USE
 
@@ -9,7 +9,7 @@ use Narsil\Base\Enums\ModelEventEnum;
 use Narsil\Cms\Enums\Policies\PermissionEnum;
 use Narsil\Cms\Http\Controllers\RedirectController;
 use Narsil\Cms\Http\Requests\DestroyManyRequest;
-use Narsil\Cms\Models\Storages\Media;
+use Narsil\Cms\Models\Storages\Asset;
 use Narsil\Cms\Services\ModelService;
 
 #endregion
@@ -18,31 +18,28 @@ use Narsil\Cms\Services\ModelService;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class MediaDestroyManyController extends RedirectController
+class AssetDestroyManyController extends RedirectController
 {
     #region PUBLIC METHODS
 
     /**
      * @param DestroyManyRequest $request
-     * @param string $disk
      *
      * @return RedirectResponse
      */
-    public function __invoke(DestroyManyRequest $request, string $disk): RedirectResponse
+    public function __invoke(DestroyManyRequest $request): RedirectResponse
     {
-        $this->authorize(PermissionEnum::DELETE_ANY, Media::class);
+        $this->authorize(PermissionEnum::DELETE_ANY, Asset::class);
 
         $ids = $request->validated(DestroyManyRequest::IDS);
 
-        Media::query()
-            ->whereIn(Media::UUID, $ids)
+        Asset::query()
+            ->whereIn(Asset::UUID, $ids)
             ->delete();
 
         return $this
-            ->redirect(route('media.index', [
-                'disk' => $disk,
-            ]))
-            ->with('success', ModelService::getSuccessMessage(Media::class, ModelEventEnum::DELETED_MANY));
+            ->redirect(route('assets.index'))
+            ->with('success', ModelService::getSuccessMessage(Asset::class, ModelEventEnum::DELETED_MANY));
     }
 
     #endregion

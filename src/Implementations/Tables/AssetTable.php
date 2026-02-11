@@ -5,7 +5,7 @@ namespace Narsil\Cms\Implementations\Tables;
 #region USE
 
 use Narsil\Cms\Implementations\AbstractTable;
-use Narsil\Cms\Models\Storages\Media;
+use Narsil\Cms\Models\Storages\Asset;
 use Narsil\Cms\Services\RouteService;
 use Narsil\Cms\Support\TableColumn;
 
@@ -15,7 +15,7 @@ use Narsil\Cms\Support\TableColumn;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class MediaTable extends AbstractTable
+class AssetTable extends AbstractTable
 {
     #region CONSTRUCTOR
 
@@ -24,7 +24,7 @@ class MediaTable extends AbstractTable
      */
     public function __construct()
     {
-        parent::__construct(Media::TABLE);
+        parent::__construct(Asset::TABLE);
     }
 
     #endregion
@@ -52,19 +52,19 @@ class MediaTable extends AbstractTable
     {
         return [
             new TableColumn(
-                id: Media::UUID,
+                id: Asset::UUID,
                 visibility: true,
             ),
             new TableColumn(
-                id: Media::PATH,
+                id: Asset::PATH,
                 visibility: true,
             ),
             new TableColumn(
-                id: Media::CREATED_AT,
+                id: Asset::CREATED_AT,
                 visibility: true,
             ),
             new TableColumn(
-                id: Media::UPDATED_AT,
+                id: Asset::UPDATED_AT,
                 visibility: true,
             ),
         ];

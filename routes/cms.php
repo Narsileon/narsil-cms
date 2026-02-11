@@ -94,14 +94,13 @@ use Narsil\Cms\Http\Controllers\Sites\Pages\SitePageUpdateController;
 use Narsil\Cms\Http\Controllers\Sites\SiteEditController;
 use Narsil\Cms\Http\Controllers\Sites\SiteSummaryController;
 use Narsil\Cms\Http\Controllers\Sites\SiteUpdateController;
-use Narsil\Cms\Http\Controllers\Storages\MediaCreateController;
-use Narsil\Cms\Http\Controllers\Storages\MediaDestroyController;
-use Narsil\Cms\Http\Controllers\Storages\MediaDestroyManyController;
-use Narsil\Cms\Http\Controllers\Storages\MediaEditController;
-use Narsil\Cms\Http\Controllers\Storages\MediaIndexController;
-use Narsil\Cms\Http\Controllers\Storages\MediaStoreController;
-use Narsil\Cms\Http\Controllers\Storages\MediaSummaryController;
-use Narsil\Cms\Http\Controllers\Storages\MediaUpdateController;
+use Narsil\Cms\Http\Controllers\Storages\Assets\AssetCreateController;
+use Narsil\Cms\Http\Controllers\Storages\Assets\AssetDestroyController;
+use Narsil\Cms\Http\Controllers\Storages\Assets\AssetDestroyManyController;
+use Narsil\Cms\Http\Controllers\Storages\Assets\AssetEditController;
+use Narsil\Cms\Http\Controllers\Storages\Assets\AssetIndexController;
+use Narsil\Cms\Http\Controllers\Storages\Assets\AssetStoreController;
+use Narsil\Cms\Http\Controllers\Storages\Assets\AssetUpdateController;
 use Narsil\Cms\Http\Controllers\Users\Bookmarks\UserBookmarkDestroyController;
 use Narsil\Cms\Http\Controllers\Users\Bookmarks\UserBookmarkIndexController;
 use Narsil\Cms\Http\Controllers\Users\Bookmarks\UserBookmarkStoreController;
@@ -127,7 +126,7 @@ use Narsil\Cms\Models\Policies\Permission;
 use Narsil\Cms\Models\Policies\Role;
 use Narsil\Cms\Models\Sites\Site;
 use Narsil\Cms\Models\Sites\SitePage;
-use Narsil\Cms\Models\Storages\Media;
+use Narsil\Cms\Models\Storages\Asset;
 use Narsil\Cms\Models\User;
 use Narsil\Cms\Models\Users\UserBookmark;
 
@@ -258,23 +257,21 @@ Route::middleware([
                 ->name('replicate-many');
         });
 
-        Route::prefix(Str::slug(Media::TABLE))->name(Str::slug(Media::TABLE) . '.')->group(function ()
+        Route::prefix(Str::slug(Asset::TABLE))->name(Str::slug(Asset::TABLE) . '.')->group(function ()
         {
-            Route::get('/', MediaSummaryController::class)
-                ->name('summary');
-            Route::get('/{disk}', MediaIndexController::class)
+            Route::get('/', AssetIndexController::class)
                 ->name('index');
-            Route::get('/{disk}/create', MediaCreateController::class)
+            Route::get('//create', AssetCreateController::class)
                 ->name('create');
-            Route::post('/{disk}', MediaStoreController::class)
+            Route::post('/', AssetStoreController::class)
                 ->name('store');
-            Route::get('/{disk}/{id}/edit', MediaEditController::class)
+            Route::get('/{asset}/edit', AssetEditController::class)
                 ->name('edit');
-            Route::patch('/{disk}/{id}', MediaUpdateController::class)
+            Route::patch('/{asset}', AssetUpdateController::class)
                 ->name('update');
-            Route::delete('/{disk}/{id}', MediaDestroyController::class)
+            Route::delete('/{asset}', AssetDestroyController::class)
                 ->name('destroy');
-            Route::delete('/{disk}', MediaDestroyManyController::class)
+            Route::delete('/', AssetDestroyManyController::class)
                 ->name('destroy-many');
         });
 

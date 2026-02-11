@@ -1,18 +1,17 @@
 <?php
 
-namespace Narsil\Cms\Http\Controllers\Storages;
+namespace Narsil\Cms\Http\Controllers\Storages\Assets;
 
 #region USE
 
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Inertia\Response;
-use Narsil\Cms\Contracts\Forms\HostForm;
-use Narsil\Cms\Contracts\Forms\MediaForm;
+use Narsil\Cms\Contracts\Forms\AssetForm;
 use Narsil\Cms\Enums\RequestMethodEnum;
 use Narsil\Cms\Enums\Policies\PermissionEnum;
 use Narsil\Cms\Http\Controllers\RenderController;
-use Narsil\Cms\Models\Storages\Media;
+use Narsil\Cms\Models\Storages\Asset;
 use Narsil\Cms\Services\ModelService;
 
 #endregion
@@ -21,19 +20,18 @@ use Narsil\Cms\Services\ModelService;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class MediaCreateController extends RenderController
+class AssetCreateController extends RenderController
 {
     #region PUBLIC METHODS
 
     /**
      * @param Request $request
-     * @param string $disk
      *
      * @return JsonResponse|Response
      */
-    public function __invoke(Request $request, string $disk): JsonResponse|Response
+    public function __invoke(Request $request): JsonResponse|Response
     {
-        $this->authorize(PermissionEnum::CREATE, Media::class);
+        $this->authorize(PermissionEnum::CREATE, Asset::class);
 
         $form = $this->getForm();
 
@@ -51,26 +49,18 @@ class MediaCreateController extends RenderController
      */
     protected function getDescription(): string
     {
-        $disk = request('disk');
-
-        return ModelService::getModelLabel($disk);
+        return ModelService::getModelLabel(Asset::class);
     }
 
     /**
      * Get the associated form.
      *
-     * @return MediaForm
+     * @return AssetForm
      */
-    protected function getForm(): MediaForm
+    protected function getForm(): AssetForm
     {
-        $disk = request('disk');
-
-        $form = app(MediaForm::class, [
-            'disk' => $disk,
-        ])
-            ->action(route('media.store', [
-                'disk' => $disk,
-            ]))
+        $form = app(AssetForm::class)
+            ->action(route('assets.store'))
             ->method(RequestMethodEnum::POST->value)
             ->submitLabel(trans('narsil-cms::ui.save'));
 
@@ -82,9 +72,7 @@ class MediaCreateController extends RenderController
      */
     protected function getTitle(): string
     {
-        $disk = request('disk');
-
-        return ModelService::getModelLabel($disk);
+        return ModelService::getModelLabel(Asset::class);
     }
 
     #endregion

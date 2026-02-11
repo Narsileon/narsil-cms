@@ -15,7 +15,7 @@ use Narsil\Cms\Traits\Policies\IsViewable;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class MediaPolicy
+class AssetPolicy
 {
     use IsCreatable;
     use IsDeletable;

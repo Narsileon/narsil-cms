@@ -5,7 +5,8 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use Narsil\Cms\Models\Storages\Media;
+use Narsil\Cms\Models\Storages\Asset;
+
 #endregion
 
 return new class extends Migration
@@ -19,9 +20,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        if (!Schema::hasTable(Media::TABLE))
+        if (!Schema::hasTable(Asset::TABLE))
         {
-            $this->createMediaTable();
+            $this->createAssetsTable();
         }
     }
 
@@ -32,7 +33,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists(Media::TABLE);
+        Schema::dropIfExists(Asset::TABLE);
     }
 
     #endregion
@@ -40,25 +41,22 @@ return new class extends Migration
     #region PRIVATE METHODS
 
     /**
-     * Create the media table.
+     * Create the assets table.
      *
      * @return void
      */
-    private function createMediaTable(): void
+    private function createAssetsTable(): void
     {
-        Schema::create(Media::TABLE, function (Blueprint $blueprint)
+        Schema::create(Asset::TABLE, function (Blueprint $blueprint)
         {
             $blueprint
-                ->uuid(Media::UUID)
+                ->uuid(Asset::UUID)
                 ->primary();
             $blueprint
-                ->string(Media::DISK)
+                ->string(Asset::PATH)
                 ->index();
             $blueprint
-                ->string(Media::PATH)
-                ->index();
-            $blueprint
-                ->jsonb(Media::ALT)
+                ->jsonb(Asset::ALT)
                 ->nullable();
             $blueprint
                 ->timestamps();

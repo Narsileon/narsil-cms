@@ -5,10 +5,10 @@ namespace Narsil\Cms\Implementations\Forms;
 #region USE
 
 use Illuminate\Database\Eloquent\Model;
-use Narsil\Cms\Contracts\Forms\MediaForm as Contract;
+use Narsil\Cms\Contracts\Forms\AssetForm as Contract;
 use Narsil\Cms\Implementations\AbstractForm;
 use Narsil\Cms\Models\Collections\TemplateTab;
-use Narsil\Cms\Models\Policies\Role;
+use Narsil\Cms\Models\Storages\Asset;
 use Narsil\Cms\Services\RouteService;
 
 #endregion
@@ -17,7 +17,7 @@ use Narsil\Cms\Services\RouteService;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class MediaForm extends AbstractForm implements Contract
+class AssetForm extends AbstractForm implements Contract
 {
     #region CONSTRUCTOR
 
@@ -26,23 +26,12 @@ class MediaForm extends AbstractForm implements Contract
      *
      * @param string $disk
      */
-    public function __construct(string $disk, ?Model $model = null)
+    public function __construct(?Model $model = null)
     {
-        $this->disk = $disk;
-
         parent::__construct($model);
 
-        $this->routes(RouteService::getNames(Role::TABLE));
+        $this->routes(RouteService::getNames(Asset::TABLE));
     }
-
-    #endregion
-
-    #region PROPERTIES
-
-    /**
-     * @var string
-     */
-    protected string $disk;
 
     #endregion
 
