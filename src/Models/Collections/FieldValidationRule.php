@@ -6,8 +6,8 @@ namespace Narsil\Cms\Models\Collections;
 
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\Pivot;
+use Narsil\Base\Traits\HasUuidPrimaryKey;
 use Narsil\Cms\Models\ValidationRule;
-use Narsil\Base\Traits\HasUuidKey;
 
 #endregion
 
@@ -17,7 +17,7 @@ use Narsil\Base\Traits\HasUuidKey;
  */
 class FieldValidationRule extends Pivot
 {
-    use HasUuidKey;
+    use HasUuidPrimaryKey;
 
     #region CONSTRUCTOR
 

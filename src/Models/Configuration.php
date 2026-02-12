@@ -6,7 +6,7 @@ namespace Narsil\Cms\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Narsil\Base\Traits\AuditLoggable;
-use Narsil\Cms\Traits\Blameable;
+use Narsil\Base\Traits\Blameable;
 use Narsil\Cms\Traits\HasDatetimes;
 use Narsil\Cms\Traits\HasTranslations;
 
@@ -18,8 +18,8 @@ use Narsil\Cms\Traits\HasTranslations;
  */
 class Configuration extends Model
 {
-    use Blameable;
     use AuditLoggable;
+    use Blameable;
     use HasDatetimes;
     use HasTranslations;
 

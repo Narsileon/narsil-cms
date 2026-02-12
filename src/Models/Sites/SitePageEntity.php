@@ -7,8 +7,8 @@ namespace Narsil\Cms\Models\Sites;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Database\Eloquent\Relations\Pivot;
+use Narsil\Base\Traits\HasUuidPrimaryKey;
 use Narsil\Cms\Models\Entities\Entity;
-use Narsil\Base\Traits\HasUuidKey;
 
 #endregion
 
@@ -18,7 +18,7 @@ use Narsil\Base\Traits\HasUuidKey;
  */
 class SitePageEntity extends Pivot
 {
-    use HasUuidKey;
+    use HasUuidPrimaryKey;
 
     #region CONSTRUCTOR
 

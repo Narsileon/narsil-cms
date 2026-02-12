@@ -7,9 +7,8 @@ namespace Narsil\Cms\Providers;
 use Exception;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Support\Facades\Cache;
-use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\ServiceProvider;
+use Narsil\Base\Providers\MorphServiceProvider as BaseMorphServiceProvider;
 use Narsil\Cms\Models\Collections\Template;
 
 #endregion
@@ -18,7 +17,7 @@ use Narsil\Cms\Models\Collections\Template;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-final class MorphServiceProvider extends ServiceProvider
+final class MorphServiceProvider extends BaseMorphServiceProvider
 {
     #region PUBLIC METHODS
 
@@ -29,9 +28,10 @@ final class MorphServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        parent::boot();
+
         try
         {
-            $this->bootMorphMap();
             $this->bootTemplateMorphMap();
         }
         catch (Exception $exception)
@@ -43,26 +43,6 @@ final class MorphServiceProvider extends ServiceProvider
     #endregion
 
     #region PROTECTED METHODS
-
-    /**
-     * Boot the morph map.
-     *
-     * @return void
-     */
-    protected function bootMorphMap(): void
-    {
-
-        $config = Config::get('narsil.models.morphs', []);
-
-        $map = [];
-
-        foreach ($config as $class => $table)
-        {
-            $map[$table] = $class;
-        }
-
-        Relation::enforceMorphMap($map);
-    }
 
     /**
      * Boot the template morph map.

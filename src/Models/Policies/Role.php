@@ -5,17 +5,12 @@ namespace Narsil\Cms\Models\Policies;
 #region USE
 
 use Illuminate\Database\Eloquent\Attributes\ObservedBy;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Support\Facades\Cache;
-use Narsil\Base\Traits\AuditLoggable;
-use Narsil\Cms\Models\User;
+use Narsil\Base\Models\Policies\Role as BaseRole;
 use Narsil\Cms\Observers\ModelObserver;
 use Narsil\Cms\Support\SelectOption;
-use Narsil\Cms\Traits\Blameable;
 use Narsil\Cms\Traits\HasDatetimes;
 use Narsil\Cms\Traits\HasTranslations;
-use Narsil\Cms\Traits\Policies\HasPermissions;
 
 #endregion
 
@@ -24,12 +19,9 @@ use Narsil\Cms\Traits\Policies\HasPermissions;
  * @author Jonathan Rigaux
  */
 #[ObservedBy([ModelObserver::class])]
-class Role extends Model
+class Role extends BaseRole
 {
-    use Blameable;
-    use AuditLoggable;
     use HasDatetimes;
-    use HasPermissions;
     use HasTranslations;
 
     #region CONSTRUCTOR
@@ -39,76 +31,12 @@ class Role extends Model
      */
     public function __construct(array $attributes = [])
     {
-        $this->table = self::TABLE;
-
         $this->translatable = [
             self::LABEL,
         ];
 
-        $this->mergeGuarded([
-            self::ID,
-        ]);
-
         parent::__construct($attributes);
     }
-
-    #endregion
-
-    #region CONSTANTS
-
-    /**
-     * The table associated with the model.
-     *
-     * @var string
-     */
-    final public const TABLE = 'roles';
-
-    #region • COLUMNS
-
-    /**
-     * The name of the "id" column.
-     *
-     * @var string
-     */
-    final public const ID = 'id';
-
-    /**
-     * The name of the "label" column.
-     *
-     * @var string
-     */
-    final public const LABEL = 'label';
-
-    /**
-     * The name of the "name" column.
-     *
-     * @var string
-     */
-    final public const NAME = 'name';
-
-    #endregion
-
-    #region • COUNTS
-
-    /**
-     * The name of the "users" count.
-     *
-     * @var string
-     */
-    final public const COUNT_USERS = 'users_count';
-
-    #endregion
-
-    #region • RELATIONS
-
-    /**
-     * The name of the "users" relation.
-     *
-     * @var string
-     */
-    final public const RELATION_USERS = 'users';
-
-    #endregion
 
     #endregion
 
@@ -134,44 +62,6 @@ class Role extends Model
                     ->all();
             });
     }
-
-    #region • RELATIONSHIPS
-
-    /**
-     * Get the associated permissions.
-     *
-     * @return BelongsToMany
-     */
-    final public function permissions(): BelongsToMany
-    {
-        return $this
-            ->belongsToMany(
-                Permission::class,
-                RolePermission::TABLE,
-                RolePermission::ROLE_ID,
-                RolePermission::PERMISSION_ID,
-            )
-            ->using(RolePermission::class);
-    }
-
-    /**
-     * Get the associated users.
-     *
-     * @return BelongsToMany
-     */
-    final public function users(): BelongsToMany
-    {
-        return $this
-            ->belongsToMany(
-                User::class,
-                UserRole::TABLE,
-                UserRole::ROLE_ID,
-                UserRole::USER_ID,
-            )
-            ->using(UserRole::class);
-    }
-
-    #endregion
 
     #endregion
 }

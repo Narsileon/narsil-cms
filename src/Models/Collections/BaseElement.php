@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Narsil\Base\Traits\AuditLoggable;
-use Narsil\Cms\Traits\Blameable;
+use Narsil\Base\Traits\Blameable;
 use Narsil\Cms\Traits\HasDatetimes;
 use Narsil\Cms\Traits\HasIdentifier;
 use Narsil\Cms\Traits\HasTranslations;

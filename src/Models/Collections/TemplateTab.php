@@ -8,8 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
+use Narsil\Base\Traits\HasUuidPrimaryKey;
 use Narsil\Cms\Traits\HasTranslations;
-use Narsil\Base\Traits\HasUuidKey;
 use Narsil\Cms\Traits\IsOrderable;
 
 #endregion
@@ -21,7 +21,7 @@ use Narsil\Cms\Traits\IsOrderable;
 class TemplateTab extends Model
 {
     use HasTranslations;
-    use HasUuidKey;
+    use HasUuidPrimaryKey;
     use IsOrderable;
 
     #region CONSTRUCTOR

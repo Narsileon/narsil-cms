@@ -8,12 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
+use Narsil\Base\Traits\HasUuidPrimaryKey;
 use Narsil\Cms\Casts\JsonCast;
 use Narsil\Cms\Models\Collections\Block;
 use Narsil\Cms\Models\Collections\BlockElement;
 use Narsil\Cms\Models\Collections\TemplateTabElement;
 use Narsil\Cms\Traits\HasTranslations;
-use Narsil\Base\Traits\HasUuidKey;
 use Narsil\Cms\Traits\IsOrderable;
 
 #endregion
@@ -25,7 +25,7 @@ use Narsil\Cms\Traits\IsOrderable;
 abstract class EntityNode extends Model
 {
     use HasTranslations;
-    use HasUuidKey;
+    use HasUuidPrimaryKey;
     use IsOrderable;
 
     #region CONSTRUCTOR

@@ -6,8 +6,8 @@ namespace Narsil\Cms\Models\Users;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Narsil\Base\Traits\HasUuidPrimaryKey;
 use Narsil\Cms\Models\User;
-use Narsil\Base\Traits\HasUuidKey;
 
 #endregion
 
@@ -17,7 +17,7 @@ use Narsil\Base\Traits\HasUuidKey;
  */
 class UserBookmark extends Model
 {
-    use HasUuidKey;
+    use HasUuidPrimaryKey;
 
     #region CONSTRUCTOR
 

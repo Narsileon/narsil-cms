@@ -6,9 +6,9 @@ namespace Narsil\Cms\Models\Globals;
 
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\Pivot;
+use Narsil\Base\Traits\HasUuidPrimaryKey;
 use Narsil\Cms\Models\Sites\SitePage;
 use Narsil\Cms\Traits\HasTranslations;
-use Narsil\Base\Traits\HasUuidKey;
 use Narsil\Cms\Traits\IsOrderable;
 
 #endregion
@@ -20,7 +20,7 @@ use Narsil\Cms\Traits\IsOrderable;
 class FooterLink extends Pivot
 {
     use HasTranslations;
-    use HasUuidKey;
+    use HasUuidPrimaryKey;
     use IsOrderable;
 
     #region CONSTRUCTOR

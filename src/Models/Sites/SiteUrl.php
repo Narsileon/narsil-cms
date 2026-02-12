@@ -6,8 +6,8 @@ namespace Narsil\Cms\Models\Sites;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Narsil\Base\Traits\HasUuidPrimaryKey;
 use Narsil\Cms\Models\Hosts\HostLocaleLanguage;
-use Narsil\Base\Traits\HasUuidKey;
 
 #endregion
 
@@ -17,7 +17,8 @@ use Narsil\Base\Traits\HasUuidKey;
  */
 class SiteUrl extends Model
 {
-    use HasUuidKey;
+    use HasUuidPrimaryKey;
+
     #region CONSTRUCTOR
 
     /**

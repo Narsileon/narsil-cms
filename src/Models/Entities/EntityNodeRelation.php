@@ -12,7 +12,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Str;
-use Narsil\Base\Traits\HasUuidKey;
+use Narsil\Base\Traits\HasUuidPrimaryKey;
 
 #endregion
 
@@ -22,7 +22,7 @@ use Narsil\Base\Traits\HasUuidKey;
  */
 class EntityNodeRelation extends Pivot
 {
-    use HasUuidKey;
+    use HasUuidPrimaryKey;
 
     #region CONSTRUCTOR
 

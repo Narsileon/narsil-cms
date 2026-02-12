@@ -6,7 +6,7 @@ namespace Narsil\Cms\Models\Collections;
 
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\Pivot;
-use Narsil\Base\Traits\HasUuidKey;
+use Narsil\Base\Traits\HasUuidPrimaryKey;
 
 #endregion
 
@@ -16,7 +16,7 @@ use Narsil\Base\Traits\HasUuidKey;
  */
 class FieldBlock extends Pivot
 {
-    use HasUuidKey;
+    use HasUuidPrimaryKey;
 
     #region CONSTRUCTOR
 
