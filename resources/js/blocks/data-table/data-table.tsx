@@ -102,6 +102,7 @@ function DataTable({ collection, title }: DataTableProps) {
           <Tooltip hidden={isDesktop} tooltip={createLabel}>
             <Button
               aria-label={createLabel}
+              nativeButton={false}
               size={isDesktop ? "default" : "icon"}
               render={
                 <Link href={route(collection.meta.routes.create, collection.meta.routes.params)}>
