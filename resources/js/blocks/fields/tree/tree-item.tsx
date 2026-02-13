@@ -69,6 +69,7 @@ function TreeItem({
       <CardRoot {...props}>
         <CollapsibleTrigger
           className={cn(disabled && "cursor-default")}
+          nativeButton={false}
           render={
             <CardHeader className="flex min-h-9 items-center justify-start gap-2 py-0 pr-1 pl-0">
               <SortableHandle
@@ -89,7 +90,6 @@ function TreeItem({
                 content
               )}
               <TreeItemMenu
-                className="justify-end"
                 disabled={disabled}
                 item={item}
                 onMoveDown={onMoveDown}

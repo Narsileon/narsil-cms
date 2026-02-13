@@ -34,16 +34,14 @@ function SortableItemMenu({
         <DropdownMenuTrigger
           {...props}
           render={
-            <div className="flex items-center justify-end">
-              <Button
-                aria-label={trans("accessibility.toggle_row_menu")}
-                size="icon-sm"
-                variant="ghost-secondary"
-                onClick={(event) => event.stopPropagation()}
-              >
-                <Icon name="more-horizontal" />
-              </Button>
-            </div>
+            <Button
+              aria-label={trans("accessibility.toggle_row_menu")}
+              size="icon-sm"
+              variant="ghost-secondary"
+              onClick={(event) => event.stopPropagation()}
+            >
+              <Icon name="more-horizontal" />
+            </Button>
           }
         />
       </Tooltip>

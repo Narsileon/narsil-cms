@@ -38,6 +38,7 @@ function Sidebar({ ...props }: SidebarProps) {
       <SidebarHeader className="h-13 border-b">
         <Button
           className="truncate"
+          nativeButton={false}
           variant="sidebar"
           render={
             <Link href={route("dashboard")}>
@@ -58,6 +59,7 @@ function Sidebar({ ...props }: SidebarProps) {
                     data-active={route(items[0].route, items[0].parameters).endsWith(
                       window.location.pathname,
                     )}
+                    nativeButton={false}
                     variant="sidebar"
                     render={
                       <Link
@@ -85,6 +87,7 @@ function Sidebar({ ...props }: SidebarProps) {
                             data-active={route(item.route, item.parameters).endsWith(
                               window.location.pathname,
                             )}
+                            nativeButton={false}
                             variant="sidebar"
                             render={
                               <Link

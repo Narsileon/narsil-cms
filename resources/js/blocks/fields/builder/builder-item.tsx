@@ -77,6 +77,7 @@ function BuilderItem({
       <CardRoot {...props}>
         <CollapsibleTrigger
           className={cn(open && "border-b")}
+          nativeButton={false}
           render={
             <CardHeader className="flex min-h-9 items-center justify-between gap-2 py-0! pr-1 pl-0">
               <SortableHandle ref={setActivatorNodeRef} {...attributes} {...listeners} />
