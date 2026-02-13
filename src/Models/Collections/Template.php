@@ -12,9 +12,9 @@ use Illuminate\Support\Str;
 use Narsil\Base\Observers\ModelObserver;
 use Narsil\Base\Traits\AuditLoggable;
 use Narsil\Base\Traits\Blameable;
+use Narsil\Base\Traits\HasTranslations;
 use Narsil\Cms\Support\SelectOption;
 use Narsil\Cms\Traits\HasDatetimes;
-use Narsil\Cms\Traits\HasTranslations;
 
 #endregion
 

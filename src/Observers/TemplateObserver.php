@@ -6,10 +6,10 @@ namespace Narsil\Cms\Observers;
 
 use Illuminate\Support\Facades\Artisan;
 use Narsil\Base\Enums\AbilityEnum;
+use Narsil\Base\Models\Policies\Permission;
 use Narsil\Base\Services\PermissionService;
 use Narsil\Cms\Database\Migrations\TemplateMigration;
 use Narsil\Cms\Models\Collections\Template;
-use Narsil\Cms\Models\Policies\Permission;
 
 #endregion
 

@@ -4,6 +4,8 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
+use Narsil\Base\Models\Policies\Permission;
+use Narsil\Base\Models\Policies\Role;
 use Narsil\Base\Models\Users\UserConfiguration;
 use Narsil\Cms\Http\Controllers\Collections\Blocks\BlockCreateController;
 use Narsil\Cms\Http\Controllers\Collections\Blocks\BlockDestroyController;
@@ -122,8 +124,6 @@ use Narsil\Cms\Models\Entities\Entity;
 use Narsil\Cms\Models\Globals\Footer;
 use Narsil\Cms\Models\Globals\Header;
 use Narsil\Cms\Models\Hosts\Host;
-use Narsil\Cms\Models\Policies\Permission;
-use Narsil\Cms\Models\Policies\Role;
 use Narsil\Cms\Models\Sites\Site;
 use Narsil\Cms\Models\Sites\SitePage;
 use Narsil\Cms\Models\Storages\Asset;

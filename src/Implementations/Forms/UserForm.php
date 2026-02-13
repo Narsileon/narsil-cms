@@ -5,6 +5,7 @@ namespace Narsil\Cms\Implementations\Forms;
 #region USE
 
 use Illuminate\Database\Eloquent\Model;
+use Narsil\Base\Models\Policies\Role;
 use Narsil\Cms\Contracts\Fields\CheckboxField;
 use Narsil\Cms\Contracts\Fields\EmailField;
 use Narsil\Cms\Contracts\Fields\FileField;
@@ -16,7 +17,6 @@ use Narsil\Cms\Implementations\AbstractForm;
 use Narsil\Cms\Models\Collections\Field;
 use Narsil\Cms\Models\Collections\TemplateTab;
 use Narsil\Cms\Models\Collections\TemplateTabElement;
-use Narsil\Cms\Models\Policies\Role;
 use Narsil\Cms\Models\User;
 use Narsil\Cms\Services\ModelService;
 use Narsil\Cms\Services\RouteService;
@@ -134,7 +134,7 @@ class UserForm extends AbstractForm implements Contract
                         TemplateTabElement::LABEL => trans('narsil-cms::validation.attributes.roles'),
                         TemplateTabElement::RELATION_BASE => [
                             Field::TYPE => CheckboxField::class,
-                            Field::RELATION_OPTIONS => Role::selectOptions(),
+                            Field::RELATION_OPTIONS => Role::options(),
                             Field::SETTINGS => app(CheckboxField::class),
                         ],
                     ],

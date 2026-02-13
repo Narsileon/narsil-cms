@@ -10,10 +10,10 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Narsil\Base\Traits\AuditLoggable;
 use Narsil\Base\Traits\Blameable;
+use Narsil\Base\Traits\HasTranslations;
 use Narsil\Cms\Database\Factories\FooterFactory;
 use Narsil\Cms\Models\Sites\Site;
 use Narsil\Cms\Traits\HasDatetimes;
-use Narsil\Cms\Traits\HasTranslations;
 
 #endregion
 

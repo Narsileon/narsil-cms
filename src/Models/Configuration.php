@@ -7,8 +7,8 @@ namespace Narsil\Cms\Models;
 use Illuminate\Database\Eloquent\Model;
 use Narsil\Base\Traits\AuditLoggable;
 use Narsil\Base\Traits\Blameable;
+use Narsil\Base\Traits\HasTranslations;
 use Narsil\Cms\Traits\HasDatetimes;
-use Narsil\Cms\Traits\HasTranslations;
 
 #endregion
 

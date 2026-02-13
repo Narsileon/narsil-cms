@@ -6,9 +6,9 @@ namespace Narsil\Cms\Models\Storages;
 
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
+use Narsil\Base\Traits\HasTranslations;
 use Narsil\Base\Traits\HasUuidPrimaryKey;
 use Narsil\Cms\Traits\HasIdentifier;
-use Narsil\Cms\Traits\HasTranslations;
 
 #endregion
 

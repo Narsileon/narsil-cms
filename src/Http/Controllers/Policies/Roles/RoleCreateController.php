@@ -8,10 +8,10 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Inertia\Response;
 use Narsil\Base\Enums\AbilityEnum;
+use Narsil\Base\Models\Policies\Role;
 use Narsil\Cms\Contracts\Forms\RoleForm;
 use Narsil\Cms\Enums\RequestMethodEnum;
 use Narsil\Cms\Http\Controllers\RenderController;
-use Narsil\Cms\Models\Policies\Role;
 use Narsil\Cms\Services\ModelService;
 
 #endregion

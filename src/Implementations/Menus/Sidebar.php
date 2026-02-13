@@ -5,6 +5,8 @@ namespace Narsil\Cms\Implementations\Menus;
 #region USE
 
 use Narsil\Base\Enums\AbilityEnum;
+use Narsil\Base\Models\Policies\Permission;
+use Narsil\Base\Models\Policies\Role;
 use Narsil\Base\Services\PermissionService;
 use Narsil\Base\Support\TranslationsBag;
 use Narsil\Cms\Contracts\Menus\Sidebar as Contract;
@@ -17,8 +19,6 @@ use Narsil\Cms\Models\Entities\Entity;
 use Narsil\Cms\Models\Globals\Footer;
 use Narsil\Cms\Models\Globals\Header;
 use Narsil\Cms\Models\Hosts\Host;
-use Narsil\Cms\Models\Policies\Permission;
-use Narsil\Cms\Models\Policies\Role;
 use Narsil\Cms\Models\Sites\Site;
 use Narsil\Cms\Models\Storages\Asset;
 use Narsil\Cms\Models\User;

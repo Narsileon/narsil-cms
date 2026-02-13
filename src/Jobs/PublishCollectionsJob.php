@@ -7,6 +7,7 @@ namespace Narsil\Cms\Jobs;
 use Illuminate\Bus\Batch;
 use Illuminate\Support\Facades\Bus;
 use Illuminate\Support\Facades\Log;
+use Narsil\Base\Models\Jobs\Job;
 use Narsil\Cms\Models\Collections\Template;
 use Throwable;
 
@@ -16,7 +17,7 @@ use Throwable;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class PublishCollectionsJob extends AbstractJob
+class PublishCollectionsJob extends Job
 {
     #region PUBLIC METHODS
 

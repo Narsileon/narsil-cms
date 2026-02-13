@@ -7,8 +7,8 @@ namespace Narsil\Cms\Console\Commands;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Config;
 use Narsil\Base\Enums\AbilityEnum;
+use Narsil\Base\Models\Policies\Permission;
 use Narsil\Base\Services\PermissionService;
-use Narsil\Cms\Models\Policies\Permission;
 use ReflectionClass;
 
 #endregion

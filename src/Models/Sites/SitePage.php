@@ -12,10 +12,10 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Session;
+use Narsil\Base\Traits\HasTranslations;
 use Narsil\Cms\Models\Hosts\HostLocaleLanguage;
 use Narsil\Cms\Models\TreeModel;
 use Narsil\Cms\Traits\HasIdentifier;
-use Narsil\Cms\Traits\HasTranslations;
 
 #endregion
 

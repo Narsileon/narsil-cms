@@ -2,6 +2,8 @@
 
 #region USE
 
+use Narsil\Base\Models\Policies\Permission;
+use Narsil\Base\Models\Policies\Role;
 use Narsil\Cms\Contracts\Fields\ArrayField;
 use Narsil\Cms\Contracts\Fields\BuilderField;
 use Narsil\Cms\Contracts\Fields\CheckboxField;
@@ -28,8 +30,6 @@ use Narsil\Cms\Models\Collections\Block;
 use Narsil\Cms\Models\Collections\Field;
 use Narsil\Cms\Models\Hosts\Host;
 use Narsil\Cms\Models\Hosts\HostLocale;
-use Narsil\Cms\Models\Policies\Permission;
-use Narsil\Cms\Models\Policies\Role;
 
 #endregion
 

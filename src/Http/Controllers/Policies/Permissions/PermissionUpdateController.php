@@ -7,8 +7,8 @@ namespace Narsil\Cms\Http\Controllers\Policies\Permissions;
 use Illuminate\Http\RedirectResponse;
 use Narsil\Base\Contracts\Requests\PermissionFormRequest;
 use Narsil\Base\Enums\ModelEventEnum;
+use Narsil\Base\Models\Policies\Permission;
 use Narsil\Cms\Http\Controllers\RedirectController;
-use Narsil\Cms\Models\Policies\Permission;
 use Narsil\Cms\Services\ModelService;
 
 #endregion

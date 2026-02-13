@@ -4,8 +4,8 @@ namespace Narsil\Cms\Services\Models;
 
 #region USE
 
-use Narsil\Cms\Models\Policies\Permission;
-use Narsil\Cms\Models\Policies\Role;
+use Narsil\Base\Models\Policies\Permission;
+use Narsil\Base\Models\Policies\Role;
 use Narsil\Cms\Services\DatabaseService;
 
 #endregion

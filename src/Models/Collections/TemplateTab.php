@@ -8,8 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
+use Narsil\Base\Traits\HasTranslations;
 use Narsil\Base\Traits\HasUuidPrimaryKey;
-use Narsil\Cms\Traits\HasTranslations;
 use Narsil\Cms\Traits\IsOrderable;
 
 #endregion

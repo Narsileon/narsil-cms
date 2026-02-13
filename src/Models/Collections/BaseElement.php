@@ -9,9 +9,9 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Narsil\Base\Traits\AuditLoggable;
 use Narsil\Base\Traits\Blameable;
+use Narsil\Base\Traits\HasTranslations;
 use Narsil\Cms\Traits\HasDatetimes;
 use Narsil\Cms\Traits\HasIdentifier;
-use Narsil\Cms\Traits\HasTranslations;
 
 #endregion
 

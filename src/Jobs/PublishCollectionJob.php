@@ -5,6 +5,7 @@ namespace Narsil\Cms\Jobs;
 #region USE
 
 use Carbon\Carbon;
+use Narsil\Base\Models\Jobs\Job;
 use Narsil\Cms\Models\Collections\Template;
 use Narsil\Cms\Models\Entities\Entity;
 
@@ -14,7 +15,7 @@ use Narsil\Cms\Models\Entities\Entity;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class PublishCollectionJob extends AbstractJob
+class PublishCollectionJob extends Job
 {
     #region CONSTRUCTOR
 

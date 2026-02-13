@@ -4,6 +4,7 @@ namespace Narsil\Cms\Jobs;
 
 #region USE
 
+use Narsil\Base\Jobs\Job;
 use Narsil\Cms\Models\Hosts\Host;
 use Narsil\Cms\Support\SitemapIndex;
 
@@ -13,7 +14,7 @@ use Narsil\Cms\Support\SitemapIndex;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class SitemapJob extends AbstractJob
+class SitemapJob extends Job
 {
     #region CONSTRUCTOR
 

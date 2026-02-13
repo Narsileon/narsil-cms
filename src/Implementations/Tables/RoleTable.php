@@ -4,10 +4,10 @@ namespace Narsil\Cms\Implementations\Tables;
 
 #region USE
 
+use Narsil\Base\Models\Policies\Permission;
+use Narsil\Base\Models\Policies\Role;
 use Narsil\Cms\Enums\DataTypeEnum;
 use Narsil\Cms\Implementations\AbstractTable;
-use Narsil\Cms\Models\Policies\Permission;
-use Narsil\Cms\Models\Policies\Role;
 use Narsil\Cms\Models\User;
 use Narsil\Cms\Services\ModelService;
 use Narsil\Cms\Support\TableColumn;

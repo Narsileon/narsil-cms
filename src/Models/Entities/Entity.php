@@ -10,10 +10,10 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Narsil\Base\Traits\AuditLoggable;
 use Narsil\Base\Traits\Blameable;
+use Narsil\Base\Traits\HasTranslations;
 use Narsil\Cms\Models\Collections\Template;
 use Narsil\Cms\Traits\HasIdentifier;
 use Narsil\Cms\Traits\HasRevisions;
-use Narsil\Cms\Traits\HasTranslations;
 use Narsil\Cms\Traits\SoftDeleteBlameable;
 
 #endregion

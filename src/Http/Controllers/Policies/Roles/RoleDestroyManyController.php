@@ -7,9 +7,9 @@ namespace Narsil\Cms\Http\Controllers\Policies\Roles;
 use Illuminate\Http\RedirectResponse;
 use Narsil\Base\Enums\AbilityEnum;
 use Narsil\Base\Enums\ModelEventEnum;
+use Narsil\Base\Models\Policies\Role;
 use Narsil\Cms\Http\Controllers\RedirectController;
 use Narsil\Cms\Http\Requests\DestroyManyRequest;
-use Narsil\Cms\Models\Policies\Role;
 use Narsil\Cms\Services\ModelService;
 
 #endregion
