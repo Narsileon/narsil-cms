@@ -5,8 +5,8 @@ namespace Narsil\Cms\Http\Controllers\Storages\Assets;
 #region USE
 
 use Illuminate\Http\RedirectResponse;
+use Narsil\Base\Enums\AbilityEnum;
 use Narsil\Base\Enums\ModelEventEnum;
-use Narsil\Cms\Enums\Policies\PermissionEnum;
 use Narsil\Cms\Http\Controllers\RedirectController;
 use Narsil\Cms\Http\Requests\DestroyManyRequest;
 use Narsil\Cms\Models\Storages\Asset;
@@ -29,7 +29,7 @@ class AssetDestroyManyController extends RedirectController
      */
     public function __invoke(DestroyManyRequest $request): RedirectResponse
     {
-        $this->authorize(PermissionEnum::DELETE_ANY, Asset::class);
+        $this->authorize(AbilityEnum::DELETE_ANY, Asset::class);
 
         $ids = $request->validated(DestroyManyRequest::IDS);
 

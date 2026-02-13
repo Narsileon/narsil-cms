@@ -5,9 +5,9 @@ namespace Narsil\Cms\Http\Controllers\Configurations;
 #region USE
 
 use Illuminate\Http\RedirectResponse;
+use Narsil\Base\Enums\AbilityEnum;
 use Narsil\Base\Enums\ModelEventEnum;
 use Narsil\Cms\Contracts\Requests\ConfigurationFormRequest;
-use Narsil\Cms\Enums\Policies\PermissionEnum;
 use Narsil\Cms\Http\Controllers\RedirectController;
 use Narsil\Cms\Models\Configuration;
 use Narsil\Cms\Services\ModelService;
@@ -31,7 +31,7 @@ class ConfigurationUpdateController extends RedirectController
     {
         $configuration = Configuration::firstOrCreate();
 
-        $this->authorize(PermissionEnum::UPDATE, $configuration);
+        $this->authorize(AbilityEnum::UPDATE, $configuration);
 
         $attributes = $request->validated();
 

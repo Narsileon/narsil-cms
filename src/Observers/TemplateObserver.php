@@ -5,8 +5,8 @@ namespace Narsil\Cms\Observers;
 #region USE
 
 use Illuminate\Support\Facades\Artisan;
+use Narsil\Base\Enums\AbilityEnum;
 use Narsil\Cms\Database\Migrations\TemplateMigration;
-use Narsil\Cms\Enums\Policies\PermissionEnum;
 use Narsil\Cms\Models\Collections\Template;
 use Narsil\Cms\Models\Policies\Permission;
 use Narsil\Cms\Services\PermissionService;
@@ -70,17 +70,17 @@ class TemplateObserver
     protected function createPermissions(Template $model): void
     {
         $permissions = [
-            PermissionEnum::VIEW->value,
-            PermissionEnum::CREATE->value,
-            PermissionEnum::UPDATE->value,
-            PermissionEnum::DELETE->value,
+            AbilityEnum::VIEW->value,
+            AbilityEnum::CREATE->value,
+            AbilityEnum::UPDATE->value,
+            AbilityEnum::DELETE->value,
         ];
 
         foreach ($permissions as $permission)
         {
             $handle = PermissionService::getHandle($model->{Template::TABLE_NAME}, $permission);
 
-            $name = trans("narsil-cms::permissions.$permission", [
+            $name = trans("narsil-ui::abilities.$permission", [
                 'model' => $model->{Template::SINGULAR},
                 'table' => $model->{Template::PLURAL},
             ]);

@@ -7,9 +7,9 @@ namespace Narsil\Cms\Http\Controllers\Globals\Headers;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Inertia\Response;
+use Narsil\Base\Enums\AbilityEnum;
 use Narsil\Cms\Contracts\Forms\HeaderForm;
 use Narsil\Cms\Enums\RequestMethodEnum;
-use Narsil\Cms\Enums\Policies\PermissionEnum;
 use Narsil\Cms\Http\Controllers\RenderController;
 use Narsil\Cms\Models\Globals\Header;
 use Narsil\Cms\Services\ModelService;
@@ -31,7 +31,7 @@ class HeaderCreateController extends RenderController
      */
     public function __invoke(Request $request): JsonResponse|Response
     {
-        $this->authorize(PermissionEnum::CREATE, Header::class);
+        $this->authorize(AbilityEnum::CREATE, Header::class);
 
         $form = $this->getForm();
 

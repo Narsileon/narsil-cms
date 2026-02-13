@@ -7,10 +7,10 @@ namespace Narsil\Cms\Http\Controllers\Hosts;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Inertia\Response;
+use Narsil\Base\Enums\AbilityEnum;
 use Narsil\Cms\Casts\HumanDatetimeCast;
 use Narsil\Cms\Contracts\Forms\HostForm;
 use Narsil\Cms\Enums\RequestMethodEnum;
-use Narsil\Cms\Enums\Policies\PermissionEnum;
 use Narsil\Cms\Http\Controllers\RenderController;
 use Narsil\Cms\Models\Hosts\Host;
 use Narsil\Cms\Models\Hosts\HostLocale;
@@ -34,7 +34,7 @@ class HostEditController extends RenderController
      */
     public function __invoke(Request $request, Host $host): JsonResponse|Response
     {
-        $this->authorize(PermissionEnum::UPDATE, $host);
+        $this->authorize(AbilityEnum::UPDATE, $host);
 
         $host->loadMissing([
             Host::RELATION_DEFAULT_LOCALE,

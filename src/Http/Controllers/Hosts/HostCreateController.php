@@ -7,9 +7,9 @@ namespace Narsil\Cms\Http\Controllers\Hosts;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Inertia\Response;
+use Narsil\Base\Enums\AbilityEnum;
 use Narsil\Cms\Contracts\Forms\HostForm;
 use Narsil\Cms\Enums\RequestMethodEnum;
-use Narsil\Cms\Enums\Policies\PermissionEnum;
 use Narsil\Cms\Http\Controllers\RenderController;
 use Narsil\Cms\Models\Hosts\Host;
 use Narsil\Cms\Services\ModelService;
@@ -31,7 +31,7 @@ class HostCreateController extends RenderController
      */
     public function __invoke(Request $request): JsonResponse|Response
     {
-        $this->authorize(PermissionEnum::CREATE, Host::class);
+        $this->authorize(AbilityEnum::CREATE, Host::class);
 
         $form = $this->getForm();
 

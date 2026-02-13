@@ -6,8 +6,8 @@ namespace Narsil\Cms\Http\Controllers\Globals\Footers;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Narsil\Base\Enums\AbilityEnum;
 use Narsil\Base\Enums\ModelEventEnum;
-use Narsil\Cms\Enums\Policies\PermissionEnum;
 use Narsil\Cms\Http\Controllers\RedirectController;
 use Narsil\Cms\Models\Globals\Footer;
 use Narsil\Cms\Services\Models\FooterService;
@@ -31,7 +31,7 @@ class FooterReplicateController extends RedirectController
      */
     public function __invoke(Request $request, Footer $footer): RedirectResponse
     {
-        $this->authorize(PermissionEnum::CREATE, Footer::class);
+        $this->authorize(AbilityEnum::CREATE, Footer::class);
 
         FooterService::replicate($footer);
 

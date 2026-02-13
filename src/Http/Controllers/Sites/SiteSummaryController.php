@@ -8,7 +8,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Inertia\Response;
-use Narsil\Cms\Enums\Policies\PermissionEnum;
+use Narsil\Base\Enums\AbilityEnum;
 use Narsil\Cms\Http\Controllers\RenderController;
 use Narsil\Cms\Http\Data\SummaryData;
 use Narsil\Cms\Models\Hosts\Host;
@@ -32,7 +32,7 @@ class SiteSummaryController extends RenderController
      */
     public function __invoke(Request $request): JsonResponse|Response
     {
-        $this->authorize(PermissionEnum::VIEW_ANY, Site::class);
+        $this->authorize(AbilityEnum::VIEW_ANY, Site::class);
 
         $locale = App::getLocale();
 

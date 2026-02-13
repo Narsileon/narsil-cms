@@ -7,7 +7,7 @@ namespace Narsil\Cms\Http\Controllers\Storages\Assets;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Inertia\Response;
-use Narsil\Cms\Enums\Policies\PermissionEnum;
+use Narsil\Base\Enums\AbilityEnum;
 use Narsil\Cms\Http\Collections\DataTableCollection;
 use Narsil\Cms\Http\Controllers\RenderController;
 use Narsil\Cms\Models\Storages\Asset;
@@ -30,7 +30,7 @@ class AssetIndexController extends RenderController
      */
     public function __invoke(Request $request): JsonResponse|Response
     {
-        $this->authorize(PermissionEnum::VIEW_ANY, Asset::class);
+        $this->authorize(AbilityEnum::VIEW_ANY, Asset::class);
 
         $collection = $this->getCollection();
 

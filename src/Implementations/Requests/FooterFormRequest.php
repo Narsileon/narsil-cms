@@ -6,10 +6,10 @@ namespace Narsil\Cms\Implementations\Requests;
 
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Validation\Rules\File;
+use Narsil\Base\Enums\AbilityEnum;
+use Narsil\Base\Implementations\FormRequest;
 use Narsil\Base\Validation\FormRule;
 use Narsil\Cms\Contracts\Requests\FooterFormRequest as Contract;
-use Narsil\Cms\Enums\Policies\PermissionEnum;
-use Narsil\Cms\Implementations\AbstractFormRequest;
 use Narsil\Cms\Models\Globals\Footer;
 
 #endregion
@@ -18,7 +18,7 @@ use Narsil\Cms\Models\Globals\Footer;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class FooterFormRequest extends AbstractFormRequest implements Contract
+class FooterFormRequest extends FormRequest implements Contract
 {
     #region PUBLIC METHODS
 
@@ -29,10 +29,10 @@ class FooterFormRequest extends AbstractFormRequest implements Contract
     {
         if ($this->footer)
         {
-            return Gate::allows(PermissionEnum::UPDATE, $this->footer);
+            return Gate::allows(AbilityEnum::UPDATE, $this->footer);
         }
 
-        return Gate::allows(PermissionEnum::CREATE, Footer::class);
+        return Gate::allows(AbilityEnum::CREATE, Footer::class);
     }
 
     /**

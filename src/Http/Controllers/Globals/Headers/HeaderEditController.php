@@ -7,10 +7,10 @@ namespace Narsil\Cms\Http\Controllers\Globals\Headers;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Inertia\Response;
+use Narsil\Base\Enums\AbilityEnum;
 use Narsil\Cms\Casts\HumanDatetimeCast;
 use Narsil\Cms\Contracts\Forms\HeaderForm;
 use Narsil\Cms\Enums\RequestMethodEnum;
-use Narsil\Cms\Enums\Policies\PermissionEnum;
 use Narsil\Cms\Http\Controllers\RenderController;
 use Narsil\Cms\Models\Globals\Header;
 use Narsil\Cms\Services\ModelService;
@@ -33,7 +33,7 @@ class HeaderEditController extends RenderController
      */
     public function __invoke(Request $request, Header $header): JsonResponse|Response
     {
-        $this->authorize(PermissionEnum::UPDATE, $header);
+        $this->authorize(AbilityEnum::UPDATE, $header);
 
         $data = $this->getData($header);
         $form = $this->getForm($header);

@@ -7,10 +7,10 @@ namespace Narsil\Cms\Http\Controllers\Policies\Roles;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Inertia\Response;
+use Narsil\Base\Enums\AbilityEnum;
 use Narsil\Cms\Casts\HumanDatetimeCast;
 use Narsil\Cms\Contracts\Forms\RoleForm;
 use Narsil\Cms\Enums\RequestMethodEnum;
-use Narsil\Cms\Enums\Policies\PermissionEnum;
 use Narsil\Cms\Http\Controllers\RenderController;
 use Narsil\Cms\Models\Policies\Permission;
 use Narsil\Cms\Models\Policies\Role;
@@ -34,7 +34,7 @@ class RoleEditController extends RenderController
      */
     public function __invoke(Request $request, Role $role): JsonResponse|Response
     {
-        $this->authorize(PermissionEnum::UPDATE, $role);
+        $this->authorize(AbilityEnum::UPDATE, $role);
 
         $this->transformPermissions($role);
 

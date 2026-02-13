@@ -7,10 +7,10 @@ namespace Narsil\Cms\Http\Controllers\Users;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Inertia\Response;
+use Narsil\Base\Enums\AbilityEnum;
 use Narsil\Cms\Casts\HumanDatetimeCast;
 use Narsil\Cms\Contracts\Forms\UserForm;
 use Narsil\Cms\Enums\RequestMethodEnum;
-use Narsil\Cms\Enums\Policies\PermissionEnum;
 use Narsil\Cms\Http\Controllers\RenderController;
 use Narsil\Cms\Models\Policies\Role;
 use Narsil\Cms\Models\User;
@@ -34,7 +34,7 @@ class UserEditController extends RenderController
      */
     public function __invoke(Request $request, User $user): JsonResponse|Response
     {
-        $this->authorize(PermissionEnum::UPDATE, $user);
+        $this->authorize(AbilityEnum::UPDATE, $user);
 
         $user->loadMissing([
             User::RELATION_ROLES,

@@ -6,8 +6,8 @@ namespace Narsil\Cms\Http\Controllers\Collections\Fields;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Narsil\Base\Enums\AbilityEnum;
 use Narsil\Base\Enums\ModelEventEnum;
-use Narsil\Cms\Enums\Policies\PermissionEnum;
 use Narsil\Cms\Http\Controllers\RedirectController;
 use Narsil\Cms\Models\Collections\Field;
 use Narsil\Cms\Services\ModelService;
@@ -30,7 +30,7 @@ class FieldDestroyController extends RedirectController
      */
     public function __invoke(Request $request, Field $field): RedirectResponse
     {
-        $this->authorize(PermissionEnum::DELETE, $field);
+        $this->authorize(AbilityEnum::DELETE, $field);
 
         $field->delete();
 

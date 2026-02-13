@@ -6,8 +6,8 @@ namespace Narsil\Cms\Http\Controllers\Users;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Arr;
+use Narsil\Base\Contracts\Requests\UserFormRequest;
 use Narsil\Base\Enums\ModelEventEnum;
-use Narsil\Cms\Contracts\Requests\UserFormRequest;
 use Narsil\Cms\Http\Controllers\RedirectController;
 use Narsil\Cms\Models\User;
 use Narsil\Cms\Services\ModelService;

@@ -8,10 +8,10 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Inertia\Response;
+use Narsil\Base\Enums\AbilityEnum;
 use Narsil\Cms\Contracts\Forms\EntityForm;
 use Narsil\Cms\Contracts\Forms\PublishForm;
 use Narsil\Cms\Contracts\Resources\EntityResource;
-use Narsil\Cms\Enums\Policies\PermissionEnum;
 use Narsil\Cms\Enums\RequestMethodEnum;
 use Narsil\Cms\Http\Controllers\RenderController;
 use Narsil\Cms\Models\Collections\Template;
@@ -47,7 +47,7 @@ class EntityEditController extends RenderController
             ->revisionOptions($id)
             ->get();
 
-        $this->authorize(PermissionEnum::UPDATE, $entity);
+        $this->authorize(AbilityEnum::UPDATE, $entity);
 
         $data = $this->getData($entity);
         $form = $this->getForm($entity);

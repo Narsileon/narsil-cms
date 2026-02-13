@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Str;
 use Inertia\Response;
-use Narsil\Cms\Enums\Policies\PermissionEnum;
+use Narsil\Base\Enums\AbilityEnum;
 use Narsil\Cms\Http\Controllers\RenderController;
 use Narsil\Cms\Http\Data\SummaryData;
 use Narsil\Cms\Models\Collections\Template;
@@ -33,7 +33,7 @@ class CollectionSummaryController extends RenderController
      */
     public function __invoke(Request $request): JsonResponse|Response
     {
-        $this->authorize(PermissionEnum::VIEW_ANY, Entity::class);
+        $this->authorize(AbilityEnum::VIEW_ANY, Entity::class);
 
         $locale = App::getLocale();
 

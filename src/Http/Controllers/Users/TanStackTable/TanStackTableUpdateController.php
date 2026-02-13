@@ -8,8 +8,8 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
+use Narsil\Base\Contracts\Requests\TanStackTableFormRequest;
 use Narsil\Base\Models\Users\TanStackTable;
-use Narsil\Cms\Contracts\Requests\Ui\TanStackTableFormRequest;
 
 #endregion
 

@@ -6,7 +6,7 @@ namespace Narsil\Cms\Actions\Fortify;
 
 use Illuminate\Support\Facades\Validator;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
-use Narsil\Cms\Contracts\Requests\Fortify\CreateNewUserFormRequest;
+use Narsil\Base\Contracts\Requests\Fortify\CreateNewUserFormRequest;
 use Narsil\Cms\Models\User;
 
 #endregion

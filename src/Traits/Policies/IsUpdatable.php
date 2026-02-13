@@ -5,7 +5,7 @@ namespace Narsil\Cms\Traits\Policies;
 #region USE
 
 use Illuminate\Database\Eloquent\Model;
-use Narsil\Cms\Enums\Policies\PermissionEnum;
+use Narsil\Base\Enums\AbilityEnum;
 use Narsil\Cms\Models\User;
 use Narsil\Cms\Services\PermissionService;
 
@@ -29,7 +29,7 @@ trait IsUpdatable
      */
     public function update(User $user, Model $model): bool
     {
-        $permission = PermissionService::getHandle($model->getTable(), PermissionEnum::UPDATE->value);
+        $permission = PermissionService::getHandle($model->getTable(), AbilityEnum::UPDATE->value);
 
         return $user->hasPermission($permission);
     }

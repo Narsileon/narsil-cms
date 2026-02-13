@@ -5,7 +5,7 @@ namespace Narsil\Cms\Traits\Policies;
 #region USE
 
 use Illuminate\Database\Eloquent\Model;
-use Narsil\Cms\Enums\Policies\PermissionEnum;
+use Narsil\Base\Enums\AbilityEnum;
 use Narsil\Cms\Models\User;
 use Narsil\Cms\Services\PermissionService;
 
@@ -29,7 +29,7 @@ trait IsDeletable
      */
     public function delete(User $user, Model $model): bool
     {
-        $permission = PermissionService::getHandle($model->getTable(), PermissionEnum::DELETE->value);
+        $permission = PermissionService::getHandle($model->getTable(), AbilityEnum::DELETE->value);
 
         return $user->hasPermission($permission);
     }
@@ -44,7 +44,7 @@ trait IsDeletable
      */
     public function deleteAny(User $user, string $model): bool
     {
-        $permission = PermissionService::getHandle($model::TABLE, PermissionEnum::DELETE->value);
+        $permission = PermissionService::getHandle($model::TABLE, AbilityEnum::DELETE->value);
 
         return $user->hasPermission($permission);
     }

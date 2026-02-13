@@ -6,8 +6,8 @@ namespace Narsil\Cms\Http\Controllers\Entities;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Narsil\Base\Enums\AbilityEnum;
 use Narsil\Base\Enums\ModelEventEnum;
-use Narsil\Cms\Enums\Policies\PermissionEnum;
 use Narsil\Cms\Http\Controllers\RedirectController;
 use Narsil\Cms\Models\Collections\Template;
 use Narsil\Cms\Models\Entities\Entity;
@@ -39,7 +39,7 @@ class EntityDestroyController extends RedirectController
                 Entity::ID => $id
             ]);
 
-        $this->authorize(PermissionEnum::DELETE, $entity);
+        $this->authorize(AbilityEnum::DELETE, $entity);
 
         $entity->forceDelete();
 

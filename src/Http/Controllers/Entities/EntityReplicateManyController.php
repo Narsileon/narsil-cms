@@ -5,8 +5,8 @@ namespace Narsil\Cms\Http\Controllers\Entities;
 #region USE
 
 use Illuminate\Http\RedirectResponse;
+use Narsil\Base\Enums\AbilityEnum;
 use Narsil\Base\Enums\ModelEventEnum;
-use Narsil\Cms\Enums\Policies\PermissionEnum;
 use Narsil\Cms\Http\Controllers\RedirectController;
 use Narsil\Cms\Http\Requests\ReplicateManyRequest;
 use Narsil\Cms\Models\Collections\Template;
@@ -34,7 +34,7 @@ class EntityReplicateManyController extends RedirectController
      */
     public function __invoke(ReplicateManyRequest $request, int|string $collection): RedirectResponse
     {
-        $this->authorize(PermissionEnum::CREATE, $this->entityClass);
+        $this->authorize(AbilityEnum::CREATE, $this->entityClass);
 
         $ids = $request->validated(ReplicateManyRequest::IDS);
 

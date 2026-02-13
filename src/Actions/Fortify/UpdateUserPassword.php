@@ -6,7 +6,7 @@ namespace Narsil\Cms\Actions\Fortify;
 
 use Illuminate\Support\Facades\Validator;
 use Laravel\Fortify\Contracts\UpdatesUserPasswords;
-use Narsil\Cms\Contracts\Requests\Fortify\UpdateUserPasswordFormRequest;
+use Narsil\Base\Contracts\Requests\Fortify\UpdateUserPasswordFormRequest;
 use Narsil\Cms\Models\User;
 
 #endregion

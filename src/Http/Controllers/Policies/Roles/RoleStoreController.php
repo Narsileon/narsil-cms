@@ -6,8 +6,8 @@ namespace Narsil\Cms\Http\Controllers\Policies\Roles;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Arr;
+use Narsil\Base\Contracts\Requests\RoleFormRequest;
 use Narsil\Base\Enums\ModelEventEnum;
-use Narsil\Cms\Contracts\Requests\RoleFormRequest;
 use Narsil\Cms\Http\Controllers\RedirectController;
 use Narsil\Cms\Models\Policies\Role;
 use Narsil\Cms\Services\ModelService;

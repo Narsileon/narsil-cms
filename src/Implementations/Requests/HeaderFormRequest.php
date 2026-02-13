@@ -6,10 +6,10 @@ namespace Narsil\Cms\Implementations\Requests;
 
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Validation\Rules\File;
+use Narsil\Base\Enums\AbilityEnum;
+use Narsil\Base\Implementations\FormRequest;
 use Narsil\Base\Validation\FormRule;
 use Narsil\Cms\Contracts\Requests\HeaderFormRequest as Contract;
-use Narsil\Cms\Enums\Policies\PermissionEnum;
-use Narsil\Cms\Implementations\AbstractFormRequest;
 use Narsil\Cms\Models\Globals\Header;
 
 #endregion
@@ -18,7 +18,7 @@ use Narsil\Cms\Models\Globals\Header;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class HeaderFormRequest extends AbstractFormRequest implements Contract
+class HeaderFormRequest extends FormRequest implements Contract
 {
     #region PUBLIC METHODS
 
@@ -29,10 +29,10 @@ class HeaderFormRequest extends AbstractFormRequest implements Contract
     {
         if ($this->header)
         {
-            return Gate::allows(PermissionEnum::UPDATE, $this->header);
+            return Gate::allows(AbilityEnum::UPDATE, $this->header);
         }
 
-        return Gate::allows(PermissionEnum::CREATE, Header::class);
+        return Gate::allows(AbilityEnum::CREATE, Header::class);
     }
 
     /**

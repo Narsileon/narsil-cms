@@ -5,7 +5,7 @@ namespace Narsil\Cms\Traits\Policies;
 #region USE
 
 use Illuminate\Database\Eloquent\Model;
-use Narsil\Cms\Enums\Policies\PermissionEnum;
+use Narsil\Base\Enums\AbilityEnum;
 use Narsil\Cms\Models\User;
 use Narsil\Cms\Services\PermissionService;
 
@@ -29,7 +29,7 @@ trait IsViewable
      */
     public function view(User $user, Model $model): bool
     {
-        $permission = PermissionService::getHandle($model->getTable(), PermissionEnum::VIEW->value);
+        $permission = PermissionService::getHandle($model->getTable(), AbilityEnum::VIEW->value);
 
         return $user->hasPermission($permission);
     }
@@ -44,7 +44,7 @@ trait IsViewable
      */
     public function viewAny(User $user, string $model): bool
     {
-        $permission = PermissionService::getHandle($model::TABLE, PermissionEnum::VIEW->value);
+        $permission = PermissionService::getHandle($model::TABLE, AbilityEnum::VIEW->value);
 
         return $user->hasPermission($permission);
     }

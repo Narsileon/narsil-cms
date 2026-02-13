@@ -5,10 +5,10 @@ namespace Narsil\Cms\Implementations\Requests;
 #region USE
 
 use Illuminate\Support\Facades\Gate;
+use Narsil\Base\Enums\AbilityEnum;
+use Narsil\Base\Implementations\FormRequest;
 use Narsil\Base\Validation\FormRule;
 use Narsil\Cms\Contracts\Requests\FieldFormRequest as Contract;
-use Narsil\Cms\Enums\Policies\PermissionEnum;
-use Narsil\Cms\Implementations\AbstractFormRequest;
 use Narsil\Cms\Models\Collections\Field;
 
 #endregion
@@ -17,7 +17,7 @@ use Narsil\Cms\Models\Collections\Field;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class FieldFormRequest extends AbstractFormRequest implements Contract
+class FieldFormRequest extends FormRequest implements Contract
 {
     #region PUBLIC METHODS
 
@@ -28,10 +28,10 @@ class FieldFormRequest extends AbstractFormRequest implements Contract
     {
         if ($this->field)
         {
-            return Gate::allows(PermissionEnum::UPDATE, $this->field);
+            return Gate::allows(AbilityEnum::UPDATE, $this->field);
         }
 
-        return Gate::allows(PermissionEnum::CREATE, Field::class);
+        return Gate::allows(AbilityEnum::CREATE, Field::class);
     }
 
     /**

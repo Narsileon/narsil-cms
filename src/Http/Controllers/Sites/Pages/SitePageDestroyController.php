@@ -6,8 +6,8 @@ namespace Narsil\Cms\Http\Controllers\Sites\Pages;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Narsil\Base\Enums\AbilityEnum;
 use Narsil\Base\Enums\ModelEventEnum;
-use Narsil\Cms\Enums\Policies\PermissionEnum;
 use Narsil\Cms\Http\Controllers\RedirectController;
 use Narsil\Cms\Models\Sites\SitePage;
 use Narsil\Cms\Services\ModelService;
@@ -31,7 +31,7 @@ class SitePageDestroyController extends RedirectController
      */
     public function __invoke(Request $request, string $site, SitePage $sitePage): RedirectResponse
     {
-        $this->authorize(PermissionEnum::DELETE, $sitePage);
+        $this->authorize(AbilityEnum::DELETE, $sitePage);
 
         $this->updateNeighbors($sitePage);
 

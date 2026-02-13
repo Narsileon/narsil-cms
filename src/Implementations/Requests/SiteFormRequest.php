@@ -5,10 +5,10 @@ namespace Narsil\Cms\Implementations\Requests;
 #region USE
 
 use Illuminate\Support\Facades\Gate;
+use Narsil\Base\Enums\AbilityEnum;
+use Narsil\Base\Implementations\FormRequest;
 use Narsil\Base\Validation\FormRule;
-use Narsil\Cms\Contracts\Requests\RoleFormRequest as Contract;
-use Narsil\Cms\Enums\Policies\PermissionEnum;
-use Narsil\Cms\Implementations\AbstractFormRequest;
+use Narsil\Cms\Contracts\Requests\SiteFormRequest as Contract;
 use Narsil\Cms\Models\Sites\Site;
 
 #endregion
@@ -17,7 +17,7 @@ use Narsil\Cms\Models\Sites\Site;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class SiteFormRequest extends AbstractFormRequest implements Contract
+class SiteFormRequest extends FormRequest implements Contract
 {
     #region PUBLIC METHODS
 
@@ -28,7 +28,7 @@ class SiteFormRequest extends AbstractFormRequest implements Contract
     {
         if ($this->site)
         {
-            return Gate::allows(PermissionEnum::UPDATE, $this->site);
+            return Gate::allows(AbilityEnum::UPDATE, $this->site);
         }
 
         return false;

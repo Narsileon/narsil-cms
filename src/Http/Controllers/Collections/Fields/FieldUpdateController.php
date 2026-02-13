@@ -6,9 +6,9 @@ namespace Narsil\Cms\Http\Controllers\Collections\Fields;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Arr;
+use Narsil\Base\Enums\AbilityEnum;
 use Narsil\Base\Enums\ModelEventEnum;
 use Narsil\Cms\Contracts\Requests\FieldFormRequest;
-use Narsil\Cms\Enums\Policies\PermissionEnum;
 use Narsil\Cms\Http\Controllers\RedirectController;
 use Narsil\Cms\Models\Collections\Block;
 use Narsil\Cms\Models\Collections\Field;
@@ -33,7 +33,7 @@ class FieldUpdateController extends RedirectController
      */
     public function __invoke(FieldFormRequest $request, Field $field): RedirectResponse
     {
-        $this->authorize(PermissionEnum::UPDATE, $field);
+        $this->authorize(AbilityEnum::UPDATE, $field);
 
         $attributes = $request->validated();
 

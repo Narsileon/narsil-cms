@@ -6,8 +6,8 @@ namespace Narsil\Cms\Http\Controllers\Users;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Narsil\Base\Enums\AbilityEnum;
 use Narsil\Base\Enums\ModelEventEnum;
-use Narsil\Cms\Enums\Policies\PermissionEnum;
 use Narsil\Cms\Http\Controllers\RedirectController;
 use Narsil\Cms\Models\User;
 use Narsil\Cms\Services\ModelService;
@@ -30,7 +30,7 @@ class UserDestroyController extends RedirectController
      */
     public function __invoke(Request $request, User $user): RedirectResponse
     {
-        $this->authorize(PermissionEnum::DELETE, $user);
+        $this->authorize(AbilityEnum::DELETE, $user);
 
         $user->delete();
 

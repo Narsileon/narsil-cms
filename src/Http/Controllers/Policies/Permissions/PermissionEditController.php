@@ -7,10 +7,10 @@ namespace Narsil\Cms\Http\Controllers\Policies\Permissions;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Inertia\Response;
+use Narsil\Base\Enums\AbilityEnum;
 use Narsil\Cms\Casts\HumanDatetimeCast;
 use Narsil\Cms\Contracts\Forms\PermissionForm;
 use Narsil\Cms\Enums\RequestMethodEnum;
-use Narsil\Cms\Enums\Policies\PermissionEnum;
 use Narsil\Cms\Http\Controllers\RenderController;
 use Narsil\Cms\Models\Policies\Permission;
 use Narsil\Cms\Services\ModelService;
@@ -33,7 +33,7 @@ class PermissionEditController extends RenderController
      */
     public function __invoke(Request $request, Permission $permission): JsonResponse|Response
     {
-        $this->authorize(PermissionEnum::UPDATE, $permission);
+        $this->authorize(AbilityEnum::UPDATE, $permission);
 
         $data = $this->getData($permission);
         $form = $this->getForm($permission);

@@ -7,8 +7,8 @@ namespace Narsil\Cms\Http\Controllers\Storages\Assets;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Inertia\Response;
+use Narsil\Base\Enums\AbilityEnum;
 use Narsil\Cms\Enums\RequestMethodEnum;
-use Narsil\Cms\Enums\Policies\PermissionEnum;
 use Narsil\Cms\Http\Controllers\RenderController;
 use Narsil\Cms\Implementations\Forms\AssetForm;
 use Narsil\Cms\Models\Storages\Asset;
@@ -32,7 +32,7 @@ class AssetEditController extends RenderController
      */
     public function __invoke(Request $request, Asset $asset): JsonResponse|Response
     {
-        $this->authorize(PermissionEnum::UPDATE, $asset);
+        $this->authorize(AbilityEnum::UPDATE, $asset);
 
         $data = $this->getData($asset);
         $form = $this->getForm($asset);

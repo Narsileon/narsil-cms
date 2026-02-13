@@ -7,7 +7,7 @@ namespace Narsil\Cms\Http\Controllers\Collections\Fields;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Inertia\Response;
-use Narsil\Cms\Enums\Policies\PermissionEnum;
+use Narsil\Base\Enums\AbilityEnum;
 use Narsil\Cms\Http\Collections\DataTableCollection;
 use Narsil\Cms\Http\Controllers\RenderController;
 use Narsil\Cms\Models\Collections\Field;
@@ -30,7 +30,7 @@ class FieldIndexController extends RenderController
      */
     public function __invoke(Request $request): JsonResponse|Response
     {
-        $this->authorize(PermissionEnum::VIEW_ANY, Field::class);
+        $this->authorize(AbilityEnum::VIEW_ANY, Field::class);
 
         $collection = $this->getCollection();
 

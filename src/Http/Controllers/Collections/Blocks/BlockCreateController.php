@@ -7,9 +7,9 @@ namespace Narsil\Cms\Http\Controllers\Collections\Blocks;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Inertia\Response;
+use Narsil\Base\Enums\AbilityEnum;
 use Narsil\Cms\Contracts\Forms\BlockForm;
 use Narsil\Cms\Enums\RequestMethodEnum;
-use Narsil\Cms\Enums\Policies\PermissionEnum;
 use Narsil\Cms\Http\Controllers\RenderController;
 use Narsil\Cms\Models\Collections\Block;
 use Narsil\Cms\Services\ModelService;
@@ -31,7 +31,7 @@ class BlockCreateController extends RenderController
      */
     public function __invoke(Request $request): JsonResponse|Response
     {
-        $this->authorize(PermissionEnum::CREATE, Block::class);
+        $this->authorize(AbilityEnum::CREATE, Block::class);
 
         $form = $this->getForm();
 

@@ -6,10 +6,10 @@ namespace Narsil\Cms\Implementations\Requests;
 
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Str;
+use Narsil\Base\Implementations\FormRequest;
 use Narsil\Base\Validation\FormRule;
 use Narsil\Cms\Contracts\Fields\BuilderField;
 use Narsil\Cms\Contracts\Requests\EntityFormRequest as Contract;
-use Narsil\Cms\Implementations\AbstractFormRequest;
 use Narsil\Cms\Models\Collections\Block;
 use Narsil\Cms\Models\Collections\Element;
 use Narsil\Cms\Models\Collections\Field;
@@ -24,7 +24,7 @@ use Narsil\Cms\Models\ValidationRule;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class EntityFormRequest extends AbstractFormRequest implements Contract
+class EntityFormRequest extends FormRequest implements Contract
 {
     #region CONSTRUCTOR
 

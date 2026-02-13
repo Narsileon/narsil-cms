@@ -7,10 +7,10 @@ namespace Narsil\Cms\Http\Controllers\Collections\Templates;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Inertia\Response;
+use Narsil\Base\Enums\AbilityEnum;
 use Narsil\Cms\Casts\HumanDatetimeCast;
 use Narsil\Cms\Contracts\Forms\TemplateForm;
 use Narsil\Cms\Enums\RequestMethodEnum;
-use Narsil\Cms\Enums\Policies\PermissionEnum;
 use Narsil\Cms\Http\Controllers\RenderController;
 use Narsil\Cms\Models\Collections\Template;
 use Narsil\Cms\Services\ModelService;
@@ -33,7 +33,7 @@ class TemplateEditController extends RenderController
      */
     public function __invoke(Request $request, Template $template): JsonResponse|Response
     {
-        $this->authorize(PermissionEnum::UPDATE, $template);
+        $this->authorize(AbilityEnum::UPDATE, $template);
 
         $data = $this->getData($template);
         $form = $this->getForm($template);

@@ -4,9 +4,9 @@ namespace Narsil\Cms\Implementations\Menus;
 
 #region USE
 
+use Narsil\Base\Enums\AbilityEnum;
 use Narsil\Base\Support\TranslationsBag;
 use Narsil\Cms\Contracts\Menus\Sidebar as Contract;
-use Narsil\Cms\Enums\Policies\PermissionEnum;
 use Narsil\Cms\Implementations\AbstractMenu;
 use Narsil\Cms\Models\Collections\Block;
 use Narsil\Cms\Models\Collections\Field;
@@ -100,7 +100,7 @@ class Sidebar extends AbstractMenu implements Contract
                     'collection' => $template->{Template::TABLE_NAME},
                 ])
                 ->permissions([
-                    PermissionService::getHandle(Entity::TABLE, PermissionEnum::VIEW_ANY->value)
+                    PermissionService::getHandle(Entity::TABLE, AbilityEnum::VIEW_ANY->value)
                 ]));
         }
     }
@@ -119,7 +119,7 @@ class Sidebar extends AbstractMenu implements Contract
                 ->label(ModelService::getTableLabel(Header::TABLE))
                 ->route('headers.index')
                 ->permissions([
-                    PermissionService::getHandle(Header::TABLE, PermissionEnum::VIEW_ANY->value)
+                    PermissionService::getHandle(Header::TABLE, AbilityEnum::VIEW_ANY->value)
                 ]))
             ->add(new MenuItem(Footer::TABLE)
                 ->group($group)
@@ -127,7 +127,7 @@ class Sidebar extends AbstractMenu implements Contract
                 ->label(ModelService::getTableLabel(Footer::TABLE))
                 ->route('footers.index')
                 ->permissions([
-                    PermissionService::getHandle(Footer::TABLE, PermissionEnum::VIEW_ANY->value)
+                    PermissionService::getHandle(Footer::TABLE, AbilityEnum::VIEW_ANY->value)
                 ]))
             ->add(new MenuItem(Asset::TABLE)
                 ->group($group)
@@ -135,7 +135,7 @@ class Sidebar extends AbstractMenu implements Contract
                 ->label(ModelService::getTableLabel(Asset::TABLE))
                 ->route('assets.index')
                 ->permissions([
-                    PermissionService::getHandle(Asset::TABLE, PermissionEnum::VIEW_ANY->value)
+                    PermissionService::getHandle(Asset::TABLE, AbilityEnum::VIEW_ANY->value)
                 ]));
     }
 
@@ -154,7 +154,7 @@ class Sidebar extends AbstractMenu implements Contract
                     ->label(ModelService::getTableLabel(Host::TABLE))
                     ->route('hosts.index')
                     ->permissions([
-                        PermissionService::getHandle(Host::TABLE, PermissionEnum::VIEW_ANY->value)
+                        PermissionService::getHandle(Host::TABLE, AbilityEnum::VIEW_ANY->value)
                     ])
             )
             ->add(
@@ -164,7 +164,7 @@ class Sidebar extends AbstractMenu implements Contract
                     ->label(ModelService::getTableLabel(User::TABLE))
                     ->route('users.index')
                     ->permissions([
-                        PermissionService::getHandle(User::TABLE, PermissionEnum::VIEW_ANY->value)
+                        PermissionService::getHandle(User::TABLE, AbilityEnum::VIEW_ANY->value)
                     ])
             )
             ->add(
@@ -174,7 +174,7 @@ class Sidebar extends AbstractMenu implements Contract
                     ->label(ModelService::getTableLabel(Role::TABLE))
                     ->route('roles.index')
                     ->permissions([
-                        PermissionService::getHandle(Role::TABLE, PermissionEnum::VIEW_ANY->value)
+                        PermissionService::getHandle(Role::TABLE, AbilityEnum::VIEW_ANY->value)
                     ])
             )
             ->add(
@@ -184,7 +184,7 @@ class Sidebar extends AbstractMenu implements Contract
                     ->label(ModelService::getTableLabel(Permission::TABLE))
                     ->route('permissions.index')
                     ->permissions([
-                        PermissionService::getHandle(Permission::TABLE, PermissionEnum::VIEW_ANY->value)
+                        PermissionService::getHandle(Permission::TABLE, AbilityEnum::VIEW_ANY->value)
                     ])
             )
             ->add(
@@ -194,7 +194,7 @@ class Sidebar extends AbstractMenu implements Contract
                     ->label(ModelService::getTableLabel(Configuration::TABLE))
                     ->route('settings.edit')
                     ->permissions([
-                        PermissionService::getHandle(Configuration::TABLE, PermissionEnum::UPDATE->value)
+                        PermissionService::getHandle(Configuration::TABLE, AbilityEnum::UPDATE->value)
                     ])
             );
     }
@@ -223,7 +223,7 @@ class Sidebar extends AbstractMenu implements Contract
                         'site' => $site->{Site::HOSTNAME},
                     ])
                     ->permissions([
-                        PermissionService::getHandle(Site::TABLE, PermissionEnum::VIEW_ANY->value)
+                        PermissionService::getHandle(Site::TABLE, AbilityEnum::VIEW_ANY->value)
                     ])
             );
         }
@@ -244,7 +244,7 @@ class Sidebar extends AbstractMenu implements Contract
                     ->label(ModelService::getTableLabel(Template::TABLE))
                     ->route('templates.index')
                     ->permissions([
-                        PermissionService::getHandle(Template::TABLE, PermissionEnum::VIEW_ANY->value)
+                        PermissionService::getHandle(Template::TABLE, AbilityEnum::VIEW_ANY->value)
                     ])
             )
             ->add(
@@ -254,7 +254,7 @@ class Sidebar extends AbstractMenu implements Contract
                     ->label(ModelService::getTableLabel(Block::TABLE))
                     ->route('blocks.index')
                     ->permissions([
-                        PermissionService::getHandle(Block::TABLE, PermissionEnum::VIEW_ANY->value)
+                        PermissionService::getHandle(Block::TABLE, AbilityEnum::VIEW_ANY->value)
                     ])
             )
             ->add(
@@ -264,7 +264,7 @@ class Sidebar extends AbstractMenu implements Contract
                     ->label(ModelService::getTableLabel(Field::TABLE))
                     ->route('fields.index')
                     ->permissions([
-                        PermissionService::getHandle(Field::TABLE, PermissionEnum::VIEW_ANY->value)
+                        PermissionService::getHandle(Field::TABLE, AbilityEnum::VIEW_ANY->value)
                     ])
             );
     }

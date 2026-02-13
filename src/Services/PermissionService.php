@@ -4,7 +4,7 @@ namespace Narsil\Cms\Services;
 
 #region USE
 
-use Narsil\Cms\Enums\Policies\PermissionEnum;
+use Narsil\Base\Enums\AbilityEnum;
 use Narsil\Cms\Models\Policies\Permission;
 
 #endregion
@@ -37,7 +37,7 @@ abstract class PermissionService
      */
     public static function getName(string $table, string $permission, ?string $locale = null): string
     {
-        return trans("narsil-cms::permissions.$permission", [
+        return trans("narsil-ui::abilities.$permission", [
             'model' => ModelService::getModelLabel($table, false, $locale),
             'table' => ModelService::getTableLabel($table, false, $locale),
         ], $locale);
@@ -52,7 +52,7 @@ abstract class PermissionService
     {
         $permissions = [];
 
-        foreach (PermissionEnum::cases() as $permission)
+        foreach (AbilityEnum::cases() as $permission)
         {
             $permissions[] = self::getName($base, $permission->value);
         }

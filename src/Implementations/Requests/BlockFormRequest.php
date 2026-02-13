@@ -5,10 +5,10 @@ namespace Narsil\Cms\Implementations\Requests;
 #region USE
 
 use Illuminate\Support\Facades\Gate;
+use Narsil\Base\Enums\AbilityEnum;
+use Narsil\Base\Implementations\FormRequest;
 use Narsil\Base\Validation\FormRule;
 use Narsil\Cms\Contracts\Requests\BlockFormRequest as Contract;
-use Narsil\Cms\Enums\Policies\PermissionEnum;
-use Narsil\Cms\Implementations\AbstractFormRequest;
 use Narsil\Cms\Models\Collections\Block;
 
 #endregion
@@ -17,7 +17,7 @@ use Narsil\Cms\Models\Collections\Block;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class BlockFormRequest extends AbstractFormRequest implements Contract
+class BlockFormRequest extends FormRequest implements Contract
 {
     #region PUBLIC METHODS
 
@@ -28,10 +28,10 @@ class BlockFormRequest extends AbstractFormRequest implements Contract
     {
         if ($this->block)
         {
-            return Gate::allows(PermissionEnum::UPDATE, $this->block);
+            return Gate::allows(AbilityEnum::UPDATE, $this->block);
         }
 
-        return Gate::allows(PermissionEnum::CREATE, Block::class);
+        return Gate::allows(AbilityEnum::CREATE, Block::class);
     }
 
     /**

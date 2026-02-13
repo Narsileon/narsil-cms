@@ -6,8 +6,8 @@ namespace Narsil\Cms\Http\Controllers\Collections\Fields;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Narsil\Base\Enums\AbilityEnum;
 use Narsil\Base\Enums\ModelEventEnum;
-use Narsil\Cms\Enums\Policies\PermissionEnum;
 use Narsil\Cms\Http\Controllers\RedirectController;
 use Narsil\Cms\Http\Requests\ReplicateManyRequest;
 use Narsil\Cms\Models\Collections\Field;
@@ -31,7 +31,7 @@ class FieldReplicateManyController extends RedirectController
      */
     public function __invoke(ReplicateManyRequest $request): RedirectResponse
     {
-        $this->authorize(PermissionEnum::CREATE, Field::class);
+        $this->authorize(AbilityEnum::CREATE, Field::class);
 
         $ids = $request->validated(ReplicateManyRequest::IDS);
 

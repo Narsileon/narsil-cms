@@ -1,6 +1,6 @@
 <?php
 
-namespace Narsil\Cms\Contracts\Requests\Fortify;
+namespace Narsil\Cms\Contracts\Requests;
 
 #region USE
 
@@ -14,7 +14,7 @@ use Narsil\Cms\Contracts\FormRequest;
  *
  * @see vendor/narsil/cms/config/narsil/bindings/requests.php
  */
-interface ResetUserPasswordFormRequest extends FormRequest
+interface SiteFormRequest extends FormRequest
 {
     //
 }

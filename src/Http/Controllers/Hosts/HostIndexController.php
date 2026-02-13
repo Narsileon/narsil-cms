@@ -8,7 +8,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Inertia\Response;
-use Narsil\Cms\Enums\Policies\PermissionEnum;
+use Narsil\Base\Enums\AbilityEnum;
 use Narsil\Cms\Http\Collections\DataTableCollection;
 use Narsil\Cms\Http\Controllers\RenderController;
 use Narsil\Cms\Models\Hosts\Host;
@@ -32,7 +32,7 @@ class HostIndexController extends RenderController
      */
     public function __invoke(Request $request): JsonResponse|Response
     {
-        $this->authorize(PermissionEnum::VIEW_ANY, Host::class);
+        $this->authorize(AbilityEnum::VIEW_ANY, Host::class);
 
         $collection = $this->getCollection();
 

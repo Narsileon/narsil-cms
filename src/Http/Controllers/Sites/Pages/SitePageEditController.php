@@ -7,9 +7,9 @@ namespace Narsil\Cms\Http\Controllers\Sites\Pages;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Inertia\Response;
+use Narsil\Base\Enums\AbilityEnum;
 use Narsil\Cms\Contracts\Forms\SitePageForm;
 use Narsil\Cms\Enums\RequestMethodEnum;
-use Narsil\Cms\Enums\Policies\PermissionEnum;
 use Narsil\Cms\Http\Controllers\RenderController;
 use Narsil\Cms\Models\Sites\SitePage;
 use Narsil\Cms\Models\Sites\SitePageEntity;
@@ -33,7 +33,7 @@ class SitePageEditController extends RenderController
      */
     public function __invoke(Request $request, string $site, SitePage $sitePage): JsonResponse|Response
     {
-        $this->authorize(PermissionEnum::UPDATE, $sitePage);
+        $this->authorize(AbilityEnum::UPDATE, $sitePage);
 
         $this->transformEntities($sitePage);
 

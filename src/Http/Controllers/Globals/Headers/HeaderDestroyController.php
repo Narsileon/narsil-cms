@@ -6,8 +6,8 @@ namespace Narsil\Cms\Http\Controllers\Globals\Headers;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Narsil\Base\Enums\AbilityEnum;
 use Narsil\Base\Enums\ModelEventEnum;
-use Narsil\Cms\Enums\Policies\PermissionEnum;
 use Narsil\Cms\Http\Controllers\RedirectController;
 use Narsil\Cms\Models\Globals\Header;
 use Narsil\Cms\Services\ModelService;
@@ -30,7 +30,7 @@ class HeaderDestroyController extends RedirectController
      */
     public function __invoke(Request $request, Header $header): RedirectResponse
     {
-        $this->authorize(PermissionEnum::DELETE, $header);
+        $this->authorize(AbilityEnum::DELETE, $header);
 
         $header->delete();
 

@@ -7,10 +7,10 @@ namespace Narsil\Cms\Http\Controllers\Globals\Footers;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Inertia\Response;
+use Narsil\Base\Enums\AbilityEnum;
 use Narsil\Cms\Casts\HumanDatetimeCast;
 use Narsil\Cms\Contracts\Forms\FooterForm;
 use Narsil\Cms\Enums\RequestMethodEnum;
-use Narsil\Cms\Enums\Policies\PermissionEnum;
 use Narsil\Cms\Http\Controllers\RenderController;
 use Narsil\Cms\Models\Globals\Footer;
 use Narsil\Cms\Services\ModelService;
@@ -33,7 +33,7 @@ class FooterEditController extends RenderController
      */
     public function __invoke(Request $request, Footer $footer): JsonResponse|Response
     {
-        $this->authorize(PermissionEnum::UPDATE, $footer);
+        $this->authorize(AbilityEnum::UPDATE, $footer);
 
         $data = $this->getData($footer);
         $form = $this->getForm($footer);

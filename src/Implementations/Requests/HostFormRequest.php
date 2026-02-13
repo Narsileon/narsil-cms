@@ -5,10 +5,10 @@ namespace Narsil\Cms\Implementations\Requests;
 #region USE
 
 use Illuminate\Support\Facades\Gate;
+use Narsil\Base\Enums\AbilityEnum;
+use Narsil\Base\Implementations\FormRequest;
 use Narsil\Base\Validation\FormRule;
 use Narsil\Cms\Contracts\Requests\HostFormRequest as Contract;
-use Narsil\Cms\Enums\Policies\PermissionEnum;
-use Narsil\Cms\Implementations\AbstractFormRequest;
 use Narsil\Cms\Models\Hosts\Host;
 use Narsil\Cms\Models\Hosts\HostLocale;
 use Narsil\Cms\Models\Hosts\HostLocaleLanguage;
@@ -19,7 +19,7 @@ use Narsil\Cms\Models\Hosts\HostLocaleLanguage;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class HostFormRequest extends AbstractFormRequest implements Contract
+class HostFormRequest extends FormRequest implements Contract
 {
     #region PUBLIC METHODS
 
@@ -30,10 +30,10 @@ class HostFormRequest extends AbstractFormRequest implements Contract
     {
         if ($this->host)
         {
-            return Gate::allows(PermissionEnum::UPDATE, $this->host);
+            return Gate::allows(AbilityEnum::UPDATE, $this->host);
         }
 
-        return Gate::allows(PermissionEnum::CREATE, Host::class);
+        return Gate::allows(AbilityEnum::CREATE, Host::class);
     }
 
     /**

@@ -8,9 +8,9 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Inertia\Response;
+use Narsil\Base\Enums\AbilityEnum;
 use Narsil\Cms\Contracts\Forms\EntityForm;
 use Narsil\Cms\Contracts\Forms\PublishForm;
-use Narsil\Cms\Enums\Policies\PermissionEnum;
 use Narsil\Cms\Enums\RequestMethodEnum;
 use Narsil\Cms\Http\Controllers\RenderController;
 use Narsil\Cms\Models\Collections\Template;
@@ -38,7 +38,7 @@ class EntityCreateController extends RenderController
      */
     public function __invoke(Request $request, int|string $collection): JsonResponse|Response
     {
-        $this->authorize(PermissionEnum::CREATE, $this->entityClass);
+        $this->authorize(AbilityEnum::CREATE, $this->entityClass);
 
         $form = $this->getForm();
 

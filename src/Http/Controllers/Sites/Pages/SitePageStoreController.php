@@ -7,9 +7,9 @@ namespace Narsil\Cms\Http\Controllers\Sites\Pages;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Session;
+use Narsil\Base\Enums\AbilityEnum;
 use Narsil\Base\Enums\ModelEventEnum;
 use Narsil\Cms\Contracts\Requests\SitePageFormRequest;
-use Narsil\Cms\Enums\Policies\PermissionEnum;
 use Narsil\Cms\Http\Controllers\RedirectController;
 use Narsil\Cms\Models\Sites\SitePage;
 use Narsil\Cms\Services\ModelService;
@@ -54,7 +54,7 @@ class SitePageStoreController extends RedirectController
      */
     public function __invoke(SitePageFormRequest $request, string $site): RedirectResponse
     {
-        $this->authorize(PermissionEnum::CREATE, SitePage::class);
+        $this->authorize(AbilityEnum::CREATE, SitePage::class);
 
         $attributes = $request->validated();
 

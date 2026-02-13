@@ -10,10 +10,10 @@ use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Session;
 use Inertia\Response;
 use Locale;
+use Narsil\Base\Enums\AbilityEnum;
 use Narsil\Base\Support\TranslationsBag;
 use Narsil\Cms\Casts\HumanDatetimeCast;
 use Narsil\Cms\Contracts\Forms\SiteForm;
-use Narsil\Cms\Enums\Policies\PermissionEnum;
 use Narsil\Cms\Enums\RequestMethodEnum;
 use Narsil\Cms\Http\Controllers\RenderController;
 use Narsil\Cms\Http\Resources\Sites\SiteResource;
@@ -62,7 +62,7 @@ class SiteEditController extends RenderController
             abort(404);
         }
 
-        $this->authorize(PermissionEnum::UPDATE, $site);
+        $this->authorize(AbilityEnum::UPDATE, $site);
 
         $data = $this->getData($site);
         $form = $this->getForm($site);

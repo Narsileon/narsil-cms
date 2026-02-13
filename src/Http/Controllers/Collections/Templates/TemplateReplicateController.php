@@ -6,8 +6,8 @@ namespace Narsil\Cms\Http\Controllers\Collections\Templates;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Narsil\Base\Enums\AbilityEnum;
 use Narsil\Base\Enums\ModelEventEnum;
-use Narsil\Cms\Enums\Policies\PermissionEnum;
 use Narsil\Cms\Http\Controllers\RedirectController;
 use Narsil\Cms\Models\Collections\Template;
 use Narsil\Cms\Services\Models\TemplateService;
@@ -31,7 +31,7 @@ class TemplateReplicateController extends RedirectController
      */
     public function __invoke(Request $request, Template $template): RedirectResponse
     {
-        $this->authorize(PermissionEnum::CREATE, Template::class);
+        $this->authorize(AbilityEnum::CREATE, Template::class);
 
         TemplateService::replicate($template);
 

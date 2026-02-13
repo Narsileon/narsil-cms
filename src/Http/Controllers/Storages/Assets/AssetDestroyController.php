@@ -6,8 +6,8 @@ namespace Narsil\Cms\Http\Controllers\Storages\Assets;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Narsil\Base\Enums\AbilityEnum;
 use Narsil\Base\Enums\ModelEventEnum;
-use Narsil\Cms\Enums\Policies\PermissionEnum;
 use Narsil\Cms\Http\Controllers\RedirectController;
 use Narsil\Cms\Models\Storages\Asset;
 use Narsil\Cms\Services\ModelService;
@@ -30,7 +30,7 @@ class AssetDestroyController extends RedirectController
      */
     public function __invoke(Request $request, Asset $asset): RedirectResponse
     {
-        $this->authorize(PermissionEnum::DELETE, $asset);
+        $this->authorize(AbilityEnum::DELETE, $asset);
 
         $asset->delete();
 

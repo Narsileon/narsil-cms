@@ -6,8 +6,8 @@ namespace Narsil\Cms\Http\Controllers\Policies\Roles;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Narsil\Base\Enums\AbilityEnum;
 use Narsil\Base\Enums\ModelEventEnum;
-use Narsil\Cms\Enums\Policies\PermissionEnum;
 use Narsil\Cms\Http\Controllers\RedirectController;
 use Narsil\Cms\Models\Policies\Role;
 use Narsil\Cms\Services\Models\RoleService;
@@ -31,7 +31,7 @@ class RoleReplicateController extends RedirectController
      */
     public function __invoke(Request $request, Role $role): RedirectResponse
     {
-        $this->authorize(PermissionEnum::CREATE, Role::class);
+        $this->authorize(AbilityEnum::CREATE, Role::class);
 
         RoleService::replicate($role);
 

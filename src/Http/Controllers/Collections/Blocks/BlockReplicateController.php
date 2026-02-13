@@ -6,8 +6,8 @@ namespace Narsil\Cms\Http\Controllers\Collections\Blocks;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Narsil\Base\Enums\AbilityEnum;
 use Narsil\Base\Enums\ModelEventEnum;
-use Narsil\Cms\Enums\Policies\PermissionEnum;
 use Narsil\Cms\Http\Controllers\RedirectController;
 use Narsil\Cms\Models\Collections\Block;
 use Narsil\Cms\Services\Models\BlockService;
@@ -31,7 +31,7 @@ class BlockReplicateController extends RedirectController
      */
     public function __invoke(Request $request, Block $block): RedirectResponse
     {
-        $this->authorize(PermissionEnum::CREATE, Block::class);
+        $this->authorize(AbilityEnum::CREATE, Block::class);
 
         BlockService::replicate($block);
 

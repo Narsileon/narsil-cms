@@ -7,10 +7,10 @@ namespace Narsil\Cms\Http\Controllers\Collections\Fields;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Inertia\Response;
+use Narsil\Base\Enums\AbilityEnum;
 use Narsil\Cms\Casts\HumanDatetimeCast;
 use Narsil\Cms\Contracts\Forms\FieldForm;
 use Narsil\Cms\Enums\RequestMethodEnum;
-use Narsil\Cms\Enums\Policies\PermissionEnum;
 use Narsil\Cms\Http\Controllers\RenderController;
 use Narsil\Cms\Models\Collections\Field;
 use Narsil\Cms\Models\ValidationRule;
@@ -34,7 +34,7 @@ class FieldEditController extends RenderController
      */
     public function __invoke(Request $request, Field $field): JsonResponse|Response
     {
-        $this->authorize(PermissionEnum::UPDATE, $field);
+        $this->authorize(AbilityEnum::UPDATE, $field);
 
         if (!$request->has(Field::TYPE))
         {
