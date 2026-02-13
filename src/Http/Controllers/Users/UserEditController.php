@@ -81,7 +81,7 @@ class UserEditController extends RenderController
      */
     protected function getDescription(): string
     {
-        return ModelService::getModelLabel(User::class);
+        return ModelService::getModelLabel(User::TABLE);
     }
 
     /**
@@ -107,7 +107,7 @@ class UserEditController extends RenderController
      */
     protected function getTitle(): string
     {
-        return ModelService::getModelLabel(User::class);
+        return ModelService::getModelLabel(User::TABLE);
     }
 
     /**

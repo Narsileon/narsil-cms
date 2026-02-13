@@ -35,7 +35,7 @@ class PermissionUpdateController extends RedirectController
 
         return $this
             ->redirect(route('permissions.index'))
-            ->with('success', ModelService::getSuccessMessage(Permission::class, ModelEventEnum::UPDATED));
+            ->with('success', ModelService::getSuccessMessage(Permission::TABLE, ModelEventEnum::UPDATED));
     }
 
     #endregion

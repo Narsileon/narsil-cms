@@ -36,7 +36,7 @@ class HostDestroyController extends RedirectController
 
         return $this
             ->redirect(route('hosts.index'))
-            ->with('success', ModelService::getSuccessMessage(Host::class, ModelEventEnum::DELETED));
+            ->with('success', ModelService::getSuccessMessage(Host::TABLE, ModelEventEnum::DELETED));
     }
 
     #endregion

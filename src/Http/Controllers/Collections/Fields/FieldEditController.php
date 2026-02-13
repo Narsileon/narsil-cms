@@ -84,7 +84,7 @@ class FieldEditController extends RenderController
      */
     protected function getDescription(): string
     {
-        return ModelService::getModelLabel(Field::class);
+        return ModelService::getModelLabel(Field::TABLE);
     }
 
     /**
@@ -110,7 +110,7 @@ class FieldEditController extends RenderController
      */
     protected function getTitle(): string
     {
-        return ModelService::getModelLabel(Field::class);
+        return ModelService::getModelLabel(Field::TABLE);
     }
 
     /**

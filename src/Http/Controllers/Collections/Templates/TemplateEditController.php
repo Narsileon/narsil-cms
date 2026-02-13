@@ -74,7 +74,7 @@ class TemplateEditController extends RenderController
      */
     protected function getDescription(): string
     {
-        return ModelService::getModelLabel(Template::class);
+        return ModelService::getModelLabel(Template::TABLE);
     }
 
     /**
@@ -100,7 +100,7 @@ class TemplateEditController extends RenderController
      */
     protected function getTitle(): string
     {
-        return ModelService::getModelLabel(Template::class);
+        return ModelService::getModelLabel(Template::TABLE);
     }
 
     #endregion

@@ -36,7 +36,7 @@ class HostReplicateController extends RedirectController
         HostService::replicate($host);
 
         return back()
-            ->with('success', ModelService::getSuccessMessage(Host::class, ModelEventEnum::REPLICATED));
+            ->with('success', ModelService::getSuccessMessage(Host::TABLE, ModelEventEnum::REPLICATED));
     }
 
     #endregion

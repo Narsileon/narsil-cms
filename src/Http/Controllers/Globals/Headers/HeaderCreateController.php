@@ -49,7 +49,7 @@ class HeaderCreateController extends RenderController
      */
     protected function getDescription(): string
     {
-        return ModelService::getModelLabel(Header::class);
+        return ModelService::getModelLabel(Header::TABLE);
     }
 
     /**
@@ -72,7 +72,7 @@ class HeaderCreateController extends RenderController
      */
     protected function getTitle(): string
     {
-        return ModelService::getModelLabel(Header::class);
+        return ModelService::getModelLabel(Header::TABLE);
     }
 
     #endregion

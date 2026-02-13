@@ -34,7 +34,7 @@ class AssetStoreController extends RedirectController
 
         return $this
             ->redirect(route('assets.index'))
-            ->with('success', ModelService::getSuccessMessage(Asset::class, ModelEventEnum::CREATED));
+            ->with('success', ModelService::getSuccessMessage(Asset::TABLE, ModelEventEnum::CREATED));
     }
 
     #endregion

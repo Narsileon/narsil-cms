@@ -36,7 +36,7 @@ class HeaderDestroyController extends RedirectController
 
         return $this
             ->redirect(route('headers.index'))
-            ->with('success', ModelService::getSuccessMessage(Header::class, ModelEventEnum::DELETED));
+            ->with('success', ModelService::getSuccessMessage(Header::TABLE, ModelEventEnum::DELETED));
     }
 
     #endregion

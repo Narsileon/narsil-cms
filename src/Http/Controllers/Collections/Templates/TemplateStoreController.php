@@ -38,7 +38,7 @@ class TemplateStoreController extends RedirectController
 
         return $this
             ->redirect(route('templates.index'))
-            ->with('success', ModelService::getSuccessMessage(Template::class, ModelEventEnum::CREATED));
+            ->with('success', ModelService::getSuccessMessage(Template::TABLE, ModelEventEnum::CREATED));
     }
 
     #endregion

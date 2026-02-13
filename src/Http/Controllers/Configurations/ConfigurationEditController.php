@@ -71,7 +71,7 @@ class ConfigurationEditController extends RenderController
      */
     protected function getDescription(): string
     {
-        return ModelService::getModelLabel(Configuration::class);
+        return ModelService::getModelLabel(Configuration::TABLE);
     }
 
     /**
@@ -97,7 +97,7 @@ class ConfigurationEditController extends RenderController
      */
     protected function getTitle(): string
     {
-        return ModelService::getModelLabel(Configuration::class);
+        return ModelService::getModelLabel(Configuration::TABLE);
     }
 
     #endregion

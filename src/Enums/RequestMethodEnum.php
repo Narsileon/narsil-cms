@@ -18,7 +18,7 @@ enum RequestMethodEnum: string
 {
     use Enumerable;
 
-    case DELETE = 'delted';
+    case DELETE = 'delete';
     case GET = 'get';
     case PATCH = 'patch';
     case POST = 'post';

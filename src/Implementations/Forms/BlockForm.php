@@ -106,7 +106,7 @@ class BlockForm extends AbstractForm implements Contract
                                 ->form(app(BlockElementForm::class)->jsonSerialize())
                                 ->addOption(
                                     identifier: Block::TABLE,
-                                    label: ModelService::getModelLabel(Block::class),
+                                    label: ModelService::getModelLabel(Block::TABLE),
                                     optionLabel: BlockElement::LABEL,
                                     optionValue: BlockElement::HANDLE,
                                     options: $blockSelectOptions,
@@ -114,7 +114,7 @@ class BlockForm extends AbstractForm implements Contract
                                 )
                                 ->addOption(
                                     identifier: Field::TABLE,
-                                    label: ModelService::getModelLabel(Field::class),
+                                    label: ModelService::getModelLabel(Field::TABLE),
                                     optionLabel: BlockElement::LABEL,
                                     optionValue: BlockElement::HANDLE,
                                     options: $fieldSelectOptions,

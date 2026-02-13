@@ -77,7 +77,7 @@ class RoleEditController extends RenderController
      */
     protected function getDescription(): string
     {
-        return ModelService::getModelLabel(Role::class);
+        return ModelService::getModelLabel(Role::TABLE);
     }
 
     /**
@@ -103,7 +103,7 @@ class RoleEditController extends RenderController
      */
     protected function getTitle(): string
     {
-        return ModelService::getModelLabel(Role::class);
+        return ModelService::getModelLabel(Role::TABLE);
     }
 
     /**

@@ -39,7 +39,7 @@ class TemplateUpdateController extends RedirectController
 
         return $this
             ->redirect(route('templates.index'))
-            ->with('success', ModelService::getSuccessMessage(Template::class, ModelEventEnum::UPDATED));
+            ->with('success', ModelService::getSuccessMessage(Template::TABLE, ModelEventEnum::UPDATED));
     }
 
     #endregion

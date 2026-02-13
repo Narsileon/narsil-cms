@@ -40,7 +40,7 @@ class FooterUpdateController extends RedirectController
 
         return $this
             ->redirect(route('footers.index'))
-            ->with('success', ModelService::getSuccessMessage(Footer::class, ModelEventEnum::UPDATED));
+            ->with('success', ModelService::getSuccessMessage(Footer::TABLE, ModelEventEnum::UPDATED));
     }
 
     #endregion

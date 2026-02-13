@@ -40,7 +40,7 @@ class RoleUpdateController extends RedirectController
 
         return $this
             ->redirect(route('roles.index'))
-            ->with('success', ModelService::getSuccessMessage(Role::class, ModelEventEnum::UPDATED));
+            ->with('success', ModelService::getSuccessMessage(Role::TABLE, ModelEventEnum::UPDATED));
     }
 
     #endregion

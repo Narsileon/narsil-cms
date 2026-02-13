@@ -38,7 +38,7 @@ class ConfigurationUpdateController extends RedirectController
         $configuration->update($attributes);
 
         return back()
-            ->with('success', ModelService::getSuccessMessage(Configuration::class, ModelEventEnum::UPDATED));
+            ->with('success', ModelService::getSuccessMessage(Configuration::TABLE, ModelEventEnum::UPDATED));
     }
 
     #endregion

@@ -36,7 +36,7 @@ class HeaderReplicateController extends RedirectController
         HeaderService::replicate($header);
 
         return back()
-            ->with('success', ModelService::getSuccessMessage(Header::class, ModelEventEnum::REPLICATED));
+            ->with('success', ModelService::getSuccessMessage(Header::TABLE, ModelEventEnum::REPLICATED));
     }
 
     #endregion

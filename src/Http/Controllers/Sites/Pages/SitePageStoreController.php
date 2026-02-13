@@ -85,7 +85,7 @@ class SitePageStoreController extends RedirectController
         return redirect(route('sites.edit', [
             'country' => $this->country,
             'site' => $site,
-        ]))->with('success', ModelService::getSuccessMessage(SitePage::class, ModelEventEnum::CREATED));
+        ]))->with('success', ModelService::getSuccessMessage(SitePage::TABLE, ModelEventEnum::CREATED));
     }
 
     #endregion

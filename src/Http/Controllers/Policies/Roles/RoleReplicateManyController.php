@@ -45,7 +45,7 @@ class RoleReplicateManyController extends RedirectController
         }
 
         return back()
-            ->with('success', ModelService::getSuccessMessage(Role::class, ModelEventEnum::REPLICATED_MANY));
+            ->with('success', ModelService::getSuccessMessage(Role::TABLE, ModelEventEnum::REPLICATED_MANY));
     }
 
     #endregion

@@ -69,7 +69,7 @@ class SyncPermissions extends Command
 
                 foreach (Config::get('narsil.locales', ['en']) as $locale)
                 {
-                    $names[$locale] = PermissionService::getName($model, $permission, $locale);
+                    $names[$locale] = PermissionService::getName($table, $permission, $locale);
                 }
 
                 Permission::firstOrCreate([

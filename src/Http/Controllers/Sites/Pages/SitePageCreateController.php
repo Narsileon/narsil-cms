@@ -52,7 +52,7 @@ class SitePageCreateController extends RenderController
      */
     protected function getDescription(): string
     {
-        return ModelService::getModelLabel(SitePage::class);
+        return ModelService::getModelLabel(SitePage::TABLE);
     }
 
     /**
@@ -79,7 +79,7 @@ class SitePageCreateController extends RenderController
      */
     protected function getTitle(): string
     {
-        return ModelService::getModelLabel(SitePage::class);
+        return ModelService::getModelLabel(SitePage::TABLE);
     }
 
     #endregion

@@ -35,7 +35,7 @@ class AssetUpdateController extends RedirectController
 
         return $this
             ->redirect(route('assets.index'))
-            ->with('success', ModelService::getSuccessMessage(Asset::class, ModelEventEnum::UPDATED));
+            ->with('success', ModelService::getSuccessMessage(Asset::TABLE, ModelEventEnum::UPDATED));
     }
 
     #endregion

@@ -44,7 +44,7 @@ class TemplateReplicateManyController extends RedirectController
         }
 
         return back()
-            ->with('success', ModelService::getSuccessMessage(Template::class, ModelEventEnum::REPLICATED_MANY));
+            ->with('success', ModelService::getSuccessMessage(Template::TABLE, ModelEventEnum::REPLICATED_MANY));
     }
 
     #endregion

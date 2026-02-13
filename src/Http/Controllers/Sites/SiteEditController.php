@@ -136,7 +136,7 @@ class SiteEditController extends RenderController
      */
     protected function getDescription(): string
     {
-        return ModelService::getModelLabel(Site::class);
+        return ModelService::getModelLabel(Site::TABLE);
     }
 
     /**
@@ -163,7 +163,7 @@ class SiteEditController extends RenderController
      */
     protected function getTitle(): string
     {
-        return ModelService::getModelLabel(Site::class);
+        return ModelService::getModelLabel(Site::TABLE);
     }
 
     #endregion

@@ -4,9 +4,9 @@ namespace Narsil\Cms\Services;
 
 #region USE
 
-use Illuminate\Support\Str;
 use Narsil\Base\Enums\ModelEventEnum;
-use Narsil\Cms\Helpers\Translation;
+use Narsil\Base\Helpers\Translator;
+use Narsil\Base\Services\ModelService as BaseModelService;
 
 #endregion
 
@@ -14,7 +14,7 @@ use Narsil\Cms\Helpers\Translation;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-abstract class ModelService
+abstract class ModelService extends BaseModelService
 {
     #region PUBLIC METHODS
 
@@ -27,33 +27,7 @@ abstract class ModelService
      */
     public static function getFieldDescription(string $table, string $attribute, array $replace = []): string
     {
-        return Translation::get("fields.descriptions.$table.$attribute", $replace);
-    }
-
-    /**
-     * @param string $model
-     * @param boolean $ucFirst
-     * @param string|null $locale
-     *
-     * @return string
-     */
-    public static function getModelLabel(string $model, bool $ucFirst = true, ?string $locale = null): string
-    {
-        $key = "models.$model";
-
-        $label = Translation::get($key, [], $locale);
-
-        if ($label === $key)
-        {
-            $label = $model;
-        }
-
-        if ($ucFirst)
-        {
-            $label = Str::ucfirst($label);
-        }
-
-        return $label;
+        return Translator::trans("fields.descriptions.$table.$attribute", $replace);
     }
 
     /**
@@ -62,40 +36,14 @@ abstract class ModelService
      *
      * @return string
      */
-    public static function getSuccessMessage(string $model, ModelEventEnum $event): string
+    public static function getSuccessMessage(string $table, ModelEventEnum $event): string
     {
-        $modelLabel = static::getModelLabel($model, false);
-        $tableLabel = static::getTableLabel($model::TABLE, false);
+        $modelLabel = static::getModelLabel($table, false);
+        $tableLabel = static::getTableLabel($table, false);
 
-        return Translation::get("toasts.success.$event->value", [
+        return Translator::trans("toasts.success.$event->value", [
             'model' => $modelLabel,
             'table' => $tableLabel,
         ]);
-    }
-
-    /**
-     * @param string $table
-     * @param boolean $ucFirst
-     * @param string|null $locale
-     *
-     * @return string
-     */
-    public static function getTableLabel(string $table, bool $ucFirst = true, ?string $locale = null): string
-    {
-        $key = "tables.$table";
-
-        $label = Translation::get($key, [], $locale);
-
-        if ($label === $key)
-        {
-            $label = $table;
-        }
-
-        if ($ucFirst)
-        {
-            $label = Str::ucfirst($label);
-        }
-
-        return $label;
     }
 }

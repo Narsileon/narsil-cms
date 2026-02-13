@@ -68,7 +68,7 @@ class UserForm extends AbstractForm implements Contract
                     [
                         TemplateTabElement::HANDLE => User::PASSWORD,
                         TemplateTabElement::LABEL => trans('narsil-cms::validation.attributes.password'),
-                        TemplateTabElement::REQUIRED => true,
+                        TemplateTabElement::REQUIRED => !$this->model,
                         TemplateTabElement::RELATION_BASE => [
                             Field::TYPE => PasswordField::class,
                             Field::SETTINGS => app(PasswordField::class)
@@ -78,7 +78,7 @@ class UserForm extends AbstractForm implements Contract
                     [
                         TemplateTabElement::HANDLE => User::ATTRIBUTE_PASSWORD_CONFIRMATION,
                         TemplateTabElement::LABEL => trans('narsil-cms::validation.attributes.password_confirmation'),
-                        TemplateTabElement::REQUIRED => true,
+                        TemplateTabElement::REQUIRED => !$this->model,
                         TemplateTabElement::RELATION_BASE => [
                             Field::TYPE => PasswordField::class,
                             Field::SETTINGS => app(PasswordField::class)

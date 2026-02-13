@@ -38,7 +38,7 @@ class BlockStoreController extends RedirectController
 
         return $this
             ->redirect(route('blocks.index'), $block)
-            ->with('success', ModelService::getSuccessMessage(Block::class, ModelEventEnum::CREATED));
+            ->with('success', ModelService::getSuccessMessage(Block::TABLE, ModelEventEnum::CREATED));
     }
 
     #endregion

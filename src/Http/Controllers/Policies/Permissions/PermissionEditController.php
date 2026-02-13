@@ -74,7 +74,7 @@ class PermissionEditController extends RenderController
      */
     protected function getDescription(): string
     {
-        return ModelService::getModelLabel(Permission::class);
+        return ModelService::getModelLabel(Permission::TABLE);
     }
 
     /**
@@ -100,7 +100,7 @@ class PermissionEditController extends RenderController
      */
     protected function getTitle(): string
     {
-        return ModelService::getModelLabel(Permission::class);
+        return ModelService::getModelLabel(Permission::TABLE);
     }
 
     #endregion

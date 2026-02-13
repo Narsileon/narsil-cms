@@ -33,6 +33,8 @@ abstract class AbstractForm extends Fluent implements Form
      */
     public function __construct(?Model $model = null)
     {
+        $this->set('model', $model);
+
         $defaultLanguage = Config::get('app.locale', 'en');
         $languageOptions = Config::get('narsil.locales', []);
 

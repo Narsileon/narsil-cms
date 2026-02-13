@@ -42,7 +42,7 @@ class UserStoreController extends RedirectController
 
         return $this
             ->redirect(route('users.index'))
-            ->with('success', ModelService::getSuccessMessage(User::class, ModelEventEnum::CREATED));
+            ->with('success', ModelService::getSuccessMessage(User::TABLE, ModelEventEnum::CREATED));
     }
 
     #endregion

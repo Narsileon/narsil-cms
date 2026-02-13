@@ -38,7 +38,7 @@ class SitePageDestroyController extends RedirectController
         $this->deleteRecursively($sitePage);
 
         return redirect(route('sites.edit', $site))
-            ->with('success', ModelService::getSuccessMessage(SitePage::class, ModelEventEnum::DELETED));
+            ->with('success', ModelService::getSuccessMessage(SitePage::TABLE, ModelEventEnum::DELETED));
     }
 
     #endregion

@@ -111,7 +111,7 @@ class TemplateForm extends AbstractForm implements Contract
                                                 ->form(app(TemplateTabElementForm::class)->jsonSerialize())
                                                 ->addOption(
                                                     identifier: Block::TABLE,
-                                                    label: ModelService::getModelLabel(Block::class),
+                                                    label: ModelService::getModelLabel(Block::TABLE),
                                                     optionLabel: TemplateTabElement::LABEL,
                                                     optionValue: TemplateTabElement::HANDLE,
                                                     options: $blockSelectOptions,
@@ -119,7 +119,7 @@ class TemplateForm extends AbstractForm implements Contract
                                                 )
                                                 ->addOption(
                                                     identifier: Field::TABLE,
-                                                    label: ModelService::getModelLabel(Field::class),
+                                                    label: ModelService::getModelLabel(Field::TABLE),
                                                     optionLabel: TemplateTabElement::LABEL,
                                                     optionValue: TemplateTabElement::HANDLE,
                                                     options: $fieldSelectOptions,

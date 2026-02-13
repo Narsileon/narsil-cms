@@ -49,7 +49,7 @@ class BlockCreateController extends RenderController
      */
     protected function getDescription(): string
     {
-        return ModelService::getModelLabel(Block::class);
+        return ModelService::getModelLabel(Block::TABLE);
     }
 
     /**
@@ -72,7 +72,7 @@ class BlockCreateController extends RenderController
      */
     protected function getTitle(): string
     {
-        return ModelService::getModelLabel(Block::class);
+        return ModelService::getModelLabel(Block::TABLE);
     }
 
     #endregion

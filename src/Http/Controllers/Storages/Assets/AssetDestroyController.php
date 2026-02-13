@@ -36,7 +36,7 @@ class AssetDestroyController extends RedirectController
 
         return $this
             ->redirect(route('assets.index'))
-            ->with('success', ModelService::getSuccessMessage(Asset::class, ModelEventEnum::DELETED));
+            ->with('success', ModelService::getSuccessMessage(Asset::TABLE, ModelEventEnum::DELETED));
     }
 
     #endregion

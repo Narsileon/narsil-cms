@@ -49,7 +49,7 @@ class AssetCreateController extends RenderController
      */
     protected function getDescription(): string
     {
-        return ModelService::getModelLabel(Asset::class);
+        return ModelService::getModelLabel(Asset::TABLE);
     }
 
     /**
@@ -72,7 +72,7 @@ class AssetCreateController extends RenderController
      */
     protected function getTitle(): string
     {
-        return ModelService::getModelLabel(Asset::class);
+        return ModelService::getModelLabel(Asset::TABLE);
     }
 
     #endregion

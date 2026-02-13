@@ -35,7 +35,7 @@ class SitePageUpdateController extends RedirectController
         $sitePage->update($attributes);
 
         return redirect(route('sites.edit', $site))
-            ->with('success', ModelService::getSuccessMessage(SitePage::class, ModelEventEnum::UPDATED));
+            ->with('success', ModelService::getSuccessMessage(SitePage::TABLE, ModelEventEnum::UPDATED));
     }
 
     #endregion

@@ -66,7 +66,7 @@ class UserConfigurationEditController extends RenderController
      */
     protected function getDescription(): string
     {
-        return ModelService::getModelLabel(UserConfiguration::class);
+        return ModelService::getModelLabel(UserConfiguration::TABLE);
     }
 
     /**
@@ -74,7 +74,7 @@ class UserConfigurationEditController extends RenderController
      */
     protected function getTitle(): string
     {
-        return ModelService::getModelLabel(UserConfiguration::class);
+        return ModelService::getModelLabel(UserConfiguration::TABLE);
     }
 
     #endregion

@@ -51,7 +51,7 @@ class FieldUpdateController extends RedirectController
 
         return $this
             ->redirect(route('fields.index'), $field)
-            ->with('success', ModelService::getSuccessMessage(Field::class, ModelEventEnum::UPDATED));
+            ->with('success', ModelService::getSuccessMessage(Field::TABLE, ModelEventEnum::UPDATED));
     }
 
     #endregion

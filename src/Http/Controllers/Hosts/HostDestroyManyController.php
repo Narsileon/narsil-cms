@@ -39,7 +39,7 @@ class HostDestroyManyController extends RedirectController
 
         return $this
             ->redirect(route('hosts.index'))
-            ->with('success', ModelService::getSuccessMessage(Host::class, ModelEventEnum::DELETED_MANY));
+            ->with('success', ModelService::getSuccessMessage(Host::TABLE, ModelEventEnum::DELETED_MANY));
     }
 
     #endregion

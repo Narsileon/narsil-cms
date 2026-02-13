@@ -49,7 +49,7 @@ class FooterCreateController extends RenderController
      */
     protected function getDescription(): string
     {
-        return ModelService::getModelLabel(Footer::class);
+        return ModelService::getModelLabel(Footer::TABLE);
     }
 
     /**
@@ -72,7 +72,7 @@ class FooterCreateController extends RenderController
      */
     protected function getTitle(): string
     {
-        return ModelService::getModelLabel(Footer::class);
+        return ModelService::getModelLabel(Footer::TABLE);
     }
 
     #endregion

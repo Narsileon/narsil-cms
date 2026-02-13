@@ -49,7 +49,7 @@ class HostCreateController extends RenderController
      */
     protected function getDescription(): string
     {
-        return ModelService::getModelLabel(Host::class);
+        return ModelService::getModelLabel(Host::TABLE);
     }
 
     /**
@@ -72,7 +72,7 @@ class HostCreateController extends RenderController
      */
     protected function getTitle(): string
     {
-        return ModelService::getModelLabel(Host::class);
+        return ModelService::getModelLabel(Host::TABLE);
     }
 
     #endregion

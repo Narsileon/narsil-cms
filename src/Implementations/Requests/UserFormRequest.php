@@ -94,4 +94,21 @@ class UserFormRequest extends AbstractFormRequest implements Contract
     }
 
     #endregion
+
+    #region PROTECTED METHODS
+
+    /**
+     * {@inheritDoc}
+     */
+    protected function prepareForValidation(): void
+    {
+        if (empty($this->{User::PASSWORD}))
+        {
+            $this->merge([
+                User::PASSWORD => ''
+            ]);
+        }
+    }
+
+    #endregion
 }

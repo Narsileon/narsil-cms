@@ -39,7 +39,7 @@ class UserDestroyManyController extends RedirectController
 
         return $this
             ->redirect(route('users.index'))
-            ->with('success', ModelService::getSuccessMessage(User::class, ModelEventEnum::DELETED_MANY));
+            ->with('success', ModelService::getSuccessMessage(User::TABLE, ModelEventEnum::DELETED_MANY));
     }
 
     #endregion
