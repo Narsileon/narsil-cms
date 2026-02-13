@@ -6,9 +6,9 @@ namespace Narsil\Cms\Models;
 
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Narsil\Base\Models\User as BaseUser;
+use Narsil\Base\Traits\HasDatetimes;
 use Narsil\Cms\Casts\ImageCast;
 use Narsil\Cms\Models\Users\UserBookmark;
-use Narsil\Cms\Traits\HasDatetimes;
 
 #endregion
 
