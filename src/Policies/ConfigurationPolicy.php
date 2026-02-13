@@ -4,7 +4,7 @@ namespace Narsil\Cms\Policies;
 
 #region USE
 
-use Narsil\Cms\Traits\Policies\IsUpdatable;
+use Narsil\Base\Traits\Policies\IsUpdatable;
 
 #endregion
 

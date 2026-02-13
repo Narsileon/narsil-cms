@@ -6,8 +6,9 @@ namespace Narsil\Cms\Console\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Config;
+use Narsil\Base\Enums\AbilityEnum;
+use Narsil\Base\Services\PermissionService;
 use Narsil\Cms\Models\Policies\Permission;
-use Narsil\Cms\Services\PermissionService;
 use ReflectionClass;
 
 #endregion
@@ -56,20 +57,22 @@ class SyncPermissions extends Command
 
             foreach ($methods as $method)
             {
-                $permission = $method->getName();
+                $value = $method->getName();
 
-                if (in_array($permission, ['__construct', 'before']))
+                $ability = AbilityEnum::tryFrom($value);
+
+                if (!$ability)
                 {
                     continue;
                 }
 
-                $handle = PermissionService::getHandle($table, $permission);
+                $handle = PermissionService::getName($table, $ability);
 
                 $names = [];
 
                 foreach (Config::get('narsil.locales', ['en']) as $locale)
                 {
-                    $names[$locale] = PermissionService::getName($table, $permission, $locale);
+                    $names[$locale] = PermissionService::getLabel($table, $ability->value, $locale);
                 }
 
                 Permission::firstOrCreate([
