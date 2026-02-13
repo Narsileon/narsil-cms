@@ -7,7 +7,7 @@ namespace Narsil\Cms\Models\Policies;
 use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Support\Facades\Cache;
 use Narsil\Base\Models\Policies\Permission as BasePermission;
-use Narsil\Cms\Observers\ModelObserver;
+use Narsil\Base\Observers\ModelObserver;
 use Narsil\Cms\Support\SelectOption;
 use Narsil\Cms\Traits\HasDatetimes;
 use Narsil\Cms\Traits\HasTranslations;

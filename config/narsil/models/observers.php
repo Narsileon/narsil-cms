@@ -18,5 +18,5 @@ return [
     \Narsil\Cms\Models\Sites\Site::class => \Narsil\Cms\Observers\SiteObserver::class,
     \Narsil\Cms\Models\Sites\SitePage::class => \Narsil\Cms\Observers\SitePageObserver::class,
     \Narsil\Cms\Models\Sites\SitePageEntity::class => \Narsil\Cms\Observers\SitePageEntityObserver::class,
-    \Narsil\Cms\Models\User::class => \Narsil\Cms\Observers\UserObserver::class,
+    \Narsil\Cms\Models\User::class => \Narsil\Base\Observers\UserObserver::class,
 ];
