@@ -5,7 +5,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use Narsil\Cms\Enums\Database\OperatorEnum;
+use Narsil\Base\Enums\OperatorEnum;
 use Narsil\Cms\Models\Collections\Block;
 use Narsil\Cms\Models\Collections\Field;
 use Narsil\Cms\Models\Collections\Template;

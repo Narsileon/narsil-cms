@@ -4,11 +4,11 @@ namespace Narsil\Cms\Database\Seeders\Blocks;
 
 #region USE
 
+use Narsil\Base\Enums\OperatorEnum;
 use Narsil\Cms\Contracts\Fields\LinkField;
 use Narsil\Cms\Contracts\Fields\SelectField;
 use Narsil\Cms\Contracts\Fields\TextField;
 use Narsil\Cms\Database\Seeders\BlockSeeder;
-use Narsil\Cms\Enums\Database\OperatorEnum;
 use Narsil\Cms\Models\Collections\Block;
 use Narsil\Cms\Models\Collections\BlockElement;
 use Narsil\Cms\Models\Collections\Field;

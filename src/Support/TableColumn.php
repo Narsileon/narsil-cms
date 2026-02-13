@@ -4,11 +4,11 @@ namespace Narsil\Cms\Support;
 
 #region USE
 
+use Narsil\Base\Enums\OperatorEnum;
 use Narsil\Cms\Contracts\Fields\DateField;
 use Narsil\Cms\Contracts\Fields\NumberField;
 use Narsil\Cms\Contracts\Fields\TextField;
 use Narsil\Cms\Contracts\Fields\TimeField;
-use Narsil\Cms\Enums\Database\OperatorEnum;
 use Narsil\Cms\Enums\DataTypeEnum;
 use Narsil\Cms\Models\Collections\Field;
 

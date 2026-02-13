@@ -7,7 +7,7 @@ namespace Narsil\Cms\Services;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\App;
-use Narsil\Cms\Enums\Database\OperatorEnum;
+use Narsil\Base\Enums\OperatorEnum;
 use Narsil\Cms\Enums\DataTypeEnum;
 
 #endregion

@@ -6,11 +6,11 @@ namespace Narsil\Cms\Implementations\Forms;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
+use Narsil\Base\Enums\OperatorEnum;
 use Narsil\Cms\Contracts\Fields\SelectField;
 use Narsil\Cms\Contracts\Fields\TableField;
 use Narsil\Cms\Contracts\Fields\TextField;
 use Narsil\Cms\Contracts\Forms\BlockForm as Contract;
-use Narsil\Cms\Enums\Database\OperatorEnum;
 use Narsil\Cms\Implementations\AbstractForm;
 use Narsil\Cms\Models\AbstractCondition;
 use Narsil\Cms\Models\Collections\BlockElement;
