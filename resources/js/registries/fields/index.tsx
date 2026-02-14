@@ -7,7 +7,6 @@ import { Datetime } from "@narsil-cms/blocks/fields/datetime";
 import { File } from "@narsil-cms/blocks/fields/file";
 import { Password } from "@narsil-cms/blocks/fields/password";
 import { Relations } from "@narsil-cms/blocks/fields/relations";
-import { RichTextEditor } from "@narsil-cms/blocks/fields/rich-text-editor";
 import { Table } from "@narsil-cms/blocks/fields/table";
 import { Tree } from "@narsil-cms/blocks/fields/tree";
 import { SortableGrid, SortableList } from "@narsil-cms/components/sortable";
@@ -18,10 +17,17 @@ import { InputGroup, InputGroupAddon, InputGroupInput } from "@narsil-ui/compone
 import { Slider } from "@narsil-ui/components/slider";
 import { Switch } from "@narsil-ui/components/switch";
 import { Textarea } from "@narsil-ui/components/textarea";
+import { dynamic } from "@narsil-ui/lib/dynamic";
 import { cn } from "@narsil-ui/lib/utils";
 import { isArray } from "lodash-es";
 import { type ReactNode } from "react";
 import { route } from "ziggy-js";
+
+const RichTextEditor = dynamic<any>(() =>
+  import("@narsil-cms/blocks/fields/rich-text-editor").then((importer) => ({
+    default: importer.RichTextEditor,
+  })),
+);
 
 export type FieldProps = {
   field: Field;
