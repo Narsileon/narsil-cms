@@ -4,9 +4,10 @@ namespace Narsil\Cms\Implementations;
 
 #region USE
 
-use Narsil\Cms\Contracts\Table;
+use Illuminate\Support\Str;
+use Narsil\Base\Contracts\Table;
+use Narsil\Base\Services\TableService;
 use Narsil\Cms\Services\RouteService;
-use Narsil\Cms\Services\TableService;
 
 #endregion
 
@@ -63,7 +64,7 @@ abstract class AbstractTable implements Table
 
             $columns[] = [
                 'accessorKey' => $column->accessorKey ?? $column->id,
-                'header' => $column->header ?? TableService::getHeading($column->id),
+                'header' => $column->header ?? $this->getHeading($column->id),
                 'id' => $column->id,
                 'meta' => [
                     'field' => $column->getField($type),
@@ -104,6 +105,23 @@ abstract class AbstractTable implements Table
         }
 
         return $columnVisibility;
+    }
+
+    /**
+     * @param string $columnName
+     *
+     * @return string
+     */
+    public function getHeading(string $columnName): string
+    {
+        if (str_ends_with($columnName, '_id'))
+        {
+            $columnName = str_replace('_id', '', $columnName);
+        }
+
+        $translation = trans("narsil-cms::validation.attributes.$columnName");
+
+        return Str::contains($translation, 'validation.attributes') ? $columnName : Str::ucfirst($translation);
     }
 
     /**

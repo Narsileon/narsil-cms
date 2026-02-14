@@ -4,7 +4,7 @@ namespace Narsil\Cms\Implementations\Tables;
 
 #region USE
 
-use Narsil\Cms\Enums\DataTypeEnum;
+use Narsil\Base\Enums\PostgreTypeEnum;
 use Narsil\Cms\Implementations\AbstractTable;
 use Narsil\Cms\Models\Collections\Template;
 use Narsil\Cms\Models\Collections\TemplateTab;
@@ -58,7 +58,7 @@ class TemplateTable extends AbstractTable
             new TableColumn(
                 header: ModelService::getTableLabel(TemplateTab::TABLE),
                 id: Template::COUNT_TABS,
-                type: DataTypeEnum::INTEGER->value,
+                type: PostgreTypeEnum::INTEGER->value,
                 visibility: true,
             ),
             new TableColumn(

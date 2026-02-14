@@ -4,7 +4,7 @@ namespace Narsil\Cms\Implementations\Tables;
 
 #region USE
 
-use Narsil\Cms\Enums\DataTypeEnum;
+use Narsil\Base\Enums\PostgreTypeEnum;
 use Narsil\Cms\Implementations\AbstractTable;
 use Narsil\Cms\Models\Collections\Field;
 use Narsil\Cms\Models\ValidationRule;
@@ -62,7 +62,7 @@ class FieldTable extends AbstractTable
             new TableColumn(
                 header: ModelService::getTableLabel(ValidationRule::TABLE),
                 id: Field::COUNT_VALIDATION_RULES,
-                type: DataTypeEnum::INTEGER->value,
+                type: PostgreTypeEnum::INTEGER->value,
                 visibility: true,
             ),
             new TableColumn(

@@ -5,11 +5,11 @@ namespace Narsil\Cms\Support;
 #region USE
 
 use Narsil\Base\Enums\OperatorEnum;
+use Narsil\Base\Enums\PostgreTypeEnum;
 use Narsil\Cms\Contracts\Fields\DateField;
 use Narsil\Cms\Contracts\Fields\NumberField;
 use Narsil\Cms\Contracts\Fields\TextField;
 use Narsil\Cms\Contracts\Fields\TimeField;
-use Narsil\Cms\Enums\DataTypeEnum;
 use Narsil\Cms\Models\Collections\Field;
 
 #endregion
@@ -102,41 +102,41 @@ class TableColumn
 
         switch ($type)
         {
-            case DataTypeEnum::BIGINT->value:
-            case DataTypeEnum::DECIMAL->value:
-            case DataTypeEnum::DOUBLE->value:
-            case DataTypeEnum::FLOAT->value:
-            case DataTypeEnum::FLOAT4->value:
-            case DataTypeEnum::FLOAT8->value:
-            case DataTypeEnum::INT2->value:
-            case DataTypeEnum::INT4->value:
-            case DataTypeEnum::INT8->value:
-            case DataTypeEnum::INTEGER->value:
-            case DataTypeEnum::NUMERIC->value:
-            case DataTypeEnum::SMALLINT->value:
+            case PostgreTypeEnum::BIGINT->value:
+            case PostgreTypeEnum::DECIMAL->value:
+            case PostgreTypeEnum::DOUBLE->value:
+            case PostgreTypeEnum::FLOAT->value:
+            case PostgreTypeEnum::FLOAT4->value:
+            case PostgreTypeEnum::FLOAT8->value:
+            case PostgreTypeEnum::INT2->value:
+            case PostgreTypeEnum::INT4->value:
+            case PostgreTypeEnum::INT8->value:
+            case PostgreTypeEnum::INTEGER->value:
+            case PostgreTypeEnum::NUMERIC->value:
+            case PostgreTypeEnum::SMALLINT->value:
                 $field = new Field([
                     Field::TYPE => NumberField::class,
                     Field::SETTINGS => app(NumberField::class),
                 ]);
                 break;
-            case DataTypeEnum::DATE->value:
-            case DataTypeEnum::DATETIME->value:
-            case DataTypeEnum::TIMESTAMP->value:
+            case PostgreTypeEnum::DATE->value:
+            case PostgreTypeEnum::DATETIME->value:
+            case PostgreTypeEnum::TIMESTAMP->value:
                 $field = new Field([
                     Field::TYPE => DateField::class,
                     Field::SETTINGS => app(DateField::class),
                 ]);
                 break;
-            case DataTypeEnum::TIME->value:
+            case PostgreTypeEnum::TIME->value:
                 $field = new Field([
                     Field::TYPE => TimeField::class,
                     Field::SETTINGS => app(TimeField::class),
                 ]);
                 break;
-            case DataTypeEnum::STRING->value:
-            case DataTypeEnum::TEXT->value:
-            case DataTypeEnum::VARCHAR->value:
-            case DataTypeEnum::UUID->value:
+            case PostgreTypeEnum::STRING->value:
+            case PostgreTypeEnum::TEXT->value:
+            case PostgreTypeEnum::VARCHAR->value:
+            case PostgreTypeEnum::UUID->value:
             default:
                 $field = new Field([
                     Field::TYPE => TextField::class,
@@ -161,16 +161,16 @@ class TableColumn
 
         switch ($type)
         {
-            case DataTypeEnum::BOOLEAN->value:
+            case PostgreTypeEnum::BOOLEAN->value:
                 $operators = [
                     OperatorEnum::option(OperatorEnum::EQUALS),
                     OperatorEnum::option(OperatorEnum::NOT_EQUALS),
                 ];
                 break;
-            case DataTypeEnum::DATE->value:
-            case DataTypeEnum::DATETIME->value:
-            case DataTypeEnum::TIMESTAMP->value:
-            case DataTypeEnum::TIME->value:
+            case PostgreTypeEnum::DATE->value:
+            case PostgreTypeEnum::DATETIME->value:
+            case PostgreTypeEnum::TIMESTAMP->value:
+            case PostgreTypeEnum::TIME->value:
                 $operators = [
                     OperatorEnum::option(OperatorEnum::EQUALS),
                     OperatorEnum::option(OperatorEnum::NOT_EQUALS),
@@ -180,12 +180,12 @@ class TableColumn
                     OperatorEnum::option(OperatorEnum::AFTER_OR_EQUAL),
                 ];
                 break;
-            case DataTypeEnum::INTEGER->value:
-            case DataTypeEnum::BIGINT->value:
-            case DataTypeEnum::SMALLINT->value:
-            case DataTypeEnum::DECIMAL->value:
-            case DataTypeEnum::FLOAT->value:
-            case DataTypeEnum::DOUBLE->value:
+            case PostgreTypeEnum::INTEGER->value:
+            case PostgreTypeEnum::BIGINT->value:
+            case PostgreTypeEnum::SMALLINT->value:
+            case PostgreTypeEnum::DECIMAL->value:
+            case PostgreTypeEnum::FLOAT->value:
+            case PostgreTypeEnum::DOUBLE->value:
                 $operators = [
                     OperatorEnum::option(OperatorEnum::EQUALS),
                     OperatorEnum::option(OperatorEnum::NOT_EQUALS),
@@ -196,10 +196,10 @@ class TableColumn
 
                 ];
                 break;
-            case DataTypeEnum::STRING->value:
-            case DataTypeEnum::TEXT->value:
-            case DataTypeEnum::VARCHAR->value:
-            case DataTypeEnum::UUID->value:
+            case PostgreTypeEnum::STRING->value:
+            case PostgreTypeEnum::TEXT->value:
+            case PostgreTypeEnum::VARCHAR->value:
+            case PostgreTypeEnum::UUID->value:
             default:
                 $operators = [
                     OperatorEnum::option(OperatorEnum::EQUALS),

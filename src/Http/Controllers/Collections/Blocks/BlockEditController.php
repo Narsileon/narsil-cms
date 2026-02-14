@@ -95,7 +95,7 @@ class BlockEditController extends RenderController
             ->action(route('blocks.update', $block->{Block::ID}))
             ->id($block->{Block::ID})
             ->method(RequestMethodEnum::PATCH->value)
-            ->submitLabel(trans('narsil-cms::ui.update'));
+            ->submitLabel(trans('narsil-ui::ui.update'));
 
         return $form;
     }

@@ -98,7 +98,7 @@ class HostEditController extends RenderController
             ->action(route('hosts.update', $host->{Host::ID}))
             ->id($host->{Host::ID})
             ->method(RequestMethodEnum::PATCH->value)
-            ->submitLabel(trans('narsil-cms::ui.update'));
+            ->submitLabel(trans('narsil-ui::ui.update'));
 
         return $form;
     }

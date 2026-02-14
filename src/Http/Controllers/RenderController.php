@@ -4,13 +4,11 @@ namespace Narsil\Cms\Http\Controllers;
 
 #region USE
 
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\JsonResponse;
 use Inertia\Inertia;
 use Inertia\Response;
 use Narsil\Base\Support\TranslationsBag;
-use Narsil\Cms\Http\Requests\QueryRequest;
 
 #endregion
 
@@ -37,28 +35,6 @@ abstract class RenderController
      * @return string
      */
     abstract protected function getTitle(): string;
-
-    /**
-     * @param Builder $query
-     * @param string $column
-     * @param mixed $filter
-     *
-     * @return void
-     */
-    protected function filter(Builder $query, string $column, mixed $filter = null): void
-    {
-        if (!$filter)
-        {
-            $filter = request(QueryRequest::FILTER, null);
-        }
-
-        if (!$filter)
-        {
-            return;
-        }
-
-        $query->where($column, '=', $filter);
-    }
 
     /**
      * @param string $component

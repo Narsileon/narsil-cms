@@ -8,7 +8,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Inertia\Response;
 use Narsil\Base\Enums\AbilityEnum;
-use Narsil\Cms\Http\Collections\DataTableCollection;
+use Narsil\Base\Http\Collections\DataTableCollection;
 use Narsil\Cms\Http\Controllers\RenderController;
 use Narsil\Cms\Models\Globals\Header;
 use Narsil\Cms\Services\ModelService;

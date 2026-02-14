@@ -4,7 +4,7 @@ namespace Narsil\Cms\Implementations\Tables;
 
 #region USE
 
-use Narsil\Cms\Enums\DataTypeEnum;
+use Narsil\Base\Enums\PostgreTypeEnum;
 use Narsil\Cms\Implementations\AbstractTable;
 use Narsil\Cms\Models\Hosts\Host;
 use Narsil\Cms\Models\Hosts\HostLocale;
@@ -55,13 +55,13 @@ class HostTable extends AbstractTable
             new TableColumn(
                 header: ModelService::getTableLabel(HostLocale::TABLE),
                 id: Host::COUNT_LOCALES,
-                type: DataTypeEnum::INTEGER->value,
+                type: PostgreTypeEnum::INTEGER->value,
                 visibility: true,
             ),
             new TableColumn(
                 header: ModelService::getTableLabel(HostLocaleLanguage::TABLE),
                 id: Host::COUNT_LANGUAGES,
-                type: DataTypeEnum::INTEGER->value,
+                type: PostgreTypeEnum::INTEGER->value,
                 visibility: true,
             ),
             new TableColumn(

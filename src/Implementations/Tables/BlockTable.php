@@ -4,7 +4,7 @@ namespace Narsil\Cms\Implementations\Tables;
 
 #region USE
 
-use Narsil\Cms\Enums\DataTypeEnum;
+use Narsil\Base\Enums\PostgreTypeEnum;
 use Narsil\Cms\Implementations\AbstractTable;
 use Narsil\Cms\Models\Collections\Block;
 use Narsil\Cms\Models\Collections\Field;
@@ -54,13 +54,13 @@ class BlockTable extends AbstractTable
             new TableColumn(
                 header: ModelService::getTableLabel(Field::TABLE),
                 id: Block::COUNT_FIELDS,
-                type: DataTypeEnum::INTEGER->value,
+                type: PostgreTypeEnum::INTEGER->value,
                 visibility: true,
             ),
             new TableColumn(
                 header: ModelService::getTableLabel(Block::TABLE),
                 id: Block::COUNT_BLOCKS,
-                type: DataTypeEnum::INTEGER->value,
+                type: PostgreTypeEnum::INTEGER->value,
                 visibility: true,
             ),
             new TableColumn(

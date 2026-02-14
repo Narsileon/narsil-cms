@@ -90,7 +90,7 @@ class HeaderEditController extends RenderController
             ->action(route('headers.update', $header->{Header::ID}))
             ->id($header->{Header::ID})
             ->method(RequestMethodEnum::PATCH->value)
-            ->submitLabel(trans('narsil-cms::ui.update'));
+            ->submitLabel(trans('narsil-ui::ui.update'));
 
         return $form;
     }

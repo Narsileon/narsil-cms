@@ -4,7 +4,7 @@ namespace Narsil\Cms\Implementations\Tables;
 
 #region USE
 
-use Narsil\Cms\Enums\DataTypeEnum;
+use Narsil\Base\Enums\PostgreTypeEnum;
 use Narsil\Cms\Implementations\AbstractTable;
 use Narsil\Cms\Models\Globals\Footer;
 use Narsil\Cms\Models\Globals\Header;
@@ -51,7 +51,7 @@ class HeaderTable extends AbstractTable
             new TableColumn(
                 header: ModelService::getTableLabel(Site::VIRTUAL_TABLE),
                 id: Footer::COUNT_WEBSITES,
-                type: DataTypeEnum::INTEGER->value,
+                type: PostgreTypeEnum::INTEGER->value,
                 visibility: true,
             ),
             new TableColumn(

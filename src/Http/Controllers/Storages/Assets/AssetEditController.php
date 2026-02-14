@@ -84,7 +84,7 @@ class AssetEditController extends RenderController
             ]))
             ->id($asset->{Asset::UUID})
             ->method(RequestMethodEnum::PATCH->value)
-            ->submitLabel(trans('narsil-cms::ui.update'));
+            ->submitLabel(trans('narsil-ui::ui.update'));
 
         return $form;
     }

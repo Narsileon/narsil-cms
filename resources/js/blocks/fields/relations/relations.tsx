@@ -1,8 +1,9 @@
 import { DataTable } from "@narsil-cms/blocks/data-table";
-import { DataTableProvider, getSelectColumn } from "@narsil-cms/components/data-table";
+import { getSelectColumn } from "@narsil-cms/components/data-table";
 import type { DataTableCollection, Model } from "@narsil-cms/types";
 import { Badge } from "@narsil-ui/components/badge";
 import { Button } from "@narsil-ui/components/button";
+import { DataTableProvider } from "@narsil-ui/components/data-table";
 import {
   DialogBackdrop,
   DialogClose,
@@ -183,19 +184,13 @@ function Relations({
               {Object.entries(dataTables).map(([id, collection]) => {
                 const finalColumns: ColumnDef<Model>[] = [selectColumn, ...collection.columns];
 
-                const finalColumnOrder = ["_select", ...collection.columnOrder];
-
                 return (
                   <TabsPanel className="p-0" value={id} key={id}>
                     <DataTableProvider
-                      id={collection.meta.id}
                       columns={finalColumns}
                       data={collection.data}
                       enableMultiRowSelection={multiple}
-                      initialState={{
-                        columnOrder: finalColumnOrder,
-                        columnVisibility: collection.columnVisibility,
-                      }}
+                      initialState={collection.meta.tanStackTable}
                       state={{
                         rowSelection: selectedRows[collection.meta.id] ?? {},
                       }}

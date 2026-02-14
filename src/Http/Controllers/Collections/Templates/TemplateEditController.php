@@ -90,7 +90,7 @@ class TemplateEditController extends RenderController
             ->action(route('templates.update', $template->{Template::ID}))
             ->id($template->{Template::ID})
             ->method(RequestMethodEnum::PATCH->value)
-            ->submitLabel(trans('narsil-cms::ui.update'));
+            ->submitLabel(trans('narsil-ui::ui.update'));
 
         return $form;
     }

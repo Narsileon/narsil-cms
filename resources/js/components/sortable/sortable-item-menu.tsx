@@ -30,12 +30,12 @@ function SortableItemMenu({
 
   return (
     <DropdownMenuRoot>
-      <Tooltip tooltip={trans("accessibility.toggle_row_menu")}>
+      <Tooltip tooltip={trans("tooltips.menu")}>
         <DropdownMenuTrigger
           {...props}
           render={
             <Button
-              aria-label={trans("accessibility.toggle_row_menu")}
+              aria-label={trans("tooltips.menu")}
               size="icon-sm"
               variant="ghost-secondary"
               onClick={(event) => event.stopPropagation()}

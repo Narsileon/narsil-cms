@@ -4,8 +4,7 @@ namespace Narsil\Cms\Implementations\Tables;
 
 #region USE
 
-use Illuminate\Support\Facades\Schema;
-use Narsil\Cms\Enums\DataTypeEnum;
+use Narsil\Base\Enums\PostgreTypeEnum;
 use Narsil\Cms\Implementations\AbstractTable;
 use Narsil\Cms\Models\Entities\Entity;
 use Narsil\Cms\Services\RouteService;
@@ -43,22 +42,22 @@ class EntityTable extends AbstractTable
         return [
             new TableColumn(
                 id: Entity::ID,
-                type: DataTypeEnum::INTEGER->value,
+                type: PostgreTypeEnum::INTEGER->value,
                 visibility: true,
             ),
             new TableColumn(
                 id: Entity::SLUG,
-                type: DataTypeEnum::STRING->value,
+                type: PostgreTypeEnum::STRING->value,
                 visibility: true,
             ),
             new TableColumn(
                 id: Entity::CREATED_AT,
-                type: DataTypeEnum::STRING->value,
+                type: PostgreTypeEnum::STRING->value,
                 visibility: true,
             ),
             new TableColumn(
                 id: Entity::UPDATED_AT,
-                type: DataTypeEnum::STRING->value,
+                type: PostgreTypeEnum::STRING->value,
                 visibility: true,
             ),
         ];

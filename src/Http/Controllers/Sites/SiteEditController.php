@@ -153,7 +153,7 @@ class SiteEditController extends RenderController
             ->id($site->{Site::ID})
             ->languageOptions(HostLocaleLanguage::getUniqueLanguages())
             ->method(RequestMethodEnum::PATCH->value)
-            ->submitLabel(trans('narsil-cms::ui.update'));
+            ->submitLabel(trans('narsil-ui::ui.update'));
 
         return $form;
     }

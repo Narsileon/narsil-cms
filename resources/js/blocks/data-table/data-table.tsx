@@ -1,15 +1,16 @@
 import { Link, router } from "@inertiajs/react";
-import {
-  DataTableColumns,
-  DataTableFilterDropdown,
-  DataTableFilterList,
-  DataTableFooter,
-  DataTableInput,
-  useDataTable,
-} from "@narsil-cms/components/data-table";
 import type { DataTableCollection } from "@narsil-cms/types";
 import { Button } from "@narsil-ui/components/button";
-import { DataTableHead, DataTableRow } from "@narsil-ui/components/data-table";
+import {
+  DataTableColumnFilters,
+  DataTableFilterList,
+  DataTableFooter,
+  DataTableHead,
+  DataTableInput,
+  DataTableRow,
+  DataTableSettings,
+  useDataTable,
+} from "@narsil-ui/components/data-table";
 import { Heading } from "@narsil-ui/components/heading";
 import { Icon } from "@narsil-ui/components/icon";
 import { SectionContent, SectionHeader, SectionRoot } from "@narsil-ui/components/section";
@@ -34,13 +35,12 @@ type DataTableProps = {
 function DataTable({ collection, title }: DataTableProps) {
   const { trans } = useTranslator();
 
-  const { dataTable } = useDataTable();
+  const table = useDataTable();
 
   const isDesktop = useMinSm();
 
-  const columnsLabel = trans("ui.columns");
   const createLabel = trans("ui.create");
-  const filterLabel = trans("ui.filters");
+  const filterLabel = trans("data-table.filters");
 
   function handleCreate() {
     if (collection.meta.routes.create) {
@@ -69,57 +69,46 @@ function DataTable({ collection, title }: DataTableProps) {
         <Heading level="h2" variant="h4" className="min-w-1/5">
           {title}
         </Heading>
-        <DataTableInput className="grow" />
-        <Tooltip hidden={isDesktop} tooltip={columnsLabel}>
-          <DataTableColumns
-            render={
-              <Button
-                aria-label={columnsLabel}
-                size={isDesktop ? "default" : "icon"}
-                variant="secondary"
-              >
-                <Icon name="eye" />
-                {isDesktop ? columnsLabel : undefined}
-              </Button>
-            }
-          />
-        </Tooltip>
-        <Tooltip hidden={isDesktop} tooltip={filterLabel}>
-          <DataTableFilterDropdown
-            render={
-              <Button
-                aria-label={filterLabel}
-                size={isDesktop ? "default" : "icon"}
-                variant="secondary"
-              >
-                <Icon name="filter" />
-                {isDesktop ? filterLabel : undefined}
-              </Button>
-            }
-          />
-        </Tooltip>
-        {collection.meta.routes.create ? (
-          <Tooltip hidden={isDesktop} tooltip={createLabel}>
-            <Button
-              aria-label={createLabel}
-              nativeButton={false}
-              size={isDesktop ? "default" : "icon"}
+        <div className="flex grow items-center justify-end gap-2">
+          <DataTableInput />
+          <Tooltip hidden={isDesktop} tooltip={filterLabel}>
+            <DataTableColumnFilters
               render={
-                <Link href={route(collection.meta.routes.create, collection.meta.routes.params)}>
-                  <Icon name="plus" />
-                  {isDesktop ? createLabel : undefined}
-                </Link>
+                <Button
+                  aria-label={filterLabel}
+                  size={isDesktop ? "default" : "icon"}
+                  variant="secondary"
+                >
+                  <Icon name="filter" />
+                  {isDesktop ? filterLabel : undefined}
+                </Button>
               }
             />
           </Tooltip>
-        ) : null}
+          {collection.meta.routes.create ? (
+            <Tooltip hidden={isDesktop} tooltip={createLabel}>
+              <Button
+                aria-label={createLabel}
+                nativeButton={false}
+                size={isDesktop ? "default" : "icon"}
+                render={
+                  <Link href={route(collection.meta.routes.create, collection.meta.routes.params)}>
+                    <Icon name="plus" />
+                    {isDesktop ? createLabel : undefined}
+                  </Link>
+                }
+              />
+            </Tooltip>
+          ) : null}
+          <DataTableSettings />
+        </div>
       </SectionHeader>
       <SectionContent className="flex grow flex-col gap-4 overflow-y-auto">
         <DataTableFilterList />
         <TableWrapper>
-          <TableRoot className="min-w-max" aria-colcount={dataTable.getAllColumns().length}>
+          <TableRoot className="min-w-max" aria-colcount={table.getAllColumns().length}>
             <TableHeader>
-              {dataTable.getHeaderGroups().map((headerGroup) => {
+              {table.getHeaderGroups().map((headerGroup) => {
                 return (
                   <DataTableRow className="sticky top-0 z-10 bg-accent" key={headerGroup.id}>
                     {headerGroup.headers.map((header) => {
@@ -140,8 +129,8 @@ function DataTable({ collection, title }: DataTableProps) {
               })}
             </TableHeader>
             <TableBody>
-              {dataTable.getRowModel().rows?.length ? (
-                dataTable.getRowModel().rows.map((row) => {
+              {table.getRowModel().rows?.length ? (
+                table.getRowModel().rows.map((row) => {
                   return (
                     <DataTableRow
                       className="cursor-pointer"
@@ -176,13 +165,13 @@ function DataTable({ collection, title }: DataTableProps) {
                 })
               ) : (
                 <DataTableRow className="cursor-pointer" onClick={() => handleCreate()}>
-                  <TableCell colSpan={dataTable.getVisibleFlatColumns().length} className="h-9" />
+                  <TableCell colSpan={table.getVisibleFlatColumns().length} className="h-9" />
                 </DataTableRow>
               )}
             </TableBody>
           </TableRoot>
         </TableWrapper>
-        <DataTableFooter collection={collection} />
+        <DataTableFooter links={collection.links} meta={collection.meta} />
       </SectionContent>
     </SectionRoot>
   );

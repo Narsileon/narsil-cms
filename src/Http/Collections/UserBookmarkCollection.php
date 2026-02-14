@@ -62,7 +62,7 @@ class UserBookmarkCollection extends ResourceCollection
                 'ui.add' => trans('narsil-cms::ui.add'),
                 'ui.bookmarks' => ModelService::getTableLabel(UserBookmark::TABLE),
                 'ui.cancel' => trans('narsil-ui::ui.cancel'),
-                'ui.edit' => trans('narsil-cms::ui.edit'),
+                'ui.edit' => trans('narsil-ui::ui.edit'),
                 'ui.remove' => trans('narsil-cms::ui.remove'),
             ],
         ];

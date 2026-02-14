@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Inertia\Response;
 use Narsil\Base\Enums\AbilityEnum;
-use Narsil\Cms\Http\Collections\DataTableCollection;
+use Narsil\Base\Http\Collections\DataTableCollection;
 use Narsil\Cms\Http\Controllers\RenderController;
 use Narsil\Cms\Models\Hosts\Host;
 use Narsil\Cms\Models\Hosts\HostLocaleLanguage;

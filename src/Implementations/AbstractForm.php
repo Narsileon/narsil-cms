@@ -57,27 +57,27 @@ abstract class AbstractForm extends Fluent implements Form
             ->add('narsil-cms::datetime.by')
             ->add('narsil-cms::datetime.created')
             ->add('narsil-cms::datetime.updated')
-            ->add('narsil-cms::dialogs.descriptions.delete')
-            ->add('narsil-cms::dialogs.titles.delete')
             ->add('narsil-cms::pagination.pages_empty')
             ->add('narsil-cms::ui.add_another')
             ->add('narsil-cms::ui.add')
             ->add('narsil-cms::ui.all')
             ->add('narsil-cms::ui.back')
             ->add('narsil-cms::ui.continue')
-            ->add('narsil-cms::ui.create')
             ->add('narsil-cms::ui.default_language')
-            ->add('narsil-cms::ui.delete')
             ->add('narsil-cms::ui.publish')
             ->add('narsil-cms::ui.save_as_new')
             ->add('narsil-cms::ui.save')
             ->add('narsil-cms::ui.translations')
             ->add('narsil-cms::ui.unpublish')
+            ->add('narsil-ui::dialogs.descriptions.delete')
+            ->add('narsil-ui::dialogs.titles.delete')
             ->add('narsil-ui::placeholders.choose')
             ->add('narsil-ui::placeholders.search')
             ->add('narsil-ui::tooltips.required')
             ->add('narsil-ui::ui.cancel')
-            ->add('narsil-ui::ui.confirm');
+            ->add('narsil-ui::ui.confirm')
+            ->add('narsil-ui::ui.create')
+            ->add('narsil-ui::ui.delete');
     }
 
     #endregion

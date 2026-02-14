@@ -1,10 +1,8 @@
 import { type InertiaLinkProps } from "@inertiajs/react";
-import {
-  type LaravelPaginationLinks,
-  type LaravelPaginationMeta,
-} from "@narsil-cms/blocks/pagination";
 import type { Model, TemplateTab } from "@narsil-cms/types";
+import { type PaginationLinks, type PaginationMeta } from "@narsil-ui/components/pagination";
 import { type IconName } from "@narsil-ui/registries/icons";
+import { TanStackTableData } from "@narsil-ui/types";
 import {
   type ColumnDef,
   type ColumnOrderState,
@@ -25,9 +23,10 @@ export type DataTableCollection<T = Model> = {
   columnOrder: ColumnOrderState;
   columnVisibility: VisibilityState;
   data: T[];
-  links: LaravelPaginationLinks;
-  meta: LaravelPaginationMeta & {
+  links: PaginationLinks;
+  meta: PaginationMeta & {
     id: string;
+    tanStackTable: TanStackTableData;
     revisionable?: boolean;
     selectable?: boolean;
     routes: RouteNames;

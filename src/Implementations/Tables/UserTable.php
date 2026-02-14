@@ -4,9 +4,9 @@ namespace Narsil\Cms\Implementations\Tables;
 
 #region USE
 
+use Narsil\Base\Enums\PostgreTypeEnum;
 use Narsil\Base\Models\Policies\Permission;
 use Narsil\Base\Models\Policies\Role;
-use Narsil\Cms\Enums\DataTypeEnum;
 use Narsil\Cms\Implementations\AbstractTable;
 use Narsil\Cms\Models\User;
 use Narsil\Cms\Services\ModelService;
@@ -59,13 +59,13 @@ class UserTable extends AbstractTable
             new TableColumn(
                 header: ModelService::getTableLabel(Role::TABLE),
                 id: User::COUNT_ROLES,
-                type: DataTypeEnum::INTEGER->value,
+                type: PostgreTypeEnum::INTEGER->value,
                 visibility: true,
             ),
             new TableColumn(
                 header: ModelService::getTableLabel(Permission::TABLE),
                 id: User::COUNT_PERMISSIONS,
-                type: DataTypeEnum::INTEGER->value,
+                type: PostgreTypeEnum::INTEGER->value,
                 visibility: false,
             ),
             new TableColumn(

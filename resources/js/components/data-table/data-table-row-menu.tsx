@@ -36,12 +36,12 @@ function DataTableRowMenu({ id, modal = false, routes, table, ...props }: DataTa
 
   return (
     <DropdownMenuRoot>
-      <Tooltip tooltip={trans("accessibility.toggle_row_menu")}>
+      <Tooltip tooltip={trans("tooltips.menu")}>
         <DropdownMenuTrigger
           {...props}
           render={
             <Button
-              aria-label={trans("accessibility.toggle_row_menu")}
+              aria-label={trans("tooltips.menu")}
               size="icon-sm"
               variant="ghost-secondary"
               onClick={(event) => event.stopPropagation()}
@@ -140,7 +140,7 @@ function DataTableRowMenu({ id, modal = false, routes, table, ...props }: DataTa
                   }}
                 >
                   <Icon name="x" />
-                  {trans("ui.deselect_all")}
+                  {trans("data-table.deselect_all")}
                 </DropdownMenuItem>
                 {routes.replicateMany ? (
                   <DropdownMenuItem
@@ -157,7 +157,7 @@ function DataTableRowMenu({ id, modal = false, routes, table, ...props }: DataTa
                         }}
                       >
                         <Icon name="trash" />
-                        {trans("ui.duplicate_selected")}
+                        {trans("data-table.duplicate_selected")}
                       </Link>
                     }
                   />
@@ -191,7 +191,7 @@ function DataTableRowMenu({ id, modal = false, routes, table, ...props }: DataTa
                       }}
                     >
                       <Icon name="trash" />
-                      {trans("ui.delete_selected")}
+                      {trans("data-table.delete_selected")}
                     </DropdownMenuItem>
                   </>
                 ) : null}
