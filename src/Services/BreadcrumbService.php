@@ -34,7 +34,7 @@ abstract class BreadcrumbService
         {
             $path .= '/' . $segment;
 
-            if ($segment === 'narsil')
+            if ($segment === 'admin')
             {
                 continue;
             }

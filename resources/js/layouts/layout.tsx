@@ -36,7 +36,7 @@ function Layout({ children }: LayoutProps) {
     <ToastPrimitive.Provider>
       <TranslatorProvider locale={session.locale} translations={translations}>
         <Head description={description} follow={false} index={false} title={title} />
-        {window.location.pathname === "/narsil/graphiql" ? (
+        {window.location.pathname === "/admin/graphiql" ? (
           <main className="h-screen w-screen">{children}</main>
         ) : isEmpty(auth) || window.location.pathname.includes("/email/verify") ? (
           <GuestLayout>{children}</GuestLayout>

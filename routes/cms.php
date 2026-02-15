@@ -141,7 +141,7 @@ Route::middleware([
         Route::get('/dashboard', DashboardController::class)
             ->name('dashboard');
 
-        Route::redirect('/', '/narsil/dashboard');
+        Route::redirect('/', '/admin/dashboard');
 
         #region RESOURCES
 

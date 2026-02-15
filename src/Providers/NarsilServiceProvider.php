@@ -51,7 +51,7 @@ abstract class NarsilServiceProvider extends ServiceProvider
             'web',
             'narsil-cms',
         ])
-            ->prefix('narsil')
+            ->prefix('admin')
             ->group($path);
     }
 

@@ -8,7 +8,7 @@ function GraphiQL() {
   const { theme } = useThemeStore();
 
   const fetcher = createGraphiQLFetcher({
-    url: "/narsil/graphql",
+    url: "/admin/graphql",
   });
 
   return (

@@ -83,7 +83,7 @@ class ServiceProvider extends NarsilServiceProvider
             'verified',
             'narsil-cms',
         ])
-            ->prefix('narsil')
+            ->prefix('admin')
             ->group(__DIR__ . '/../routes/graphql.php');
     }
 

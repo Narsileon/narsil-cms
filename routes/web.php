@@ -8,7 +8,5 @@ use Narsil\Cms\Http\Controllers\Sitemaps\SitemapIndexController;
 
 #endregion
 
-Route::redirect('/admin', '/narsil/dashboard');
-
 Route::get('/sitemap_index.xml', SitemapIndexController::class);
 Route::get('/sitemap/{country}.xml', SitemapController::class);

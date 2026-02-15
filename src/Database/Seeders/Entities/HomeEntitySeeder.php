@@ -73,7 +73,7 @@ class HomeEntitySeeder extends EntitySeeder
                                 ButtonBlockSeeder::LABEL => 'Get started',
                                 ButtonBlockSeeder::LINK => [
                                     LinkBlockSeeder::TYPE => 'external',
-                                    LinkBlockSeeder::URL => '/narsil',
+                                    LinkBlockSeeder::URL => '/admin',
                                 ]
                             ],
                         ]],
