@@ -4,6 +4,7 @@ namespace Narsil\Cms\Support;
 
 #region USE
 
+use Illuminate\Support\Fluent;
 use Narsil\Base\Enums\OperatorEnum;
 use Narsil\Base\Enums\PostgreTypeEnum;
 
@@ -12,8 +13,14 @@ use Narsil\Base\Enums\PostgreTypeEnum;
 /**
  * @version 1.0.0
  * @author Jonathan Rigaux
+ *
+ * @property string $accessorKey The accessor key of the column.
+ * @property string $header The header of the column.
+ * @property string $id The id of the column.
+ * @property string $type The type of the column.
+ * @property boolean $visibility The visibility of the column.
  */
-class TableColumn
+class TableColumn extends Fluent
 {
     #region CONSTRUCTOR
 
@@ -21,6 +28,7 @@ class TableColumn
      * @param string $id
      * @param boolean $visibility
      * @param string|null $accessorKey
+     * @param boolean $enableColumnFilter
      * @param string|null $header
      * @param string|null $type
      *
@@ -30,55 +38,18 @@ class TableColumn
         string $id,
         bool $visibility,
         ?string $accessorKey = null,
+        ?bool $enableColumnFilter = true,
         ?string $header = null,
         ?string $type = null,
     )
     {
-        $this->accessorKey = $accessorKey;
-        $this->header = $header;
-        $this->id = $id;
-        $this->type = $type;
-        $this->visibility = $visibility;
+        $this->set('accessorKey', $accessorKey);
+        $this->set('enableColumnFilter', $enableColumnFilter);
+        $this->set('header', $header);
+        $this->set('id', $id);
+        $this->set('type', $type);
+        $this->set('visibility', $visibility);
     }
-
-    #endregion
-
-    #region PROPERTIES
-
-    /**
-     * The accessor key of the column.
-     *
-     * @var string|null
-     */
-    public readonly ?string $accessorKey;
-
-    /**
-     * The header of the column.
-     *
-     * @var string|null
-     */
-    public readonly ?string $header;
-
-    /**
-     * The id of the column.
-     *
-     * @var string
-     */
-    public readonly string $id;
-
-    /**
-     * The type of the column.
-     *
-     * @var string|null
-     */
-    public readonly ?string $type;
-
-    /**
-     * The visibility of the column.
-     *
-     * @var boolean
-     */
-    public readonly bool $visibility;
 
     #endregion
 

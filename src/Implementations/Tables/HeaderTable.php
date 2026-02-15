@@ -49,6 +49,7 @@ class HeaderTable extends AbstractTable
                 visibility: true,
             ),
             new TableColumn(
+                enableColumnFilter: false,
                 header: ModelService::getTableLabel(Site::VIRTUAL_TABLE),
                 id: Footer::COUNT_WEBSITES,
                 type: PostgreTypeEnum::INTEGER->value,

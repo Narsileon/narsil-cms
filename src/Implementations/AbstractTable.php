@@ -64,6 +64,7 @@ abstract class AbstractTable implements Table
 
             $columns[] = [
                 'accessorKey' => $column->accessorKey ?? $column->id,
+                'enableColumnFilter' => $column->enableColumnFilter,
                 'header' => $column->header ?? $this->getHeading($column->id),
                 'id' => $column->id,
                 'meta' => [

@@ -56,6 +56,7 @@ class TemplateTable extends AbstractTable
                 visibility: true,
             ),
             new TableColumn(
+                enableColumnFilter: false,
                 header: ModelService::getTableLabel(TemplateTab::TABLE),
                 id: Template::COUNT_TABS,
                 type: PostgreTypeEnum::INTEGER->value,

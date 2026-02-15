@@ -53,12 +53,14 @@ class PermissionTable extends AbstractTable
                 visibility: true,
             ),
             new TableColumn(
+                enableColumnFilter: false,
                 header: ModelService::getTableLabel(Role::TABLE),
                 id: Permission::COUNT_ROLES,
                 type: PostgreTypeEnum::INTEGER->value,
                 visibility: true,
             ),
             new TableColumn(
+                enableColumnFilter: false,
                 header: ModelService::getTableLabel(User::TABLE),
                 id: Permission::COUNT_USERS,
                 type: PostgreTypeEnum::INTEGER->value,

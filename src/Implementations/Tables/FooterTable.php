@@ -82,18 +82,21 @@ class FooterTable extends AbstractTable
                 visibility: false,
             ),
             new TableColumn(
+                enableColumnFilter: false,
                 header: ModelService::getTableLabel(Site::VIRTUAL_TABLE),
                 id: Footer::COUNT_WEBSITES,
                 type: PostgreTypeEnum::INTEGER->value,
                 visibility: true,
             ),
             new TableColumn(
+                enableColumnFilter: false,
                 header: ModelService::getTableLabel(FooterLink::TABLE),
                 id: Footer::COUNT_LINKS,
                 type: PostgreTypeEnum::INTEGER->value,
                 visibility: true,
             ),
             new TableColumn(
+                enableColumnFilter: false,
                 header: ModelService::getTableLabel(FooterSocialMedium::TABLE),
                 id: Footer::COUNT_SOCIAL_MEDIA,
                 type: PostgreTypeEnum::INTEGER->value,

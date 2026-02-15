@@ -60,6 +60,7 @@ class FieldTable extends AbstractTable
                 visibility: false,
             ),
             new TableColumn(
+                enableColumnFilter: false,
                 header: ModelService::getTableLabel(ValidationRule::TABLE),
                 id: Field::COUNT_VALIDATION_RULES,
                 type: PostgreTypeEnum::INTEGER->value,

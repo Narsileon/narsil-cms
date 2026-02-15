@@ -57,12 +57,14 @@ class UserTable extends AbstractTable
                 visibility: true,
             ),
             new TableColumn(
+                enableColumnFilter: false,
                 header: ModelService::getTableLabel(Role::TABLE),
                 id: User::COUNT_ROLES,
                 type: PostgreTypeEnum::INTEGER->value,
                 visibility: true,
             ),
             new TableColumn(
+                enableColumnFilter: false,
                 header: ModelService::getTableLabel(Permission::TABLE),
                 id: User::COUNT_PERMISSIONS,
                 type: PostgreTypeEnum::INTEGER->value,

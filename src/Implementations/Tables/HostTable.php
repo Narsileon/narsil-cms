@@ -53,12 +53,14 @@ class HostTable extends AbstractTable
                 visibility: true,
             ),
             new TableColumn(
+                enableColumnFilter: false,
                 header: ModelService::getTableLabel(HostLocale::TABLE),
                 id: Host::COUNT_LOCALES,
                 type: PostgreTypeEnum::INTEGER->value,
                 visibility: true,
             ),
             new TableColumn(
+                enableColumnFilter: false,
                 header: ModelService::getTableLabel(HostLocaleLanguage::TABLE),
                 id: Host::COUNT_LANGUAGES,
                 type: PostgreTypeEnum::INTEGER->value,

@@ -52,12 +52,14 @@ class BlockTable extends AbstractTable
                 visibility: true,
             ),
             new TableColumn(
+                enableColumnFilter: false,
                 header: ModelService::getTableLabel(Field::TABLE),
                 id: Block::COUNT_FIELDS,
                 type: PostgreTypeEnum::INTEGER->value,
                 visibility: true,
             ),
             new TableColumn(
+                enableColumnFilter: false,
                 header: ModelService::getTableLabel(Block::TABLE),
                 id: Block::COUNT_BLOCKS,
                 type: PostgreTypeEnum::INTEGER->value,
