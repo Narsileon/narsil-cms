@@ -5,6 +5,7 @@ namespace Narsil\Cms\Implementations\Forms;
 #region USE
 
 use Illuminate\Database\Eloquent\Model;
+use Narsil\Base\Services\RouteService;
 use Narsil\Cms\Contracts\Fields\RelationsField;
 use Narsil\Cms\Contracts\Fields\SwitchField;
 use Narsil\Cms\Contracts\Fields\TextField;
@@ -17,7 +18,6 @@ use Narsil\Cms\Models\Collections\Field;
 use Narsil\Cms\Models\Collections\TemplateTab;
 use Narsil\Cms\Models\Collections\TemplateTabElement;
 use Narsil\Cms\Services\ModelService;
-use Narsil\Cms\Services\RouteService;
 use Narsil\Cms\Support\SelectOption;
 
 #endregion

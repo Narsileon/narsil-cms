@@ -6,8 +6,8 @@ namespace Narsil\Cms\Implementations\Tables;
 
 use Narsil\Base\Enums\InputTypeEnum;
 use Narsil\Base\Http\Data\TanStackTables\ColumnDefData;
+use Narsil\Base\Implementations\Table;
 use Narsil\Base\Services\ModelService;
-use Narsil\Cms\Implementations\AbstractTable;
 use Narsil\Cms\Models\Hosts\Host;
 use Narsil\Cms\Models\Hosts\HostLocale;
 use Narsil\Cms\Models\Hosts\HostLocaleLanguage;
@@ -18,7 +18,7 @@ use Narsil\Cms\Models\Hosts\HostLocaleLanguage;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class HostTable extends AbstractTable
+class HostTable extends Table
 {
     #region CONSTRUCTOR
 
@@ -32,12 +32,12 @@ class HostTable extends AbstractTable
 
     #endregion
 
-    #region PROTECTED METHODS
+    #region PUBLIC METHODS
 
     /**
      * {@inheritDoc}
      */
-    protected function columns(): array
+    public function columns(): array
     {
         return [
             new ColumnDefData(

@@ -5,11 +5,11 @@ namespace Narsil\Cms\Implementations\Forms;
 #region USE
 
 use Illuminate\Database\Eloquent\Model;
+use Narsil\Base\Services\RouteService;
 use Narsil\Cms\Contracts\Forms\AssetForm as Contract;
 use Narsil\Cms\Implementations\AbstractForm;
 use Narsil\Cms\Models\Collections\TemplateTab;
 use Narsil\Cms\Models\Storages\Asset;
-use Narsil\Cms\Services\RouteService;
 
 #endregion
 

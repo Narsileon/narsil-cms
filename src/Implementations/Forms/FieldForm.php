@@ -6,6 +6,7 @@ namespace Narsil\Cms\Implementations\Forms;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Config;
+use Narsil\Base\Services\RouteService;
 use Narsil\Cms\Contracts\Fields\CheckboxField;
 use Narsil\Cms\Contracts\Fields\SelectField;
 use Narsil\Cms\Contracts\Fields\TextField;
@@ -18,7 +19,6 @@ use Narsil\Cms\Models\Collections\TemplateTabElement;
 use Narsil\Cms\Models\ValidationRule;
 use Narsil\Cms\Services\Models\FieldService;
 use Narsil\Cms\Services\ModelService;
-use Narsil\Cms\Services\RouteService;
 use Narsil\Cms\Support\SelectOption;
 
 #endregion

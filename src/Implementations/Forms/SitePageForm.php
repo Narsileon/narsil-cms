@@ -5,6 +5,7 @@ namespace Narsil\Cms\Implementations\Forms;
 #region USE
 
 use Illuminate\Database\Eloquent\Model;
+use Narsil\Base\Services\RouteService;
 use Narsil\Cms\Contracts\Fields\EntityField;
 use Narsil\Cms\Contracts\Fields\FileField;
 use Narsil\Cms\Contracts\Fields\RangeField;
@@ -27,7 +28,6 @@ use Narsil\Cms\Models\Collections\TemplateTabElement;
 use Narsil\Cms\Models\Collections\TemplateTabElementCondition;
 use Narsil\Cms\Models\Hosts\Host;
 use Narsil\Cms\Models\Sites\SitePage;
-use Narsil\Cms\Services\RouteService;
 
 #endregion
 

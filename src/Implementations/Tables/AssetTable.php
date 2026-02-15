@@ -6,9 +6,8 @@ namespace Narsil\Cms\Implementations\Tables;
 
 use Narsil\Base\Enums\InputTypeEnum;
 use Narsil\Base\Http\Data\TanStackTables\ColumnDefData;
-use Narsil\Cms\Implementations\AbstractTable;
+use Narsil\Base\Implementations\Table;
 use Narsil\Cms\Models\Storages\Asset;
-use Narsil\Cms\Services\RouteService;
 
 #endregion
 
@@ -16,7 +15,7 @@ use Narsil\Cms\Services\RouteService;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class AssetTable extends AbstractTable
+class AssetTable extends Table
 {
     #region CONSTRUCTOR
 
@@ -35,21 +34,7 @@ class AssetTable extends AbstractTable
     /**
      * {@inheritDoc}
      */
-    public function getRoutes(): array
-    {
-        return RouteService::getNames($this->name, [
-            'disk' => request('disk'),
-        ]);
-    }
-
-    #endregion
-
-    #region PROTECTED METHODS
-
-    /**
-     * {@inheritDoc}
-     */
-    protected function columns(): array
+    public function columns(): array
     {
         return [
             new ColumnDefData(

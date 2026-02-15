@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Config;
 use Locale;
+use Narsil\Base\Services\RouteService;
 use Narsil\Cms\Contracts\Fields\SelectField;
 use Narsil\Cms\Contracts\Forms\ConfigurationForm as Contract;
 use Narsil\Cms\Implementations\AbstractForm;
@@ -16,7 +17,6 @@ use Narsil\Cms\Models\Collections\TemplateTab;
 use Narsil\Cms\Models\Collections\TemplateTabElement;
 use Narsil\Cms\Models\Configuration;
 use Narsil\Cms\Models\Hosts\HostLocaleLanguage;
-use Narsil\Cms\Services\RouteService;
 use Narsil\Cms\Support\SelectOption;
 
 #endregion

@@ -9,6 +9,7 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use Narsil\Base\Models\Policies\Permission;
 use Narsil\Base\Models\Policies\Role;
+use Narsil\Base\Services\RouteService;
 use Narsil\Cms\Contracts\Fields\CheckboxField;
 use Narsil\Cms\Contracts\Fields\TextField;
 use Narsil\Cms\Contracts\Forms\RoleForm as Contract;
@@ -18,7 +19,6 @@ use Narsil\Cms\Models\Collections\FieldOption;
 use Narsil\Cms\Models\Collections\TemplateTab;
 use Narsil\Cms\Models\Collections\TemplateTabElement;
 use Narsil\Cms\Services\ModelService;
-use Narsil\Cms\Services\RouteService;
 use Narsil\Cms\Support\SelectOption;
 
 #endregion

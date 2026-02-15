@@ -6,9 +6,9 @@ namespace Narsil\Cms\Implementations\Tables;
 
 use Narsil\Base\Enums\InputTypeEnum;
 use Narsil\Base\Http\Data\TanStackTables\ColumnDefData;
-use Narsil\Cms\Implementations\AbstractTable;
+use Narsil\Base\Implementations\Table;
+use Narsil\Base\Services\RouteService;
 use Narsil\Cms\Models\Entities\Entity;
-use Narsil\Cms\Services\RouteService;
 
 #endregion
 
@@ -16,28 +16,14 @@ use Narsil\Cms\Services\RouteService;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class EntityTable extends AbstractTable
+class EntityTable extends Table
 {
     #region PUBLIC METHODS
 
     /**
      * {@inheritDoc}
      */
-    public function getRoutes(): array
-    {
-        return RouteService::getNames('collections', [
-            'collection' => $this->name,
-        ]);
-    }
-
-    #endregion
-
-    #region PROTECTED METHODS
-
-    /**
-     * {@inheritDoc}
-     */
-    protected function columns(): array
+    public function columns(): array
     {
         return [
             new ColumnDefData(
@@ -61,6 +47,16 @@ class EntityTable extends AbstractTable
                 visibility: true,
             ),
         ];
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function routes(): array
+    {
+        return RouteService::getNames('collections', [
+            'collection' => $this->name,
+        ]);
     }
 
     #endregion

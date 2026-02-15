@@ -6,6 +6,7 @@ namespace Narsil\Cms\Implementations\Forms;
 
 use Illuminate\Database\Eloquent\Model;
 use Narsil\Base\Models\Policies\Permission;
+use Narsil\Base\Services\RouteService;
 use Narsil\Cms\Contracts\Fields\TextField;
 use Narsil\Cms\Contracts\Forms\PermissionForm as Contract;
 use Narsil\Cms\Implementations\AbstractForm;
@@ -13,7 +14,6 @@ use Narsil\Cms\Models\Collections\Field;
 use Narsil\Cms\Models\Collections\TemplateTab;
 use Narsil\Cms\Models\Collections\TemplateTabElement;
 use Narsil\Cms\Services\ModelService;
-use Narsil\Cms\Services\RouteService;
 
 #endregion
 

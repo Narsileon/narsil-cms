@@ -6,6 +6,7 @@ namespace Narsil\Cms\Implementations\Forms;
 
 use Illuminate\Database\Eloquent\Model;
 use Narsil\Base\Models\Policies\Role;
+use Narsil\Base\Services\RouteService;
 use Narsil\Cms\Contracts\Fields\CheckboxField;
 use Narsil\Cms\Contracts\Fields\EmailField;
 use Narsil\Cms\Contracts\Fields\FileField;
@@ -19,7 +20,6 @@ use Narsil\Cms\Models\Collections\TemplateTab;
 use Narsil\Cms\Models\Collections\TemplateTabElement;
 use Narsil\Cms\Models\User;
 use Narsil\Cms\Services\ModelService;
-use Narsil\Cms\Services\RouteService;
 
 #endregion
 

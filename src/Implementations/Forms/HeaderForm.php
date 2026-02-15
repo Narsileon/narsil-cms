@@ -5,6 +5,7 @@ namespace Narsil\Cms\Implementations\Forms;
 #region USE
 
 use Illuminate\Database\Eloquent\Model;
+use Narsil\Base\Services\RouteService;
 use Narsil\Cms\Contracts\Fields\FileField;
 use Narsil\Cms\Contracts\Fields\TextField;
 use Narsil\Cms\Contracts\Forms\HeaderForm as Contract;
@@ -13,7 +14,6 @@ use Narsil\Cms\Models\Collections\Field;
 use Narsil\Cms\Models\Collections\TemplateTab;
 use Narsil\Cms\Models\Collections\TemplateTabElement;
 use Narsil\Cms\Models\Globals\Header;
-use Narsil\Cms\Services\RouteService;
 
 #endregion
 

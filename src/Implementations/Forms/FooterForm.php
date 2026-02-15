@@ -5,6 +5,7 @@ namespace Narsil\Cms\Implementations\Forms;
 #region USE
 
 use Illuminate\Database\Eloquent\Model;
+use Narsil\Base\Services\RouteService;
 use Narsil\Cms\Contracts\Fields\ArrayField;
 use Narsil\Cms\Contracts\Fields\FileField;
 use Narsil\Cms\Contracts\Fields\SelectField;
@@ -20,7 +21,6 @@ use Narsil\Cms\Models\Globals\Footer;
 use Narsil\Cms\Models\Globals\FooterLink;
 use Narsil\Cms\Models\Globals\FooterSocialMedium;
 use Narsil\Cms\Services\LocaleService;
-use Narsil\Cms\Services\RouteService;
 
 #endregion
 

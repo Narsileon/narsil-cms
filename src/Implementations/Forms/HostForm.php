@@ -5,6 +5,7 @@ namespace Narsil\Cms\Implementations\Forms;
 #region USE
 
 use Illuminate\Database\Eloquent\Model;
+use Narsil\Base\Services\RouteService;
 use Narsil\Cms\Contracts\Fields\ArrayField;
 use Narsil\Cms\Contracts\Fields\SelectField;
 use Narsil\Cms\Contracts\Fields\TableField;
@@ -20,7 +21,6 @@ use Narsil\Cms\Models\Hosts\HostLocale;
 use Narsil\Cms\Models\Hosts\HostLocaleLanguage;
 use Narsil\Cms\Services\LocaleService;
 use Narsil\Cms\Services\ModelService;
-use Narsil\Cms\Services\RouteService;
 
 #endregion
 

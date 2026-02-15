@@ -6,8 +6,8 @@ namespace Narsil\Cms\Implementations\Tables;
 
 use Narsil\Base\Enums\InputTypeEnum;
 use Narsil\Base\Http\Data\TanStackTables\ColumnDefData;
+use Narsil\Base\Implementations\Table;
 use Narsil\Base\Services\ModelService;
-use Narsil\Cms\Implementations\AbstractTable;
 use Narsil\Cms\Models\Collections\Block;
 use Narsil\Cms\Models\Collections\Field;
 
@@ -17,7 +17,7 @@ use Narsil\Cms\Models\Collections\Field;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class BlockTable extends AbstractTable
+class BlockTable extends Table
 {
     #region CONSTRUCTOR
 
@@ -31,12 +31,12 @@ class BlockTable extends AbstractTable
 
     #endregion
 
-    #region PROTECTED METHODS
+    #region PUBLIC METHODS
 
     /**
      * {@inheritDoc}
      */
-    protected function columns(): array
+    public function columns(): array
     {
         return [
             new ColumnDefData(
