@@ -2,7 +2,6 @@ import { Link, router } from "@inertiajs/react";
 import type { DataTableCollection } from "@narsil-cms/types";
 import { Button } from "@narsil-ui/components/button";
 import {
-  DataTableColumnFilters,
   DataTableFilterList,
   DataTableFooter,
   DataTableHead,
@@ -40,7 +39,6 @@ function DataTable({ collection, title }: DataTableProps) {
   const isDesktop = useMinSm();
 
   const createLabel = trans("ui.create");
-  const filterLabel = trans("data-table.filters");
 
   function handleCreate() {
     if (collection.meta.routes.create) {
@@ -71,20 +69,6 @@ function DataTable({ collection, title }: DataTableProps) {
         </Heading>
         <div className="flex grow items-center justify-end gap-2">
           <DataTableInput />
-          <Tooltip hidden={isDesktop} tooltip={filterLabel}>
-            <DataTableColumnFilters
-              render={
-                <Button
-                  aria-label={filterLabel}
-                  size={isDesktop ? "default" : "icon"}
-                  variant="secondary"
-                >
-                  <Icon name="filter" />
-                  {isDesktop ? filterLabel : undefined}
-                </Button>
-              }
-            />
-          </Tooltip>
           {collection.meta.routes.create ? (
             <Tooltip hidden={isDesktop} tooltip={createLabel}>
               <Button
