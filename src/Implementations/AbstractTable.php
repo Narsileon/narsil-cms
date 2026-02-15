@@ -67,7 +67,7 @@ abstract class AbstractTable implements Table
                 'header' => $column->header ?? $this->getHeading($column->id),
                 'id' => $column->id,
                 'meta' => [
-                    'field' => $column->getField($type),
+                    'input_type' => $column->getInputType($type),
                     'operators' => $column->getOperators($type),
                     'type' => $type,
                 ],

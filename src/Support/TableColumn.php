@@ -6,11 +6,6 @@ namespace Narsil\Cms\Support;
 
 use Narsil\Base\Enums\OperatorEnum;
 use Narsil\Base\Enums\PostgreTypeEnum;
-use Narsil\Cms\Contracts\Fields\DateField;
-use Narsil\Cms\Contracts\Fields\NumberField;
-use Narsil\Cms\Contracts\Fields\TextField;
-use Narsil\Cms\Contracts\Fields\TimeField;
-use Narsil\Cms\Models\Collections\Field;
 
 #endregion
 
@@ -90,13 +85,13 @@ class TableColumn
     #region PUBLIC METHODS
 
     /**
-     * Get the field of the column.
+     * Get the type of the input.
      *
      * @param string $type The type of the column.
      *
-     * @return Field
+     * @return string
      */
-    public static function getField(string $type): Field
+    public static function getInputType(string $type): string
     {
         $field = null;
 
@@ -114,34 +109,24 @@ class TableColumn
             case PostgreTypeEnum::INTEGER->value:
             case PostgreTypeEnum::NUMERIC->value:
             case PostgreTypeEnum::SMALLINT->value:
-                $field = new Field([
-                    Field::TYPE => NumberField::class,
-                    Field::SETTINGS => app(NumberField::class),
-                ]);
+                $field = 'number';
                 break;
             case PostgreTypeEnum::DATE->value:
+                $field = 'date';
+                break;
             case PostgreTypeEnum::DATETIME->value:
             case PostgreTypeEnum::TIMESTAMP->value:
-                $field = new Field([
-                    Field::TYPE => DateField::class,
-                    Field::SETTINGS => app(DateField::class),
-                ]);
+                $field = 'datetime-local';
                 break;
             case PostgreTypeEnum::TIME->value:
-                $field = new Field([
-                    Field::TYPE => TimeField::class,
-                    Field::SETTINGS => app(TimeField::class),
-                ]);
+                $field = 'time';
                 break;
             case PostgreTypeEnum::STRING->value:
             case PostgreTypeEnum::TEXT->value:
             case PostgreTypeEnum::VARCHAR->value:
             case PostgreTypeEnum::UUID->value:
             default:
-                $field = new Field([
-                    Field::TYPE => TextField::class,
-                    Field::SETTINGS => app(TextField::class),
-                ]);
+                $field = 'text';
                 break;
         };
 

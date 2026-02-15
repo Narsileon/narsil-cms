@@ -2,7 +2,7 @@ import { Link, router } from "@inertiajs/react";
 import type { DataTableCollection } from "@narsil-cms/types";
 import { Button } from "@narsil-ui/components/button";
 import {
-  DataTableFilterList,
+  DataTableFilters,
   DataTableFooter,
   DataTableHead,
   DataTableInput,
@@ -88,7 +88,7 @@ function DataTable({ collection, title }: DataTableProps) {
         </div>
       </SectionHeader>
       <SectionContent className="flex grow flex-col gap-4 overflow-y-auto">
-        <DataTableFilterList />
+        <DataTableFilters />
         <TableWrapper>
           <TableRoot className="min-w-max" aria-colcount={table.getAllColumns().length}>
             <TableHeader>
