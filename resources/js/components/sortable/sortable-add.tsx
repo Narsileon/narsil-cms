@@ -110,7 +110,7 @@ function SortableAdd({
           className="justify-self-end"
           render={
             <ModalLink
-              href={route(group.routes.create, group.routes.params)}
+              href={route(group.routes.create, group.routes.parameters)}
               onSuccess={(response) => {
                 const props = response?.props?.redirect as GlobalProps["redirect"];
 

@@ -1,14 +1,8 @@
 import { type InertiaLinkProps } from "@inertiajs/react";
-import type { Model, TemplateTab } from "@narsil-cms/types";
-import { type PaginationLinks, type PaginationMeta } from "@narsil-ui/components/pagination";
+import type { TemplateTab } from "@narsil-cms/types";
 import { type IconName } from "@narsil-ui/registries/icons";
-import { TableData } from "@narsil-ui/types";
-import {
-  type ColumnDef,
-  type ColumnOrderState,
-  type RowData,
-  type VisibilityState,
-} from "@tanstack/react-table";
+import { RoutesData } from "@narsil-ui/types";
+import { type RowData } from "@tanstack/react-table";
 
 declare module "@tanstack/react-table" {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -18,22 +12,6 @@ declare module "@tanstack/react-table" {
   }
 }
 
-export type DataTableCollection<T = Model> = {
-  columns: ColumnDef<T>[];
-  columnOrder: ColumnOrderState;
-  columnVisibility: VisibilityState;
-  data: T[];
-  links: PaginationLinks;
-  meta: PaginationMeta & {
-    id: string;
-    tableData: TableData;
-    revisionable?: boolean;
-    selectable?: boolean;
-    routes: RouteNames;
-    title: string;
-  };
-};
-
 export type FormType = {
   action: string;
   autoSave: boolean;
@@ -42,7 +20,7 @@ export type FormType = {
   id: string;
   languageOptions: SelectOption[];
   method: string;
-  routes: RouteNames;
+  routes: RoutesData;
   submitIcon?: IconName;
   submitLabel: string;
   tabs: TemplateTab[];
@@ -57,7 +35,7 @@ export type GroupedSelectOption = {
   optionLabel: string;
   options: (GroupedSelectOption | SelectOption)[];
   optionValue: string;
-  routes: RouteNames;
+  routes: RoutesData;
   value: unknown;
 };
 
@@ -76,21 +54,6 @@ export type Revision = {
   id: number;
   revision: number;
   uuid: string;
-};
-
-export type RouteNames = {
-  create?: string;
-  destroy?: string;
-  destroyMany?: string;
-  edit?: string;
-  index?: string;
-  params: Record<string, unknown>;
-  replicate?: string;
-  replicateMany?: string;
-  show?: string;
-  store?: string;
-  update?: string;
-  unpublish?: string;
 };
 
 export type SelectOption = {

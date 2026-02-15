@@ -1,8 +1,8 @@
 import { Link, router } from "@inertiajs/react";
 import { ModalLink } from "@narsil-cms/components/modal";
-import type { Model, RouteNames } from "@narsil-cms/types";
 import { useAlertDialog } from "@narsil-ui/components/alert-dialog";
 import { Button } from "@narsil-ui/components/button";
+import { Data } from "@narsil-ui/components/data-table";
 import {
   DropdownMenuItem,
   DropdownMenuPopup,
@@ -15,6 +15,7 @@ import {
 import { Icon } from "@narsil-ui/components/icon";
 import { Tooltip } from "@narsil-ui/components/tooltip";
 import { useTranslator } from "@narsil-ui/components/translator";
+import { RoutesData } from "@narsil-ui/types";
 import { type Table } from "@tanstack/react-table";
 import { type ComponentProps } from "react";
 import { route } from "ziggy-js";
@@ -22,8 +23,8 @@ import { route } from "ziggy-js";
 type DataTableRowMenuProps = Omit<ComponentProps<typeof DropdownMenuTrigger>, "id"> & {
   id?: number | string;
   modal?: boolean;
-  routes: RouteNames;
-  table?: Table<Model>;
+  routes: RoutesData;
+  table?: Table<Data>;
 };
 
 function DataTableRowMenu({ id, modal = false, routes, table, ...props }: DataTableRowMenuProps) {
@@ -62,7 +63,7 @@ function DataTableRowMenu({ id, modal = false, routes, table, ...props }: DataTa
                       modal ? (
                         <ModalLink
                           href={route(routes.edit, {
-                            ...routes.params,
+                            ...routes.parameters,
                             id: id,
                           })}
                         >
@@ -73,7 +74,7 @@ function DataTableRowMenu({ id, modal = false, routes, table, ...props }: DataTa
                         <Link
                           as="button"
                           href={route(routes.edit, {
-                            ...routes.params,
+                            ...routes.parameters,
                             id: id,
                           })}
                         >
@@ -90,7 +91,7 @@ function DataTableRowMenu({ id, modal = false, routes, table, ...props }: DataTa
                       <Link
                         as="button"
                         href={route(routes.replicate, {
-                          ...routes.params,
+                          ...routes.parameters,
                           id: id,
                         })}
                         method="post"
@@ -106,7 +107,7 @@ function DataTableRowMenu({ id, modal = false, routes, table, ...props }: DataTa
                   <DropdownMenuItem
                     onClick={() => {
                       const href = route(routes.destroy as string, {
-                        ...routes.params,
+                        ...routes.parameters,
                         id: id,
                       });
 
@@ -148,7 +149,7 @@ function DataTableRowMenu({ id, modal = false, routes, table, ...props }: DataTa
                       <Link
                         as="button"
                         href={route(routes.replicateMany, {
-                          ...routes.params,
+                          ...routes.parameters,
                           ids: table?.getSelectedRowModel().flatRows.map((row) => row.original.id),
                         })}
                         method="post"
@@ -169,7 +170,7 @@ function DataTableRowMenu({ id, modal = false, routes, table, ...props }: DataTa
                     <DropdownMenuItem
                       onClick={() => {
                         const href = route(routes.destroyMany as string, {
-                          ...routes.params,
+                          ...routes.parameters,
                           ids: table?.getSelectedRowModel().flatRows.map((row) => row.original.id),
                         });
 

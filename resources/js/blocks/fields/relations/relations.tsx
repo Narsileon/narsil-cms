@@ -1,9 +1,15 @@
-import { DataTable } from "@narsil-cms/blocks/data-table";
 import { getSelectColumn } from "@narsil-cms/components/data-table";
-import type { DataTableCollection, Model } from "@narsil-cms/types";
 import { Badge } from "@narsil-ui/components/badge";
 import { Button } from "@narsil-ui/components/button";
-import { DataTableProvider } from "@narsil-ui/components/data-table";
+import {
+  Data,
+  DataTable,
+  DataTableFilters,
+  DataTableFooter,
+  DataTableInput,
+  DataTableProvider,
+  DataTableSettings,
+} from "@narsil-ui/components/data-table";
 import {
   DialogBackdrop,
   DialogClose,
@@ -15,12 +21,15 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@narsil-ui/components/dialog";
+import { Heading } from "@narsil-ui/components/heading";
 import { Icon } from "@narsil-ui/components/icon";
 import { InputRoot } from "@narsil-ui/components/input";
+import { SectionContent, SectionHeader, SectionRoot } from "@narsil-ui/components/section";
 import { Spinner } from "@narsil-ui/components/spinner";
 import { TabsList, TabsPanel, TabsRoot, TabsTab } from "@narsil-ui/components/tabs";
 import { useTranslator } from "@narsil-ui/components/translator";
 import { cn } from "@narsil-ui/lib/utils";
+import { DataTableCollection } from "@narsil-ui/types";
 import { type ColumnDef, type RowSelectionState } from "@tanstack/react-table";
 import { flatMap, isArray, isEmpty } from "lodash-es";
 import { useEffect, useState } from "react";
@@ -182,7 +191,7 @@ function Relations({
                 })}
               </TabsList>
               {Object.entries(dataTables).map(([id, collection]) => {
-                const finalColumns: ColumnDef<Model>[] = [selectColumn, ...collection.columns];
+                const finalColumns: ColumnDef<Data>[] = [selectColumn, ...collection.meta.columns];
 
                 return (
                   <TabsPanel className="p-0" value={id} key={id}>
@@ -192,23 +201,38 @@ function Relations({
                       enableMultiRowSelection={multiple}
                       initialState={collection.meta.tableData}
                       state={{
-                        rowSelection: selectedRows[collection.meta.id] ?? {},
+                        rowSelection: selectedRows[collection.meta.tableData.table_name] ?? {},
                       }}
                       onRowSelectionChange={(updater) => {
                         setSelectedRows((prev) => {
-                          const oldSelection = prev[collection.meta.id] ?? {};
+                          const oldSelection = prev[collection.meta.tableData.table_name] ?? {};
                           const newSelection =
                             typeof updater === "function" ? updater(oldSelection) : updater;
 
                           return {
                             ...prev,
-                            [collection.meta.id]: newSelection,
+                            [collection.meta.tableData.table_name]: newSelection,
                           };
                         });
                       }}
                       key={id}
                     >
-                      <DataTable collection={collection} title={id} />
+                      <SectionRoot className="h-full animate-in gap-4 p-4 fade-in-0">
+                        <SectionHeader className="flex items-center justify-between gap-2">
+                          <Heading level="h2" variant="h4" className="min-w-1/5">
+                            {id}
+                          </Heading>
+                        </SectionHeader>
+                        <SectionContent className="flex grow flex-col gap-4 overflow-y-auto">
+                          <div className="flex items-center justify-end gap-2">
+                            <DataTableInput />
+                            <DataTableSettings />
+                          </div>
+                          <DataTableFilters />
+                          <DataTable collection={collection} />
+                          <DataTableFooter links={collection.links} meta={collection.meta} />
+                        </SectionContent>
+                      </SectionRoot>
                     </DataTableProvider>
                   </TabsPanel>
                 );

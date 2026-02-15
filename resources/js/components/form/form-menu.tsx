@@ -1,6 +1,5 @@
 import { Link, router } from "@inertiajs/react";
 import { useForm } from "@narsil-cms/components/form";
-import type { RouteNames } from "@narsil-cms/types";
 import { useAlertDialog } from "@narsil-ui/components/alert-dialog";
 import { Button } from "@narsil-ui/components/button";
 import {
@@ -14,11 +13,12 @@ import {
 } from "@narsil-ui/components/dropdown-menu";
 import { Icon } from "@narsil-ui/components/icon";
 import { useTranslator } from "@narsil-ui/components/translator";
+import type { RoutesData } from "@narsil-ui/types";
 import { type ComponentProps } from "react";
 import { route } from "ziggy-js";
 
 type FormMenuProps = ComponentProps<typeof Button> & {
-  routes?: RouteNames;
+  routes?: RoutesData;
 };
 
 function FormMenu({ routes, ...props }: FormMenuProps) {
@@ -45,7 +45,7 @@ function FormMenu({ routes, ...props }: FormMenuProps) {
                     <Link
                       as="button"
                       href={route(routes.unpublish, {
-                        ...routes.params,
+                        ...routes.parameters,
                         id: data?.id,
                       })}
                       method="post"
@@ -62,7 +62,7 @@ function FormMenu({ routes, ...props }: FormMenuProps) {
               <DropdownMenuItem
                 onClick={() => {
                   const href = route(routes.destroy as string, {
-                    ...routes.params,
+                    ...routes.parameters,
                     id: data.id,
                   });
 
