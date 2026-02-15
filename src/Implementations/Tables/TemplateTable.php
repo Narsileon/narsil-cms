@@ -4,12 +4,12 @@ namespace Narsil\Cms\Implementations\Tables;
 
 #region USE
 
-use Narsil\Base\Enums\PostgreTypeEnum;
+use Narsil\Base\Enums\InputTypeEnum;
+use Narsil\Base\Http\Data\TanStackTables\ColumnDefData;
+use Narsil\Base\Services\ModelService;
 use Narsil\Cms\Implementations\AbstractTable;
 use Narsil\Cms\Models\Collections\Template;
 use Narsil\Cms\Models\Collections\TemplateTab;
-use Narsil\Cms\Services\ModelService;
-use Narsil\Cms\Support\TableColumn;
 
 #endregion
 
@@ -39,35 +39,41 @@ class TemplateTable extends AbstractTable
     protected function columns(): array
     {
         return [
-            new TableColumn(
+            new ColumnDefData(
                 id: Template::ID,
+                type: InputTypeEnum::NUMBER,
                 visibility: true,
             ),
-            new TableColumn(
+            new ColumnDefData(
                 id: Template::TABLE_NAME,
+                type: InputTypeEnum::TEXT,
                 visibility: true,
             ),
-            new TableColumn(
+            new ColumnDefData(
                 id: Template::SINGULAR,
+                type: InputTypeEnum::TEXT,
                 visibility: true,
             ),
-            new TableColumn(
+            new ColumnDefData(
                 id: Template::PLURAL,
+                type: InputTypeEnum::TEXT,
                 visibility: true,
             ),
-            new TableColumn(
+            new ColumnDefData(
                 enableColumnFilter: false,
                 header: ModelService::getTableLabel(TemplateTab::TABLE),
                 id: Template::COUNT_TABS,
-                type: PostgreTypeEnum::INTEGER->value,
+                type: InputTypeEnum::NUMBER,
                 visibility: true,
             ),
-            new TableColumn(
+            new ColumnDefData(
                 id: Template::CREATED_AT,
+                type: InputTypeEnum::DATETIME,
                 visibility: true,
             ),
-            new TableColumn(
+            new ColumnDefData(
                 id: Template::UPDATED_AT,
+                type: InputTypeEnum::DATETIME,
                 visibility: true,
             ),
         ];

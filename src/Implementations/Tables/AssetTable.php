@@ -4,10 +4,11 @@ namespace Narsil\Cms\Implementations\Tables;
 
 #region USE
 
+use Narsil\Base\Enums\InputTypeEnum;
+use Narsil\Base\Http\Data\TanStackTables\ColumnDefData;
 use Narsil\Cms\Implementations\AbstractTable;
 use Narsil\Cms\Models\Storages\Asset;
 use Narsil\Cms\Services\RouteService;
-use Narsil\Cms\Support\TableColumn;
 
 #endregion
 
@@ -51,20 +52,24 @@ class AssetTable extends AbstractTable
     protected function columns(): array
     {
         return [
-            new TableColumn(
+            new ColumnDefData(
                 id: Asset::UUID,
+                type: InputTypeEnum::TEXT,
                 visibility: true,
             ),
-            new TableColumn(
+            new ColumnDefData(
                 id: Asset::PATH,
+                type: InputTypeEnum::TEXT,
                 visibility: true,
             ),
-            new TableColumn(
+            new ColumnDefData(
                 id: Asset::CREATED_AT,
+                type: InputTypeEnum::DATETIME,
                 visibility: true,
             ),
-            new TableColumn(
+            new ColumnDefData(
                 id: Asset::UPDATED_AT,
+                type: InputTypeEnum::DATETIME,
                 visibility: true,
             ),
         ];

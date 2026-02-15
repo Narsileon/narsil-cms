@@ -190,7 +190,7 @@ function Relations({
                       columns={finalColumns}
                       data={collection.data}
                       enableMultiRowSelection={multiple}
-                      initialState={collection.meta.tanStackTable}
+                      initialState={collection.meta.tableData}
                       state={{
                         rowSelection: selectedRows[collection.meta.id] ?? {},
                       }}

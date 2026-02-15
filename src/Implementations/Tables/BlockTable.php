@@ -4,12 +4,12 @@ namespace Narsil\Cms\Implementations\Tables;
 
 #region USE
 
-use Narsil\Base\Enums\PostgreTypeEnum;
+use Narsil\Base\Enums\InputTypeEnum;
+use Narsil\Base\Http\Data\TanStackTables\ColumnDefData;
+use Narsil\Base\Services\ModelService;
 use Narsil\Cms\Implementations\AbstractTable;
 use Narsil\Cms\Models\Collections\Block;
 use Narsil\Cms\Models\Collections\Field;
-use Narsil\Cms\Services\ModelService;
-use Narsil\Cms\Support\TableColumn;
 
 #endregion
 
@@ -39,38 +39,43 @@ class BlockTable extends AbstractTable
     protected function columns(): array
     {
         return [
-            new TableColumn(
+            new ColumnDefData(
                 id: Block::ID,
+                type: InputTypeEnum::NUMBER,
                 visibility: true,
             ),
-            new TableColumn(
+            new ColumnDefData(
                 id: Block::HANDLE,
+                type: InputTypeEnum::TEXT,
                 visibility: true,
             ),
-            new TableColumn(
+            new ColumnDefData(
                 id: Block::LABEL,
+                type: InputTypeEnum::TEXT,
                 visibility: true,
             ),
-            new TableColumn(
+            new ColumnDefData(
                 enableColumnFilter: false,
                 header: ModelService::getTableLabel(Field::TABLE),
                 id: Block::COUNT_FIELDS,
-                type: PostgreTypeEnum::INTEGER->value,
+                type: InputTypeEnum::NUMBER,
                 visibility: true,
             ),
-            new TableColumn(
+            new ColumnDefData(
                 enableColumnFilter: false,
                 header: ModelService::getTableLabel(Block::TABLE),
                 id: Block::COUNT_BLOCKS,
-                type: PostgreTypeEnum::INTEGER->value,
+                type: InputTypeEnum::NUMBER,
                 visibility: true,
             ),
-            new TableColumn(
+            new ColumnDefData(
                 id: Block::CREATED_AT,
+                type: InputTypeEnum::DATETIME,
                 visibility: true,
             ),
-            new TableColumn(
+            new ColumnDefData(
                 id: Block::UPDATED_AT,
+                type: InputTypeEnum::DATETIME,
                 visibility: true,
             ),
         ];

@@ -4,13 +4,13 @@ namespace Narsil\Cms\Implementations\Tables;
 
 #region USE
 
-use Narsil\Base\Enums\PostgreTypeEnum;
+use Narsil\Base\Enums\InputTypeEnum;
+use Narsil\Base\Http\Data\TanStackTables\ColumnDefData;
+use Narsil\Base\Services\ModelService;
 use Narsil\Cms\Implementations\AbstractTable;
 use Narsil\Cms\Models\Hosts\Host;
 use Narsil\Cms\Models\Hosts\HostLocale;
 use Narsil\Cms\Models\Hosts\HostLocaleLanguage;
-use Narsil\Cms\Services\ModelService;
-use Narsil\Cms\Support\TableColumn;
 
 #endregion
 
@@ -40,38 +40,43 @@ class HostTable extends AbstractTable
     protected function columns(): array
     {
         return [
-            new TableColumn(
+            new ColumnDefData(
                 id: Host::ID,
+                type: InputTypeEnum::NUMBER,
                 visibility: true,
             ),
-            new TableColumn(
+            new ColumnDefData(
                 id: Host::HOSTNAME,
+                type: InputTypeEnum::TEXT,
                 visibility: true,
             ),
-            new TableColumn(
+            new ColumnDefData(
                 id: Host::LABEL,
+                type: InputTypeEnum::TEXT,
                 visibility: true,
             ),
-            new TableColumn(
+            new ColumnDefData(
                 enableColumnFilter: false,
                 header: ModelService::getTableLabel(HostLocale::TABLE),
                 id: Host::COUNT_LOCALES,
-                type: PostgreTypeEnum::INTEGER->value,
+                type: InputTypeEnum::NUMBER,
                 visibility: true,
             ),
-            new TableColumn(
+            new ColumnDefData(
                 enableColumnFilter: false,
                 header: ModelService::getTableLabel(HostLocaleLanguage::TABLE),
                 id: Host::COUNT_LANGUAGES,
-                type: PostgreTypeEnum::INTEGER->value,
+                type: InputTypeEnum::NUMBER,
                 visibility: true,
             ),
-            new TableColumn(
+            new ColumnDefData(
                 id: Host::CREATED_AT,
+                type: InputTypeEnum::DATETIME,
                 visibility: true,
             ),
-            new TableColumn(
+            new ColumnDefData(
                 id: Host::UPDATED_AT,
+                type: InputTypeEnum::DATETIME,
                 visibility: true,
             ),
         ];

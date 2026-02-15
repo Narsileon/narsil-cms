@@ -6,6 +6,7 @@ namespace Narsil\Cms\Implementations;
 
 use Illuminate\Support\Str;
 use Narsil\Base\Contracts\Table;
+use Narsil\Base\Http\Data\TanStackTables\ColumnDefData;
 use Narsil\Base\Services\TableService;
 use Narsil\Cms\Services\RouteService;
 
@@ -36,7 +37,7 @@ abstract class AbstractTable implements Table
     #region PROPERTIES
 
     /**
-     * @var array<TableColumn> The columns of the table.
+     * @var array<ColumnDefData> The columns of the table.
      */
     public readonly array $columns;
     /**
@@ -53,14 +54,14 @@ abstract class AbstractTable implements Table
      */
     public function getColumns(): array
     {
-        $tableColumns = TableService::getColumns($this->name);
+        $ColumnDefDatas = TableService::getColumns($this->name);
 
         $columns = [];
 
         foreach ($this->columns as $column)
         {
-            $tableColumn = $tableColumns->get($column->id);
-            $type = $column->type ?? $tableColumn?->type;
+            $ColumnDefData = $ColumnDefDatas->get($column->id);
+            $type = $column->type ?? $ColumnDefData?->type;
 
             $columns[] = [
                 'accessorKey' => $column->accessorKey ?? $column->id,
@@ -138,7 +139,7 @@ abstract class AbstractTable implements Table
     #region PROTECTED METHODS
 
     /**
-     * @return array<TableColumn>
+     * @return array<ColumnDefData>
      */
     abstract protected function columns(): array;
 

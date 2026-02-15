@@ -4,11 +4,11 @@ namespace Narsil\Cms\Implementations\Tables;
 
 #region USE
 
-use Narsil\Base\Enums\PostgreTypeEnum;
+use Narsil\Base\Enums\InputTypeEnum;
+use Narsil\Base\Http\Data\TanStackTables\ColumnDefData;
 use Narsil\Cms\Implementations\AbstractTable;
 use Narsil\Cms\Models\Entities\Entity;
 use Narsil\Cms\Services\RouteService;
-use Narsil\Cms\Support\TableColumn;
 
 #endregion
 
@@ -40,24 +40,24 @@ class EntityTable extends AbstractTable
     protected function columns(): array
     {
         return [
-            new TableColumn(
+            new ColumnDefData(
                 id: Entity::ID,
-                type: PostgreTypeEnum::INTEGER->value,
+                type: InputTypeEnum::NUMBER,
                 visibility: true,
             ),
-            new TableColumn(
+            new ColumnDefData(
                 id: Entity::SLUG,
-                type: PostgreTypeEnum::STRING->value,
+                type: InputTypeEnum::TEXT,
                 visibility: true,
             ),
-            new TableColumn(
+            new ColumnDefData(
                 id: Entity::CREATED_AT,
-                type: PostgreTypeEnum::STRING->value,
+                type: InputTypeEnum::TEXT,
                 visibility: true,
             ),
-            new TableColumn(
+            new ColumnDefData(
                 id: Entity::UPDATED_AT,
-                type: PostgreTypeEnum::STRING->value,
+                type: InputTypeEnum::TEXT,
                 visibility: true,
             ),
         ];

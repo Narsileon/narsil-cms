@@ -2,7 +2,7 @@ import { type InertiaLinkProps } from "@inertiajs/react";
 import type { Model, TemplateTab } from "@narsil-cms/types";
 import { type PaginationLinks, type PaginationMeta } from "@narsil-ui/components/pagination";
 import { type IconName } from "@narsil-ui/registries/icons";
-import { TanStackTableData } from "@narsil-ui/types";
+import { TableData } from "@narsil-ui/types";
 import {
   type ColumnDef,
   type ColumnOrderState,
@@ -26,7 +26,7 @@ export type DataTableCollection<T = Model> = {
   links: PaginationLinks;
   meta: PaginationMeta & {
     id: string;
-    tanStackTable: TanStackTableData;
+    tableData: TableData;
     revisionable?: boolean;
     selectable?: boolean;
     routes: RouteNames;

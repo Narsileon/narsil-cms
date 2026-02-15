@@ -4,14 +4,14 @@ namespace Narsil\Cms\Implementations\Tables;
 
 #region USE
 
-use Narsil\Base\Enums\PostgreTypeEnum;
+use Narsil\Base\Enums\InputTypeEnum;
+use Narsil\Base\Http\Data\TanStackTables\ColumnDefData;
+use Narsil\Base\Services\ModelService;
 use Narsil\Cms\Implementations\AbstractTable;
 use Narsil\Cms\Models\Globals\Footer;
 use Narsil\Cms\Models\Globals\FooterLink;
 use Narsil\Cms\Models\Globals\FooterSocialMedium;
 use Narsil\Cms\Models\Sites\Site;
-use Narsil\Cms\Services\ModelService;
-use Narsil\Cms\Support\TableColumn;
 
 #endregion
 
@@ -41,73 +41,80 @@ class FooterTable extends AbstractTable
     protected function columns(): array
     {
         return [
-            new TableColumn(
+            new ColumnDefData(
                 id: Footer::ID,
+                type: InputTypeEnum::NUMBER,
                 visibility: true,
             ),
-            new TableColumn(
+            new ColumnDefData(
                 id: Footer::SLUG,
+                type: InputTypeEnum::TEXT,
                 visibility: true,
             ),
-            new TableColumn(
+            new ColumnDefData(
                 id: Footer::ORGANIZATION,
-                visibility: false,
+                type: InputTypeEnum::TEXT,
             ),
-            new TableColumn(
+            new ColumnDefData(
                 id: Footer::EMAIL,
-                visibility: false,
+                type: InputTypeEnum::TEXT,
             ),
-            new TableColumn(
+            new ColumnDefData(
                 id: Footer::PHONE,
-                visibility: false,
+                type: InputTypeEnum::TEXT,
             ),
-            new TableColumn(
+            new ColumnDefData(
                 id: Footer::STREET,
+                type: InputTypeEnum::TEXT,
                 visibility: true,
             ),
-            new TableColumn(
+            new ColumnDefData(
                 id: Footer::POSTAL_CODE,
+                type: InputTypeEnum::TEXT,
                 visibility: true,
             ),
-            new TableColumn(
+            new ColumnDefData(
                 id: Footer::CITY,
+                type: InputTypeEnum::TEXT,
                 visibility: true,
             ),
-            new TableColumn(
+            new ColumnDefData(
                 id: Footer::COUNTRY,
-                visibility: false,
+                type: InputTypeEnum::TEXT,
             ),
-            new TableColumn(
+            new ColumnDefData(
                 id: Footer::ORGANIZATION_SCHEMA,
-                visibility: false,
+                type: InputTypeEnum::TEXT,
             ),
-            new TableColumn(
+            new ColumnDefData(
                 enableColumnFilter: false,
                 header: ModelService::getTableLabel(Site::VIRTUAL_TABLE),
                 id: Footer::COUNT_WEBSITES,
-                type: PostgreTypeEnum::INTEGER->value,
+                type: InputTypeEnum::NUMBER,
                 visibility: true,
             ),
-            new TableColumn(
+            new ColumnDefData(
                 enableColumnFilter: false,
                 header: ModelService::getTableLabel(FooterLink::TABLE),
                 id: Footer::COUNT_LINKS,
-                type: PostgreTypeEnum::INTEGER->value,
+                type: InputTypeEnum::NUMBER,
                 visibility: true,
             ),
-            new TableColumn(
+            new ColumnDefData(
                 enableColumnFilter: false,
                 header: ModelService::getTableLabel(FooterSocialMedium::TABLE),
                 id: Footer::COUNT_SOCIAL_MEDIA,
-                type: PostgreTypeEnum::INTEGER->value,
+                type: InputTypeEnum::NUMBER,
                 visibility: true,
             ),
-            new TableColumn(
+            new ColumnDefData(
                 id: Footer::CREATED_AT,
+                type: InputTypeEnum::DATETIME,
                 visibility: true,
             ),
-            new TableColumn(
+            new ColumnDefData(
                 id: Footer::UPDATED_AT,
+                type: InputTypeEnum::DATETIME,
                 visibility: true,
             ),
         ];

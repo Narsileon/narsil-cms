@@ -26,7 +26,7 @@ function ResourceIndex({ collection, title }: ResourceIndexProps) {
     <DataTableProvider
       data={collection.data}
       columns={finalColumns}
-      initialState={collection.meta.tanStackTable}
+      initialState={collection.meta.tableData}
     >
       <DataTable collection={collection} title={title} />
     </DataTableProvider>
