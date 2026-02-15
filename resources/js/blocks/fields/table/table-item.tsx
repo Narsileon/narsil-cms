@@ -4,7 +4,6 @@ import { SortableItemMenu } from "@narsil-cms/components/sortable";
 import { Icon } from "@narsil-ui/components/icon";
 import { SortableHandle } from "@narsil-ui/components/sortable";
 import { TableCell, TableRow } from "@narsil-ui/components/table";
-import { useTranslator } from "@narsil-ui/components/translator";
 import { cn } from "@narsil-ui/lib/utils";
 import { type ComponentProps } from "react";
 
@@ -30,8 +29,6 @@ function TableItem({
   onRemove,
   ...props
 }: TableItemProps) {
-  const { trans } = useTranslator();
-
   const {
     attributes,
     isDragging,

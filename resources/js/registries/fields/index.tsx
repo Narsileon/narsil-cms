@@ -1,7 +1,6 @@
 import { Array } from "@narsil-cms/blocks/fields/array";
 import { Builder } from "@narsil-cms/blocks/fields/builder";
 import { Checkboxes } from "@narsil-cms/blocks/fields/checkboxes";
-import { Combobox } from "@narsil-cms/blocks/fields/combobox";
 import { Date } from "@narsil-cms/blocks/fields/date";
 import { Datetime } from "@narsil-cms/blocks/fields/datetime";
 import { File } from "@narsil-cms/blocks/fields/file";
@@ -12,6 +11,7 @@ import { Tree } from "@narsil-cms/blocks/fields/tree";
 import { SortableGrid, SortableList } from "@narsil-cms/components/sortable";
 import type { Field } from "@narsil-cms/types";
 import { Checkbox } from "@narsil-ui/components/checkbox";
+import { Combobox } from "@narsil-ui/components/combobox";
 import { Icon } from "@narsil-ui/components/icon";
 import { InputGroup, InputGroupAddon, InputGroupInput } from "@narsil-ui/components/input-group";
 import { Slider } from "@narsil-ui/components/slider";
@@ -239,6 +239,7 @@ const defaultRegistry: Registry = {
         id={props.id}
         options={props.field.options}
         placeholder={props.field.placeholder}
+        required={props.required}
         value={props.value}
         setValue={props.setValue}
       />

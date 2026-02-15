@@ -1,9 +1,9 @@
 import { type UniqueIdentifier } from "@dnd-kit/core";
-import { Combobox } from "@narsil-cms/blocks/fields/combobox";
 import { ModalLink } from "@narsil-cms/components/modal";
 import { type GlobalProps } from "@narsil-cms/hooks/use-props";
 import type { GroupedSelectOption, SelectOption } from "@narsil-cms/types";
 import { Button } from "@narsil-ui/components/button";
+import { Combobox } from "@narsil-ui/components/combobox";
 import { useTranslator } from "@narsil-ui/components/translator";
 import { cn } from "@narsil-ui/lib/utils";
 import { isNumber } from "lodash-es";
