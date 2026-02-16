@@ -59,7 +59,7 @@ class BlockForm extends AbstractForm implements Contract
                 TemplateTab::LABEL => trans('narsil-cms::ui.definition'),
                 TemplateTab::RELATION_ELEMENTS => [
                     [
-                        TemplateTabElement::DESCRIPTION => ModelService::getFieldDescription(Block::TABLE, Block::HANDLE),
+                        TemplateTabElement::DESCRIPTION => ModelService::getAttributeDescription(Block::TABLE, Block::HANDLE),
                         TemplateTabElement::HANDLE => Block::HANDLE,
                         TemplateTabElement::LABEL => trans('narsil-cms::validation.attributes.handle'),
                         TemplateTabElement::REQUIRED => true,
@@ -69,7 +69,7 @@ class BlockForm extends AbstractForm implements Contract
                         ],
                     ],
                     [
-                        TemplateTabElement::DESCRIPTION => ModelService::getFieldDescription(Block::TABLE, Block::LABEL),
+                        TemplateTabElement::DESCRIPTION => ModelService::getAttributeDescription(Block::TABLE, Block::LABEL),
                         TemplateTabElement::HANDLE => Block::LABEL,
                         TemplateTabElement::LABEL => trans('narsil-cms::validation.attributes.label'),
                         TemplateTabElement::REQUIRED => true,

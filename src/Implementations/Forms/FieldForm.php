@@ -69,7 +69,7 @@ class FieldForm extends AbstractForm implements Contract
                 TemplateTab::LABEL => trans('narsil-cms::ui.definition'),
                 TemplateTab::RELATION_ELEMENTS => array_filter([
                     [
-                        TemplateTabElement::DESCRIPTION => ModelService::getFieldDescription(Field::TABLE, Field::HANDLE),
+                        TemplateTabElement::DESCRIPTION => ModelService::getAttributeDescription(Field::TABLE, Field::HANDLE),
                         TemplateTabElement::HANDLE => Field::HANDLE,
                         TemplateTabElement::LABEL => trans('narsil-cms::validation.attributes.handle'),
                         TemplateTabElement::REQUIRED => true,
@@ -79,7 +79,7 @@ class FieldForm extends AbstractForm implements Contract
                         ],
                     ],
                     [
-                        TemplateTabElement::DESCRIPTION => ModelService::getFieldDescription(Field::TABLE, Field::LABEL),
+                        TemplateTabElement::DESCRIPTION => ModelService::getAttributeDescription(Field::TABLE, Field::LABEL),
                         TemplateTabElement::HANDLE => Field::LABEL,
                         TemplateTabElement::LABEL => trans('narsil-cms::validation.attributes.label'),
                         TemplateTabElement::REQUIRED => true,
@@ -90,7 +90,7 @@ class FieldForm extends AbstractForm implements Contract
                         ],
                     ],
                     [
-                        TemplateTabElement::DESCRIPTION => ModelService::getFieldDescription(Field::TABLE, Field::DESCRIPTION),
+                        TemplateTabElement::DESCRIPTION => ModelService::getAttributeDescription(Field::TABLE, Field::DESCRIPTION),
                         TemplateTabElement::HANDLE => Field::DESCRIPTION,
                         TemplateTabElement::LABEL => trans('narsil-cms::validation.attributes.description'),
                         TemplateTabElement::TRANSLATABLE => true,

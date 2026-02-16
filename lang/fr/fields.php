@@ -2,8 +2,6 @@
 
 #region USE
 
-use Narsil\Base\Models\Policies\Permission;
-use Narsil\Base\Models\Policies\Role;
 use Narsil\Cms\Contracts\Fields\ArrayField;
 use Narsil\Cms\Contracts\Fields\BuilderField;
 use Narsil\Cms\Contracts\Fields\CheckboxField;
@@ -26,10 +24,6 @@ use Narsil\Cms\Contracts\Fields\TextareaField;
 use Narsil\Cms\Contracts\Fields\TextField;
 use Narsil\Cms\Contracts\Fields\TimeField;
 use Narsil\Cms\Contracts\Fields\TreeField;
-use Narsil\Cms\Models\Collections\Block;
-use Narsil\Cms\Models\Collections\Field;
-use Narsil\Cms\Models\Hosts\Host;
-use Narsil\Cms\Models\Hosts\HostLocale;
 
 #endregion
 
@@ -56,31 +50,4 @@ return [
     TextareaField::class => 'Zone de texte',
     TimeField::class => 'Heure',
     TreeField::class => 'Arborescence',
-
-    'descriptions' => [
-        Block::TABLE => [
-            Block::HANDLE => 'Le handle par défaut. La valeur peut être remplacée par des templates et des blocs qui implémentent ce bloc.',
-            Block::LABEL => 'Le libellé par défaut. La valeur peut être remplacée par des templates et des blocs qui implémentent ce bloc.',
-        ],
-        Field::TABLE => [
-            Field::DESCRIPTION => 'La description par défaut. La valeur peut être remplacée par des templates et des blocs qui implémentent ce champ.',
-            Field::HANDLE => 'Le handle par défaut. La valeur peut être remplacée par des templates et des blocs qui implémentent ce champ.',
-            Field::LABEL => 'Le libellé par défaut. La valeur peut être remplacée par des templates et des blocs qui implémentent ce champ.',
-        ],
-        Host::TABLE => [
-            Host::HOSTNAME => 'Le nom d\'hôte du site web, par exemple \'domain.com\' ou \'subdomain.domain.com\'.',
-            Host::LABEL => 'Le libellé d\'affichage montré dans la barre latérale.',
-        ],
-        HostLocale::TABLE => [
-            HostLocale::PATTERN => 'Le modèle des URLs, par exemple \':example\'.',
-        ],
-        Permission::TABLE => [
-            Permission::LABEL => 'Le libellé affiché aux utilisateurs.',
-            Permission::NAME => 'Le nom interne de la permission.',
-        ],
-        Role::TABLE => [
-            Role::LABEL => 'Le libellé affiché aux utilisateurs.',
-            Role::NAME => 'Le nom interne du rôle.',
-        ],
-    ]
 ];

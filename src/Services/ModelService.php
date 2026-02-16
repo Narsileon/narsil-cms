@@ -19,18 +19,6 @@ abstract class ModelService extends BaseModelService
     #region PUBLIC METHODS
 
     /**
-     * @param string $table
-     * @param string $attribute
-     * @param array $replace
-     *
-     * @return string
-     */
-    public static function getFieldDescription(string $table, string $attribute, array $replace = []): string
-    {
-        return Translator::trans("fields.descriptions.$table.$attribute", $replace);
-    }
-
-    /**
      * @param string $model
      * @param ModelEventEnum $event
      *

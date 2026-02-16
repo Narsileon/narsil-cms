@@ -78,7 +78,7 @@ class RoleForm extends AbstractForm implements Contract
                 TemplateTab::LABEL => trans('narsil-cms::ui.definition'),
                 TemplateTab::RELATION_ELEMENTS => [
                     [
-                        TemplateTabElement::DESCRIPTION => ModelService::getFieldDescription(Role::TABLE, Role::NAME),
+                        TemplateTabElement::DESCRIPTION => ModelService::getAttributeDescription(Role::TABLE, Role::NAME),
                         TemplateTabElement::HANDLE => Role::NAME,
                         TemplateTabElement::LABEL => trans('narsil-cms::validation.attributes.name'),
                         TemplateTabElement::REQUIRED => true,
@@ -88,7 +88,7 @@ class RoleForm extends AbstractForm implements Contract
                         ],
                     ],
                     [
-                        TemplateTabElement::DESCRIPTION => ModelService::getFieldDescription(Role::TABLE, Role::LABEL),
+                        TemplateTabElement::DESCRIPTION => ModelService::getAttributeDescription(Role::TABLE, Role::LABEL),
                         TemplateTabElement::HANDLE => Role::LABEL,
                         TemplateTabElement::LABEL => trans('narsil-cms::validation.attributes.label'),
                         TemplateTabElement::REQUIRED => true,

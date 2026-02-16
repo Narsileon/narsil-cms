@@ -60,7 +60,7 @@ class HostForm extends AbstractForm implements Contract
                 TemplateTab::LABEL => trans('narsil-cms::ui.definition'),
                 TemplateTab::RELATION_ELEMENTS => [
                     [
-                        TemplateTabElement::DESCRIPTION => ModelService::getFieldDescription(Host::TABLE, Host::HOSTNAME),
+                        TemplateTabElement::DESCRIPTION => ModelService::getAttributeDescription(Host::TABLE, Host::HOSTNAME),
                         TemplateTabElement::HANDLE => Host::HOSTNAME,
                         TemplateTabElement::LABEL => trans('narsil-cms::validation.attributes.host'),
                         TemplateTabElement::REQUIRED => true,
@@ -70,7 +70,7 @@ class HostForm extends AbstractForm implements Contract
                         ],
                     ],
                     [
-                        TemplateTabElement::DESCRIPTION => ModelService::getFieldDescription(Host::TABLE, Host::LABEL),
+                        TemplateTabElement::DESCRIPTION => ModelService::getAttributeDescription(Host::TABLE, Host::LABEL),
                         TemplateTabElement::HANDLE => Host::LABEL,
                         TemplateTabElement::LABEL => trans('narsil-cms::validation.attributes.label'),
                         TemplateTabElement::REQUIRED => true,
@@ -87,7 +87,7 @@ class HostForm extends AbstractForm implements Contract
                 TemplateTab::LABEL => trans('narsil-cms::ui.default_country'),
                 TemplateTab::RELATION_ELEMENTS => [
                     [
-                        TemplateTabElement::DESCRIPTION => ModelService::getFieldDescription(HostLocale::TABLE, HostLocale::PATTERN, [
+                        TemplateTabElement::DESCRIPTION => ModelService::getAttributeDescription(HostLocale::TABLE, HostLocale::PATTERN, [
                             'example' => 'https://{host}/{language}'
                         ]),
                         TemplateTabElement::HANDLE => Host::RELATION_DEFAULT_LOCALE . '.' . HostLocale::PATTERN,
@@ -134,7 +134,7 @@ class HostForm extends AbstractForm implements Contract
                             Field::SETTINGS => app(ArrayField::class)
                                 ->form([
                                     [
-                                        BlockElement::DESCRIPTION => ModelService::getFieldDescription(HostLocale::TABLE, HostLocale::PATTERN, [
+                                        BlockElement::DESCRIPTION => ModelService::getAttributeDescription(HostLocale::TABLE, HostLocale::PATTERN, [
                                             'example' => 'https://{host}/{language}-{country}'
                                         ]),
                                         BlockElement::HANDLE => HostLocale::PATTERN,
