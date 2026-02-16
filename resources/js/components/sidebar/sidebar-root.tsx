@@ -32,7 +32,7 @@ function SidebarRoot({
       <div
         data-slot="sidebar"
         className={cn(
-          "flex h-full w-(--sidebar-width) flex-col bg-sidebar text-sidebar-foreground",
+          "flex h-full w-(--sidebar-width) flex-col bg-sidebar text-foreground",
           className,
         )}
         {...props}
@@ -52,7 +52,7 @@ function SidebarRoot({
             data-mobile="true"
             data-sidebar="sidebar"
             className={cn(
-              "w-(--sidebar-width) bg-sidebar p-0 text-sidebar-foreground",
+              "w-(--sidebar-width) bg-sidebar p-0 text-foreground",
               "[&>button]:hidden",
             )}
             style={
@@ -80,7 +80,7 @@ function SidebarRoot({
       data-side={side}
       data-state={state}
       data-variant={variant}
-      className="group peer hidden text-sidebar-foreground md:block"
+      className="group peer hidden text-foreground md:block"
     >
       <div
         data-slot="sidebar-gap"
@@ -112,7 +112,7 @@ function SidebarRoot({
           data-slot="sidebar-inner"
           className={cn(
             "flex h-full w-full flex-col bg-sidebar",
-            "group-data-[variant=floating]:rounded-md group-data-[variant=floating]:border group-data-[variant=floating]:border-sidebar-border group-data-[variant=floating]:shadow-sm",
+            "group-data-[variant=floating]:rounded-md group-data-[variant=floating]:border group-data-[variant=floating]:shadow-sm",
           )}
         >
           {children}

@@ -20,7 +20,7 @@ function SidebarRail({ className, ...props }: ComponentProps<"button">) {
         "group-data-[collapsible=offcanvas]:translate-x-0",
         "group-data-[side=left]:-right-4",
         "group-data-[side=right]:left-0",
-        "hover:after:bg-sidebar-border",
+        "hover:after:bg-border",
         "hover:group-data-[collapsible=offcanvas]:bg-sidebar",
         "in-data-[side=left]:cursor-w-resize",
         "in-data-[side=right]:cursor-e-resize",
