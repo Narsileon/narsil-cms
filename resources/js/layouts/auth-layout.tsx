@@ -11,8 +11,6 @@ import { useRadiusStore } from "@narsil-cms/stores/radius-store";
 import { useThemeStore } from "@narsil-cms/stores/theme-store";
 import { AlertDialogProvider } from "@narsil-ui/components/alert-dialog";
 import { AvatarFallback, AvatarImage, AvatarRoot } from "@narsil-ui/components/avatar";
-import { BackgroundRoot } from "@narsil-ui/components/background";
-import BackgroundPaper from "@narsil-ui/components/background/background-paper";
 import { Button } from "@narsil-ui/components/button";
 import {
   DropdownMenuItem,
@@ -144,9 +142,6 @@ function AuthLayout({ children }: AuthLayoutProps) {
             </DropdownMenuRoot>
           </header>
           <div ref={mainRef} className="relative h-[calc(100vh-3.25rem)] overflow-y-auto">
-            <BackgroundRoot className="filter-[url(#paper)]">
-              <BackgroundPaper />
-            </BackgroundRoot>
             <ModalRenderer container={mainRef.current} />
             {children}
           </div>

@@ -2,8 +2,6 @@ import { Link } from "@inertiajs/react";
 import { ThemeToggleGroup } from "@narsil-cms/blocks/toggle-group";
 import { ModalLink, ModalRenderer } from "@narsil-cms/components/modal";
 import { type GlobalProps } from "@narsil-cms/hooks/use-props";
-import { BackgroundRoot } from "@narsil-ui/components/background";
-import BackgroundPaper from "@narsil-ui/components/background/background-paper";
 import { Button } from "@narsil-ui/components/button";
 import { Container } from "@narsil-ui/components/container";
 import {
@@ -108,9 +106,6 @@ function GuestLayout({ children }: GuestLayoutProps) {
         </Container>
       </header>
       <main ref={mainRef} className="relative min-h-[calc(100vh-3.25rem)] overflow-hidden">
-        <BackgroundRoot className="filter-[url(#paper)]">
-          <BackgroundPaper />
-        </BackgroundRoot>
         <ModalRenderer container={mainRef.current} />
         {children}
       </main>
