@@ -4,9 +4,9 @@ namespace Narsil\Cms\Implementations\Forms\Fortify;
 
 #region USE
 
+use Narsil\Base\Enums\AutoCompleteEnum;
 use Narsil\Cms\Contracts\Fields\TextField;
 use Narsil\Cms\Contracts\Forms\Fortify\TwoFactorChallengeForm as Contract;
-use Narsil\Cms\Enums\Forms\AutoCompleteEnum;
 use Narsil\Cms\Enums\RequestMethodEnum;
 use Narsil\Cms\Implementations\AbstractForm;
 use Narsil\Cms\Models\Collections\Field;

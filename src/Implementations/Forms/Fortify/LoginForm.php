@@ -4,17 +4,17 @@ namespace Narsil\Cms\Implementations\Forms\Fortify;
 
 #region USE
 
+use Narsil\Base\Enums\AutoCompleteEnum;
+use Narsil\Base\Models\User;
 use Narsil\Cms\Contracts\Fields\CheckboxField;
 use Narsil\Cms\Contracts\Fields\EmailField;
 use Narsil\Cms\Contracts\Fields\PasswordField;
 use Narsil\Cms\Contracts\Forms\Fortify\LoginForm as Contract;
-use Narsil\Cms\Enums\Forms\AutoCompleteEnum;
 use Narsil\Cms\Enums\RequestMethodEnum;
 use Narsil\Cms\Implementations\AbstractForm;
 use Narsil\Cms\Models\Collections\BlockElement;
 use Narsil\Cms\Models\Collections\Field;
 use Narsil\Cms\Models\Collections\TemplateTab;
-use Narsil\Cms\Models\User;
 
 #endregion
 
