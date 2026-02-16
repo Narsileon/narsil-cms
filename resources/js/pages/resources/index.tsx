@@ -1,15 +1,7 @@
 import { Link } from "@inertiajs/react";
 import { getMenuColumn, getSelectColumn, getStatusColumn } from "@narsil-cms/components/data-table";
 import { Button } from "@narsil-ui/components/button";
-import {
-  Data,
-  DataTable,
-  DataTableFilters,
-  DataTableFooter,
-  DataTableInput,
-  DataTableProvider,
-  DataTableSettings,
-} from "@narsil-ui/components/data-table";
+import { Data, DataTable, DataTableProvider } from "@narsil-ui/components/data-table";
 import { Heading } from "@narsil-ui/components/heading";
 import { Icon } from "@narsil-ui/components/icon";
 import { SectionContent, SectionHeader, SectionRoot } from "@narsil-ui/components/section";
@@ -73,15 +65,10 @@ function ResourceIndex({ collection, title }: ResourceIndexProps) {
             </Tooltip>
           ) : null}
         </SectionHeader>
-        <SectionContent className="flex grow flex-col gap-4 overflow-y-auto">
-          <div className="flex items-center justify-end gap-2">
-            <DataTableInput />
-            <DataTableSettings />
-          </div>
-          <DataTableFilters />
-          <DataTable collection={collection} />
-          <DataTableFooter links={collection.links} meta={collection.meta} />
-        </SectionContent>
+        <SectionContent
+          className="grow overflow-y-auto"
+          render={<DataTable collection={collection} />}
+        />
       </SectionRoot>
     </DataTableProvider>
   );

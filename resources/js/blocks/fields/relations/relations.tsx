@@ -1,15 +1,7 @@
 import { getSelectColumn } from "@narsil-cms/components/data-table";
 import { Badge } from "@narsil-ui/components/badge";
 import { Button } from "@narsil-ui/components/button";
-import {
-  Data,
-  DataTable,
-  DataTableFilters,
-  DataTableFooter,
-  DataTableInput,
-  DataTableProvider,
-  DataTableSettings,
-} from "@narsil-ui/components/data-table";
+import { Data, DataTable, DataTableProvider } from "@narsil-ui/components/data-table";
 import {
   DialogBackdrop,
   DialogClose,
@@ -223,15 +215,10 @@ function Relations({
                             {id}
                           </Heading>
                         </SectionHeader>
-                        <SectionContent className="flex grow flex-col gap-4 overflow-y-auto">
-                          <div className="flex items-center justify-end gap-2">
-                            <DataTableInput />
-                            <DataTableSettings />
-                          </div>
-                          <DataTableFilters />
-                          <DataTable collection={collection} />
-                          <DataTableFooter links={collection.links} meta={collection.meta} />
-                        </SectionContent>
+                        <SectionContent
+                          className="grow overflow-y-auto"
+                          render={<DataTable collection={collection} />}
+                        />
                       </SectionRoot>
                     </DataTableProvider>
                   </TabsPanel>
