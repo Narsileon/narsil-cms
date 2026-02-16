@@ -4,11 +4,12 @@
   "type": "library",
   "description": "Headless CMS based on Laravel and React",
   "keywords": [
+    "base-ui",
     "cms",
     "inertia",
     "laravel",
+    "narsil",
     "react",
-    "shadcn",
     "tailwind",
     "vite"
   ],

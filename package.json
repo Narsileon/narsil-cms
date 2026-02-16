@@ -14,7 +14,6 @@
     "@dnd-kit/modifiers": "^9.0.0",
     "@dnd-kit/sortable": "^10.0.0",
     "@dnd-kit/utilities": "^3.2.2",
-    "@floating-ui/dom": "^1.7.5",
     "@fontsource/inter": "latest",
     "@inertiajs/react": "^2.3.15",
     "@tailwindcss/postcss": "^4.1.18",
@@ -33,7 +32,7 @@
     "react-day-picker": "^9.13.2",
     "react-dom": "^19.2.4",
     "react-responsive": "^10.0.1",
-    "tailwind-merge": "^3.4.0",
+    "tailwind-merge": "^3.4.1",
     "tailwindcss-animate": "^1.0.7",
     "ziggy-js": "^2.6.0",
     "zustand": "^5.0.11"
