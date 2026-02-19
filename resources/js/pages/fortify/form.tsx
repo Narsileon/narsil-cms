@@ -1,19 +1,19 @@
 import { Toast } from "@base-ui/react/toast";
 import { Link } from "@inertiajs/react";
-import { FormElement, FormProvider, FormRoot } from "@narsil-cms/components/form";
-import type { FormType } from "@narsil-cms/types";
 import { Button } from "@narsil-ui/components/button";
 import { CardContent, CardFooter, CardRoot } from "@narsil-ui/components/card";
 import { Container } from "@narsil-ui/components/container";
+import { FormElement, FormProvider, FormRoot, registry } from "@narsil-ui/components/form";
 import { Heading } from "@narsil-ui/components/heading";
 import { SectionContent, SectionHeader, SectionRoot } from "@narsil-ui/components/section";
 import { useTranslator } from "@narsil-ui/components/translator";
+import type { FormData } from "@narsil-ui/types";
 import { Fragment, useEffect, useRef } from "react";
 import { route } from "ziggy-js";
 
 type FortifyFormProps = {
   data?: Record<string, unknown>;
-  form: FormType;
+  form: FormData;
   status?: string;
   title: string;
 };
@@ -51,17 +51,17 @@ function FortifyForm({ data, form, status, title }: FortifyFormProps) {
                 <FormProvider
                   id={form.id}
                   action={form.action}
-                  elements={form.tabs}
+                  steps={form.steps}
                   method={form.method}
-                  initialValues={data}
+                  initialData={data}
                   render={() => {
                     return (
                       <FormRoot className="grid-cols-12 gap-6">
-                        {form.tabs.map((tab, index) => {
+                        {form.steps.map((tab, index) => {
                           return (
                             <Fragment key={index}>
                               {tab.elements?.map((element, index) => {
-                                return <FormElement {...element} key={index} />;
+                                return <FormElement {...element} registry={registry} key={index} />;
                               })}
                             </Fragment>
                           );

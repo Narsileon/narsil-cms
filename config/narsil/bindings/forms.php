@@ -31,23 +31,4 @@ return [
     \Narsil\Cms\Contracts\Forms\TemplateTabForm::class => \Narsil\Cms\Implementations\Forms\TemplateTabForm::class,
     \Narsil\Cms\Contracts\Forms\UserConfigurationForm::class => \Narsil\Cms\Implementations\Forms\UserConfigurationForm::class,
     \Narsil\Cms\Contracts\Forms\UserForm::class => \Narsil\Cms\Implementations\Forms\UserForm::class,
-
-    /*
-    |--------------------------------------------------------------------------
-    | Fortify
-    |--------------------------------------------------------------------------
-    |
-    | Mapping between form contracts and their implementations.
-    |
-    */
-
-    \Narsil\Cms\Contracts\Forms\Fortify\ConfirmPasswordForm::class => \Narsil\Cms\Implementations\Forms\Fortify\ConfirmPasswordForm::class,
-    \Narsil\Cms\Contracts\Forms\Fortify\ForgotPasswordForm::class => \Narsil\Cms\Implementations\Forms\Fortify\ForgotPasswordForm::class,
-    \Narsil\Cms\Contracts\Forms\Fortify\LoginForm::class => \Narsil\Cms\Implementations\Forms\Fortify\LoginForm::class,
-    \Narsil\Cms\Contracts\Forms\Fortify\ProfileForm::class => \Narsil\Cms\Implementations\Forms\Fortify\ProfileForm::class,
-    \Narsil\Cms\Contracts\Forms\Fortify\RegisterForm::class => \Narsil\Cms\Implementations\Forms\Fortify\RegisterForm::class,
-    \Narsil\Cms\Contracts\Forms\Fortify\ResetPasswordForm::class => \Narsil\Cms\Implementations\Forms\Fortify\ResetPasswordForm::class,
-    \Narsil\Cms\Contracts\Forms\Fortify\TwoFactorChallengeForm::class => \Narsil\Cms\Implementations\Forms\Fortify\TwoFactorChallengeForm::class,
-    \Narsil\Cms\Contracts\Forms\Fortify\TwoFactorForm::class => \Narsil\Cms\Implementations\Forms\Fortify\TwoFactorForm::class,
-    \Narsil\Cms\Contracts\Forms\Fortify\UpdatePasswordForm::class => \Narsil\Cms\Implementations\Forms\Fortify\UpdatePasswordForm::class,
 ];

@@ -6,7 +6,7 @@ namespace Narsil\Cms\Http\Controllers\Fortify;
 
 use Illuminate\Http\Request;
 use Inertia\Response;
-use Narsil\Cms\Contracts\Forms\Fortify\RegisterForm;
+use Narsil\Base\Contracts\Forms\Fortify\RegisterForm;
 use Narsil\Cms\Http\Controllers\RenderController;
 
 #endregion

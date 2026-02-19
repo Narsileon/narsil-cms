@@ -18,10 +18,10 @@ use Laravel\Fortify\Contracts\ProfileInformationUpdatedResponse;
 use Laravel\Fortify\Contracts\TwoFactorConfirmedResponse;
 use Laravel\Fortify\Contracts\TwoFactorDisabledResponse;
 use Laravel\Fortify\Fortify;
-use Narsil\Base\Actions\CreatesNewUsers;
-use Narsil\Base\Actions\ResetsUserPasswords;
-use Narsil\Base\Actions\UpdatesUserPasswords;
-use Narsil\Base\Actions\UpdatesUserProfileInformation;
+use Narsil\Base\Actions\CreateNewUser;
+use Narsil\Base\Actions\ResetUserPassword;
+use Narsil\Base\Actions\UpdateUserPassword;
+use Narsil\Base\Actions\UpdateUserProfileInformation;
 use Narsil\Cms\Http\Controllers\Fortify\ConfirmPasswordController;
 use Narsil\Cms\Http\Controllers\Fortify\ForgotPasswordController;
 use Narsil\Cms\Http\Controllers\Fortify\LoginController;
@@ -92,11 +92,11 @@ final class FortifyServiceProvider extends ServiceProvider
      */
     protected function bootActions(): void
     {
-        Fortify::createUsersUsing(CreatesNewUsers::class);
+        Fortify::createUsersUsing(CreateNewUser::class);
         Fortify::redirectUserForTwoFactorAuthenticationUsing(RedirectIfTwoFactorAuthenticatable::class);
-        Fortify::resetUserPasswordsUsing(ResetsUserPasswords::class);
-        Fortify::updateUserPasswordsUsing(UpdatesUserPasswords::class);
-        Fortify::updateUserProfileInformationUsing(UpdatesUserProfileInformation::class);
+        Fortify::resetUserPasswordsUsing(ResetUserPassword::class);
+        Fortify::updateUserPasswordsUsing(UpdateUserPassword::class);
+        Fortify::updateUserProfileInformationUsing(UpdateUserProfileInformation::class);
     }
 
     /**
