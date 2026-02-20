@@ -4,7 +4,7 @@ namespace Narsil\Cms\Contracts\Forms;
 
 #region USE
 
-use Narsil\Cms\Contracts\Form;
+use Narsil\Base\Contracts\Form;
 
 #endregion
 

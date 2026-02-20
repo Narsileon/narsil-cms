@@ -4,12 +4,11 @@ namespace Narsil\Cms\Implementations\Forms;
 
 #region USE
 
-use Narsil\Cms\Contracts\Fields\DatetimeField;
-use Narsil\Cms\Contracts\Forms\PermissionForm as Contract;
-use Narsil\Cms\Implementations\AbstractForm;
-use Narsil\Cms\Models\Collections\BlockElement;
-use Narsil\Cms\Models\Collections\Field;
-use Narsil\Cms\Models\Collections\TemplateTab;
+use Narsil\Base\Http\Data\Forms\Inputs\DatetimeInputData;
+use Narsil\Base\Implementations\Form;
+use Narsil\Cms\Contracts\Forms\PublishForm as Contract;
+use Narsil\Cms\Http\Data\Forms\FieldData;
+use Narsil\Cms\Http\Data\Forms\FormStepData;
 use Narsil\Cms\Models\Entities\Entity;
 
 #endregion
@@ -18,38 +17,30 @@ use Narsil\Cms\Models\Entities\Entity;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class PublishForm extends AbstractForm implements Contract
+class PublishForm extends Form implements Contract
 {
     #region PROTECTED METHODS
 
     /**
      * {@inheritDoc}
      */
-    protected function getTabs(): array
+    protected function getSteps(): array
     {
         return [
-            [
-                TemplateTab::RELATION_ELEMENTS => [
-                    [
-                        BlockElement::CLASS_NAME => 'flex-row justify-between',
-                        BlockElement::HANDLE => Entity::PUBLISHED_FROM,
-                        BlockElement::LABEL => trans('narsil-cms::validation.attributes.published_from'),
-                        BlockElement::RELATION_BASE => [
-                            Field::TYPE => DatetimeField::class,
-                            Field::SETTINGS => app(DatetimeField::class),
-                        ],
-                    ],
-                    [
-                        BlockElement::CLASS_NAME => 'flex-row justify-between',
-                        BlockElement::HANDLE => Entity::PUBLISHED_TO,
-                        BlockElement::LABEL => trans('narsil-cms::validation.attributes.published_to'),
-                        BlockElement::RELATION_BASE => [
-                            Field::TYPE => DatetimeField::class,
-                            Field::SETTINGS => app(DatetimeField::class),
-                        ],
-                    ],
+            new FormStepData(
+                elements: [
+                    new FieldData(
+                        className: 'flex-row justify-between',
+                        id: Entity::PUBLISHED_FROM,
+                        input: new DatetimeInputData(),
+                    ),
+                    new FieldData(
+                        className: 'flex-row justify-between',
+                        id: Entity::PUBLISHED_TO,
+                        input: new DatetimeInputData(),
+                    ),
                 ],
-            ],
+            ),
         ];
     }
 

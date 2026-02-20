@@ -4,11 +4,10 @@ namespace Narsil\Cms\Implementations\Forms;
 
 #region USE
 
-use Narsil\Cms\Contracts\Fields\TextField;
-use Narsil\Cms\Implementations\AbstractForm;
-use Narsil\Cms\Models\Collections\Field;
-use Narsil\Cms\Models\Collections\TemplateTab;
-use Narsil\Cms\Models\Collections\TemplateTabElement;
+use Narsil\Base\Http\Data\Forms\Inputs\TextInputData;
+use Narsil\Base\Implementations\Form;
+use Narsil\Cms\Http\Data\Forms\FieldData;
+use Narsil\Cms\Http\Data\Forms\FormStepData;
 use Narsil\Cms\Models\Users\UserBookmark;
 
 #endregion
@@ -17,29 +16,25 @@ use Narsil\Cms\Models\Users\UserBookmark;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class UserBookmarkForm extends AbstractForm
+class UserBookmarkForm extends Form
 {
     #region PROTECTED METHODS
 
     /**
      * {@inheritDoc}
      */
-    protected function getTabs(): array
+    protected function getSteps(): array
     {
         return [
-            [
-                TemplateTab::RELATION_ELEMENTS => [
-                    [
-                        TemplateTabElement::HANDLE => UserBookmark::NAME,
-                        TemplateTabElement::LABEL => trans('narsil-cms::validation.attributes.name'),
-                        TemplateTabElement::REQUIRED => true,
-                        TemplateTabElement::RELATION_BASE => [
-                            Field::TYPE => TextField::class,
-                            Field::SETTINGS => app(TextField::class),
-                        ],
-                    ],
+            new FormStepData(
+                elements: [
+                    new FieldData(
+                        id: UserBookmark::NAME,
+                        required: true,
+                        input: new TextInputData(),
+                    ),
                 ],
-            ],
+            ),
         ];
     }
 

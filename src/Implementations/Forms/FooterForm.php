@@ -5,18 +5,16 @@ namespace Narsil\Cms\Implementations\Forms;
 #region USE
 
 use Illuminate\Database\Eloquent\Model;
+use Narsil\Base\Http\Data\Forms\Inputs\ArrayInputData;
+use Narsil\Base\Http\Data\Forms\Inputs\FileInputData;
+use Narsil\Base\Http\Data\Forms\Inputs\SelectInputData;
+use Narsil\Base\Http\Data\Forms\Inputs\SwitchInputData;
+use Narsil\Base\Http\Data\Forms\Inputs\TextInputData;
+use Narsil\Base\Implementations\Form;
 use Narsil\Base\Services\RouteService;
-use Narsil\Cms\Contracts\Fields\ArrayField;
-use Narsil\Cms\Contracts\Fields\FileField;
-use Narsil\Cms\Contracts\Fields\SelectField;
-use Narsil\Cms\Contracts\Fields\SwitchField;
-use Narsil\Cms\Contracts\Fields\TextField;
 use Narsil\Cms\Contracts\Forms\FooterForm as Contract;
-use Narsil\Cms\Implementations\AbstractForm;
-use Narsil\Cms\Models\Collections\BlockElement;
-use Narsil\Cms\Models\Collections\Field;
-use Narsil\Cms\Models\Collections\TemplateTab;
-use Narsil\Cms\Models\Collections\TemplateTabElement;
+use Narsil\Cms\Http\Data\Forms\FieldData;
+use Narsil\Cms\Http\Data\Forms\FormStepData;
 use Narsil\Cms\Models\Globals\Footer;
 use Narsil\Cms\Models\Globals\FooterLink;
 use Narsil\Cms\Models\Globals\FooterSocialMedium;
@@ -28,7 +26,7 @@ use Narsil\Cms\Services\LocaleService;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class FooterForm extends AbstractForm implements Contract
+class FooterForm extends Form implements Contract
 {
     #region CONSTRUCTOR
 
@@ -49,195 +47,133 @@ class FooterForm extends AbstractForm implements Contract
     /**
      * {@inheritDoc}
      */
-    protected function getTabs(): array
+    protected function getSteps(): array
     {
         return [
-            [
-                TemplateTab::HANDLE => 'definition',
-                TemplateTab::LABEL => trans('narsil-cms::ui.definition'),
-                TemplateTab::RELATION_ELEMENTS => [
-                    [
-                        TemplateTabElement::HANDLE => Footer::SLUG,
-                        TemplateTabElement::LABEL => trans('narsil-cms::validation.attributes.slug'),
-                        TemplateTabElement::REQUIRED => true,
-                        TemplateTabElement::RELATION_BASE => [
-                            Field::TYPE => TextField::class,
-                            Field::SETTINGS => app(TextField::class),
-                        ],
-                    ],
-                    [
-                        TemplateTabElement::HANDLE => Footer::LOGO,
-                        TemplateTabElement::LABEL => trans('narsil-cms::validation.attributes.logo'),
-                        TemplateTabElement::RELATION_BASE => [
-                            Field::TYPE => FileField::class,
-                            Field::SETTINGS => app(FileField::class)
-                                ->accept('image/*')
-                                ->icon('image'),
-                        ],
-                    ],
-                    [
-                        TemplateTabElement::HANDLE => Footer::COPYRIGHT,
-                        TemplateTabElement::LABEL => trans('narsil-cms::validation.attributes.copyright'),
-                        TemplateTabElement::REQUIRED => true,
-                        TemplateTabElement::TRANSLATABLE => true,
-                        TemplateTabElement::RELATION_BASE => [
-                            Field::TYPE => TextField::class,
-                            Field::SETTINGS => app(TextField::class),
-                        ],
-                    ],
+            new FormStepData(
+                id: 'definition',
+                label: trans('narsil-ui::ui.definition'),
+                elements: [
+                    new FieldData(
+                        id: Footer::SLUG,
+                        required: true,
+                        input: new TextInputData(),
+                    ),
+                    new FieldData(
+                        icon: 'image',
+                        id: Footer::LOGO,
+                        input: new FileInputData(
+                            accept: 'image/*',
+                        ),
+                    ),
+                    new FieldData(
+                        id: Footer::COPYRIGHT,
+                        required: true,
+                        translatable: true,
+                        input: new TextInputData(),
+                    ),
                 ],
-            ],
-            [
-                TemplateTab::HANDLE => 'organization',
-                TemplateTab::LABEL => trans('narsil-cms::ui.organization'),
-                TemplateTab::RELATION_ELEMENTS => [
-                    [
-                        TemplateTabElement::HANDLE => Footer::ORGANIZATION,
-                        TemplateTabElement::LABEL => trans('narsil-cms::validation.attributes.organization'),
-                        TemplateTabElement::RELATION_BASE => [
-                            Field::TYPE => TextField::class,
-                            Field::SETTINGS => app(TextField::class),
-                        ],
-                    ],
-                    [
-                        TemplateTabElement::HANDLE => Footer::EMAIL,
-                        TemplateTabElement::LABEL => trans('narsil-cms::validation.attributes.email'),
-                        TemplateTabElement::TRANSLATABLE => true,
-                        TemplateTabElement::WIDTH => 50,
-                        TemplateTabElement::RELATION_BASE => [
-                            Field::TYPE => TextField::class,
-                            Field::SETTINGS => app(TextField::class),
-                        ],
-                    ],
-                    [
-                        TemplateTabElement::HANDLE => Footer::PHONE,
-                        TemplateTabElement::LABEL => trans('narsil-cms::validation.attributes.phone'),
-                        TemplateTabElement::WIDTH => 50,
-                        TemplateTabElement::RELATION_BASE => [
-                            Field::TYPE => TextField::class,
-                            Field::SETTINGS => app(TextField::class),
-                        ],
-                    ],
-                    [
-                        TemplateTabElement::HANDLE => Footer::STREET,
-                        TemplateTabElement::LABEL => trans('narsil-cms::validation.attributes.street'),
-                        TemplateTabElement::RELATION_BASE => [
-                            Field::TYPE => TextField::class,
-                            Field::SETTINGS => app(TextField::class),
-                        ],
-                    ],
-                    [
-                        TemplateTabElement::HANDLE => Footer::POSTAL_CODE,
-                        TemplateTabElement::LABEL => trans('narsil-cms::validation.attributes.postal_code'),
-                        TemplateTabElement::WIDTH => 50,
-                        TemplateTabElement::RELATION_BASE => [
-                            Field::TYPE => TextField::class,
-                            Field::SETTINGS => app(TextField::class),
-                        ],
-                    ],
-                    [
-                        TemplateTabElement::HANDLE => Footer::CITY,
-                        TemplateTabElement::LABEL => trans('narsil-cms::validation.attributes.city'),
-                        TemplateTabElement::TRANSLATABLE => true,
-                        TemplateTabElement::WIDTH => 50,
-                        TemplateTabElement::RELATION_BASE => [
-                            Field::TYPE => TextField::class,
-                            Field::SETTINGS => app(TextField::class),
-                        ],
-                    ],
-                    [
-                        TemplateTabElement::HANDLE => Footer::COUNTRY,
-                        TemplateTabElement::LABEL => trans('narsil-cms::validation.attributes.country'),
-                        TemplateTabElement::RELATION_BASE => [
-                            Field::TYPE => SelectField::class,
-                            Field::SETTINGS => app(SelectField::class),
-                            Field::RELATION_OPTIONS => LocaleService::countrySelectOptions(),
-                        ],
-                    ],
-                    [
-                        TemplateTabElement::HANDLE => Footer::ORGANIZATION_SCHEMA,
-                        TemplateTabElement::LABEL => trans('narsil-cms::validation.attributes.organization_schema'),
-                        TemplateTabElement::RELATION_BASE => [
-                            Field::TYPE => SwitchField::class,
-                            Field::SETTINGS => app(SwitchField::class)
-                                ->defaultValue(true),
-
-                        ],
-                    ],
+            ),
+            new FormStepData(
+                id: 'organization',
+                label: trans('narsil-cms::validation.attributes.organization'),
+                elements: [
+                    new FieldData(
+                        id: Footer::ORGANIZATION,
+                        input: new TextInputData(),
+                    ),
+                    new FieldData(
+                        id: Footer::EMAIL,
+                        translatable: true,
+                        width: 50,
+                        input: new TextInputData(),
+                    ),
+                    new FieldData(
+                        id: Footer::PHONE,
+                        width: 50,
+                        input: new TextInputData(),
+                    ),
+                    new FieldData(
+                        id: Footer::STREET,
+                        input: new TextInputData(),
+                    ),
+                    new FieldData(
+                        id: Footer::POSTAL_CODE,
+                        width: 50,
+                        input: new TextInputData(),
+                    ),
+                    new FieldData(
+                        id: Footer::CITY,
+                        width: 50,
+                        translatable: true,
+                        input: new TextInputData(),
+                    ),
+                    new FieldData(
+                        id: Footer::COUNTRY,
+                        input: new SelectInputData(
+                            options: LocaleService::countrySelectOptions(),
+                        ),
+                    ),
+                    new FieldData(
+                        id: Footer::ORGANIZATION_SCHEMA,
+                        input: new SwitchInputData(
+                            defaultValue: true,
+                        ),
+                    ),
                 ],
-            ],
-            [
-                TemplateTab::HANDLE => 'meta_navigation',
-                TemplateTab::LABEL => trans('narsil-cms::ui.meta_navigation'),
-                TemplateTab::RELATION_ELEMENTS => [
-                    [
-                        TemplateTabElement::HANDLE => Footer::RELATION_LINKS,
-                        TemplateTabElement::LABEL => trans('narsil-cms::ui.links'),
-                        TemplateTabElement::RELATION_BASE => [
-                            Field::TYPE => ArrayField::class,
-                            Field::SETTINGS => app(ArrayField::class)
-                                ->form([
-                                    [
-                                        BlockElement::HANDLE => FooterLink::LABEL,
-                                        BlockElement::LABEL => trans('narsil-cms::validation.attributes.url'),
-                                        BlockElement::TRANSLATABLE => true,
-                                        BlockElement::RELATION_BASE => [
-                                            Field::TYPE => TextField::class,
-                                            Field::SETTINGS => app(TextField::class),
-                                        ],
-                                    ],
-                                    [
-                                        BlockElement::HANDLE => FooterLink::SITE_PAGE_ID,
-                                        BlockElement::LABEL => trans('narsil-cms::validation.attributes.site_page_id'),
-                                        BlockElement::REQUIRED => true,
-                                        BlockElement::RELATION_BASE => [
-                                            Field::TYPE => SelectField::class,
-                                            Field::SETTINGS => app(SelectField::class)
-                                                ->href(route('site-pages.search')),
-                                        ],
-                                    ],
-                                ])
-                                ->labelKey(FooterLink::LABEL),
-                        ],
-                    ],
+            ),
+            new FormStepData(
+                id: 'meta_navigation',
+                label: trans('narsil-cms::ui.meta_navigation'),
+                elements: [
+                    new FieldData(
+                        id: Footer::RELATION_LINKS,
+                        label: trans('narsil-cms::ui.links'),
+                        input: new ArrayInputData(
+                            labelKey: FooterLink::LABEL,
+                            form: [
+                                new FieldData(
+                                    id: FooterLink::LABEL,
+                                    label: trans('narsil-cms::validation.attributes.url'),
+                                    translatable: true,
+                                    input: new TextInputData(),
+                                ),
+                                new FieldData(
+                                    id: FooterLink::SITE_PAGE_ID,
+                                    required: true,
+                                    input: new SelectInputData(),
+                                ),
+                            ],
+                        ),
+                    ),
                 ],
-            ],
-            [
-                TemplateTab::HANDLE => 'social_media',
-                TemplateTab::LABEL => trans('narsil-cms::ui.social_media'),
-                TemplateTab::RELATION_ELEMENTS => [
-                    [
-                        TemplateTabElement::HANDLE => Footer::RELATION_SOCIAL_MEDIA,
-                        TemplateTabElement::LABEL => trans('narsil-cms::ui.links'),
-                        TemplateTabElement::RELATION_BASE => [
-                            Field::TYPE => ArrayField::class,
-                            Field::SETTINGS => app(ArrayField::class)
-                                ->form([
-                                    [
-                                        BlockElement::HANDLE => FooterSocialMedium::LABEL,
-                                        BlockElement::LABEL => trans('narsil-cms::validation.attributes.label'),
-                                        BlockElement::REQUIRED => true,
-                                        BlockElement::TRANSLATABLE => true,
-                                        BlockElement::RELATION_BASE => [
-                                            Field::TYPE => TextField::class,
-                                            Field::SETTINGS => app(TextField::class),
-                                        ],
-                                    ],
-                                    [
-                                        BlockElement::HANDLE => FooterSocialMedium::URL,
-                                        BlockElement::LABEL => trans('narsil-cms::validation.attributes.url'),
-                                        BlockElement::REQUIRED => true,
-                                        BlockElement::RELATION_BASE => [
-                                            Field::TYPE => TextField::class,
-                                            Field::SETTINGS => app(TextField::class),
-                                        ],
-                                    ],
-                                ])
-                                ->labelKey(FooterSocialMedium::LABEL),
-                        ],
-                    ],
+            ),
+            new FormStepData(
+                id: 'social_media',
+                label: trans('narsil-cms::ui.social_media'),
+                elements: [
+                    new FieldData(
+                        id: Footer::RELATION_SOCIAL_MEDIA,
+                        label: trans('narsil-cms::ui.links'),
+                        input: new ArrayInputData(
+                            labelKey: FooterSocialMedium::LABEL,
+                            form: [
+                                new FieldData(
+                                    id: FooterSocialMedium::LABEL,
+                                    required: true,
+                                    translatable: true,
+                                    input: new TextInputData(),
+                                ),
+                                new FieldData(
+                                    id: FooterSocialMedium::URL,
+                                    required: true,
+                                    input: new TextInputData(),
+                                ),
+                            ],
+                        ),
+                    ),
                 ],
-            ],
+            ),
         ];
     }
 

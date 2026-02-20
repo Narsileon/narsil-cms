@@ -5,10 +5,10 @@ namespace Narsil\Cms\Implementations\Forms;
 #region USE
 
 use Illuminate\Database\Eloquent\Model;
+use Narsil\Base\Implementations\Form;
 use Narsil\Base\Services\RouteService;
 use Narsil\Cms\Contracts\Forms\AssetForm as Contract;
-use Narsil\Cms\Implementations\AbstractForm;
-use Narsil\Cms\Models\Collections\TemplateTab;
+use Narsil\Cms\Http\Data\Forms\FormStepData;
 use Narsil\Cms\Models\Storages\Asset;
 
 #endregion
@@ -17,7 +17,7 @@ use Narsil\Cms\Models\Storages\Asset;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class AssetForm extends AbstractForm implements Contract
+class AssetForm extends Form implements Contract
 {
     #region CONSTRUCTOR
 
@@ -40,14 +40,10 @@ class AssetForm extends AbstractForm implements Contract
     /**
      * {@inheritDoc}
      */
-    protected function getTabs(): array
+    protected function getSteps(): array
     {
         return [
-            [
-                TemplateTab::HANDLE => 'definition',
-                TemplateTab::LABEL => trans('narsil-cms::ui.definition'),
-                TemplateTab::RELATION_ELEMENTS => [],
-            ],
+            new FormStepData(),
         ];
     }
 
