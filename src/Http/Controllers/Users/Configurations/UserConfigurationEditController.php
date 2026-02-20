@@ -10,9 +10,9 @@ use Inertia\Response;
 use Narsil\Base\Contracts\Forms\Fortify\ProfileForm;
 use Narsil\Base\Contracts\Forms\Fortify\TwoFactorForm;
 use Narsil\Base\Contracts\Forms\Fortify\UpdatePasswordForm;
+use Narsil\Base\Contracts\Forms\UserConfigurationForm;
 use Narsil\Base\Models\Users\UserConfiguration;
 use Narsil\Base\Support\TranslationsBag;
-use Narsil\Cms\Contracts\Forms\UserConfigurationForm;
 use Narsil\Cms\Http\Controllers\RenderController;
 use Narsil\Cms\Services\ModelService;
 

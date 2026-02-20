@@ -1,17 +1,17 @@
 import { router } from "@inertiajs/react";
-import { FormElement, FormProvider, FormRoot } from "@narsil-cms/components/form";
 import { useColorStore } from "@narsil-cms/stores/color-store";
 import { useModalStore } from "@narsil-cms/stores/modal-store";
 import { useRadiusStore } from "@narsil-cms/stores/radius-store";
-import type { FormType } from "@narsil-cms/types";
+import { FormElement, FormProvider, FormRoot, registry } from "@narsil-ui/components/form";
 import { Heading } from "@narsil-ui/components/heading";
 import { SectionContent, SectionHeader, SectionRoot } from "@narsil-ui/components/section";
 import { useTranslator } from "@narsil-ui/components/translator";
+import type { FormData } from "@narsil-ui/types";
 import { Fragment } from "react";
 import { route } from "ziggy-js";
 
 type ConfigurationFormProps = {
-  form: FormType;
+  form: FormData;
 };
 
 function ConfigurationForm({ form }: ConfigurationFormProps) {
@@ -54,9 +54,9 @@ function ConfigurationForm({ form }: ConfigurationFormProps) {
         <FormProvider
           id="user-personalization-form"
           action={form.action}
-          elements={form.tabs}
+          steps={form.steps}
           method={form.method}
-          initialValues={{
+          initialData={{
             color: color,
             language: locale,
             radius: radius,
@@ -64,13 +64,14 @@ function ConfigurationForm({ form }: ConfigurationFormProps) {
           render={() => {
             return (
               <FormRoot className="gap-4">
-                {form.tabs.map((tab, index) => {
+                {form.steps.map((step, index) => {
                   return (
                     <Fragment key={index}>
-                      {tab.elements?.map((element, index) => {
+                      {step.elements?.map((element, index) => {
                         return (
                           <FormElement
                             {...element}
+                            registry={registry}
                             onChange={(value) =>
                               handleChange(element.handle, value as number | string)
                             }
