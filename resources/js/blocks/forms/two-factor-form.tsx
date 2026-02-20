@@ -90,7 +90,7 @@ function TwoFactorForm({ form }: TwoFactorFormProps) {
     <>
       <div className="grid gap-4">
         <div className="flex items-center justify-between">
-          <Label>{trans("two-factor.two_factor_authentication")}</Label>
+          <Label>{trans("ui.two_factor")}</Label>
           <Switch checked={enabled} onCheckedChange={toggleEnabled} />
         </div>
         {!active && enabled && qrCode ? (
@@ -143,7 +143,7 @@ function TwoFactorForm({ form }: TwoFactorFormProps) {
         {!active && enabled && recoveryCodes ? (
           <CardRoot>
             <CardHeader className="grid-cols-2 items-center border-b">
-              <CardTitle>{trans("two-factor.recovery_codes_title")}</CardTitle>
+              <CardTitle>{trans("ui.recovery_codes")}</CardTitle>
               <Tooltip tooltip={trans("ui.copy_clipboard")}>
                 <Button
                   aria-label={trans("ui.copy_clipboard")}
@@ -163,7 +163,7 @@ function TwoFactorForm({ form }: TwoFactorFormProps) {
               </Tooltip>
             </CardHeader>
             <CardContent className="gap-4">
-              <p>{trans("two-factor.recovery_codes_description")}</p>
+              <p>{trans("descriptions.users.recovery_codes")}</p>
               <ul className="ml-6 list-disc">
                 {recoveryCodes?.map((recoveryCode, index) => {
                   return <li key={index}>{recoveryCode}</li>;
