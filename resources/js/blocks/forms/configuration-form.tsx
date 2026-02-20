@@ -21,6 +21,7 @@ function ConfigurationForm({ form }: ConfigurationFormProps) {
   const { locale, trans } = useTranslator();
 
   function handleChange(id: string, value: number | string) {
+    console.log(id);
     switch (id) {
       case "color":
         setColor(value as string);
@@ -73,7 +74,7 @@ function ConfigurationForm({ form }: ConfigurationFormProps) {
                             {...element}
                             registry={registry}
                             onChange={(value) =>
-                              handleChange(element.handle, value as number | string)
+                              handleChange(element.id as string, value as number | string)
                             }
                             key={index}
                           />
