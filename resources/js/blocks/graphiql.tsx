@@ -1,5 +1,5 @@
 import { createGraphiQLFetcher } from "@graphiql/toolkit";
-import { useThemeStore } from "@narsil-cms/stores/theme-store";
+import { useThemeStore } from "@narsil-ui/stores/theme-store";
 import { GraphiQL as GraphiQLPrimitive } from "graphiql";
 
 import "graphiql/style.css";

@@ -1,11 +1,11 @@
 import { Toast as ToastPrimitive } from "@base-ui/react/toast";
 import { Head } from "@narsil-cms/blocks/head";
 import { type GlobalProps } from "@narsil-cms/hooks/use-props";
-import { useColorStore } from "@narsil-cms/stores/color-store";
-import { useRadiusStore } from "@narsil-cms/stores/radius-store";
-import { useThemeStore } from "@narsil-cms/stores/theme-store";
 import { Toast } from "@narsil-ui/components/toast";
 import { TranslatorProvider } from "@narsil-ui/components/translator";
+import { useColorStore } from "@narsil-ui/stores/color-store";
+import { useRadiusStore } from "@narsil-ui/stores/radius-store";
+import { useThemeStore } from "@narsil-ui/stores/theme-store";
 import { isEmpty } from "lodash-es";
 import { type ReactNode, useEffect } from "react";
 import AuthLayout from "./auth-layout";

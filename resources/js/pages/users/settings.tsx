@@ -1,6 +1,10 @@
-import { ConfigurationForm, ProfileForm, SecurityForm } from "@narsil-cms/blocks/forms";
+import { ProfileForm, SecurityForm } from "@narsil-cms/blocks/forms";
 import { Tabs } from "@narsil-cms/blocks/tabs";
 import { useAuth } from "@narsil-cms/hooks/use-props";
+import { useModalStore } from "@narsil-cms/stores/modal-store";
+import UserConfigurationForm from "@narsil-ui/blocks/form";
+import { Heading } from "@narsil-ui/components/heading";
+import { SectionContent, SectionHeader, SectionRoot } from "@narsil-ui/components/section";
 import { useTranslator } from "@narsil-ui/components/translator";
 import { FormData } from "@narsil-ui/types";
 import { type ComponentProps } from "react";
@@ -18,6 +22,7 @@ function UserSettings({
   updatePasswordForm,
   userConfigurationForm,
 }: UserSettingsProps) {
+  const { reloadTopModal } = useModalStore();
   const { trans } = useTranslator();
 
   const auth = useAuth();
@@ -43,7 +48,16 @@ function UserSettings({
             id: "configuration",
             title: trans("ui.personalization"),
             icon: "settings",
-            content: <ConfigurationForm form={userConfigurationForm} />,
+            content: (
+              <SectionRoot>
+                <SectionHeader className="border-b">
+                  <Heading level="h2">{trans("ui.personalization")}</Heading>
+                </SectionHeader>
+                <SectionContent>
+                  <UserConfigurationForm form={userConfigurationForm} onSuccess={reloadTopModal} />
+                </SectionContent>
+              </SectionRoot>
+            ),
           },
           auth && {
             id: "security",

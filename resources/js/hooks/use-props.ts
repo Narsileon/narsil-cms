@@ -1,6 +1,6 @@
 import { usePage } from "@inertiajs/react";
-import { type Theme } from "@narsil-cms/stores/theme-store";
 import type { MenuItem } from "@narsil-cms/types";
+import { type Theme } from "@narsil-ui/stores/theme-store";
 import { isEmpty } from "lodash-es";
 
 export type GlobalProps = {

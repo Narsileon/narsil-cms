@@ -6,9 +6,6 @@ import { ThemeToggleGroup } from "@narsil-cms/blocks/toggle-group";
 import { ModalLink, ModalRenderer } from "@narsil-cms/components/modal";
 import { SidebarInset, SidebarProvider, SidebarTrigger } from "@narsil-cms/components/sidebar";
 import { GlobalProps } from "@narsil-cms/hooks/use-props";
-import { useColorStore } from "@narsil-cms/stores/color-store";
-import { useRadiusStore } from "@narsil-cms/stores/radius-store";
-import { useThemeStore } from "@narsil-cms/stores/theme-store";
 import { AlertDialogProvider } from "@narsil-ui/components/alert-dialog";
 import { AvatarFallback, AvatarImage, AvatarRoot } from "@narsil-ui/components/avatar";
 import { Button } from "@narsil-ui/components/button";
@@ -27,7 +24,7 @@ import { Tooltip } from "@narsil-ui/components/tooltip";
 import { useTranslator } from "@narsil-ui/components/translator";
 import { useMaxLg } from "@narsil-ui/hooks/use-breakpoints";
 import { groupBy } from "lodash-es";
-import { Fragment, type ReactNode, useEffect, useRef } from "react";
+import { Fragment, type ReactNode, useRef } from "react";
 import { route } from "ziggy-js";
 
 type AuthLayoutProps = {
@@ -42,28 +39,9 @@ function AuthLayout({ children }: AuthLayoutProps) {
   const isMobile = useMaxLg();
   const mainRef = useRef<HTMLDivElement>(null);
 
-  const { setColor } = useColorStore();
-  const { setRadius } = useRadiusStore();
-  const { setTheme } = useThemeStore();
-
-  const { auth, navigation, session } = children?.props;
-  const { color, radius, theme } = session;
+  const { auth, navigation } = children?.props;
 
   const groupedMenu = groupBy(navigation?.userMenu, (item) => item.group ?? "default");
-
-  useEffect(() => {
-    requestAnimationFrame(() => {
-      if (color) {
-        setColor(color);
-      }
-      if (radius) {
-        setRadius(radius);
-      }
-      if (theme) {
-        setTheme(theme);
-      }
-    });
-  }, []);
 
   return (
     <AlertDialogProvider>
