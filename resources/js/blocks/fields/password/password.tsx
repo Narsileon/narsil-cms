@@ -1,6 +1,10 @@
 import { Icon } from "@narsil-ui/components/icon";
 import { InputContent } from "@narsil-ui/components/input";
-import { InputGroup, InputGroupAddon, InputGroupInput } from "@narsil-ui/components/input-group";
+import {
+  InputGroupAddon,
+  InputGroupInput,
+  InputGroupRoot,
+} from "@narsil-ui/components/input-group";
 import { Tooltip } from "@narsil-ui/components/tooltip";
 import { useTranslator } from "@narsil-ui/components/translator";
 import { useState, type ComponentProps } from "react";
@@ -17,7 +21,7 @@ function Password({ type, ...props }: PasswordProps) {
     : trans("accessibility.show_password");
 
   return (
-    <InputGroup>
+    <InputGroupRoot>
       <InputGroupInput {...props} type={show ? "text" : type} />
       <InputGroupAddon align="inline-end">
         <Tooltip tooltip={tooltip}>
@@ -29,7 +33,7 @@ function Password({ type, ...props }: PasswordProps) {
           />
         </Tooltip>
       </InputGroupAddon>
-    </InputGroup>
+    </InputGroupRoot>
   );
 }
 

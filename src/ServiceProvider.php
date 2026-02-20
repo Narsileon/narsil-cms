@@ -24,7 +24,6 @@ use Narsil\Cms\Providers\NarsilServiceProvider;
 use Narsil\Cms\Providers\PluginServiceProvider;
 use Narsil\Cms\Providers\ResourceServiceProvider;
 use Narsil\Cms\Providers\TranslationServiceProvider;
-use Narsil\Cms\Providers\ViewServiceProvider;
 use Nuwave\Lighthouse\LighthouseServiceProvider;
 
 #endregion
@@ -122,7 +121,6 @@ class ServiceProvider extends NarsilServiceProvider
         $this->app->register(MorphServiceProvider::class);
         $this->app->register(TableServiceProvider::class);
         $this->app->register(TranslationServiceProvider::class);
-        $this->app->register(ViewServiceProvider::class);
     }
 
     #endregion

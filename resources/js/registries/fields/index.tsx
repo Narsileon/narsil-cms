@@ -13,7 +13,11 @@ import type { Field } from "@narsil-cms/types";
 import { Checkbox } from "@narsil-ui/components/checkbox";
 import { Combobox } from "@narsil-ui/components/combobox";
 import { Icon } from "@narsil-ui/components/icon";
-import { InputGroup, InputGroupAddon, InputGroupInput } from "@narsil-ui/components/input-group";
+import {
+  InputGroupAddon,
+  InputGroupInput,
+  InputGroupRoot,
+} from "@narsil-ui/components/input-group";
 import { Slider } from "@narsil-ui/components/slider";
 import { Switch } from "@narsil-ui/components/switch";
 import { Textarea } from "@narsil-ui/components/textarea";
@@ -273,7 +277,7 @@ const defaultRegistry: Registry = {
   },
   ["Narsil\\Cms\\Contracts\\Fields\\TimeField"]: (props) => {
     return (
-      <InputGroup>
+      <InputGroupRoot>
         <InputGroupInput
           {...props.field.settings}
           id={props.id}
@@ -290,7 +294,7 @@ const defaultRegistry: Registry = {
         <InputGroupAddon align="inline-end">
           <Icon className="opacity-50" name="clock" />
         </InputGroupAddon>
-      </InputGroup>
+      </InputGroupRoot>
     );
   },
   ["Narsil\\Cms\\Contracts\\Fields\\TreeField"]: (props) => {
@@ -298,7 +302,7 @@ const defaultRegistry: Registry = {
   },
   ["default"]: (props) => {
     return (
-      <InputGroup>
+      <InputGroupRoot>
         <InputGroupInput
           {...props.field.settings}
           id={props.id}
@@ -313,7 +317,7 @@ const defaultRegistry: Registry = {
             <Icon className="opacity-50" name={props.field.settings.icon} />
           </InputGroupAddon>
         ) : null}
-      </InputGroup>
+      </InputGroupRoot>
     );
   },
 };
