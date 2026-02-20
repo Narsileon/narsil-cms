@@ -1,8 +1,6 @@
 import { Toast } from "@base-ui/react/toast";
 import { router } from "@inertiajs/react";
-import { FormElement, FormProvider, FormRoot } from "@narsil-cms/components/form";
 import { useAuth } from "@narsil-cms/hooks/use-props";
-import type { FormType } from "@narsil-cms/types";
 import { Button } from "@narsil-ui/components/button";
 import {
   CardContent,
@@ -11,16 +9,18 @@ import {
   CardRoot,
   CardTitle,
 } from "@narsil-ui/components/card";
+import { FormElement, FormProvider, FormRoot, registry } from "@narsil-ui/components/form";
 import { Icon } from "@narsil-ui/components/icon";
 import { Label } from "@narsil-ui/components/label";
 import { Switch } from "@narsil-ui/components/switch";
 import { Tooltip } from "@narsil-ui/components/tooltip";
 import { useTranslator } from "@narsil-ui/components/translator";
+import type { FormData } from "@narsil-ui/types";
 import { Fragment, useState } from "react";
 import { route } from "ziggy-js";
 
 type TwoFactorFormProps = {
-  form: FormType;
+  form: FormData;
 };
 
 function TwoFactorForm({ form }: TwoFactorFormProps) {
@@ -97,7 +97,7 @@ function TwoFactorForm({ form }: TwoFactorFormProps) {
           <FormProvider
             action={form.action}
             id={form.id}
-            elements={form.tabs}
+            steps={form.steps}
             method={form.method}
             render={({ setError }) => {
               return (
@@ -113,11 +113,11 @@ function TwoFactorForm({ form }: TwoFactorFormProps) {
                 >
                   <CardRoot>
                     <CardContent className="grid-cols-12">
-                      {form.tabs.map((tab, index) => {
+                      {form.steps.map((step, index) => {
                         return (
                           <Fragment key={index}>
-                            {tab.elements?.map((element, index) => {
-                              return <FormElement {...element} key={index} />;
+                            {step.elements?.map((element, index) => {
+                              return <FormElement {...element} registry={registry} key={index} />;
                             })}
                           </Fragment>
                         );

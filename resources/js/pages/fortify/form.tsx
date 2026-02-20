@@ -3,8 +3,7 @@ import { Link } from "@inertiajs/react";
 import { Button } from "@narsil-ui/components/button";
 import { CardContent, CardFooter, CardRoot } from "@narsil-ui/components/card";
 import { Container } from "@narsil-ui/components/container";
-import { FormElement, FormProvider, FormRoot } from "@narsil-ui/components/form";
-import Registry from "@narsil-ui/components/form/registry";
+import { FormElement, FormProvider, FormRoot, registry } from "@narsil-ui/components/form";
 import { Heading } from "@narsil-ui/components/heading";
 import { SectionContent, SectionHeader, SectionRoot } from "@narsil-ui/components/section";
 import { useTranslator } from "@narsil-ui/components/translator";
@@ -62,7 +61,7 @@ function FortifyForm({ data, form, status, title }: FortifyFormProps) {
                           return (
                             <Fragment key={index}>
                               {tab.elements?.map((element, index) => {
-                                return <FormElement {...element} registry={Registry} key={index} />;
+                                return <FormElement {...element} registry={registry} key={index} />;
                               })}
                             </Fragment>
                           );

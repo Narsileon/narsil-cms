@@ -33,14 +33,13 @@ function ThemeToggleGroup({ ...props }: ThemeToggleGroupProps) {
         };
 
         return (
-          <Tooltip tooltip={trans(`themes.${theme}`)}>
+          <Tooltip tooltip={trans(`themes.${theme}`)} key={theme}>
             <ToggleGroupItem
               ref={ref}
               size="icon"
               variant="outline"
               value={theme}
               onClick={handleClick}
-              key={theme}
             >
               <Icon name={theme === "light" ? "sun" : theme === "dark" ? "moon" : "sun-moon"} />
             </ToggleGroupItem>

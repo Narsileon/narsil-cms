@@ -1,17 +1,17 @@
-import { FormElement, FormProvider, FormRoot } from "@narsil-cms/components/form";
 import { useAuth } from "@narsil-cms/hooks/use-props";
-import type { FormType } from "@narsil-cms/types";
 import { Button } from "@narsil-ui/components/button";
+import { FormElement, FormProvider, FormRoot, registry } from "@narsil-ui/components/form";
 import { Heading } from "@narsil-ui/components/heading";
 import { Icon } from "@narsil-ui/components/icon";
 import { SectionContent, SectionHeader, SectionRoot } from "@narsil-ui/components/section";
 import { Separator } from "@narsil-ui/components/separator";
 import { useTranslator } from "@narsil-ui/components/translator";
+import type { FormData } from "@narsil-ui/types";
 import { Fragment } from "react";
 
 type ProfileFormProps = {
-  profileForm: FormType;
-  updatePasswordForm: FormType;
+  profileForm: FormData;
+  updatePasswordForm: FormData;
 };
 
 function ProfileForm({ profileForm, updatePasswordForm }: ProfileFormProps) {
@@ -24,9 +24,9 @@ function ProfileForm({ profileForm, updatePasswordForm }: ProfileFormProps) {
       <FormProvider
         id={profileForm.id}
         action={profileForm.action}
-        elements={profileForm.tabs}
+        steps={profileForm.steps}
         method={profileForm.method}
-        initialValues={{
+        initialData={{
           avatar: auth?.avatar,
           first_name: auth?.first_name,
           last_name: auth?.last_name,
@@ -43,11 +43,11 @@ function ProfileForm({ profileForm, updatePasswordForm }: ProfileFormProps) {
               </SectionHeader>
               <SectionContent>
                 <FormRoot className="grid-cols-12 gap-4">
-                  {profileForm.tabs.map((tab, index) => {
+                  {profileForm.steps.map((step, index) => {
                     return (
                       <Fragment key={index}>
-                        {tab.elements?.map((element, index) => {
-                          return <FormElement {...element} key={index} />;
+                        {step.elements?.map((element, index) => {
+                          return <FormElement {...element} registry={registry} key={index} />;
                         })}
                       </Fragment>
                     );
@@ -62,7 +62,7 @@ function ProfileForm({ profileForm, updatePasswordForm }: ProfileFormProps) {
       <FormProvider
         id={updatePasswordForm.id}
         action={updatePasswordForm.action}
-        elements={updatePasswordForm.tabs}
+        steps={updatePasswordForm.steps}
         method={updatePasswordForm.method}
         render={({ reset, setDefaults }) => {
           return (
@@ -84,11 +84,11 @@ function ProfileForm({ profileForm, updatePasswordForm }: ProfileFormProps) {
                     },
                   }}
                 >
-                  {updatePasswordForm.tabs.map((tab, index) => {
+                  {updatePasswordForm.steps.map((step, index) => {
                     return (
                       <Fragment key={index}>
-                        {tab.elements?.map((element, index) => {
-                          return <FormElement {...element} key={index} />;
+                        {step.elements?.map((element, index) => {
+                          return <FormElement {...element} registry={registry} key={index} />;
                         })}
                       </Fragment>
                     );

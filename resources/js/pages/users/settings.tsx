@@ -1,15 +1,15 @@
 import { ConfigurationForm, ProfileForm, SecurityForm } from "@narsil-cms/blocks/forms";
 import { Tabs } from "@narsil-cms/blocks/tabs";
 import { useAuth } from "@narsil-cms/hooks/use-props";
-import type { FormType } from "@narsil-cms/types";
 import { useTranslator } from "@narsil-ui/components/translator";
+import { FormData } from "@narsil-ui/types";
 import { type ComponentProps } from "react";
 
 type UserSettingsProps = {
-  profileForm: FormType;
-  twoFactorForm: FormType;
-  updatePasswordForm: FormType;
-  userConfigurationForm: FormType;
+  profileForm: FormData;
+  twoFactorForm: FormData;
+  updatePasswordForm: FormData;
+  userConfigurationForm: FormData;
 };
 
 function UserSettings({
