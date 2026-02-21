@@ -6,10 +6,10 @@ namespace Narsil\Cms\Http\Controllers\Storages\Assets;
 
 use Illuminate\Http\RedirectResponse;
 use Narsil\Base\Enums\ModelEventEnum;
+use Narsil\Base\Services\ModelService;
 use Narsil\Cms\Contracts\Requests\AssetFormRequest;
 use Narsil\Cms\Http\Controllers\RedirectController;
 use Narsil\Cms\Models\Storages\Asset;
-use Narsil\Cms\Services\ModelService;
 
 #endregion
 

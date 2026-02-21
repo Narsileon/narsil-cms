@@ -152,7 +152,7 @@ final class FortifyServiceProvider extends ServiceProvider
             {
                 return redirect()
                     ->intended(route('dashboard'))
-                    ->with('success', trans('narsil-cms::toasts.success.logged_in'));
+                    ->with('success', trans('narsil::toasts.success.logged_in'));
             }
         });
     }
@@ -167,7 +167,7 @@ final class FortifyServiceProvider extends ServiceProvider
             public function toResponse($request)
             {
                 return redirect(route('login'))
-                    ->with('success', trans('narsil-cms::toasts.success.logged_out'));
+                    ->with('success', trans('narsil::toasts.success.logged_out'));
             }
         });
     }
@@ -183,7 +183,7 @@ final class FortifyServiceProvider extends ServiceProvider
             {
                 return redirect()
                     ->intended(route('dashboard'))
-                    ->with('success', trans('narsil-cms::toasts.success.password.confirmed'));
+                    ->with('success', trans('narsil::toasts.success_password.confirmed'));
             }
         });
     }
@@ -198,7 +198,7 @@ final class FortifyServiceProvider extends ServiceProvider
             public function toResponse($request)
             {
                 return back()
-                    ->with('success', trans('narsil-cms::toasts.success.password.updated'));
+                    ->with('success', trans('narsil::toasts.success.password_updated'));
             }
         });
     }
@@ -213,7 +213,7 @@ final class FortifyServiceProvider extends ServiceProvider
             public function toResponse($request)
             {
                 return back()
-                    ->with('success', trans('narsil-cms::toasts.success.profile.updated'));
+                    ->with('success', trans('narsil::toasts.success.profile.updated'));
             }
         });
     }
@@ -228,7 +228,7 @@ final class FortifyServiceProvider extends ServiceProvider
             public function toResponse($request)
             {
                 return back()
-                    ->with('success', trans('narsil-cms::toasts.success.two_factor.confirmed'));
+                    ->with('success', trans('narsil::toasts.success.two_factor_confirmed'));
             }
         });
     }
@@ -243,7 +243,7 @@ final class FortifyServiceProvider extends ServiceProvider
             public function toResponse($request)
             {
                 return back()
-                    ->with('success', trans('narsil-cms::toasts.success.two_factor.disabled'));
+                    ->with('success', trans('narsil::toasts.success.two_factor_disabled'));
             }
         });
     }

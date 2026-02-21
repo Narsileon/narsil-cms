@@ -8,11 +8,11 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Inertia\Response;
 use Narsil\Base\Enums\AbilityEnum;
+use Narsil\Base\Enums\RequestMethodEnum;
+use Narsil\Base\Services\ModelService;
 use Narsil\Cms\Contracts\Forms\TemplateForm;
-use Narsil\Cms\Enums\RequestMethodEnum;
 use Narsil\Cms\Http\Controllers\RenderController;
 use Narsil\Cms\Models\Collections\Template;
-use Narsil\Cms\Services\ModelService;
 
 #endregion
 
@@ -62,7 +62,7 @@ class TemplateCreateController extends RenderController
         $form = app(TemplateForm::class)
             ->action(route('templates.store'))
             ->method(RequestMethodEnum::POST->value)
-            ->submitLabel(trans('narsil-cms::ui.save'));
+            ->submitLabel(trans('narsil::ui.save'));
 
         return $form;
     }

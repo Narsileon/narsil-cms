@@ -8,11 +8,11 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Inertia\Response;
 use Narsil\Base\Enums\AbilityEnum;
+use Narsil\Base\Enums\RequestMethodEnum;
+use Narsil\Base\Services\ModelService;
 use Narsil\Cms\Contracts\Forms\FooterForm;
-use Narsil\Cms\Enums\RequestMethodEnum;
 use Narsil\Cms\Http\Controllers\RenderController;
 use Narsil\Cms\Models\Globals\Footer;
-use Narsil\Cms\Services\ModelService;
 
 #endregion
 
@@ -62,7 +62,7 @@ class FooterCreateController extends RenderController
         $form = app(FooterForm::class)
             ->action(route('footers.store'))
             ->method(RequestMethodEnum::POST->value)
-            ->submitLabel(trans('narsil-cms::ui.save'));
+            ->submitLabel(trans('narsil::ui.save'));
 
         return $form;
     }

@@ -8,11 +8,11 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Narsil\Base\Enums\AbilityEnum;
 use Narsil\Base\Enums\ModelEventEnum;
+use Narsil\Base\Services\ModelService;
 use Narsil\Cms\Http\Controllers\RedirectController;
 use Narsil\Cms\Http\Requests\ReplicateManyRequest;
 use Narsil\Cms\Models\Collections\Template;
 use Narsil\Cms\Services\Models\TemplateService;
-use Narsil\Cms\Services\ModelService;
 
 #endregion
 

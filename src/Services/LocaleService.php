@@ -6,7 +6,7 @@ namespace Narsil\Cms\Services;
 
 use Illuminate\Support\Facades\App;
 use Locale;
-use Narsil\Cms\Support\SelectOption;
+use Narsil\Base\Http\Data\OptionData;
 use ResourceBundle;
 
 #endregion
@@ -20,11 +20,11 @@ abstract class LocaleService
     #region PUBLIC METHODS
 
     /**
-     * Get the country select options.
+     * Get the country options.
      *
-     * @return array<SelectOption>
+     * @return array<OptionData>
      */
-    public static function countrySelectOptions(): array
+    public static function countryOptions(): array
     {
         return collect(ResourceBundle::getLocales(''))
             ->map(function ($locale)
@@ -45,12 +45,13 @@ abstract class LocaleService
                     return null;
                 }
 
-                return new SelectOption()
-                    ->optionLabel(ucfirst($label))
-                    ->optionValue($code);
+                return new OptionData(
+                    label: ucfirst($label),
+                    value: $code
+                );
             })
             ->filter()
-            ->sortBy(function (SelectOption $option)
+            ->sortBy(function (OptionData $option)
             {
                 return $option->label;
             }, SORT_NATURAL | SORT_FLAG_CASE)
@@ -59,11 +60,11 @@ abstract class LocaleService
     }
 
     /**
-     * Get the language select options.
+     * Get the language options.
      *
      * @return array<SelectOption>
      */
-    public static function languageSelectOptions(): array
+    public static function languageOptions(): array
     {
         return collect(ResourceBundle::getLocales(''))
             ->map(function ($locale)
@@ -84,12 +85,13 @@ abstract class LocaleService
                     return null;
                 }
 
-                return new SelectOption()
-                    ->optionLabel(ucfirst($label))
-                    ->optionValue($code);
+                return new OptionData(
+                    label: ucfirst($label),
+                    value: $code
+                );
             })
             ->filter()
-            ->sortBy(function (SelectOption $option)
+            ->sortBy(function (OptionData $option)
             {
                 return $option->label;
             }, SORT_NATURAL | SORT_FLAG_CASE)

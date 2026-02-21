@@ -1,4 +1,3 @@
-import type { FieldType } from "@narsil-cms/types";
 import { type IconName } from "@narsil-ui/registries/icons";
 
 export type Model = {
@@ -52,13 +51,13 @@ export type Field = {
   label: string;
   placeholder: string;
   options: FieldOption[];
-} & FieldType;
+};
 
 export type FieldOption = {
   id: number;
   label: string;
   value: string;
-} & FieldType;
+};
 
 export type Element = Model & {
   base: Block | Field;

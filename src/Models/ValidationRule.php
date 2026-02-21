@@ -6,7 +6,7 @@ namespace Narsil\Cms\Models;
 
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
-use Narsil\Cms\Support\SelectOption;
+use Narsil\Base\Http\Data\OptionData;
 
 #endregion
 
@@ -81,18 +81,19 @@ class ValidationRule extends Model
     #region PUBLIC METHODS
 
     /**
-     * Get the validation rules as select options.
+     * Get the validation rules as options.
      *
-     * @return array<SelectOption>
+     * @return array<OptionData>
      */
-    public static function selectOptions(): array
+    public static function options(): array
     {
         return self::all()
             ->map(function (ValidationRule $validationRule)
             {
-                return new SelectOption()
-                    ->optionLabel($validationRule->{self::ATTRIBUTE_NAME})
-                    ->optionValue($validationRule->{self::ID});
+                return new OptionData(
+                    label: $validationRule->{self::ATTRIBUTE_NAME},
+                    value: $validationRule->{self::ID},
+                );
             })
             ->all();
     }
@@ -113,7 +114,7 @@ class ValidationRule extends Model
         return Attribute::make(
             get: function ()
             {
-                return trans('narsil-ui::rules.' . $this->{self::HANDLE});
+                return trans('narsil::rules.' . $this->{self::HANDLE});
             },
         );
     }

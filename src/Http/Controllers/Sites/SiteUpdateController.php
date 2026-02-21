@@ -7,12 +7,12 @@ namespace Narsil\Cms\Http\Controllers\Sites;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Arr;
 use Narsil\Base\Enums\ModelEventEnum;
+use Narsil\Base\Services\ModelService;
 use Narsil\Cms\Http\Controllers\RedirectController;
 use Narsil\Cms\Implementations\Requests\SiteFormRequest;
 use Narsil\Cms\Jobs\SitemapJob;
 use Narsil\Cms\Models\Sites\Site;
 use Narsil\Cms\Models\Sites\SitePage;
-use Narsil\Cms\Services\ModelService;
 
 #endregion
 

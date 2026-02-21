@@ -41,8 +41,8 @@ class TreeField extends AbstractField implements Contract
             ->add('narsil-cms::ui.add_child')
             ->add('narsil-cms::ui.move_down')
             ->add('narsil-cms::ui.move_up')
-            ->add('narsil-ui::ui.delete')
-            ->add('narsil-ui::ui.edit');
+            ->add('narsil::ui.delete')
+            ->add('narsil::ui.edit');
     }
 
     /**

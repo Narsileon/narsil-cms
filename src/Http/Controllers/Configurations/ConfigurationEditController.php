@@ -6,12 +6,12 @@ namespace Narsil\Cms\Http\Controllers\Configurations;
 
 use Illuminate\Http\Request;
 use Inertia\Response;
-use Narsil\Cms\Casts\HumanDatetimeCast;
+use Narsil\Base\Casts\DiffForHumansCast;
+use Narsil\Base\Enums\RequestMethodEnum;
+use Narsil\Base\Services\ModelService;
 use Narsil\Cms\Contracts\Forms\ConfigurationForm;
-use Narsil\Cms\Enums\RequestMethodEnum;
 use Narsil\Cms\Http\Controllers\RenderController;
 use Narsil\Cms\Models\Configuration;
-use Narsil\Cms\Services\ModelService;
 
 #endregion
 
@@ -57,8 +57,8 @@ class ConfigurationEditController extends RenderController
         $configuration->loadMissingCreatorAndEditor();
 
         $configuration->mergeCasts([
-            Configuration::CREATED_AT => HumanDatetimeCast::class,
-            Configuration::UPDATED_AT => HumanDatetimeCast::class,
+            Configuration::CREATED_AT => DiffForHumansCast::class,
+            Configuration::UPDATED_AT => DiffForHumansCast::class,
         ]);
 
         $data = $configuration->toArrayWithTranslations();
@@ -87,7 +87,7 @@ class ConfigurationEditController extends RenderController
             ->action(route('settings.update', $configuration->{Configuration::ID}))
             ->id($configuration->{Configuration::ID})
             ->method(RequestMethodEnum::PATCH->value)
-            ->submitLabel(trans('narsil-ui::ui.update'));
+            ->submitLabel(trans('narsil::ui.update'));
 
         return $form;
     }

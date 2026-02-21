@@ -1,5 +1,4 @@
 import { Link, router } from "@inertiajs/react";
-import { useForm } from "@narsil-cms/components/form";
 import { useAlertDialog } from "@narsil-ui/components/alert-dialog";
 import { Button } from "@narsil-ui/components/button";
 import {
@@ -11,6 +10,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@narsil-ui/components/dropdown-menu";
+import { useForm } from "@narsil-ui/components/form";
 import { Icon } from "@narsil-ui/components/icon";
 import { useTranslator } from "@narsil-ui/components/translator";
 import type { RoutesData } from "@narsil-ui/types";

@@ -8,11 +8,11 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Inertia\Response;
 use Narsil\Base\Enums\AbilityEnum;
-use Narsil\Cms\Enums\RequestMethodEnum;
+use Narsil\Base\Enums\RequestMethodEnum;
+use Narsil\Base\Services\ModelService;
 use Narsil\Cms\Http\Controllers\RenderController;
 use Narsil\Cms\Implementations\Forms\AssetForm;
 use Narsil\Cms\Models\Storages\Asset;
-use Narsil\Cms\Services\ModelService;
 
 #endregion
 
@@ -84,7 +84,7 @@ class AssetEditController extends RenderController
             ]))
             ->id($asset->{Asset::UUID})
             ->method(RequestMethodEnum::PATCH->value)
-            ->submitLabel(trans('narsil-ui::ui.update'));
+            ->submitLabel(trans('narsil::ui.update'));
 
         return $form;
     }

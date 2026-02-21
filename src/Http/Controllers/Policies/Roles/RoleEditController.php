@@ -7,14 +7,14 @@ namespace Narsil\Cms\Http\Controllers\Policies\Roles;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Inertia\Response;
+use Narsil\Base\Casts\DiffForHumansCast;
+use Narsil\Base\Contracts\Forms\RoleForm;
 use Narsil\Base\Enums\AbilityEnum;
+use Narsil\Base\Enums\RequestMethodEnum;
 use Narsil\Base\Models\Policies\Permission;
 use Narsil\Base\Models\Policies\Role;
-use Narsil\Cms\Casts\HumanDatetimeCast;
-use Narsil\Cms\Contracts\Forms\RoleForm;
-use Narsil\Cms\Enums\RequestMethodEnum;
+use Narsil\Base\Services\ModelService;
 use Narsil\Cms\Http\Controllers\RenderController;
-use Narsil\Cms\Services\ModelService;
 
 #endregion
 
@@ -63,8 +63,8 @@ class RoleEditController extends RenderController
         $role->loadMissingCreatorAndEditor();
 
         $role->mergeCasts([
-            Role::CREATED_AT => HumanDatetimeCast::class,
-            Role::UPDATED_AT => HumanDatetimeCast::class,
+            Role::CREATED_AT => DiffForHumansCast::class,
+            Role::UPDATED_AT => DiffForHumansCast::class,
         ]);
 
         $data = $role->toArrayWithTranslations();
@@ -93,7 +93,7 @@ class RoleEditController extends RenderController
             ->action(route('roles.update', $role->{Role::ID}))
             ->id($role->{Role::ID})
             ->method(RequestMethodEnum::PATCH->value)
-            ->submitLabel(trans('narsil-ui::ui.update'));
+            ->submitLabel(trans('narsil::ui.update'));
 
         return $form;
     }
@@ -119,7 +119,7 @@ class RoleEditController extends RenderController
             ->pluck(Permission::ID)
             ->map(function ($id)
             {
-                return (string)$id;
+                return $id;
             });
 
         $role->setRelation(Role::RELATION_PERMISSIONS, $permissionIds);

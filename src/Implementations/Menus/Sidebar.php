@@ -7,10 +7,11 @@ namespace Narsil\Cms\Implementations\Menus;
 use Narsil\Base\Enums\AbilityEnum;
 use Narsil\Base\Models\Policies\Permission;
 use Narsil\Base\Models\Policies\Role;
+use Narsil\Base\Services\ModelService;
 use Narsil\Base\Services\PermissionService;
 use Narsil\Base\Support\TranslationsBag;
 use Narsil\Cms\Contracts\Menus\Sidebar as Contract;
-use Narsil\Cms\Implementations\AbstractMenu;
+use Narsil\Cms\Implementations\Menu;
 use Narsil\Cms\Models\Collections\Block;
 use Narsil\Cms\Models\Collections\Field;
 use Narsil\Cms\Models\Collections\Template;
@@ -22,7 +23,6 @@ use Narsil\Cms\Models\Hosts\Host;
 use Narsil\Cms\Models\Sites\Site;
 use Narsil\Cms\Models\Storages\Asset;
 use Narsil\Cms\Models\User;
-use Narsil\Cms\Services\ModelService;
 use Narsil\Cms\Support\MenuItem;
 
 #endregion
@@ -31,7 +31,7 @@ use Narsil\Cms\Support\MenuItem;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class Sidebar extends AbstractMenu implements Contract
+class Sidebar extends Menu implements Contract
 {
     #region CONSTRUCTOR
 

@@ -9,9 +9,9 @@ use Illuminate\Http\Request;
 use Narsil\Base\Enums\AbilityEnum;
 use Narsil\Base\Enums\ModelEventEnum;
 use Narsil\Base\Models\Policies\Role;
+use Narsil\Base\Services\ModelService;
 use Narsil\Cms\Http\Controllers\RedirectController;
 use Narsil\Cms\Services\Models\RoleService;
-use Narsil\Cms\Services\ModelService;
 
 #endregion
 

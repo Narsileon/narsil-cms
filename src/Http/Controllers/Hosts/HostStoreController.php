@@ -7,13 +7,13 @@ namespace Narsil\Cms\Http\Controllers\Hosts;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Arr;
 use Narsil\Base\Enums\ModelEventEnum;
+use Narsil\Base\Services\ModelService;
 use Narsil\Cms\Contracts\Requests\HostFormRequest;
 use Narsil\Cms\Http\Controllers\RedirectController;
 use Narsil\Cms\Models\Hosts\Host;
 use Narsil\Cms\Models\Hosts\HostLocale;
 use Narsil\Cms\Services\Models\HostLocaleService;
 use Narsil\Cms\Services\Models\HostService;
-use Narsil\Cms\Services\ModelService;
 
 #endregion
 
@@ -39,6 +39,7 @@ class HostStoreController extends RedirectController
         if ($defaultLocale = Arr::get($attributes, Host::RELATION_DEFAULT_LOCALE))
         {
             $hostLocale = HostLocale::create([
+                HostLocale::HOST_ID  => $host->id,
                 HostLocale::PATTERN  => Arr::get($defaultLocale, HostLocale::PATTERN),
             ]);
 

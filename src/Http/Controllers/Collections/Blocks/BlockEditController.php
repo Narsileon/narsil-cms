@@ -7,14 +7,14 @@ namespace Narsil\Cms\Http\Controllers\Collections\Blocks;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Inertia\Response;
+use Narsil\Base\Casts\DiffForHumansCast;
 use Narsil\Base\Enums\AbilityEnum;
-use Narsil\Cms\Casts\HumanDatetimeCast;
+use Narsil\Base\Enums\RequestMethodEnum;
+use Narsil\Base\Services\ModelService;
 use Narsil\Cms\Contracts\Forms\BlockForm;
-use Narsil\Cms\Enums\RequestMethodEnum;
 use Narsil\Cms\Http\Controllers\RenderController;
 use Narsil\Cms\Models\Collections\Block;
 use Narsil\Cms\Models\Collections\BlockElement;
-use Narsil\Cms\Services\ModelService;
 
 #endregion
 
@@ -65,8 +65,8 @@ class BlockEditController extends RenderController
         $block->loadMissingCreatorAndEditor();
 
         $block->mergeCasts([
-            Block::CREATED_AT => HumanDatetimeCast::class,
-            Block::UPDATED_AT => HumanDatetimeCast::class,
+            Block::CREATED_AT => DiffForHumansCast::class,
+            Block::UPDATED_AT => DiffForHumansCast::class,
         ]);
 
         $data = $block->toArrayWithTranslations();
@@ -95,7 +95,7 @@ class BlockEditController extends RenderController
             ->action(route('blocks.update', $block->{Block::ID}))
             ->id($block->{Block::ID})
             ->method(RequestMethodEnum::PATCH->value)
-            ->submitLabel(trans('narsil-ui::ui.update'));
+            ->submitLabel(trans('narsil::ui.update'));
 
         return $form;
     }

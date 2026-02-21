@@ -1,37 +1,37 @@
-import { FormElement } from "@narsil-cms/components/form";
-import type { TemplateTab } from "@narsil-cms/types";
+import { FormElement, registry } from "@narsil-ui/components/form";
 import { TabsList, TabsPanel, TabsRoot, TabsTab } from "@narsil-ui/components/tabs";
+import { FormStepData } from "@narsil-ui/types";
 import { useState } from "react";
 
 type FormStepsProps = {
-  tabs: TemplateTab[];
+  steps: FormStepData[];
 };
 
-function FormSteps({ tabs }: FormStepsProps) {
-  const [value, setValue] = useState(tabs[0].handle);
+function FormSteps({ steps }: FormStepsProps) {
+  const [value, setValue] = useState(steps[0].id);
 
   const tabsList =
-    tabs.length > 1 ? (
+    steps.length > 1 ? (
       <TabsList className="flex w-full items-center border-b px-4">
-        {tabs.map((tab, index) => {
+        {steps.map((step, index) => {
           return (
-            <TabsTab value={tab.handle} key={index}>
-              {tab.label}
+            <TabsTab value={step.id} key={index}>
+              {step.label}
             </TabsTab>
           );
         })}
       </TabsList>
     ) : null;
 
-  const tabsPanels = tabs.map((tab, index) => {
+  const tabsPanels = steps.map((step, index) => {
     return (
       <TabsPanel
         className="grid w-full max-w-5xl grid-cols-12 gap-x-4 gap-y-8 place-self-center"
-        value={tab.handle}
+        value={step.id}
         key={index}
       >
-        {tab.elements?.map((element, index) => {
-          return <FormElement {...element} key={index} />;
+        {step.elements?.map((element, index) => {
+          return <FormElement {...element} registry={registry} key={index} />;
         })}
       </TabsPanel>
     );
@@ -40,7 +40,7 @@ function FormSteps({ tabs }: FormStepsProps) {
   return (
     <TabsRoot
       className="col-span-full"
-      defaultValue={tabs[0].handle}
+      defaultValue={steps[0].id}
       value={value}
       onValueChange={setValue}
     >

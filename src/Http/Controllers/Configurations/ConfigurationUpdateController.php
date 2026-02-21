@@ -7,10 +7,10 @@ namespace Narsil\Cms\Http\Controllers\Configurations;
 use Illuminate\Http\RedirectResponse;
 use Narsil\Base\Enums\AbilityEnum;
 use Narsil\Base\Enums\ModelEventEnum;
+use Narsil\Base\Services\ModelService;
 use Narsil\Cms\Contracts\Requests\ConfigurationFormRequest;
 use Narsil\Cms\Http\Controllers\RedirectController;
 use Narsil\Cms\Models\Configuration;
-use Narsil\Cms\Services\ModelService;
 
 #endregion
 

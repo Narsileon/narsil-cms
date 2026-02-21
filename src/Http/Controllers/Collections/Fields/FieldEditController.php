@@ -7,14 +7,14 @@ namespace Narsil\Cms\Http\Controllers\Collections\Fields;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Inertia\Response;
+use Narsil\Base\Casts\DiffForHumansCast;
 use Narsil\Base\Enums\AbilityEnum;
-use Narsil\Cms\Casts\HumanDatetimeCast;
+use Narsil\Base\Enums\RequestMethodEnum;
+use Narsil\Base\Services\ModelService;
 use Narsil\Cms\Contracts\Forms\FieldForm;
-use Narsil\Cms\Enums\RequestMethodEnum;
 use Narsil\Cms\Http\Controllers\RenderController;
 use Narsil\Cms\Models\Collections\Field;
 use Narsil\Cms\Models\ValidationRule;
-use Narsil\Cms\Services\ModelService;
 
 #endregion
 
@@ -70,8 +70,8 @@ class FieldEditController extends RenderController
         $field->loadMissingCreatorAndEditor();
 
         $field->mergeCasts([
-            Field::CREATED_AT => HumanDatetimeCast::class,
-            Field::UPDATED_AT => HumanDatetimeCast::class,
+            Field::CREATED_AT => DiffForHumansCast::class,
+            Field::UPDATED_AT => DiffForHumansCast::class,
         ]);
 
         $data = $field->toArrayWithTranslations();
@@ -100,7 +100,7 @@ class FieldEditController extends RenderController
             ->action(route('fields.update', $field->{Field::ID}))
             ->id($field->{Field::ID})
             ->method(RequestMethodEnum::PATCH->value)
-            ->submitLabel(trans('narsil-ui::ui.update'));
+            ->submitLabel(trans('narsil::ui.update'));
 
         return $form;
     }

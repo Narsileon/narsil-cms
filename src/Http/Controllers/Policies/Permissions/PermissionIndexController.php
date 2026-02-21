@@ -10,8 +10,8 @@ use Inertia\Response;
 use Narsil\Base\Enums\AbilityEnum;
 use Narsil\Base\Http\Collections\DataTableCollection;
 use Narsil\Base\Models\Policies\Permission;
+use Narsil\Base\Services\ModelService;
 use Narsil\Cms\Http\Controllers\RenderController;
-use Narsil\Cms\Services\ModelService;
 
 #endregion
 

@@ -8,9 +8,9 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Arr;
 use Narsil\Base\Contracts\Requests\UserFormRequest;
 use Narsil\Base\Enums\ModelEventEnum;
+use Narsil\Base\Services\ModelService;
 use Narsil\Cms\Http\Controllers\RedirectController;
 use Narsil\Cms\Models\User;
-use Narsil\Cms\Services\ModelService;
 
 #endregion
 
@@ -31,10 +31,8 @@ class UserStoreController extends RedirectController
     {
         $attributes = $request->validated();
 
-        $user = new User()
-            ->forceFill($attributes);
 
-        $user->save();
+        $user = User::create($attributes);
 
         $user
             ->roles()

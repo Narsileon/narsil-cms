@@ -10,19 +10,19 @@ use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Session;
 use Inertia\Response;
 use Locale;
+use Narsil\Base\Casts\DiffForHumansCast;
 use Narsil\Base\Enums\AbilityEnum;
+use Narsil\Base\Enums\RequestMethodEnum;
+use Narsil\Base\Http\Data\OptionData;
+use Narsil\Base\Services\ModelService;
 use Narsil\Base\Support\TranslationsBag;
-use Narsil\Cms\Casts\HumanDatetimeCast;
 use Narsil\Cms\Contracts\Forms\SiteForm;
-use Narsil\Cms\Enums\RequestMethodEnum;
 use Narsil\Cms\Http\Controllers\RenderController;
 use Narsil\Cms\Http\Resources\Sites\SiteResource;
 use Narsil\Cms\Models\Hosts\HostLocale;
 use Narsil\Cms\Models\Hosts\HostLocaleLanguage;
 use Narsil\Cms\Models\Sites\Site;
 use Narsil\Cms\Models\Sites\SitePage;
-use Narsil\Cms\Services\ModelService;
-use Narsil\Cms\Support\SelectOption;
 
 #endregion
 
@@ -67,7 +67,7 @@ class SiteEditController extends RenderController
         $data = $this->getData($site);
         $form = $this->getForm($site);
 
-        $countries = $this->getCountrySelectOptions($site);
+        $countries = $this->getCountryOptions($site);
 
         app(TranslationsBag::class)
             ->add('narsil-cms::ui.countries');
@@ -84,27 +84,29 @@ class SiteEditController extends RenderController
     #region PROTECTED METHODS
 
     /**
-     * Get the country select options.
+     * Get the country options.
      *
      * @param Site $site
      *
-     * @return array<SelectOption>
+     * @return array<OptionData>
      */
-    protected function getCountrySelectOptions(Site $site): array
+    protected function getCountryOptions(Site $site): array
     {
         $options = [
-            new SelectOption()
-                ->optionLabel(trans('narsil-cms::ui.default'))
-                ->optionValue('default')
+            new OptionData(
+                label: trans('narsil-cms::ui.default'),
+                value: 'default'
+            ),
         ];
 
         foreach ($site->{Site::RELATION_OTHER_LOCALES} as $locale)
         {
             $label = Locale::getDisplayRegion('_' . $locale->{HostLocale::COUNTRY}, App::getLocale());
 
-            $options[] = new SelectOption()
-                ->optionLabel($label)
-                ->optionValue($locale->{HostLocale::COUNTRY});
+            $options[] = new OptionData(
+                label: $label,
+                value: $locale->{HostLocale::COUNTRY}
+            );
         }
 
         return $options;
@@ -122,8 +124,8 @@ class SiteEditController extends RenderController
         $site->loadMissingCreatorAndEditor();
 
         $site->mergeCasts([
-            Site::CREATED_AT => HumanDatetimeCast::class,
-            Site::UPDATED_AT => HumanDatetimeCast::class,
+            Site::CREATED_AT => DiffForHumansCast::class,
+            Site::UPDATED_AT => DiffForHumansCast::class,
         ]);
 
         $data = new SiteResource($site)->resolve();
@@ -153,7 +155,7 @@ class SiteEditController extends RenderController
             ->id($site->{Site::ID})
             ->languageOptions(HostLocaleLanguage::getUniqueLanguages())
             ->method(RequestMethodEnum::PATCH->value)
-            ->submitLabel(trans('narsil-ui::ui.update'));
+            ->submitLabel(trans('narsil::ui.update'));
 
         return $form;
     }

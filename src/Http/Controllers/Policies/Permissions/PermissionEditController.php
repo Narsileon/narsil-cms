@@ -7,13 +7,13 @@ namespace Narsil\Cms\Http\Controllers\Policies\Permissions;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Inertia\Response;
+use Narsil\Base\Casts\DiffForHumansCast;
+use Narsil\Base\Contracts\Forms\PermissionForm;
 use Narsil\Base\Enums\AbilityEnum;
+use Narsil\Base\Enums\RequestMethodEnum;
 use Narsil\Base\Models\Policies\Permission;
-use Narsil\Cms\Casts\HumanDatetimeCast;
-use Narsil\Cms\Contracts\Forms\PermissionForm;
-use Narsil\Cms\Enums\RequestMethodEnum;
+use Narsil\Base\Services\ModelService;
 use Narsil\Cms\Http\Controllers\RenderController;
-use Narsil\Cms\Services\ModelService;
 
 #endregion
 
@@ -60,8 +60,8 @@ class PermissionEditController extends RenderController
         $permission->loadMissingCreatorAndEditor();
 
         $permission->mergeCasts([
-            Permission::CREATED_AT => HumanDatetimeCast::class,
-            Permission::UPDATED_AT => HumanDatetimeCast::class,
+            Permission::CREATED_AT => DiffForHumansCast::class,
+            Permission::UPDATED_AT => DiffForHumansCast::class,
         ]);
 
         $data = $permission->toArrayWithTranslations();
@@ -90,7 +90,7 @@ class PermissionEditController extends RenderController
             ->action(route('permissions.update', $permission->{Permission::ID}))
             ->id($permission->{Permission::ID})
             ->method(RequestMethodEnum::PATCH->value)
-            ->submitLabel(trans('narsil-ui::ui.update'));
+            ->submitLabel(trans('narsil::ui.update'));
 
         return $form;
     }

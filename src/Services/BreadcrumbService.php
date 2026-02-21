@@ -6,6 +6,7 @@ namespace Narsil\Cms\Services;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Narsil\Base\Services\ModelService;
 
 #endregion
 

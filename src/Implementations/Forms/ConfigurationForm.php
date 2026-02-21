@@ -8,16 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Config;
 use Locale;
+use Narsil\Base\Http\Data\Forms\FieldData;
+use Narsil\Base\Http\Data\Forms\FormStepData;
+use Narsil\Base\Http\Data\Forms\Inputs\SelectInputData;
+use Narsil\Base\Http\Data\OptionData;
+use Narsil\Base\Implementations\Form;
 use Narsil\Base\Services\RouteService;
-use Narsil\Cms\Contracts\Fields\SelectField;
 use Narsil\Cms\Contracts\Forms\ConfigurationForm as Contract;
-use Narsil\Cms\Implementations\AbstractForm;
-use Narsil\Cms\Models\Collections\Field;
-use Narsil\Cms\Models\Collections\TemplateTab;
-use Narsil\Cms\Models\Collections\TemplateTabElement;
 use Narsil\Cms\Models\Configuration;
 use Narsil\Cms\Models\Hosts\HostLocaleLanguage;
-use Narsil\Cms\Support\SelectOption;
 
 #endregion
 
@@ -25,7 +24,7 @@ use Narsil\Cms\Support\SelectOption;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class ConfigurationForm extends AbstractForm implements Contract
+class ConfigurationForm extends Form implements Contract
 {
     #region CONSTRUCTOR
 
@@ -46,55 +45,49 @@ class ConfigurationForm extends AbstractForm implements Contract
     /**
      * {@inheritDoc}
      */
-    protected function getTabs(): array
+    protected function getSteps(): array
     {
         $frontendLanguages = HostLocaleLanguage::getUniqueLanguages();
         $backendLanguages = Config::get('narsil.locales', []);
 
         return [
-            [
-                TemplateTab::HANDLE => 'frontend',
-                TemplateTab::LABEL => trans('narsil-cms::ui.frontend'),
-                TemplateTab::RELATION_ELEMENTS => [
-                    [
-                        TemplateTabElement::HANDLE => Configuration::DEFAULT_LANGUAGE,
-                        TemplateTabElement::LABEL => trans('narsil-cms::validation.attributes.default_language'),
-                        TemplateTabElement::REQUIRED => true,
-                        TemplateTabElement::RELATION_BASE => new Field([
-                            Field::TYPE => SelectField::class,
-                            Field::SETTINGS => app(SelectField::class),
-                            Field::RELATION_OPTIONS => $this->getLanguageSelectOptions($frontendLanguages),
-                        ]),
-                    ],
+            new FormStepData(
+                id: 'frontend',
+                label: trans('narsil-cms::ui.frontend'),
+                elements: [
+                    new FieldData(
+                        id: Configuration::DEFAULT_LANGUAGE,
+                        required: true,
+                        input: new SelectInputData(
+                            options: $this->getLanguageOptions($frontendLanguages),
+                        ),
+                    ),
                 ],
-            ],
-            [
-                TemplateTab::HANDLE => 'backend',
-                TemplateTab::LABEL => trans('narsil-cms::ui.backend'),
-                TemplateTab::RELATION_ELEMENTS => [
-                    [
-                        TemplateTabElement::HANDLE => Configuration::DEFAULT_LANGUAGE,
-                        TemplateTabElement::LABEL => trans('narsil-cms::validation.attributes.default_language'),
-                        TemplateTabElement::REQUIRED => true,
-                        TemplateTabElement::RELATION_BASE => [
-                            Field::TYPE => SelectField::class,
-                            Field::SETTINGS => app(SelectField::class),
-                            Field::RELATION_OPTIONS => $this->getLanguageSelectOptions($backendLanguages),
-                        ],
-                    ],
+            ),
+            new FormStepData(
+                id: 'backend',
+                label: trans('narsil-cms::ui.backend'),
+                elements: [
+                    new FieldData(
+                        id: Configuration::DEFAULT_LANGUAGE,
+                        required: true,
+                        input: new SelectInputData(
+                            options: $this->getLanguageOptions($backendLanguages),
+                        ),
+                    ),
                 ],
-            ],
+            ),
         ];
     }
 
     /**
-     * Get the language select options.
+     * Get the language options.
      *
      * @param string[] $languages
      *
-     * @return array<SelectOption>
+     * @return OptionData[]
      */
-    protected function getLanguageSelectOptions(array $languages): array
+    protected function getLanguageOptions(array $languages): array
     {
         $options = [];
 
@@ -102,12 +95,13 @@ class ConfigurationForm extends AbstractForm implements Contract
         {
             $label = Locale::getDisplayLanguage($language, App::getLocale());
 
-            $options[] = new SelectOption()
-                ->optionLabel(ucfirst($label))
-                ->optionValue($language);
+            $options[] = new OptionData(
+                label: ucfirst($label),
+                value: $language
+            );
         }
 
-        usort($options, function (SelectOption $a, SelectOption $b)
+        usort($options, function (OptionData $a, OptionData $b)
         {
             return strcasecmp($a->label, $b->label);
         });

@@ -11,10 +11,10 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Narsil\Base\Traits\AuditLoggable;
 use Narsil\Base\Traits\Blameable;
 use Narsil\Base\Traits\HasTranslations;
+use Narsil\Base\Traits\SoftBlameable;
 use Narsil\Cms\Models\Collections\Template;
 use Narsil\Cms\Traits\HasIdentifier;
 use Narsil\Cms\Traits\HasRevisions;
-use Narsil\Cms\Traits\SoftDeleteBlameable;
 
 #endregion
 
@@ -24,12 +24,12 @@ use Narsil\Cms\Traits\SoftDeleteBlameable;
  */
 abstract class Entity extends Model
 {
-    use Blameable;
     use AuditLoggable;
+    use Blameable;
     use HasIdentifier;
     use HasRevisions;
     use HasTranslations;
-    use SoftDeleteBlameable;
+    use SoftBlameable;
 
     #region CONSTRUCTOR
 

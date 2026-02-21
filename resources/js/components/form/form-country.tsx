@@ -1,14 +1,14 @@
 import { router } from "@inertiajs/react";
-import { SelectOption } from "@narsil-cms/types";
 import { ToggleGroupItem, ToggleGroupRoot } from "@narsil-ui/components/toggle-group";
 import { cn } from "@narsil-ui/lib/utils";
+import type { OptionData } from "@narsil-ui/types";
 import { type ComponentProps } from "react";
 
 type FormCountryProps = Omit<
   ComponentProps<typeof ToggleGroupRoot>,
   "defaultValue" | "onValueChange" | "value" | "type"
 > & {
-  countries: SelectOption[];
+  countries: OptionData[];
 };
 
 function FormCountry({ countries, ...props }: FormCountryProps) {
@@ -37,29 +37,31 @@ function FormCountry({ countries, ...props }: FormCountryProps) {
       value={[value as string]}
       {...props}
     >
-      {countries.map((option) => (
-        <ToggleGroupItem
-          className="flex w-full items-center justify-between pr-2"
-          value={option.value as string}
-          onClick={() => {
-            onValueChange(option.value as string);
-          }}
-          key={option.value}
-        >
-          <span
-            className={cn(
-              "relative pl-5 font-normal",
-              "before:absolute before:top-1/2 before:left-0 before:-translate-y-1/2",
-              "before:size-1.5 before:rounded-full before:bg-constructive",
-              option.value === value
-                ? "before:animate-pulse before:bg-constructive"
-                : "before:bg-foreground",
-            )}
+      {countries.map((option) => {
+        return (
+          <ToggleGroupItem
+            className="flex w-full items-center justify-between pr-2"
+            value={option.value as string}
+            onClick={() => {
+              onValueChange(option.value as string);
+            }}
+            key={option.value as string}
           >
-            {option.label as string}
-          </span>
-        </ToggleGroupItem>
-      ))}
+            <span
+              className={cn(
+                "relative pl-5 font-normal",
+                "before:absolute before:top-1/2 before:left-0 before:-translate-y-1/2",
+                "before:size-1.5 before:rounded-full before:bg-constructive",
+                option.value === value
+                  ? "before:animate-pulse before:bg-constructive"
+                  : "before:bg-foreground",
+              )}
+            >
+              {option.label as string}
+            </span>
+          </ToggleGroupItem>
+        );
+      })}
     </ToggleGroupRoot>
   );
 }

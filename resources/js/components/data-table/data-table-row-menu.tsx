@@ -37,12 +37,12 @@ function DataTableRowMenu({ id, modal = false, routes, table, ...props }: DataTa
 
   return (
     <DropdownMenuRoot>
-      <Tooltip tooltip={trans("tooltips.menu")}>
+      <Tooltip tooltip={trans("ui.menu")}>
         <DropdownMenuTrigger
           {...props}
           render={
             <Button
-              aria-label={trans("tooltips.menu")}
+              aria-label={trans("ui.menu")}
               size="icon-sm"
               variant="ghost-secondary"
               onClick={(event) => event.stopPropagation()}

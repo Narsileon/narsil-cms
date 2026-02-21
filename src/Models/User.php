@@ -29,32 +29,8 @@ class User extends BaseUser
     {
         $this->table = self::TABLE;
 
-        $this->mergeAppends([
-            self::ATTRIBUTE_FULL_NAME,
-        ]);
-
         $this->mergeCasts([
             self::AVATAR => ImageCast::class . ':avatars',
-            self::EMAIL_VERIFIED_AT => 'datetime',
-            self::ENABLED => 'boolean',
-            self::PASSWORD => 'hashed',
-        ]);
-
-        $this->mergeGuarded([
-            self::EMAIL_VERIFIED_AT,
-            self::ID,
-            self::PASSWORD,
-            self::REMEMBER_TOKEN,
-            self::TWO_FACTOR_CONFIRMED_AT,
-            self::TWO_FACTOR_RECOVERY_CODES,
-            self::TWO_FACTOR_SECRET,
-        ]);
-
-        $this->mergeHidden([
-            self::PASSWORD,
-            self::REMEMBER_TOKEN,
-            self::TWO_FACTOR_RECOVERY_CODES,
-            self::TWO_FACTOR_SECRET,
         ]);
 
         parent::__construct($attributes);

@@ -7,14 +7,14 @@ namespace Narsil\Cms\Http\Controllers\Users;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Inertia\Response;
+use Narsil\Base\Casts\DiffForHumansCast;
+use Narsil\Base\Contracts\Forms\UserForm;
 use Narsil\Base\Enums\AbilityEnum;
+use Narsil\Base\Enums\RequestMethodEnum;
 use Narsil\Base\Models\Policies\Role;
-use Narsil\Cms\Casts\HumanDatetimeCast;
-use Narsil\Cms\Contracts\Forms\UserForm;
-use Narsil\Cms\Enums\RequestMethodEnum;
+use Narsil\Base\Services\ModelService;
 use Narsil\Cms\Http\Controllers\RenderController;
 use Narsil\Cms\Models\User;
-use Narsil\Cms\Services\ModelService;
 
 #endregion
 
@@ -67,8 +67,8 @@ class UserEditController extends RenderController
         $user->loadMissingCreatorAndEditor();
 
         $user->mergeCasts([
-            User::CREATED_AT => HumanDatetimeCast::class,
-            User::UPDATED_AT => HumanDatetimeCast::class,
+            User::CREATED_AT => DiffForHumansCast::class,
+            User::UPDATED_AT => DiffForHumansCast::class,
         ]);
 
         $data = $user->toArray();
@@ -97,7 +97,7 @@ class UserEditController extends RenderController
             ->action(route('users.update', $user->{User::ID}))
             ->id($user->{User::ID})
             ->method(RequestMethodEnum::PATCH->value)
-            ->submitLabel(trans('narsil-ui::ui.update'));
+            ->submitLabel(trans('narsil::ui.update'));
 
         return $form;
     }
@@ -123,7 +123,7 @@ class UserEditController extends RenderController
             ->pluck(Role::ID)
             ->map(function ($id)
             {
-                return (string)$id;
+                return $id;
             });
 
         $user->setRelation(User::RELATION_ROLES, $roleIds);

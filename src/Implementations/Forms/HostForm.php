@@ -5,22 +5,20 @@ namespace Narsil\Cms\Implementations\Forms;
 #region USE
 
 use Illuminate\Database\Eloquent\Model;
+use Narsil\Base\Http\Data\Forms\FieldData;
+use Narsil\Base\Http\Data\Forms\FormStepData;
+use Narsil\Base\Http\Data\Forms\Inputs\ArrayInputData;
+use Narsil\Base\Http\Data\Forms\Inputs\SelectInputData;
+use Narsil\Base\Http\Data\Forms\Inputs\TableInputData;
+use Narsil\Base\Http\Data\Forms\Inputs\TextInputData;
+use Narsil\Base\Implementations\Form;
+use Narsil\Base\Services\ModelService;
 use Narsil\Base\Services\RouteService;
-use Narsil\Cms\Contracts\Fields\ArrayField;
-use Narsil\Cms\Contracts\Fields\SelectField;
-use Narsil\Cms\Contracts\Fields\TableField;
-use Narsil\Cms\Contracts\Fields\TextField;
 use Narsil\Cms\Contracts\Forms\HostForm as Contract;
-use Narsil\Cms\Implementations\AbstractForm;
-use Narsil\Cms\Models\Collections\BlockElement;
-use Narsil\Cms\Models\Collections\Field;
-use Narsil\Cms\Models\Collections\TemplateTab;
-use Narsil\Cms\Models\Collections\TemplateTabElement;
 use Narsil\Cms\Models\Hosts\Host;
 use Narsil\Cms\Models\Hosts\HostLocale;
 use Narsil\Cms\Models\Hosts\HostLocaleLanguage;
 use Narsil\Cms\Services\LocaleService;
-use Narsil\Cms\Services\ModelService;
 
 #endregion
 
@@ -28,7 +26,7 @@ use Narsil\Cms\Services\ModelService;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class HostForm extends AbstractForm implements Contract
+class HostForm extends Form implements Contract
 {
     #region CONSTRUCTOR
 
@@ -49,141 +47,111 @@ class HostForm extends AbstractForm implements Contract
     /**
      * {@inheritDoc}
      */
-    protected function getTabs(): array
+    protected function getSteps(): array
     {
-        $countrySelectOptions = LocaleService::countrySelectOptions();
-        $languageSelectOptions = LocaleService::languageSelectOptions();
+        $countryOptions = LocaleService::countryOptions();
+        $languageOptions = LocaleService::languageOptions();
 
         return [
-            [
-                TemplateTab::HANDLE => 'definition',
-                TemplateTab::LABEL => trans('narsil-cms::ui.definition'),
-                TemplateTab::RELATION_ELEMENTS => [
-                    [
-                        TemplateTabElement::DESCRIPTION => ModelService::getAttributeDescription(Host::TABLE, Host::HOSTNAME),
-                        TemplateTabElement::HANDLE => Host::HOSTNAME,
-                        TemplateTabElement::LABEL => trans('narsil-cms::validation.attributes.host'),
-                        TemplateTabElement::REQUIRED => true,
-                        TemplateTabElement::RELATION_BASE => [
-                            Field::TYPE => TextField::class,
-                            Field::SETTINGS => app(TextField::class),
-                        ],
-                    ],
-                    [
-                        TemplateTabElement::DESCRIPTION => ModelService::getAttributeDescription(Host::TABLE, Host::LABEL),
-                        TemplateTabElement::HANDLE => Host::LABEL,
-                        TemplateTabElement::LABEL => trans('narsil-cms::validation.attributes.label'),
-                        TemplateTabElement::REQUIRED => true,
-                        TemplateTabElement::TRANSLATABLE => true,
-                        TemplateTabElement::RELATION_BASE => [
-                            Field::TYPE => TextField::class,
-                            Field::SETTINGS => app(TextField::class),
-                        ],
-                    ],
+            new FormStepData(
+                id: 'definition',
+                label: trans('narsil-cms::ui.definition'),
+                elements: [
+                    new FieldData(
+                        description: ModelService::getAttributeDescription(Host::TABLE, Host::HOSTNAME),
+                        id: Host::HOSTNAME,
+                        required: true,
+                        input: new TextInputData(),
+                    ),
+                    new FieldData(
+                        description: ModelService::getAttributeDescription(Host::TABLE, Host::LABEL),
+                        id: Host::LABEL,
+                        required: true,
+                        translatable: true,
+                        input: new TextInputData(),
+                    ),
                 ],
-            ],
-            [
-                TemplateTab::HANDLE => 'default_country',
-                TemplateTab::LABEL => trans('narsil-cms::ui.default_country'),
-                TemplateTab::RELATION_ELEMENTS => [
-                    [
-                        TemplateTabElement::DESCRIPTION => ModelService::getAttributeDescription(HostLocale::TABLE, HostLocale::PATTERN, [
+            ),
+            new FormStepData(
+                id: 'default_country',
+                label: trans('narsil-cms::ui.default_country'),
+                elements: [
+                    new FieldData(
+                        description: ModelService::getAttributeDescription(HostLocale::TABLE, HostLocale::PATTERN, [
                             'example' => 'https://{host}/{language}'
                         ]),
-                        TemplateTabElement::HANDLE => Host::RELATION_DEFAULT_LOCALE . '.' . HostLocale::PATTERN,
-                        TemplateTabElement::LABEL => trans('narsil-cms::validation.attributes.pattern'),
-                        TemplateTabElement::REQUIRED => true,
-                        TemplateTabElement::RELATION_BASE => [
-                            Field::TYPE => TextField::class,
-                            Field::SETTINGS => app(TextField::class)
-                                ->defaultvalue('https://{host}/{language}'),
-                        ],
-                    ],
-                    [
-                        TemplateTabElement::HANDLE => Host::RELATION_DEFAULT_LOCALE . '.' . HostLocale::RELATION_LANGUAGES,
-                        TemplateTabElement::LABEL => trans('narsil-cms::validation.attributes.languages'),
-                        TemplateTabElement::RELATION_BASE => [
-                            Field::PLACEHOLDER => trans('narsil-cms::ui.add'),
-                            Field::TYPE => TableField::class,
-                            Field::SETTINGS => app(TableField::class)
-                                ->columns([
-                                    [
-                                        BlockElement::HANDLE => HostLocaleLanguage::LANGUAGE,
-                                        BlockElement::LABEL => trans('narsil-cms::validation.attributes.language'),
-                                        BlockElement::REQUIRED => true,
-                                        BlockElement::RELATION_BASE => [
-                                            Field::TYPE => SelectField::class,
-                                            Field::SETTINGS => app(SelectField::class),
-                                            Field::RELATION_OPTIONS => $languageSelectOptions,
-                                        ],
-                                    ],
-                                ]),
-                        ],
-                    ],
+                        id: HostLocale::PATTERN,
+                        prefix: Host::RELATION_DEFAULT_LOCALE,
+                        required: true,
+                        input: new TextInputData(
+                            defaultValue: 'https://{host}/{language}'
+                        ),
+                    ),
+                    new FieldData(
+
+                        id: HostLocale::RELATION_LANGUAGES,
+                        prefix: Host::RELATION_DEFAULT_LOCALE,
+                        input: new TableInputData(
+                            columns: [
+                                new FieldData(
+                                    id: HostLocaleLanguage::LANGUAGE,
+                                    required: true,
+                                    input: new SelectInputData(
+                                        options: $languageOptions
+                                    ),
+                                ),
+                            ],
+                        ),
+                    ),
                 ],
-            ],
-            [
-                TemplateTab::HANDLE => 'other_countries',
-                TemplateTab::LABEL => trans('narsil-cms::ui.other_countries'),
-                TemplateTab::RELATION_ELEMENTS => [
-                    [
-                        TemplateTabElement::HANDLE => Host::RELATION_OTHER_LOCALES,
-                        TemplateTabElement::LABEL => trans('narsil-cms::validation.attributes.locales'),
-                        TemplateTabElement::RELATION_BASE => [
-                            Field::TYPE => ArrayField::class,
-                            Field::SETTINGS => app(ArrayField::class)
-                                ->form([
-                                    [
-                                        BlockElement::DESCRIPTION => ModelService::getAttributeDescription(HostLocale::TABLE, HostLocale::PATTERN, [
-                                            'example' => 'https://{host}/{language}-{country}'
-                                        ]),
-                                        BlockElement::HANDLE => HostLocale::PATTERN,
-                                        BlockElement::LABEL => trans('narsil-cms::validation.attributes.pattern'),
-                                        BlockElement::REQUIRED => true,
-                                        BlockElement::RELATION_BASE => [
-                                            Field::TYPE => TextField::class,
-                                            Field::SETTINGS => app(TextField::class)
-                                                ->defaultvalue('https://{host}/{language}-{country}'),
+            ),
+            new FormStepData(
+                id: 'other_countries',
+                label: trans('narsil-cms::ui.other_countries'),
+                elements: [
+                    new FieldData(
+                        id: Host::RELATION_OTHER_LOCALES,
+                        label: trans('narsil-cms::validation.attributes.locales'),
+                        input: new ArrayInputData(
+                            labelKey: HostLocale::COUNTRY,
+                            form: [
+                                new FieldData(
+                                    description: ModelService::getAttributeDescription(HostLocale::TABLE, HostLocale::PATTERN, [
+                                        'example' => 'https://{host}/{language}-{country}'
+                                    ]),
+                                    id: HostLocale::PATTERN,
+                                    required: true,
+                                    input: new TextInputData(
+                                        defaultValue: 'https://{host}/{language}-{country}'
+                                    ),
+                                ),
+                                new FieldData(
+                                    id: HostLocale::COUNTRY,
+                                    required: true,
+                                    input: new SelectInputData(
+                                        options: $countryOptions
+                                    ),
+                                ),
+                                new FieldData(
+                                    id: HostLocale::RELATION_LANGUAGES,
+                                    required: true,
+                                    input: new TableInputData(
+                                        columns: [
+                                            new FieldData(
+                                                id: HostLocaleLanguage::LANGUAGE,
+                                                required: true,
+                                                input: new SelectInputData(
+                                                    options: $languageOptions
+                                                ),
+                                            ),
                                         ],
-                                    ],
-                                    [
-                                        BlockElement::HANDLE => HostLocale::COUNTRY,
-                                        BlockElement::LABEL => trans('narsil-cms::validation.attributes.country'),
-                                        BlockElement::REQUIRED => true,
-                                        BlockElement::RELATION_BASE => [
-                                            Field::TYPE => SelectField::class,
-                                            Field::SETTINGS => app(SelectField::class),
-                                            Field::RELATION_OPTIONS => $countrySelectOptions,
-                                        ],
-                                    ],
-                                    [
-                                        BlockElement::HANDLE => HostLocale::RELATION_LANGUAGES,
-                                        BlockElement::LABEL => trans('narsil-cms::validation.attributes.languages'),
-                                        BlockElement::REQUIRED => true,
-                                        BlockElement::RELATION_BASE => [
-                                            Field::PLACEHOLDER => trans('narsil-cms::ui.add'),
-                                            Field::TYPE => TableField::class,
-                                            Field::SETTINGS => app(TableField::class)
-                                                ->columns([
-                                                    [
-                                                        BlockElement::HANDLE => HostLocaleLanguage::LANGUAGE,
-                                                        BlockElement::LABEL => trans('narsil-cms::validation.attributes.language'),
-                                                        BlockElement::REQUIRED => true,
-                                                        BlockElement::RELATION_BASE => [
-                                                            Field::TYPE => SelectField::class,
-                                                            Field::SETTINGS => app(SelectField::class),
-                                                            Field::RELATION_OPTIONS => $languageSelectOptions,
-                                                        ],
-                                                    ],
-                                                ]),
-                                        ],
-                                    ],
-                                ])
-                                ->labelKey(HostLocale::COUNTRY),
-                        ],
-                    ],
+                                    ),
+                                ),
+                            ],
+                        ),
+                    ),
                 ],
-            ],
+            ),
         ];
     }
 

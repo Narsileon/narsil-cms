@@ -63,7 +63,7 @@ class EntityStoreController extends RedirectController
             ->redirect(route('collections.index', [
                 'collection' => $collection,
             ]), $entity)
-            ->with('success', trans('narsil-cms::toasts.success.' . ModelEventEnum::CREATED->value, [
+            ->with('success', trans('narsil::toasts.success.' . ModelEventEnum::CREATED->value, [
                 'model' => $this->template->{Template::SINGULAR},
                 'table' => $this->template->{Template::PLURAL},
             ]));

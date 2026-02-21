@@ -9,9 +9,9 @@ use Illuminate\Http\Request;
 use Inertia\Response;
 use Narsil\Base\Enums\AbilityEnum;
 use Narsil\Base\Http\Collections\DataTableCollection;
+use Narsil\Base\Services\ModelService;
 use Narsil\Cms\Http\Controllers\RenderController;
 use Narsil\Cms\Models\Collections\Template;
-use Narsil\Cms\Services\ModelService;
 
 #endregion
 

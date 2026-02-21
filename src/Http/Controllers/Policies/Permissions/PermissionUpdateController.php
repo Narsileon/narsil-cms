@@ -8,8 +8,8 @@ use Illuminate\Http\RedirectResponse;
 use Narsil\Base\Contracts\Requests\PermissionFormRequest;
 use Narsil\Base\Enums\ModelEventEnum;
 use Narsil\Base\Models\Policies\Permission;
+use Narsil\Base\Services\ModelService;
 use Narsil\Cms\Http\Controllers\RedirectController;
-use Narsil\Cms\Services\ModelService;
 
 #endregion
 

@@ -1,5 +1,11 @@
 <?php
 
+#region USE
+
+use Narsil\Base\Enums\InputTypeEnum;
+
+#endregion
+
 return [
 
     /*
@@ -11,25 +17,19 @@ return [
     |
     */
 
-    \Narsil\Cms\Contracts\Fields\ArrayField::class,
-    \Narsil\Cms\Contracts\Fields\BuilderField::class,
-    \Narsil\Cms\Contracts\Fields\CheckboxField::class,
-    \Narsil\Cms\Contracts\Fields\DateField::class,
-    \Narsil\Cms\Contracts\Fields\DatetimeField::class,
-    \Narsil\Cms\Contracts\Fields\EmailField::class,
-    \Narsil\Cms\Contracts\Fields\EntityField::class,
-    \Narsil\Cms\Contracts\Fields\FileField::class,
-    \Narsil\Cms\Contracts\Fields\FormField::class,
-    \Narsil\Cms\Contracts\Fields\LinkField::class,
-    \Narsil\Cms\Contracts\Fields\NumberField::class,
-    \Narsil\Cms\Contracts\Fields\PasswordField::class,
-    \Narsil\Cms\Contracts\Fields\RangeField::class,
-    \Narsil\Cms\Contracts\Fields\RichTextField::class,
-    \Narsil\Cms\Contracts\Fields\SelectField::class,
-    \Narsil\Cms\Contracts\Fields\SwitchField::class,
-    \Narsil\Cms\Contracts\Fields\TableField::class,
-    \Narsil\Cms\Contracts\Fields\TextField::class,
-    \Narsil\Cms\Contracts\Fields\TextareaField::class,
-    \Narsil\Cms\Contracts\Fields\TimeField::class,
-    \Narsil\Cms\Contracts\Fields\TreeField::class,
+    InputTypeEnum::ARRAY->value => \Narsil\Base\Http\Data\Forms\Inputs\ArrayInputData::class,
+    InputTypeEnum::CHECKBOX->value => \Narsil\Base\Http\Data\Forms\Inputs\CheckboxInputData::class,
+    InputTypeEnum::DATE->value => \Narsil\Base\Http\Data\Forms\Inputs\DateInputData::class,
+    InputTypeEnum::DATETIME->value => \Narsil\Base\Http\Data\Forms\Inputs\DatetimeInputData::class,
+    InputTypeEnum::EMAIL->value => \Narsil\Base\Http\Data\Forms\Inputs\EmailInputData::class,
+    InputTypeEnum::FILE->value => \Narsil\Base\Http\Data\Forms\Inputs\FileInputData::class,
+    InputTypeEnum::NUMBER->value => \Narsil\Base\Http\Data\Forms\Inputs\NumberInputData::class,
+    InputTypeEnum::PASSWORD->value => \Narsil\Base\Http\Data\Forms\Inputs\PasswordInputData::class,
+    InputTypeEnum::RANGE->value => \Narsil\Base\Http\Data\Forms\Inputs\RangeInputData::class,
+    InputTypeEnum::SELECT->value => \Narsil\Base\Http\Data\Forms\Inputs\SelectInputData::class,
+    InputTypeEnum::SWITCH->value => \Narsil\Base\Http\Data\Forms\Inputs\SwitchInputData::class,
+    InputTypeEnum::TABLE->value => \Narsil\Base\Http\Data\Forms\Inputs\TableInputData::class,
+    InputTypeEnum::TEXT->value => \Narsil\Base\Http\Data\Forms\Inputs\TextInputData::class,
+    InputTypeEnum::TEXTAREA->value => \Narsil\Base\Http\Data\Forms\Inputs\TextareaInputData::class,
+    InputTypeEnum::TIME->value => \Narsil\Base\Http\Data\Forms\Inputs\TimeInputData::class,
 ];

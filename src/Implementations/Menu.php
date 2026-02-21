@@ -4,7 +4,7 @@ namespace Narsil\Cms\Implementations;
 
 #region USE
 
-use Narsil\Cms\Contracts\Menu;
+use Narsil\Cms\Contracts\Menu as Contract;
 use Narsil\Cms\Support\MenuItem;
 
 #endregion
@@ -13,7 +13,7 @@ use Narsil\Cms\Support\MenuItem;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-abstract class AbstractMenu implements Menu
+abstract class Menu implements Contract
 {
     #region PROPERTIES
 

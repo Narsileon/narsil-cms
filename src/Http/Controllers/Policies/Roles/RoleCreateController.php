@@ -7,12 +7,12 @@ namespace Narsil\Cms\Http\Controllers\Policies\Roles;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Inertia\Response;
+use Narsil\Base\Contracts\Forms\RoleForm;
 use Narsil\Base\Enums\AbilityEnum;
+use Narsil\Base\Enums\RequestMethodEnum;
 use Narsil\Base\Models\Policies\Role;
-use Narsil\Cms\Contracts\Forms\RoleForm;
-use Narsil\Cms\Enums\RequestMethodEnum;
+use Narsil\Base\Services\ModelService;
 use Narsil\Cms\Http\Controllers\RenderController;
-use Narsil\Cms\Services\ModelService;
 
 #endregion
 
@@ -62,7 +62,7 @@ class RoleCreateController extends RenderController
         $form = app(RoleForm::class)
             ->action(route('roles.store'))
             ->method(RequestMethodEnum::POST->value)
-            ->submitLabel(trans('narsil-cms::ui.save'));
+            ->submitLabel(trans('narsil::ui.save'));
 
         return $form;
     }

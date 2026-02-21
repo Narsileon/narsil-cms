@@ -7,12 +7,12 @@ namespace Narsil\Cms\Http\Controllers\Users;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Inertia\Response;
+use Narsil\Base\Contracts\Forms\UserForm;
 use Narsil\Base\Enums\AbilityEnum;
-use Narsil\Cms\Contracts\Forms\UserForm;
-use Narsil\Cms\Enums\RequestMethodEnum;
+use Narsil\Base\Enums\RequestMethodEnum;
+use Narsil\Base\Services\ModelService;
 use Narsil\Cms\Http\Controllers\RenderController;
 use Narsil\Cms\Models\User;
-use Narsil\Cms\Services\ModelService;
 
 #endregion
 
@@ -62,7 +62,7 @@ class UserCreateController extends RenderController
         $form = app(UserForm::class)
             ->action(route('users.store'))
             ->method(RequestMethodEnum::POST->value)
-            ->submitLabel(trans('narsil-cms::ui.save'));
+            ->submitLabel(trans('narsil::ui.save'));
 
         return $form;
     }

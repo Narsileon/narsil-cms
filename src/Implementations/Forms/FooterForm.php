@@ -5,6 +5,8 @@ namespace Narsil\Cms\Implementations\Forms;
 #region USE
 
 use Illuminate\Database\Eloquent\Model;
+use Narsil\Base\Http\Data\Forms\FieldData;
+use Narsil\Base\Http\Data\Forms\FormStepData;
 use Narsil\Base\Http\Data\Forms\Inputs\ArrayInputData;
 use Narsil\Base\Http\Data\Forms\Inputs\FileInputData;
 use Narsil\Base\Http\Data\Forms\Inputs\SelectInputData;
@@ -13,8 +15,6 @@ use Narsil\Base\Http\Data\Forms\Inputs\TextInputData;
 use Narsil\Base\Implementations\Form;
 use Narsil\Base\Services\RouteService;
 use Narsil\Cms\Contracts\Forms\FooterForm as Contract;
-use Narsil\Cms\Http\Data\Forms\FieldData;
-use Narsil\Cms\Http\Data\Forms\FormStepData;
 use Narsil\Cms\Models\Globals\Footer;
 use Narsil\Cms\Models\Globals\FooterLink;
 use Narsil\Cms\Models\Globals\FooterSocialMedium;
@@ -52,7 +52,7 @@ class FooterForm extends Form implements Contract
         return [
             new FormStepData(
                 id: 'definition',
-                label: trans('narsil-ui::ui.definition'),
+                label: trans('narsil::ui.definition'),
                 elements: [
                     new FieldData(
                         id: Footer::SLUG,
@@ -111,7 +111,7 @@ class FooterForm extends Form implements Contract
                     new FieldData(
                         id: Footer::COUNTRY,
                         input: new SelectInputData(
-                            options: LocaleService::countrySelectOptions(),
+                            options: LocaleService::countryOptions(),
                         ),
                     ),
                     new FieldData(
@@ -132,12 +132,6 @@ class FooterForm extends Form implements Contract
                         input: new ArrayInputData(
                             labelKey: FooterLink::LABEL,
                             form: [
-                                new FieldData(
-                                    id: FooterLink::LABEL,
-                                    label: trans('narsil-cms::validation.attributes.url'),
-                                    translatable: true,
-                                    input: new TextInputData(),
-                                ),
                                 new FieldData(
                                     id: FooterLink::SITE_PAGE_ID,
                                     required: true,

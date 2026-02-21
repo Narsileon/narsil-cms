@@ -7,13 +7,13 @@ namespace Narsil\Cms\Http\Controllers\Globals\Headers;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Inertia\Response;
+use Narsil\Base\Casts\DiffForHumansCast;
 use Narsil\Base\Enums\AbilityEnum;
-use Narsil\Cms\Casts\HumanDatetimeCast;
+use Narsil\Base\Enums\RequestMethodEnum;
+use Narsil\Base\Services\ModelService;
 use Narsil\Cms\Contracts\Forms\HeaderForm;
-use Narsil\Cms\Enums\RequestMethodEnum;
 use Narsil\Cms\Http\Controllers\RenderController;
 use Narsil\Cms\Models\Globals\Header;
-use Narsil\Cms\Services\ModelService;
 
 #endregion
 
@@ -60,8 +60,8 @@ class HeaderEditController extends RenderController
         $header->loadMissingCreatorAndEditor();
 
         $header->mergeCasts([
-            Header::CREATED_AT => HumanDatetimeCast::class,
-            Header::UPDATED_AT => HumanDatetimeCast::class,
+            Header::CREATED_AT => DiffForHumansCast::class,
+            Header::UPDATED_AT => DiffForHumansCast::class,
         ]);
 
         $data = $header->toArrayWithTranslations();
@@ -90,7 +90,7 @@ class HeaderEditController extends RenderController
             ->action(route('headers.update', $header->{Header::ID}))
             ->id($header->{Header::ID})
             ->method(RequestMethodEnum::PATCH->value)
-            ->submitLabel(trans('narsil-ui::ui.update'));
+            ->submitLabel(trans('narsil::ui.update'));
 
         return $form;
     }

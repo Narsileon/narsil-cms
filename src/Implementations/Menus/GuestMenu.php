@@ -5,10 +5,10 @@ namespace Narsil\Cms\Implementations\Menus;
 #region USE
 
 use Narsil\Base\Models\Users\UserConfiguration;
+use Narsil\Base\Services\ModelService;
 use Narsil\Base\Support\TranslationsBag;
 use Narsil\Cms\Contracts\Menus\GuestMenu as Contract;
-use Narsil\Cms\Implementations\AbstractMenu;
-use Narsil\Cms\Services\ModelService;
+use Narsil\Cms\Implementations\Menu;
 use Narsil\Cms\Support\MenuItem;
 
 #endregion
@@ -17,7 +17,7 @@ use Narsil\Cms\Support\MenuItem;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class GuestMenu extends AbstractMenu implements Contract
+class GuestMenu extends Menu implements Contract
 {
     #region CONSTRUCTOR
 
@@ -28,9 +28,9 @@ class GuestMenu extends AbstractMenu implements Contract
     {
         app(TranslationsBag::class)
             ->add('narsil-cms::accessibility.toggle_user_menu')
-            ->add('narsil-cms::themes.dark')
-            ->add('narsil-cms::themes.light')
-            ->add('narsil-cms::themes.system');
+            ->add('narsil::themes.dark')
+            ->add('narsil::themes.light')
+            ->add('narsil::themes.system');
     }
 
     #endregion
@@ -53,7 +53,7 @@ class GuestMenu extends AbstractMenu implements Contract
             ->add(
                 new MenuItem('login')
                     ->icon('log-in')
-                    ->label(trans('narsil-cms::ui.log_in'))
+                    ->label(trans('narsil::ui.log_in'))
                     ->route('login'),
             );
 

@@ -7,11 +7,11 @@ namespace Narsil\Cms\Http\Controllers\Collections\Blocks;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Arr;
 use Narsil\Base\Enums\ModelEventEnum;
+use Narsil\Base\Services\ModelService;
 use Narsil\Cms\Contracts\Requests\BlockFormRequest;
 use Narsil\Cms\Http\Controllers\RedirectController;
 use Narsil\Cms\Models\Collections\Block;
 use Narsil\Cms\Services\Models\BlockService;
-use Narsil\Cms\Services\ModelService;
 
 #endregion
 

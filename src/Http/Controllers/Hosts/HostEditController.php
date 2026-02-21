@@ -7,14 +7,14 @@ namespace Narsil\Cms\Http\Controllers\Hosts;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Inertia\Response;
+use Narsil\Base\Casts\DiffForHumansCast;
 use Narsil\Base\Enums\AbilityEnum;
-use Narsil\Cms\Casts\HumanDatetimeCast;
+use Narsil\Base\Enums\RequestMethodEnum;
+use Narsil\Base\Services\ModelService;
 use Narsil\Cms\Contracts\Forms\HostForm;
-use Narsil\Cms\Enums\RequestMethodEnum;
 use Narsil\Cms\Http\Controllers\RenderController;
 use Narsil\Cms\Models\Hosts\Host;
 use Narsil\Cms\Models\Hosts\HostLocale;
-use Narsil\Cms\Services\ModelService;
 
 #endregion
 
@@ -68,8 +68,8 @@ class HostEditController extends RenderController
         $host->loadMissingCreatorAndEditor();
 
         $host->mergeCasts([
-            Host::CREATED_AT => HumanDatetimeCast::class,
-            Host::UPDATED_AT => HumanDatetimeCast::class,
+            Host::CREATED_AT => DiffForHumansCast::class,
+            Host::UPDATED_AT => DiffForHumansCast::class,
         ]);
 
         $data = $host->toArrayWithTranslations();
@@ -98,7 +98,7 @@ class HostEditController extends RenderController
             ->action(route('hosts.update', $host->{Host::ID}))
             ->id($host->{Host::ID})
             ->method(RequestMethodEnum::PATCH->value)
-            ->submitLabel(trans('narsil-ui::ui.update'));
+            ->submitLabel(trans('narsil::ui.update'));
 
         return $form;
     }

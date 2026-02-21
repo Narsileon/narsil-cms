@@ -5,19 +5,16 @@ namespace Narsil\Cms\Implementations\Forms;
 #region USE
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Str;
 use Narsil\Base\Enums\OperatorEnum;
-use Narsil\Cms\Contracts\Fields\SelectField;
-use Narsil\Cms\Contracts\Fields\TableField;
-use Narsil\Cms\Contracts\Fields\TextField;
+use Narsil\Base\Http\Data\Forms\FieldData;
+use Narsil\Base\Http\Data\Forms\FormStepData;
+use Narsil\Base\Http\Data\Forms\Inputs\SelectInputData;
+use Narsil\Base\Http\Data\Forms\Inputs\TableInputData;
+use Narsil\Base\Http\Data\Forms\Inputs\TextInputData;
+use Narsil\Base\Implementations\Form;
 use Narsil\Cms\Contracts\Forms\BlockForm as Contract;
-use Narsil\Cms\Implementations\AbstractForm;
 use Narsil\Cms\Models\AbstractCondition;
-use Narsil\Cms\Models\Collections\BlockElement;
 use Narsil\Cms\Models\Collections\Element;
-use Narsil\Cms\Models\Collections\Field;
-use Narsil\Cms\Models\Collections\TemplateTab;
-use Narsil\Cms\Models\Collections\TemplateTabElement;
 
 #endregion
 
@@ -25,7 +22,7 @@ use Narsil\Cms\Models\Collections\TemplateTabElement;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class ConditionForm extends AbstractForm implements Contract
+class ConditionForm extends Form implements Contract
 {
     #region CONSTRUCTOR
 
@@ -44,61 +41,46 @@ class ConditionForm extends AbstractForm implements Contract
     /**
      * {@inheritDoc}
      */
-    protected function getTabs(): array
+    protected function getSteps(): array
     {
         return [
-            [
-                TemplateTab::HANDLE => 'condition',
-                TemplateTab::LABEL => Str::ucfirst(trans('narsil-cms::validation.attributes.conditions')),
-                TemplateTab::RELATION_ELEMENTS => [
-                    [
-                        TemplateTabElement::HANDLE => Element::RELATION_CONDITIONS,
-                        TemplateTabElement::LABEL => trans('narsil-cms::validation.attributes.conditions'),
-                        TemplateTabElement::RELATION_BASE => [
-                            Field::PLACEHOLDER => trans('narsil-cms::ui.add'),
-                            Field::TYPE => TableField::class,
-                            Field::SETTINGS => app(TableField::class)
-                                ->columns([
-                                    [
-                                        BlockElement::HANDLE => AbstractCondition::HANDLE,
-                                        BlockElement::LABEL => trans('narsil-cms::validation.attributes.handle'),
-                                        BlockElement::REQUIRED => true,
-                                        BlockElement::RELATION_BASE => [
-                                            Field::TYPE => TextField::class,
-                                            Field::SETTINGS => app(TextField::class),
-                                        ],
-                                    ],
-                                    [
-                                        BlockElement::HANDLE => AbstractCondition::OPERATOR,
-                                        BlockElement::LABEL => trans('narsil-cms::validation.attributes.operator'),
-                                        BlockElement::REQUIRED => true,
-                                        BlockElement::RELATION_BASE => [
-                                            Field::TYPE => SelectField::class,
-                                            Field::SETTINGS => app(SelectField::class),
-                                            Field::RELATION_OPTIONS => [
-                                                OperatorEnum::option(OperatorEnum::EQUALS),
-                                                OperatorEnum::option(OperatorEnum::NOT_EQUALS),
-                                                OperatorEnum::option(OperatorEnum::GREATER_THAN),
-                                                OperatorEnum::option(OperatorEnum::GREATER_THAN_OR_EQUAL),
-                                                OperatorEnum::option(OperatorEnum::LESS_THAN),
-                                                OperatorEnum::option(OperatorEnum::LESS_THAN_OR_EQUAL),
-                                            ],
-                                        ],
-                                    ],
-                                    [
-                                        BlockElement::HANDLE => AbstractCondition::VALUE,
-                                        BlockElement::LABEL => trans('narsil-cms::validation.attributes.value'),
-                                        BlockElement::REQUIRED => true,
-                                        BlockElement::RELATION_BASE => [
-                                            Field::TYPE => TextField::class,
-                                            Field::SETTINGS => app(TextField::class),
-                                        ],
-                                    ],
-                                ]),
-                        ],
-                    ],
+            new FormStepData(
+                id: 'condition',
+                label: trans('narsil-cms::validation.attributes.conditions'),
+                elements: [
+                    new FieldData(
+                        id: Element::RELATION_CONDITIONS,
+                        input: new TableInputData(
+                            columns: [
+                                new FieldData(
+                                    id: AbstractCondition::HANDLE,
+                                    required: true,
+                                    input: new TextInputData(),
+                                ),
+                                new FieldData(
+                                    id: AbstractCondition::OPERATOR,
+                                    required: true,
+                                    input: new SelectInputData(
+                                        options: [
+                                            OperatorEnum::option(OperatorEnum::EQUALS),
+                                            OperatorEnum::option(OperatorEnum::NOT_EQUALS),
+                                            OperatorEnum::option(OperatorEnum::GREATER_THAN),
+                                            OperatorEnum::option(OperatorEnum::GREATER_THAN_OR_EQUAL),
+                                            OperatorEnum::option(OperatorEnum::LESS_THAN),
+                                            OperatorEnum::option(OperatorEnum::LESS_THAN_OR_EQUAL),
+                                        ]
+                                    ),
+                                ),
+                                new FieldData(
+                                    id: AbstractCondition::VALUE,
+                                    required: true,
+                                    input: new TextInputData(),
+                                ),
+                            ],
+                        ),
+                    ),
                 ],
-            ],
+            ),
         ];
     }
 

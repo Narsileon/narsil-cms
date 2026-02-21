@@ -1,6 +1,5 @@
 import { Link, router } from "@inertiajs/react";
-import { FormElement, FormProvider, FormRoot } from "@narsil-cms/components/form";
-import type { Bookmark, FormType } from "@narsil-cms/types";
+import type { Bookmark } from "@narsil-cms/types";
 import { Button } from "@narsil-ui/components/button";
 import {
   CardContent,
@@ -9,6 +8,7 @@ import {
   CardRoot,
   CardTitle,
 } from "@narsil-ui/components/card";
+import { FormElement, FormProvider, FormRoot, registry } from "@narsil-ui/components/form";
 import { Icon } from "@narsil-ui/components/icon";
 import {
   PopoverPopup,
@@ -19,6 +19,7 @@ import {
 } from "@narsil-ui/components/popover";
 import { Tooltip } from "@narsil-ui/components/tooltip";
 import { useTranslator } from "@narsil-ui/components/translator";
+import type { FormData } from "@narsil-ui/types";
 import { sortBy } from "lodash-es";
 import { Fragment, useEffect, useState, type ComponentProps } from "react";
 import { route } from "ziggy-js";
@@ -35,9 +36,9 @@ function Bookmarks({ breadcrumb, ...props }: BookmarksProps) {
 
   const [bookmark, setBookmark] = useState<Bookmark | null>(null);
   const [bookmarks, setBookmarks] = useState<Bookmark[]>([]);
-  const [form, setForm] = useState<FormType | null>(null);
-  const [translations, setTranslations] = useState<Record<string, string>>({});
+  const [form, setForm] = useState<FormData | null>(null);
   const [open, onOpenChange] = useState<boolean>(false);
+  const [translations, setTranslations] = useState<Record<string, string>>({});
 
   const name = breadcrumb.map((item) => item.label).join(" > ");
   const url = window.location.origin + window.location.pathname;
@@ -106,11 +107,11 @@ function Bookmarks({ breadcrumb, ...props }: BookmarksProps) {
           <PopoverPopup className="border-none p-0">
             {bookmark && form ? (
               <FormProvider
-                action={route("user-bookmarks.update", bookmark.uuid)}
                 id={form.id}
-                elements={form.tabs}
+                action={route("user-bookmarks.update", bookmark.uuid)}
                 method="patch"
-                initialValues={{
+                steps={form.steps}
+                initialData={{
                   name: bookmark?.name,
                 }}
                 render={() => {
@@ -129,11 +130,13 @@ function Bookmarks({ breadcrumb, ...props }: BookmarksProps) {
                             },
                           }}
                         >
-                          {form.tabs.map((tab, index) => {
+                          {form.steps.map((step, index) => {
                             return (
                               <Fragment key={index}>
-                                {tab.elements?.map((element, index) => {
-                                  return <FormElement {...element} key={index} />;
+                                {step.elements?.map((element, index) => {
+                                  return (
+                                    <FormElement {...element} registry={registry} key={index} />
+                                  );
                                 })}
                               </Fragment>
                             );
@@ -141,10 +144,10 @@ function Bookmarks({ breadcrumb, ...props }: BookmarksProps) {
                         </FormRoot>
                       </CardContent>
                       <CardFooter className="justify-between border-t">
-                        <Button size="sm" variant="secondary" onClick={() => setBookmark(null)}>
+                        <Button variant="secondary" onClick={() => setBookmark(null)}>
                           {translations["ui.cancel"]}
                         </Button>
-                        <Button form={form.id} size="sm" type="submit">
+                        <Button form={form.id} type="submit">
                           {form.submitLabel}
                         </Button>
                       </CardFooter>
@@ -195,27 +198,25 @@ function Bookmarks({ breadcrumb, ...props }: BookmarksProps) {
                               <Tooltip tooltip={translations["ui.edit"]}>
                                 <Button
                                   aria-label={translations["ui.edit"]}
-                                  className="size-8"
-                                  size="icon"
+                                  size="icon-sm"
                                   variant="ghost"
                                   onClick={() => {
                                     setBookmark(bookmark);
                                   }}
                                 >
-                                  <Icon className="size-4" name="edit" />
+                                  <Icon name="edit" />
                                 </Button>
                               </Tooltip>
                               <Tooltip tooltip={translations["ui.remove"]}>
                                 <Button
                                   aria-label={translations["ui.remove"]}
-                                  className="size-8"
-                                  size="icon"
+                                  size="icon-sm"
                                   variant="ghost"
                                   onClick={() => {
                                     onDelete(bookmark.uuid);
                                   }}
                                 >
-                                  <Icon className="size-4" name="star-off" />
+                                  <Icon name="star-off" />
                                 </Button>
                               </Tooltip>
                             </div>

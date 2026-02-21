@@ -4,13 +4,13 @@ namespace Narsil\Cms\Implementations\Forms;
 
 #region USE
 
+use Narsil\Base\Http\Data\Forms\FieldData;
+use Narsil\Base\Http\Data\Forms\FormStepData;
 use Narsil\Base\Http\Data\Forms\Inputs\SwitchInputData;
 use Narsil\Base\Http\Data\Forms\Inputs\TextInputData;
 use Narsil\Base\Implementations\Form;
 use Narsil\Cms\Contracts\Forms\BlockElementForm as Contract;
 use Narsil\Cms\Contracts\Forms\ConditionForm;
-use Narsil\Cms\Http\Data\Forms\FieldData;
-use Narsil\Cms\Http\Data\Forms\FormStepData;
 use Narsil\Cms\Models\Collections\BlockElement;
 
 #endregion
@@ -31,7 +31,7 @@ class BlockElementForm extends Form implements Contract
         return [
             new FormStepData(
                 id: 'definition',
-                label: trans('narsil-ui::ui.definition'),
+                label: trans('narsil::ui.definition'),
                 elements: [
                     new FieldData(
                         id: BlockElement::HANDLE,
