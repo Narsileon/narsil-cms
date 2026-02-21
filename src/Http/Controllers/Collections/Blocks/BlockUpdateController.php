@@ -11,7 +11,7 @@ use Narsil\Base\Services\ModelService;
 use Narsil\Cms\Contracts\Requests\BlockFormRequest;
 use Narsil\Cms\Http\Controllers\RedirectController;
 use Narsil\Cms\Models\Collections\Block;
-use Narsil\Cms\Services\Models\BlockService;
+use Narsil\Cms\Services\BlockService;
 
 #endregion
 

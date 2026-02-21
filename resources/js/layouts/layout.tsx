@@ -1,6 +1,6 @@
 import { Toast as ToastPrimitive } from "@base-ui/react/toast";
-import { Head } from "@narsil-cms/blocks/head";
 import { type GlobalProps } from "@narsil-cms/hooks/use-props";
+import { Head } from "@narsil-ui/components/head";
 import { Toast } from "@narsil-ui/components/toast";
 import { TranslatorProvider } from "@narsil-ui/components/translator";
 import { useColorStore } from "@narsil-ui/stores/color-store";

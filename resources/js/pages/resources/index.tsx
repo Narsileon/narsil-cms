@@ -1,7 +1,13 @@
 import { Link } from "@inertiajs/react";
-import { getMenuColumn, getSelectColumn, getStatusColumn } from "@narsil-cms/components/data-table";
+import { getStatusColumn } from "@narsil-cms/components/data-table";
 import { Button } from "@narsil-ui/components/button";
-import { Data, DataTable, DataTableProvider } from "@narsil-ui/components/data-table";
+import {
+  type TableData,
+  DataTable,
+  DataTableProvider,
+  getMenuColumn,
+  getSelectColumn,
+} from "@narsil-ui/components/data-table";
 import { Heading } from "@narsil-ui/components/heading";
 import { Icon } from "@narsil-ui/components/icon";
 import { SectionContent, SectionHeader, SectionRoot } from "@narsil-ui/components/section";
@@ -30,7 +36,7 @@ function ResourceIndex({ collection, title }: ResourceIndexProps) {
   const selectColumn = getSelectColumn();
   const statusColumn = getStatusColumn();
 
-  const finalColumns: ColumnDef<Data>[] = [
+  const finalColumns: ColumnDef<TableData>[] = [
     ...(collection.meta.selectable !== false ? [selectColumn] : []),
     ...(collection.meta.revisionable === true ? [statusColumn] : []),
     ...collection.meta.columns,

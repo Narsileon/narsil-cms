@@ -12,7 +12,7 @@ use Narsil\Cms\Contracts\Requests\FieldFormRequest;
 use Narsil\Cms\Http\Controllers\RedirectController;
 use Narsil\Cms\Models\Collections\Block;
 use Narsil\Cms\Models\Collections\Field;
-use Narsil\Cms\Services\Models\FieldService;
+use Narsil\Cms\Services\FieldService;
 
 #endregion
 

@@ -11,7 +11,7 @@ use Narsil\Base\Services\ModelService;
 use Narsil\Cms\Contracts\Requests\TemplateFormRequest;
 use Narsil\Cms\Http\Controllers\RedirectController;
 use Narsil\Cms\Models\Collections\Template;
-use Narsil\Cms\Services\Models\TemplateService;
+use Narsil\Cms\Services\TemplateService;
 
 #endregion
 

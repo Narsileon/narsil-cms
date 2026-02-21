@@ -13,8 +13,8 @@ use Narsil\Cms\Http\Controllers\RedirectController;
 use Narsil\Cms\Jobs\SitemapJob;
 use Narsil\Cms\Models\Hosts\Host;
 use Narsil\Cms\Models\Hosts\HostLocale;
-use Narsil\Cms\Services\Models\HostLocaleService;
-use Narsil\Cms\Services\Models\HostService;
+use Narsil\Cms\Services\HostLocaleService;
+use Narsil\Cms\Services\HostService;
 
 #endregion
 

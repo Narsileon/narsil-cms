@@ -16,7 +16,7 @@ use Narsil\Cms\Contracts\Requests\EntityFormRequest;
 use Narsil\Cms\Http\Controllers\RedirectController;
 use Narsil\Cms\Models\Collections\Template;
 use Narsil\Cms\Models\Entities\Entity;
-use Narsil\Cms\Services\Models\EntityService;
+use Narsil\Cms\Services\EntityService;
 use Narsil\Cms\Traits\IsCollectionController;
 
 #endregion

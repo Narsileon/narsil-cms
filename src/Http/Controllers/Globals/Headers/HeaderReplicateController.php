@@ -11,7 +11,7 @@ use Narsil\Base\Enums\ModelEventEnum;
 use Narsil\Base\Services\ModelService;
 use Narsil\Cms\Http\Controllers\RedirectController;
 use Narsil\Cms\Models\Globals\Header;
-use Narsil\Cms\Services\Models\HeaderService;
+use Narsil\Cms\Services\HeaderService;
 
 #endregion
 
