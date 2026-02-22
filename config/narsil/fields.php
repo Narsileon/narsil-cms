@@ -26,6 +26,7 @@ return [
     InputTypeEnum::NUMBER->value => \Narsil\Base\Http\Data\Forms\Inputs\NumberInputData::class,
     InputTypeEnum::PASSWORD->value => \Narsil\Base\Http\Data\Forms\Inputs\PasswordInputData::class,
     InputTypeEnum::RANGE->value => \Narsil\Base\Http\Data\Forms\Inputs\RangeInputData::class,
+    InputTypeEnum::RICH_TEXT_EDITOR->value => \Narsil\Base\Http\Data\Forms\Inputs\RichTextInputData::class,
     InputTypeEnum::SELECT->value => \Narsil\Base\Http\Data\Forms\Inputs\SelectInputData::class,
     InputTypeEnum::SWITCH->value => \Narsil\Base\Http\Data\Forms\Inputs\SwitchInputData::class,
     InputTypeEnum::TABLE->value => \Narsil\Base\Http\Data\Forms\Inputs\TableInputData::class,

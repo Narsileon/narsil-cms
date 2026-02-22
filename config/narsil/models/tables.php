@@ -18,5 +18,4 @@ return [
     \Narsil\Cms\Models\Globals\Footer::TABLE => \Narsil\Cms\Implementations\Tables\FooterTable::class,
     \Narsil\Cms\Models\Globals\Header::TABLE => \Narsil\Cms\Implementations\Tables\HeaderTable::class,
     \Narsil\Cms\Models\Hosts\Host::TABLE => \Narsil\Cms\Implementations\Tables\HostTable::class,
-    \Narsil\Cms\Models\Storages\Asset::TABLE => \Narsil\Cms\Implementations\Tables\AssetTable::class,
 ];

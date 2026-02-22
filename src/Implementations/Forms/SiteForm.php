@@ -4,17 +4,15 @@ namespace Narsil\Cms\Implementations\Forms;
 
 #region USE
 
-use Narsil\Cms\Contracts\Fields\SelectField;
-use Narsil\Cms\Contracts\Fields\TreeField;
+use Narsil\Base\Http\Data\Forms\FieldData;
+use Narsil\Base\Http\Data\Forms\FormStepData;
+use Narsil\Base\Http\Data\Forms\Inputs\SelectInputData;
+use Narsil\Base\Implementations\Form;
 use Narsil\Cms\Contracts\Forms\SiteForm as Contract;
-use Narsil\Cms\Implementations\AbstractForm;
-use Narsil\Cms\Models\Collections\Field;
-use Narsil\Cms\Models\Collections\TemplateTab;
-use Narsil\Cms\Models\Collections\TemplateTabElement;
+use Narsil\Cms\Http\Data\Forms\Inputs\TreeInputData;
 use Narsil\Cms\Models\Globals\Footer;
 use Narsil\Cms\Models\Globals\Header;
 use Narsil\Cms\Models\Sites\Site;
-use Narsil\Cms\Support\SelectOption;
 
 #endregion
 
@@ -22,98 +20,40 @@ use Narsil\Cms\Support\SelectOption;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class SiteForm extends AbstractForm implements Contract
+class SiteForm extends Form implements Contract
 {
     #region PROTECTED METHODS
 
     /**
      * {@inheritDoc}
      */
-    protected function getTabs(): array
+    protected function getSteps(): array
     {
-        $headerSelectOptions = static::getHeaderSelectOptions();
-        $footerSelectOptions = static::getFooterSelectOptions();
-
         return [
-            [
-                TemplateTab::HANDLE => Site::RELATION_PAGES,
-                TemplateTab::LABEL => trans('narsil-cms::ui.navigation'),
-                TemplateTab::RELATION_ELEMENTS => [
-                    [
-                        TemplateTabElement::HANDLE => Site::HEADER_ID,
-                        TemplateTabElement::LABEL => trans('narsil-cms::validation.attributes.header_id'),
-                        TemplateTabElement::RELATION_BASE => [
-                            Field::TYPE => SelectField::class,
-                            Field::SETTINGS => app(SelectField::class),
-                            Field::RELATION_OPTIONS => $headerSelectOptions,
-                        ],
-                    ],
-                    [
-                        TemplateTabElement::HANDLE => Site::FOOTER_ID,
-                        TemplateTabElement::LABEL => trans('narsil-cms::validation.attributes.footer_id'),
-                        TemplateTabElement::RELATION_BASE => [
-                            Field::TYPE => SelectField::class,
-                            Field::SETTINGS => app(SelectField::class),
-                            Field::RELATION_OPTIONS => $footerSelectOptions,
-                        ],
-                    ],
-                    [
-                        TemplateTabElement::HANDLE => Site::RELATION_PAGES,
-                        TemplateTabElement::LABEL => trans('narsil-cms::ui.navigation'),
-                        TemplateTabElement::RELATION_BASE => [
-                            Field::TYPE => TreeField::class,
-                            Field::SETTINGS => app(TreeField::class),
-                        ],
-                    ],
+            new FormStepData(
+                id: Site::RELATION_PAGES,
+                label: trans('narsil-cms::ui.navigation'),
+                elements: [
+                    new FieldData(
+                        id: Site::HEADER_ID,
+                        input: new SelectInputData(
+                            options: Header::options(),
+                        ),
+                    ),
+                    new FieldData(
+                        id: Site::FOOTER_ID,
+                        input: new SelectInputData(
+                            options: Footer::options(),
+                        ),
+                    ),
+                    new FieldData(
+                        id: Site::RELATION_PAGES,
+                        label: trans('narsil-cms::ui.navigation'),
+                        input: new TreeInputData(),
+                    ),
                 ],
-            ],
+            ),
         ];
-    }
-
-    #endregion
-
-    #region PROTECTED METHODS
-
-    /**
-     * Get the footer select options.
-     *
-     * @return array<SelectOption>
-     */
-    protected static function getFooterSelectOptions(): array
-    {
-        return Footer::query()
-            ->orderBy(Footer::SLUG)
-            ->get()
-            ->map(function (Footer $footer)
-            {
-                $option = new SelectOption()
-                    ->optionLabel($footer->{Footer::SLUG})
-                    ->optionValue((string)$footer->{Footer::ID});
-
-                return $option;
-            })
-            ->toArray();
-    }
-
-    /**
-     * Get the header select options.
-     *
-     * @return array<SelectOption>
-     */
-    protected static function getHeaderSelectOptions(): array
-    {
-        return Header::query()
-            ->orderBy(Header::SLUG)
-            ->get()
-            ->map(function (Header $header)
-            {
-                $option = new SelectOption()
-                    ->optionLabel($header->{Header::SLUG})
-                    ->optionValue((string)$header->{Header::ID});
-
-                return $option;
-            })
-            ->toArray();
     }
 
     #endregion

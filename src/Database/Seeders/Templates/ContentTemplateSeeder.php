@@ -4,10 +4,8 @@ namespace Narsil\Cms\Database\Seeders\Templates;
 
 #region USE
 
-use Narsil\Cms\Contracts\Fields\BuilderField;
 use Narsil\Cms\Database\Seeders\Blocks\AccordionBlockSeeder;
 use Narsil\Cms\Database\Seeders\Blocks\CallToActionBlockSeeder;
-use Narsil\Cms\Database\Seeders\Blocks\FormBlockSeeder;
 use Narsil\Cms\Database\Seeders\Blocks\HeroHeaderBlockSeeder;
 use Narsil\Cms\Database\Seeders\TemplateSeeder;
 use Narsil\Cms\Models\Collections\Field;
@@ -64,7 +62,7 @@ class ContentTemplateSeeder extends TemplateSeeder
                         ])->setRelation(
                             TemplateTabElement::RELATION_BASE,
                             new Field([
-                                Field::TYPE => BuilderField::class,
+                                Field::TYPE => 'builder',
                             ])->setRelation(
                                 Field::RELATION_BLOCKS,
                                 [

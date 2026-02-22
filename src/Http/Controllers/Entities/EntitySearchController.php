@@ -6,11 +6,11 @@ namespace Narsil\Cms\Http\Controllers\Entities;
 
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\App;
-use Narsil\Cms\Http\Controllers\RedirectController;
-use Narsil\Cms\Http\Requests\SearchRequest;
+use Narsil\Base\Http\Controllers\RedirectController;
+use Narsil\Base\Http\Data\OptionData;
+use Narsil\Base\Http\Requests\SearchRequest;
 use Narsil\Cms\Models\Collections\Template;
 use Narsil\Cms\Models\Entities\Entity;
-use Narsil\Cms\Support\SelectOption;
 
 #endregion
 
@@ -69,9 +69,10 @@ class EntitySearchController extends RedirectController
 
             $results = $results->merge($models->map(function ($entity)
             {
-                return new SelectOption()
-                    ->optionLabel($entity->{Entity::SLUG})
-                    ->optionValue($entity->{Entity::ATTRIBUTE_IDENTIFIER});
+                return new OptionData(
+                    label: $entity->{Entity::SLUG},
+                    value: $entity->{Entity::ATTRIBUTE_IDENTIFIER}
+                );
             }));
         }
 

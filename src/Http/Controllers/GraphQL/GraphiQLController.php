@@ -6,7 +6,7 @@ namespace Narsil\Cms\Http\Controllers\GraphQL;
 
 use Illuminate\Http\Request;
 use Inertia\Response;
-use Narsil\Cms\Http\Controllers\RenderController;
+use Narsil\Base\Http\Controllers\RenderController;
 
 #endregion
 

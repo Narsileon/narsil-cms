@@ -6,9 +6,9 @@ namespace Narsil\Cms\Services;
 
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
+use Narsil\Base\Services\DatabaseService;
 use Narsil\Cms\Models\Collections\Block;
 use Narsil\Cms\Models\Collections\BlockElement;
-use Narsil\Cms\Services\DatabaseService;
 
 #endregion
 

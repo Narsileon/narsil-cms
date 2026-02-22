@@ -17,14 +17,11 @@ use Narsil\Cms\Models\Hosts\HostLocale;
 use Narsil\Cms\Models\Hosts\HostLocaleLanguage;
 use Narsil\Cms\Models\Sites\Site;
 use Narsil\Cms\Models\Sites\SitePage;
-use Narsil\Cms\Models\Storages\Asset;
-use Narsil\Cms\Models\Users\UserBookmark;
 use Narsil\Cms\Models\ValidationRule;
 
 #endregion
 
 return [
-    Asset::TABLE => 'ressource|ressources',
     Block::TABLE => 'bloc|blocs',
     Configuration::TABLE => 'paramètres',
     Entity::TABLE => 'entité|entités',
@@ -40,6 +37,5 @@ return [
     SitePage::TABLE => 'page|pages',
     Template::TABLE => 'modèle|modèles',
     TemplateTab::TABLE => 'onglet|onglets',
-    UserBookmark::TABLE => 'signet|signets',
     ValidationRule::TABLE => 'regle de validation|règles de validation',
 ];

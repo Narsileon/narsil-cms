@@ -7,9 +7,9 @@ namespace Narsil\Cms\Http\Controllers\Globals\Footers;
 use Illuminate\Http\RedirectResponse;
 use Narsil\Base\Enums\AbilityEnum;
 use Narsil\Base\Enums\ModelEventEnum;
+use Narsil\Base\Http\Controllers\RedirectController;
+use Narsil\Base\Http\Requests\DestroyManyRequest;
 use Narsil\Base\Services\ModelService;
-use Narsil\Cms\Http\Controllers\RedirectController;
-use Narsil\Cms\Http\Requests\DestroyManyRequest;
 use Narsil\Cms\Models\Globals\Footer;
 
 #endregion

@@ -6,9 +6,9 @@ namespace Narsil\Cms\Http\Controllers\Sites\Pages;
 
 use Illuminate\Http\RedirectResponse;
 use Narsil\Base\Enums\ModelEventEnum;
+use Narsil\Base\Http\Controllers\RedirectController;
 use Narsil\Base\Services\ModelService;
 use Narsil\Cms\Contracts\Requests\SitePageFormRequest;
-use Narsil\Cms\Http\Controllers\RedirectController;
 use Narsil\Cms\Models\Sites\SitePage;
 
 #endregion

@@ -62,7 +62,7 @@ class BlockElementForm extends Form implements Contract
                     ),
                 ],
             ),
-            ...app(ConditionForm::class)->tabs,
+            ...app(ConditionForm::class)->steps,
         ];
     }
 

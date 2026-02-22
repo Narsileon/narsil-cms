@@ -13,6 +13,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Narsil\Base\Traits\HasDatetimes;
 use Narsil\Base\Traits\HasUuidPrimaryKey;
+use Narsil\Base\Traits\Publisheable;
 
 #endregion
 

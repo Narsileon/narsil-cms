@@ -82,6 +82,12 @@ class FieldForm extends Form implements Contract
                         input: new TextInputData(),
                     ),
                     new FieldData(
+                        description: ModelService::getAttributeDescription(Field::TABLE, Field::DESCRIPTION),
+                        id: Field::DESCRIPTION,
+                        translatable: true,
+                        input: new TextInputData(),
+                    ),
+                    new FieldData(
                         id: Field::TYPE,
                         required: true,
                         input: new SelectInputData(

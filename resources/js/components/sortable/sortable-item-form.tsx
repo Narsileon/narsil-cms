@@ -1,6 +1,4 @@
 import { type UniqueIdentifier } from "@dnd-kit/core";
-import { FormProvider, FormRoot, FormSteps } from "@narsil-cms/components/form";
-import type { FormType } from "@narsil-cms/types";
 import { Button } from "@narsil-ui/components/button";
 import {
   DialogBackdrop,
@@ -14,16 +12,18 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@narsil-ui/components/dialog";
+import { FormProvider, FormRoot, FormTabs } from "@narsil-ui/components/form";
 import { Tooltip } from "@narsil-ui/components/tooltip";
 import { useTranslator } from "@narsil-ui/components/translator";
 import { cn } from "@narsil-ui/lib/utils";
+import type { FormData } from "@narsil-ui/types";
 import { get } from "lodash-es";
 import { type ComponentProps, type ReactNode, useState } from "react";
 import { type AnonymousItem } from ".";
 
 type SortableItemFormProps = ComponentProps<typeof DialogTrigger> & {
   children: ReactNode;
-  form: FormType;
+  form: FormData;
   ids: UniqueIdentifier[];
   item?: Record<string, unknown>;
   optionValue: string;
@@ -70,17 +70,17 @@ function SortableItemForm({
           <FormProvider
             id={form.id}
             action={form.action}
-            elements={form.tabs}
+            steps={form.steps}
             method={form.method}
-            initialValues={data}
-            languageOptions={form.languageOptions}
+            initialData={data}
+            languages={form.languages}
             render={({ data }) => {
               return (
                 <>
-                  <DialogBody className={cn(form.tabs.length > 1 && "p-0")}>
+                  <DialogBody className={cn(form.steps.length > 1 && "p-0")}>
                     <DialogDescription className="sr-only" />
                     <FormRoot className="grid-cols-12 gap-4">
-                      <FormSteps tabs={form.tabs} />
+                      <FormTabs steps={form.steps} />
                     </FormRoot>
                   </DialogBody>
                   <DialogFooter className="border-t">

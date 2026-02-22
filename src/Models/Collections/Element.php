@@ -9,10 +9,10 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphPivot;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
+use Narsil\Base\Traits\HasIdentifier;
 use Narsil\Base\Traits\HasTranslations;
 use Narsil\Base\Traits\HasUuidPrimaryKey;
-use Narsil\Cms\Traits\HasIdentifier;
-use Narsil\Cms\Traits\IsOrderable;
+use Narsil\Base\Traits\Orderable;
 
 #endregion
 
@@ -25,7 +25,7 @@ abstract class Element extends MorphPivot
     use HasIdentifier;
     use HasTranslations;
     use HasUuidPrimaryKey;
-    use IsOrderable;
+    use Orderable;
 
     #region CONSTANTS
 

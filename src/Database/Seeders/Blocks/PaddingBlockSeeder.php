@@ -4,7 +4,7 @@ namespace Narsil\Cms\Database\Seeders\Blocks;
 
 #region USE
 
-use Narsil\Cms\Contracts\Fields\SelectField;
+use Narsil\Base\Enums\InputTypeEnum;
 use Narsil\Cms\Database\Seeders\BlockSeeder;
 use Narsil\Cms\Models\Collections\Block;
 use Narsil\Cms\Models\Collections\BlockElement;
@@ -70,9 +70,10 @@ class PaddingBlockSeeder extends BlockSeeder
                     new Field([
                         Field::HANDLE => self::PADDING,
                         Field::LABEL => "Padding",
-                        Field::TYPE => SelectField::class,
-                        Field::SETTINGS => app(SelectField::class)
-                            ->defaultValue('none'),
+                        Field::TYPE => InputTypeEnum::SELECT,
+                        Field::SETTINGS => [
+                            'defaultValue' => 'none',
+                        ],
                     ])->setRelation(
                         Field::RELATION_OPTIONS,
                         $paddingFieldOptions,
@@ -88,9 +89,10 @@ class PaddingBlockSeeder extends BlockSeeder
                     new Field([
                         Field::HANDLE => self::PADDING,
                         Field::LABEL => "Padding",
-                        Field::TYPE => SelectField::class,
-                        Field::SETTINGS => app(SelectField::class)
-                            ->defaultValue('none'),
+                        Field::TYPE => InputTypeEnum::SELECT,
+                        Field::SETTINGS => [
+                            'defaultValue' => 'none',
+                        ],
                     ])->setRelation(
                         Field::RELATION_OPTIONS,
                         $paddingFieldOptions,

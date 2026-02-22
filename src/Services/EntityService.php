@@ -7,7 +7,6 @@ namespace Narsil\Cms\Services;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Config;
-use Narsil\Cms\Contracts\Fields\BuilderField;
 use Narsil\Cms\Models\Collections\Block;
 use Narsil\Cms\Models\Collections\Element;
 use Narsil\Cms\Models\Collections\Field;
@@ -86,7 +85,7 @@ abstract class EntityService
 
                 $value = Arr::get($attributes, $key);
 
-                if ($field->{Field::TYPE} === BuilderField::class)
+                if ($field->{Field::TYPE} === 'builder')
                 {
                     $fieldEntityNode = $entityNodeModel::create([
                         EntityNode::ELEMENT_ID => $element->getKey(),

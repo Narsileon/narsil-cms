@@ -7,9 +7,9 @@ namespace Narsil\Cms\Http\Controllers\Collections\Templates;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Arr;
 use Narsil\Base\Enums\ModelEventEnum;
+use Narsil\Base\Http\Controllers\RedirectController;
 use Narsil\Base\Services\ModelService;
 use Narsil\Cms\Contracts\Requests\TemplateFormRequest;
-use Narsil\Cms\Http\Controllers\RedirectController;
 use Narsil\Cms\Models\Collections\Template;
 use Narsil\Cms\Services\TemplateService;
 

@@ -11,10 +11,10 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Narsil\Base\Casts\JsonCast;
 use Narsil\Base\Traits\HasTranslations;
 use Narsil\Base\Traits\HasUuidPrimaryKey;
+use Narsil\Base\Traits\Orderable;
 use Narsil\Cms\Models\Collections\Block;
 use Narsil\Cms\Models\Collections\BlockElement;
 use Narsil\Cms\Models\Collections\TemplateTabElement;
-use Narsil\Cms\Traits\IsOrderable;
 
 #endregion
 
@@ -26,7 +26,7 @@ abstract class EntityNode extends Model
 {
     use HasTranslations;
     use HasUuidPrimaryKey;
-    use IsOrderable;
+    use Orderable;
 
     #region CONSTRUCTOR
 

@@ -6,10 +6,10 @@ namespace Narsil\Cms\Http\Controllers\Sites\Pages;
 
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\App;
-use Narsil\Cms\Http\Controllers\RedirectController;
-use Narsil\Cms\Http\Requests\SearchRequest;
+use Narsil\Base\Http\Controllers\RedirectController;
+use Narsil\Base\Http\Data\OptionData;
+use Narsil\Base\Http\Requests\SearchRequest;
 use Narsil\Cms\Models\Sites\SitePage;
-use Narsil\Cms\Support\SelectOption;
 
 #endregion
 
@@ -42,9 +42,10 @@ class SitePageSearchController extends RedirectController
             ->get()
             ->map(function (SitePage $sitePage)
             {
-                return (new SelectOption())
-                    ->optionLabel($sitePage->{SitePage::SLUG})
-                    ->optionValue($sitePage->{SitePage::ID});
+                return new OptionData(
+                    label: $sitePage->{SitePage::SLUG},
+                    value: $sitePage->{SitePage::ID},
+                );
             })
             ->all();
 

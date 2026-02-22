@@ -9,11 +9,11 @@ use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Inertia\Middleware;
+use Narsil\Base\Contracts\Resources\UserResource;
 use Narsil\Base\Models\Users\UserConfiguration;
 use Narsil\Cms\Contracts\Menus\AuthMenu;
 use Narsil\Cms\Contracts\Menus\GuestMenu;
 use Narsil\Cms\Contracts\Menus\Sidebar;
-use Narsil\Cms\Contracts\Resources\UserResource;
 use Narsil\Cms\Services\BreadcrumbService;
 
 #endregions

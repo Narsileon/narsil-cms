@@ -6,10 +6,10 @@ namespace Narsil\Cms\Services;
 
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
+use Narsil\Base\Services\DatabaseService;
 use Narsil\Cms\Models\Collections\Template;
 use Narsil\Cms\Models\Collections\TemplateTab;
 use Narsil\Cms\Models\Collections\TemplateTabElement;
-use Narsil\Cms\Services\DatabaseService;
 
 #endregion
 

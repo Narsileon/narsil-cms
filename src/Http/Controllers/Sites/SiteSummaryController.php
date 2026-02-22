@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Inertia\Response;
 use Narsil\Base\Enums\AbilityEnum;
-use Narsil\Cms\Http\Controllers\RenderController;
+use Narsil\Base\Http\Controllers\RenderController;
 use Narsil\Cms\Http\Data\SummaryData;
 use Narsil\Cms\Models\Hosts\Host;
 use Narsil\Cms\Models\Sites\Site;

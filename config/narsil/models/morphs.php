@@ -23,6 +23,4 @@ return [
     \Narsil\Cms\Models\Hosts\HostLocale::class => \Narsil\Cms\Models\Hosts\HostLocale::TABLE,
     \Narsil\Cms\Models\Hosts\HostLocaleLanguage::class => \Narsil\Cms\Models\Hosts\HostLocaleLanguage::TABLE,
     \Narsil\Cms\Models\Sites\SitePage::class => \Narsil\Cms\Models\Sites\SitePage::TABLE,
-    \Narsil\Cms\Models\Storages\Asset::class => \Narsil\Cms\Models\Storages\Asset::TABLE,
-    \Narsil\Cms\Models\User::class => \Narsil\Cms\Models\User::TABLE,
 ];

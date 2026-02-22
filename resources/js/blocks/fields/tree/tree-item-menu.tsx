@@ -1,9 +1,9 @@
 import { router } from "@inertiajs/react";
-import { useForm } from "@narsil-cms/components/form";
-import { ModalLink } from "@narsil-cms/components/modal";
 import { useAlertDialog } from "@narsil-ui/components/alert-dialog";
 import { DropdownMenuItem, DropdownMenuSeparator } from "@narsil-ui/components/dropdown-menu";
+import { useForm } from "@narsil-ui/components/form";
 import { Icon } from "@narsil-ui/components/icon";
+import { ModalLink } from "@narsil-ui/components/modal";
 import { SortableItemMenu } from "@narsil-ui/components/sortable";
 import { useTranslator } from "@narsil-ui/components/translator";
 import { type ComponentProps } from "react";

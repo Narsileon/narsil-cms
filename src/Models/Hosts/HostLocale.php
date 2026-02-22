@@ -9,8 +9,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Narsil\Base\Traits\AuditLoggable;
 use Narsil\Base\Traits\HasUuidPrimaryKey;
+use Narsil\Base\Traits\Orderable;
 use Narsil\Cms\Models\Hosts\Host;
-use Narsil\Cms\Traits\IsOrderable;
 
 #endregion
 
@@ -22,7 +22,7 @@ class HostLocale extends Model
 {
     use AuditLoggable;
     use HasUuidPrimaryKey;
-    use IsOrderable;
+    use Orderable;
 
     #region CONSTRUCTOR
 

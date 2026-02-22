@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\App;
 use Locale;
 use Narsil\Base\Traits\AuditLoggable;
 use Narsil\Base\Traits\HasUuidPrimaryKey;
-use Narsil\Cms\Traits\IsOrderable;
+use Narsil\Base\Traits\Orderable;
 
 #endregion
 
@@ -23,7 +23,7 @@ class HostLocaleLanguage extends Model
 {
     use AuditLoggable;
     use HasUuidPrimaryKey;
-    use IsOrderable;
+    use Orderable;
 
     #region CONSTRUCTOR
 

@@ -27,12 +27,6 @@ export type Condition = {
   value: string;
 };
 
-export type Bookmark = Model & {
-  name: string;
-  url: string;
-  uuid: string;
-};
-
 export type Entity = Model & {
   nodes: EntityNode[];
 };

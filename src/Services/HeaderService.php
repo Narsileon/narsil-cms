@@ -4,8 +4,8 @@ namespace Narsil\Cms\Services;
 
 #region USE
 
+use Narsil\Base\Services\DatabaseService;
 use Narsil\Cms\Models\Globals\Header;
-use Narsil\Cms\Services\DatabaseService;
 
 #endregion
 

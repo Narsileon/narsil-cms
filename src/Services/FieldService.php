@@ -5,10 +5,10 @@ namespace Narsil\Cms\Services;
 #region USE
 
 use Illuminate\Support\Str;
+use Narsil\Base\Services\DatabaseService;
 use Narsil\Cms\Models\Collections\Field;
 use Narsil\Cms\Models\Collections\FieldOption;
 use Narsil\Cms\Models\ValidationRule;
-use Narsil\Cms\Services\DatabaseService;
 
 #endregion
 

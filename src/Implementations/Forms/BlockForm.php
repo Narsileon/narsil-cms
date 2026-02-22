@@ -5,19 +5,19 @@ namespace Narsil\Cms\Implementations\Forms;
 #region USE
 
 use Illuminate\Database\Eloquent\Model;
+use Narsil\Base\Http\Data\Forms\FieldData;
+use Narsil\Base\Http\Data\Forms\FormStepData;
+use Narsil\Base\Http\Data\Forms\Inputs\SwitchInputData;
+use Narsil\Base\Http\Data\Forms\Inputs\TextInputData;
+use Narsil\Base\Implementations\Form;
+use Narsil\Base\Services\ModelService;
 use Narsil\Base\Services\RouteService;
-use Narsil\Cms\Contracts\Fields\RelationsField;
-use Narsil\Cms\Contracts\Fields\SwitchField;
-use Narsil\Cms\Contracts\Fields\TextField;
 use Narsil\Cms\Contracts\Forms\BlockElementForm;
 use Narsil\Cms\Contracts\Forms\BlockForm as Contract;
-use Narsil\Cms\Implementations\AbstractForm;
+use Narsil\Cms\Http\Data\Forms\Inputs\RelationsInputData;
 use Narsil\Cms\Models\Collections\Block;
 use Narsil\Cms\Models\Collections\BlockElement;
 use Narsil\Cms\Models\Collections\Field;
-use Narsil\Cms\Models\Collections\TemplateTab;
-use Narsil\Cms\Models\Collections\TemplateTabElement;
-use Narsil\Cms\Services\ModelService;
 use Narsil\Cms\Support\SelectOption;
 
 #endregion
@@ -26,7 +26,7 @@ use Narsil\Cms\Support\SelectOption;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class BlockForm extends AbstractForm implements Contract
+class BlockForm extends Form implements Contract
 {
     #region CONSTRUCTOR
 
@@ -47,84 +47,62 @@ class BlockForm extends AbstractForm implements Contract
     /**
      * {@inheritDoc}
      */
-    protected function getTabs(): array
+    protected function getSteps(): array
     {
         $blockSelectOptions = static::getBlockSelectOptions();
         $fieldSelectOptions = static::getFieldSelectOptions();
         $widthSelectOptions = static::getWidthSelectOptions();
 
         return [
-            [
-                TemplateTab::HANDLE => 'definition',
-                TemplateTab::LABEL => trans('narsil-cms::ui.definition'),
-                TemplateTab::RELATION_ELEMENTS => [
-                    [
-                        TemplateTabElement::DESCRIPTION => ModelService::getAttributeDescription(Block::TABLE, Block::HANDLE),
-                        TemplateTabElement::HANDLE => Block::HANDLE,
-                        TemplateTabElement::LABEL => trans('narsil-cms::validation.attributes.handle'),
-                        TemplateTabElement::REQUIRED => true,
-                        TemplateTabElement::RELATION_BASE => [
-                            Field::TYPE => TextField::class,
-                            Field::SETTINGS => app(TextField::class),
-                        ],
-                    ],
-                    [
-                        TemplateTabElement::DESCRIPTION => ModelService::getAttributeDescription(Block::TABLE, Block::LABEL),
-                        TemplateTabElement::HANDLE => Block::LABEL,
-                        TemplateTabElement::LABEL => trans('narsil-cms::validation.attributes.label'),
-                        TemplateTabElement::REQUIRED => true,
-                        TemplateTabElement::TRANSLATABLE => true,
-                        TemplateTabElement::RELATION_BASE => [
-                            Field::TYPE => TextField::class,
-                            Field::SETTINGS => app(TextField::class),
-                        ],
-                    ],
-                    [
-                        TemplateTabElement::HANDLE => Block::COLLAPSIBLE,
-                        TemplateTabElement::LABEL => trans('narsil-cms::validation.attributes.collapsible'),
-                        TemplateTabElement::WIDTH => 50,
-                        TemplateTabElement::RELATION_BASE => [
-                            Field::TYPE => SwitchField::class,
-                            Field::SETTINGS => app(SwitchField::class),
-                        ],
-                    ],
-                    [
-                        TemplateTabElement::HANDLE => Block::VIRTUAL,
-                        TemplateTabElement::LABEL => trans('narsil-cms::validation.attributes.virtual'),
-                        TemplateTabElement::WIDTH => 50,
-                        TemplateTabElement::RELATION_BASE => [
-                            Field::TYPE => SwitchField::class,
-                            Field::SETTINGS => app(SwitchField::class),
-                        ],
-                    ],
-                    [
-                        TemplateTabElement::HANDLE => Block::RELATION_ELEMENTS,
-                        TemplateTabElement::LABEL => trans('narsil-cms::validation.attributes.elements'),
-                        TemplateTabElement::RELATION_BASE => [
-                            Field::TYPE => RelationsField::class,
-                            Field::SETTINGS => app(RelationsField::class)
-                                ->form(app(BlockElementForm::class)->jsonSerialize())
-                                ->addOption(
-                                    identifier: Block::TABLE,
-                                    label: ModelService::getModelLabel(Block::TABLE),
-                                    optionLabel: BlockElement::LABEL,
-                                    optionValue: BlockElement::HANDLE,
-                                    options: $blockSelectOptions,
-                                    routes: RouteService::getNames(Block::TABLE),
-                                )
-                                ->addOption(
-                                    identifier: Field::TABLE,
-                                    label: ModelService::getModelLabel(Field::TABLE),
-                                    optionLabel: BlockElement::LABEL,
-                                    optionValue: BlockElement::HANDLE,
-                                    options: $fieldSelectOptions,
-                                    routes: RouteService::getNames(Field::TABLE),
-                                )
-                                ->widthOptions($widthSelectOptions),
-                        ],
-                    ],
+            new FormStepData(
+                elements: [
+                    new FieldData(
+                        description: ModelService::getAttributeDescription(Block::TABLE, Block::HANDLE),
+                        id: Block::HANDLE,
+                        required: true,
+                        input: new TextInputData(),
+                    ),
+                    new FieldData(
+                        description: ModelService::getAttributeDescription(Block::TABLE, Block::LABEL),
+                        id: Block::LABEL,
+                        required: true,
+                        translatable: true,
+                        input: new TextInputData(),
+                    ),
+                    new FieldData(
+                        id: Block::COLLAPSIBLE,
+                        width: 50,
+                        input: new SwitchInputData(),
+                    ),
+                    new FieldData(
+                        id: Block::VIRTUAL,
+                        width: 50,
+                        input: new SwitchInputData(),
+                    ),
+                    new FieldData(
+                        id: Block::RELATION_ELEMENTS,
+                        input: new RelationsInputData()
+                            ->set('form', app(BlockElementForm::class))
+                            ->widthOptions($widthSelectOptions)
+                            ->addOption(
+                                identifier: Block::TABLE,
+                                label: ModelService::getModelLabel(Block::TABLE),
+                                optionLabel: BlockElement::LABEL,
+                                optionValue: BlockElement::HANDLE,
+                                options: $blockSelectOptions,
+                                routes: RouteService::getNames(Block::TABLE),
+                            )
+                            ->addOption(
+                                identifier: Field::TABLE,
+                                label: ModelService::getModelLabel(Field::TABLE),
+                                optionLabel: BlockElement::LABEL,
+                                optionValue: BlockElement::HANDLE,
+                                options: $fieldSelectOptions,
+                                routes: RouteService::getNames(Field::TABLE),
+                            ),
+                    ),
                 ],
-            ],
+            ),
         ];
     }
 

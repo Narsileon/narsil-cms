@@ -7,14 +7,13 @@ namespace Narsil\Cms\Implementations\Resources;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
-use Narsil\Cms\Contracts\Fields\BuilderField;
+use Narsil\Base\Implementations\Resource;
 use Narsil\Cms\Contracts\Resources\EntityResource as Contract;
-use Narsil\Cms\Implementations\AbstractResource;
-use Narsil\Cms\Models\Entities\Entity;
-use Narsil\Cms\Models\Entities\EntityNode;
 use Narsil\Cms\Models\Collections\Block;
 use Narsil\Cms\Models\Collections\Element;
 use Narsil\Cms\Models\Collections\Field;
+use Narsil\Cms\Models\Entities\Entity;
+use Narsil\Cms\Models\Entities\EntityNode;
 
 #endregion
 
@@ -22,7 +21,7 @@ use Narsil\Cms\Models\Collections\Field;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class EntityResource extends AbstractResource implements Contract
+class EntityResource extends Resource implements Contract
 {
     #region CONSTRUCTOR
 
@@ -108,7 +107,7 @@ class EntityResource extends AbstractResource implements Contract
 
                 $key = $path ? "$path.$handle" : $handle;
 
-                if ($field->{Field::TYPE} === BuilderField::class)
+                if ($field->{Field::TYPE} === 'builder')
                 {
                     $blockNodes = $this->nodes->get($node->{EntityNode::UUID}, []);
 

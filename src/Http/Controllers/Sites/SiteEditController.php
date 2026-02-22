@@ -17,7 +17,7 @@ use Narsil\Base\Http\Data\OptionData;
 use Narsil\Base\Services\ModelService;
 use Narsil\Base\Support\TranslationsBag;
 use Narsil\Cms\Contracts\Forms\SiteForm;
-use Narsil\Cms\Http\Controllers\RenderController;
+use Narsil\Base\Http\Controllers\RenderController;
 use Narsil\Cms\Http\Resources\Sites\SiteResource;
 use Narsil\Cms\Models\Hosts\HostLocale;
 use Narsil\Cms\Models\Hosts\HostLocaleLanguage;

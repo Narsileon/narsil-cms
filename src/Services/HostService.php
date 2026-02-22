@@ -5,9 +5,9 @@ namespace Narsil\Cms\Services;
 #region USE
 
 use Illuminate\Support\Arr;
+use Narsil\Base\Services\DatabaseService;
 use Narsil\Cms\Models\Hosts\Host;
 use Narsil\Cms\Models\Hosts\HostLocale;
-use Narsil\Cms\Services\DatabaseService;
 
 #endregion
 

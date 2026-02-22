@@ -4,10 +4,10 @@ namespace Narsil\Cms\Services;
 
 #region USE
 
+use Narsil\Base\Services\DatabaseService;
 use Narsil\Cms\Models\Globals\Footer;
 use Narsil\Cms\Models\Globals\FooterLink;
 use Narsil\Cms\Models\Globals\FooterSocialMedium;
-use Narsil\Cms\Services\DatabaseService;
 
 #endregion
 

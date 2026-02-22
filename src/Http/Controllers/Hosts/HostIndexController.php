@@ -10,8 +10,8 @@ use Illuminate\Support\Facades\DB;
 use Inertia\Response;
 use Narsil\Base\Enums\AbilityEnum;
 use Narsil\Base\Http\Collections\DataTableCollection;
+use Narsil\Base\Http\Controllers\RenderController;
 use Narsil\Base\Services\ModelService;
-use Narsil\Cms\Http\Controllers\RenderController;
 use Narsil\Cms\Models\Hosts\Host;
 use Narsil\Cms\Models\Hosts\HostLocaleLanguage;
 

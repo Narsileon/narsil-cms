@@ -6,7 +6,7 @@ namespace Narsil\Cms\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Narsil\Base\Traits\HasUuidPrimaryKey;
-use Narsil\Cms\Traits\IsOrderable;
+use Narsil\Base\Traits\Orderable;
 
 #endregion
 
@@ -17,7 +17,7 @@ use Narsil\Cms\Traits\IsOrderable;
 abstract class AbstractCondition extends Model
 {
     use HasUuidPrimaryKey;
-    use IsOrderable;
+    use Orderable;
 
     #region CONSTRUCTOR
 

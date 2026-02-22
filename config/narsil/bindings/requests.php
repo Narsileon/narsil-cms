@@ -11,7 +11,6 @@ return [
     |
     */
 
-    \Narsil\Cms\Contracts\Requests\AssetFormRequest::class => \Narsil\Cms\Implementations\Requests\AssetFormRequest::class,
     \Narsil\Cms\Contracts\Requests\BlockFormRequest::class => \Narsil\Cms\Implementations\Requests\BlockFormRequest::class,
     \Narsil\Cms\Contracts\Requests\ConfigurationFormRequest::class => \Narsil\Cms\Implementations\Requests\ConfigurationFormRequest::class,
     \Narsil\Cms\Contracts\Requests\EntityFormRequest::class => \Narsil\Cms\Implementations\Requests\EntityFormRequest::class,

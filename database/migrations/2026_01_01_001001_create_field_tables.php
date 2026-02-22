@@ -5,10 +5,10 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Narsil\Base\Models\User;
 use Narsil\Cms\Models\Collections\Field;
 use Narsil\Cms\Models\Collections\FieldOption;
 use Narsil\Cms\Models\Collections\FieldValidationRule;
-use Narsil\Cms\Models\User;
 use Narsil\Cms\Models\ValidationRule;
 
 #endregion

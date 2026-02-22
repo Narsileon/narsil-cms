@@ -7,6 +7,7 @@ namespace Narsil\Cms\Database\Migrations;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Narsil\Base\Models\User;
 use Narsil\Cms\Models\Collections\Block;
 use Narsil\Cms\Models\Collections\BlockElement;
 use Narsil\Cms\Models\Collections\Template;
@@ -14,7 +15,6 @@ use Narsil\Cms\Models\Collections\TemplateTabElement;
 use Narsil\Cms\Models\Entities\Entity;
 use Narsil\Cms\Models\Entities\EntityNode;
 use Narsil\Cms\Models\Entities\EntityNodeRelation;
-use Narsil\Cms\Models\User;
 
 #endregion
 

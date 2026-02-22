@@ -9,9 +9,9 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Session;
 use Narsil\Base\Enums\AbilityEnum;
 use Narsil\Base\Enums\ModelEventEnum;
+use Narsil\Base\Http\Controllers\RedirectController;
 use Narsil\Base\Services\ModelService;
 use Narsil\Cms\Contracts\Requests\SitePageFormRequest;
-use Narsil\Cms\Http\Controllers\RedirectController;
 use Narsil\Cms\Models\Sites\SitePage;
 
 #endregion

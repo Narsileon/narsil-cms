@@ -4,10 +4,14 @@ namespace Narsil\Cms\Models\Globals;
 
 #region USE
 
+use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Attributes\UseFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Facades\Cache;
+use Narsil\Base\Http\Data\OptionData;
+use Narsil\Base\Observers\ModelObserver;
 use Narsil\Base\Traits\AuditLoggable;
 use Narsil\Base\Traits\Blameable;
 use Narsil\Base\Traits\HasDatetimes;
@@ -21,6 +25,7 @@ use Narsil\Cms\Models\Sites\Site;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
+#[ObservedBy([ModelObserver::class])]
 #[UseFactory(HeaderFactory::class)]
 class Header extends Model
 {
@@ -107,6 +112,28 @@ class Header extends Model
     #endregion
 
     #region PUBLIC METHODS
+
+    /**
+     * Get the headers as options.
+     *
+     * @return OptionData[]
+     */
+    public static function options(): array
+    {
+        return Cache::tags([self::TABLE])
+            ->rememberForever('options', function ()
+            {
+                return self::all()
+                    ->map(function (Header $header)
+                    {
+                        return new OptionData(
+                            label: $header->{self::SLUG},
+                            value: $header->{self::ID},
+                        );
+                    })
+                    ->all();
+            });
+    }
 
     #region • RELATIONSHIPS
 

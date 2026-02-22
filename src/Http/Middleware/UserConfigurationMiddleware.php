@@ -8,8 +8,8 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use Narsil\Base\Models\User;
 use Narsil\Base\Models\Users\UserConfiguration;
-use Narsil\Cms\Models\User;
 
 #endregion
 

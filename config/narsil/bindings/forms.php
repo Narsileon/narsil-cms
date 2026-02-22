@@ -11,7 +11,6 @@ return [
     |
     */
 
-    \Narsil\Cms\Contracts\Forms\AssetForm::class => \Narsil\Cms\Implementations\Forms\AssetForm::class,
     \Narsil\Cms\Contracts\Forms\BlockElementForm::class => \Narsil\Cms\Implementations\Forms\BlockElementForm::class,
     \Narsil\Cms\Contracts\Forms\BlockForm::class => \Narsil\Cms\Implementations\Forms\BlockForm::class,
     \Narsil\Cms\Contracts\Forms\ConditionForm::class => \Narsil\Cms\Implementations\Forms\ConditionForm::class,

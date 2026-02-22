@@ -1,12 +1,12 @@
 import { type UniqueIdentifier } from "@dnd-kit/core";
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
-import { useForm } from "@narsil-cms/components/form";
-import { ModalLink } from "@narsil-cms/components/modal";
 import getModelTranslation from "@narsil-cms/lib/get-model-translation";
 import { Badge } from "@narsil-ui/components/badge";
 import { CardHeader, CardRoot, CardTitle } from "@narsil-ui/components/card";
 import { CollapsibleRoot, CollapsibleTrigger } from "@narsil-ui/components/collapsible";
+import { useForm } from "@narsil-ui/components/form";
+import { ModalLink } from "@narsil-ui/components/modal";
 import { SortableHandle } from "@narsil-ui/components/sortable";
 import { useTranslator } from "@narsil-ui/components/translator";
 import { cn } from "@narsil-ui/lib/utils";

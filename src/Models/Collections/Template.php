@@ -9,12 +9,12 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Str;
+use Narsil\Base\Http\Data\OptionData;
 use Narsil\Base\Observers\ModelObserver;
 use Narsil\Base\Traits\AuditLoggable;
 use Narsil\Base\Traits\Blameable;
 use Narsil\Base\Traits\HasDatetimes;
 use Narsil\Base\Traits\HasTranslations;
-use Narsil\Cms\Support\SelectOption;
 
 #endregion
 
@@ -125,21 +125,22 @@ class Template extends Model
     #region PUBLIC METHODS
 
     /**
-     * Get the templates as select options.
+     * Get the templates as options.
      *
-     * @return array<SelectOption>
+     * @return OptionData[]
      */
-    public static function selectOptions(): array
+    public static function options(): array
     {
         return Cache::tags([self::TABLE])
-            ->rememberForever('select_options', function ()
+            ->rememberForever('options', function ()
             {
                 return self::all()
                     ->map(function (Template $template)
                     {
-                        return (new SelectOption())
-                            ->optionLabel($template->{Template::PLURAL})
-                            ->optionValue((string)$template->{Template::ID});
+                        return new OptionData(
+                            label: $template->{Template::PLURAL},
+                            value: $template->{Template::ID},
+                        );
                     })
                     ->all();
             });

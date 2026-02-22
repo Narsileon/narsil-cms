@@ -4,8 +4,7 @@ namespace Narsil\Cms\Database\Seeders\Blocks;
 
 #region USE
 
-use Narsil\Cms\Contracts\Fields\RichTextField;
-use Narsil\Cms\Contracts\Fields\TextField;
+use Narsil\Base\Enums\InputTypeEnum;
 use Narsil\Cms\Database\Seeders\BlockSeeder;
 use Narsil\Cms\Models\Collections\Block;
 use Narsil\Cms\Models\Collections\BlockElement;
@@ -66,7 +65,7 @@ class AccordionItemBlockSeeder extends BlockSeeder
                     ])->setRelation(
                         BlockElement::RELATION_BASE,
                         new Field([
-                            Field::TYPE => TextField::class,
+                            Field::TYPE => InputTypeEnum::TEXT,
                         ]),
                     ),
                     new BlockElement([
@@ -77,7 +76,7 @@ class AccordionItemBlockSeeder extends BlockSeeder
                     ])->setRelation(
                         BlockElement::RELATION_BASE,
                         new Field([
-                            Field::TYPE => RichTextField::class,
+                            Field::TYPE => InputTypeEnum::RICH_TEXT_EDITOR,
                         ]),
                     ),
                 ],

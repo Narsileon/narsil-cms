@@ -9,20 +9,19 @@ use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
 use Narsil\Base\Providers\FormRequestServiceProvider;
 use Narsil\Base\Providers\FormServiceProvider;
+use Narsil\Base\Providers\FortifyServiceProvider;
+use Narsil\Base\Providers\HorizonServiceProvider;
 use Narsil\Base\Providers\ObserverServiceProvider;
 use Narsil\Base\Providers\PolicyServiceProvider;
+use Narsil\Base\Providers\ResourceServiceProvider;
 use Narsil\Base\Providers\TableServiceProvider;
 use Narsil\Cms\Providers\CommandServiceProvider;
-use Narsil\Cms\Providers\FieldServiceProvider;
-use Narsil\Cms\Providers\FortifyServiceProvider;
-use Narsil\Cms\Providers\HorizonServiceProvider;
 use Narsil\Cms\Providers\MenuServiceProvider;
 use Narsil\Cms\Providers\MiddlewareServiceProvider;
 use Narsil\Cms\Providers\MigrationServiceProvider;
 use Narsil\Cms\Providers\MorphServiceProvider;
 use Narsil\Cms\Providers\NarsilServiceProvider;
 use Narsil\Cms\Providers\PluginServiceProvider;
-use Narsil\Cms\Providers\ResourceServiceProvider;
 use Narsil\Cms\Providers\TranslationServiceProvider;
 use Nuwave\Lighthouse\LighthouseServiceProvider;
 
@@ -106,7 +105,6 @@ class ServiceProvider extends NarsilServiceProvider
     {
         $this->app->register(PluginServiceProvider::class);
         $this->app->register(CommandServiceProvider::class);
-        $this->app->register(FieldServiceProvider::class);
         $this->app->register(FormRequestServiceProvider::class);
         $this->app->register(FormServiceProvider::class);
         $this->app->register(FortifyServiceProvider::class);

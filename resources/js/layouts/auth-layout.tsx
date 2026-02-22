@@ -1,13 +1,12 @@
 import { Link } from "@inertiajs/react";
-import { Bookmarks } from "@narsil-cms/blocks/bookmarks";
-import { Breadcrumb } from "@narsil-cms/blocks/breadcrumb";
 import { Sidebar } from "@narsil-cms/blocks/sidebar";
 import { ThemeToggleGroup } from "@narsil-cms/blocks/toggle-group";
-import { ModalLink, ModalRenderer } from "@narsil-cms/components/modal";
 import { SidebarInset, SidebarProvider, SidebarTrigger } from "@narsil-cms/components/sidebar";
 import { GlobalProps } from "@narsil-cms/hooks/use-props";
+import { Bookmarks } from "@narsil-ui/blocks/bookmarks";
 import { AlertDialogProvider } from "@narsil-ui/components/alert-dialog";
 import { AvatarFallback, AvatarImage, AvatarRoot } from "@narsil-ui/components/avatar";
+import { Breadcrumb } from "@narsil-ui/components/breadcrumb";
 import { Button } from "@narsil-ui/components/button";
 import {
   DropdownMenuItem,
@@ -19,6 +18,7 @@ import {
   DropdownMenuTrigger,
 } from "@narsil-ui/components/dropdown-menu";
 import { Icon } from "@narsil-ui/components/icon";
+import { ModalLink, ModalRenderer } from "@narsil-ui/components/modal";
 import { Separator } from "@narsil-ui/components/separator";
 import { Tooltip } from "@narsil-ui/components/tooltip";
 import { useTranslator } from "@narsil-ui/components/translator";
@@ -55,7 +55,7 @@ function AuthLayout({ children }: AuthLayoutProps) {
                 <Separator orientation="vertical" />
               </>
             ) : null}
-            <Breadcrumb className="grow" />
+            <Breadcrumb breadcrumb={navigation.breadcrumb} className="grow" />
             <Bookmarks breadcrumb={navigation.breadcrumb} />
             <DropdownMenuRoot>
               <Tooltip tooltip={trans("accessibility.toggle_user_menu")}>

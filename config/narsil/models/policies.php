@@ -21,5 +21,4 @@ return [
     \Narsil\Cms\Models\Hosts\Host::class => \Narsil\Cms\Policies\HostPolicy::class,
     \Narsil\Cms\Models\Sites\Site::class => \Narsil\Cms\Policies\SitePolicy::class,
     \Narsil\Cms\Models\Sites\SitePage::class => \Narsil\Cms\Policies\SitePagePolicy::class,
-    \Narsil\Cms\Models\Storages\Asset::class => \Narsil\Cms\Policies\AssetPolicy::class,
 ];
