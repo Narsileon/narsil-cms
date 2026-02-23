@@ -1,4 +1,5 @@
-import { StatusItem, StatusRoot } from "@narsil-cms/components/status";
+import { StatusItem, StatusRoot } from "@narsil-ui/components/status";
+import { Tooltip } from "@narsil-ui/components/tooltip";
 import { useTranslator } from "@narsil-ui/components/translator";
 import { type ComponentProps } from "react";
 
@@ -13,9 +14,21 @@ function Status({ draft, published, saved, ...props }: StatusProps) {
 
   return (
     <StatusRoot {...props}>
-      {published && <StatusItem className="bg-green-500" tooltip={trans("revisions.published")} />}
-      {saved && <StatusItem className="bg-amber-500" tooltip={trans("revisions.saved")} />}
-      {draft && <StatusItem className="bg-red-500" tooltip={trans("revisions.draft")} />}
+      {published && (
+        <Tooltip tooltip={trans("revisions.published")}>
+          <StatusItem className="bg-green-500" />
+        </Tooltip>
+      )}
+      {saved && (
+        <Tooltip tooltip={trans("revisions.saved")}>
+          <StatusItem className="bg-amber-500" />
+        </Tooltip>
+      )}
+      {draft && (
+        <Tooltip tooltip={trans("revisions.draft")}>
+          <StatusItem className="bg-red-500" />
+        </Tooltip>
+      )}
     </StatusRoot>
   );
 }
