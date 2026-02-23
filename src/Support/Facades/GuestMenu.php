@@ -1,6 +1,6 @@
 <?php
 
-namespace Narsil\Cms\Facades\Menus;
+namespace Narsil\Cms\Support\Facades;
 
 #region USE
 

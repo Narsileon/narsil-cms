@@ -1,11 +1,11 @@
 <?php
 
-namespace Narsil\Cms\Facades\Menus;
+namespace Narsil\Cms\Support\Facades;
 
 #region USE
 
 use Illuminate\Support\Facades\Facade;
-use Narsil\Cms\Contracts\Menus\Sidebar as Contract;
+use Narsil\Cms\Contracts\Menus\AuthMenu as Contract;
 
 #endregion
 
@@ -13,7 +13,7 @@ use Narsil\Cms\Contracts\Menus\Sidebar as Contract;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class Sidebar extends Facade
+class AuthMenu extends Facade
 {
     #region PROTECTED METHODS
 
