@@ -6,11 +6,11 @@ namespace Narsil\Cms\Implementations\Forms;
 
 use Illuminate\Database\Eloquent\Model;
 use Narsil\Base\Http\Data\Forms\FieldData;
-use Narsil\Cms\Http\Data\Forms\FormStepData;
 use Narsil\Base\Http\Data\Forms\Inputs\TextInputData;
 use Narsil\Base\Implementations\Form;
 use Narsil\Base\Services\RouteService;
 use Narsil\Cms\Contracts\Forms\EntityForm as Contract;
+use Narsil\Cms\Http\Data\Forms\FormStepData;
 use Narsil\Cms\Models\Collections\Template;
 use Narsil\Cms\Models\Entities\Entity;
 
@@ -63,19 +63,17 @@ class EntityForm extends Form implements Contract
             return FormStepData::fromModel($templateTab);
         })->toArray();
 
-        $steps[] = [
-            new FormStepData(
-                id: 'sidebar',
-                elements: [
-                    new FieldData(
-                        id: Entity::SLUG,
-                        required: true,
-                        translatable: true,
-                        input: new TextInputData(),
-                    ),
-                ],
-            ),
-        ];
+        $steps[] = new FormStepData(
+            id: 'sidebar',
+            elements: [
+                new FieldData(
+                    id: Entity::SLUG,
+                    required: true,
+                    translatable: true,
+                    input: new TextInputData(),
+                ),
+            ],
+        );
 
         return $steps;
     }

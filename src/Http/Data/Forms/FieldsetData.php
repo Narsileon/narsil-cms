@@ -6,9 +6,9 @@ namespace Narsil\Cms\Http\Data\Forms;
 
 use Narsil\Base\Http\Data\Forms\FieldData;
 use Narsil\Base\Http\Data\Forms\FieldsetData as BaseFieldsetData;
-use Narsil\Cms\Models\Collections\Element;
 use Narsil\Cms\Models\Collections\Block;
 use Narsil\Cms\Models\Collections\BlockElement;
+use Narsil\Cms\Models\Collections\Element;
 use Narsil\Cms\Models\Collections\Field;
 
 #endregion
