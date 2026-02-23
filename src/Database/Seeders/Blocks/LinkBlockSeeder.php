@@ -6,12 +6,12 @@ namespace Narsil\Cms\Database\Seeders\Blocks;
 
 use Narsil\Base\Enums\InputTypeEnum;
 use Narsil\Base\Enums\OperatorEnum;
+use Narsil\Base\Http\Data\ConditionData;
 use Narsil\Cms\Database\Seeders\BlockSeeder;
 use Narsil\Cms\Models\Collections\Block;
 use Narsil\Cms\Models\Collections\BlockElement;
 use Narsil\Cms\Models\Collections\Field;
 use Narsil\Cms\Models\Collections\FieldOption;
-use Narsil\Cms\Support\Models\ConditionData;
 
 #endregion
 

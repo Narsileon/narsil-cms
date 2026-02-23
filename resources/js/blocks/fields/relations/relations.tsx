@@ -1,7 +1,11 @@
-import { getSelectColumn } from "@narsil-cms/components/data-table";
 import { Badge } from "@narsil-ui/components/badge";
 import { Button } from "@narsil-ui/components/button";
-import { Data, DataTable, DataTableProvider } from "@narsil-ui/components/data-table";
+import {
+  type TableData,
+  DataTable,
+  DataTableProvider,
+  getSelectColumn,
+} from "@narsil-ui/components/data-table";
 import {
   DialogBackdrop,
   DialogClose,
@@ -15,7 +19,7 @@ import {
 } from "@narsil-ui/components/dialog";
 import { Heading } from "@narsil-ui/components/heading";
 import { Icon } from "@narsil-ui/components/icon";
-import { InputRoot } from "@narsil-ui/components/input";
+import { InputGroupRoot } from "@narsil-ui/components/input-group";
 import { SectionContent, SectionHeader, SectionRoot } from "@narsil-ui/components/section";
 import { Spinner } from "@narsil-ui/components/spinner";
 import { TabsList, TabsPanel, TabsRoot, TabsTab } from "@narsil-ui/components/tabs";
@@ -133,13 +137,12 @@ function Relations({
     <DialogRoot open={open} onOpenChange={setOpen} modal={true}>
       <DialogTrigger
         render={
-          <InputRoot
+          <InputGroupRoot
             id={id}
             role="combobox"
             className={cn(className)}
             aria-expanded={open}
             aria-disabled={disabled}
-            variant="button"
           >
             {value.length > 0 ? (
               <div className="-ml-1 flex flex-wrap gap-1">
@@ -158,7 +161,7 @@ function Relations({
               (placeholder ?? trans("placeholders.search"))
             )}
             <Icon className={cn("ml-2 shrink-0 duration-300")} name="chevron-down" />
-          </InputRoot>
+          </InputGroupRoot>
         }
       />
       <DialogPortal>
@@ -183,7 +186,10 @@ function Relations({
                 })}
               </TabsList>
               {Object.entries(dataTables).map(([id, collection]) => {
-                const finalColumns: ColumnDef<Data>[] = [selectColumn, ...collection.meta.columns];
+                const finalColumns: ColumnDef<TableData>[] = [
+                  selectColumn,
+                  ...collection.meta.columns,
+                ];
 
                 return (
                   <TabsPanel className="p-0" value={id} key={id}>

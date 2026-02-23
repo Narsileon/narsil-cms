@@ -14,11 +14,12 @@ import {
   type UniqueIdentifier,
 } from "@dnd-kit/core";
 import { arrayMove, rectSortingStrategy, SortableContext } from "@dnd-kit/sortable";
-import type { Element, FormType, GroupedSelectOption } from "@narsil-cms/types";
+import type { FormType, GroupedSelectOption } from "@narsil-cms/types";
 import { BackgroundGrid, BackgroundRoot } from "@narsil-ui/components/background";
 import { useTranslator } from "@narsil-ui/components/translator";
 import { getTranslatableData, getUntranslatableData } from "@narsil-ui/lib/data";
 import { cn } from "@narsil-ui/lib/utils";
+import { FieldData } from "@narsil-ui/types";
 import { get } from "lodash-es";
 import { useState } from "react";
 import { createPortal } from "react-dom";
@@ -39,7 +40,7 @@ type SortableGridProps = {
     label: string;
     optionLabel: string;
     optionValue: string;
-    relation: Element;
+    relation: FieldData;
   };
   setItems: (items: AnonymousItem[]) => void;
   cancelDrop?: CancelDrop;
@@ -113,7 +114,7 @@ function SortableGrid({
   }
 
   function getChildGroup(child: AnonymousItem) {
-    const group = intermediate.relation.base.settings.options?.find((option) =>
+    const group = intermediate.relation.input.options?.find((option) =>
       child.identifier.includes(option.identifier),
     ) as GroupedSelectOption;
 
@@ -127,7 +128,7 @@ function SortableGrid({
   }
 
   function getContainerChildren(container: AnonymousItem) {
-    const children: AnonymousItem[] = get(container, intermediate.relation.handle, []);
+    const children: AnonymousItem[] = get(container, intermediate.relation.id, []);
 
     return children;
   }
@@ -225,12 +226,12 @@ function SortableGrid({
 
       nextItems[activeContainerIndex] = {
         ...nextItems[activeContainerIndex],
-        [intermediate.relation.handle]: newActiveChildren,
+        [intermediate.relation.id]: newActiveChildren,
       };
 
       nextItems[overContainerIndex] = {
         ...nextItems[overContainerIndex],
-        [intermediate.relation.handle]: newOverChildren,
+        [intermediate.relation.id]: newOverChildren,
       };
     } else {
       if (activeContainerIdentifier !== overContainerIdentifier) {
@@ -248,7 +249,7 @@ function SortableGrid({
 
       nextItems[activeContainerIndex] = {
         ...nextItems[activeContainerIndex],
-        [intermediate.relation.handle]: updatedChildren,
+        [intermediate.relation.id]: updatedChildren,
       };
     }
 
@@ -327,12 +328,12 @@ function SortableGrid({
                 }}
                 footer={
                   <>
-                    {intermediate.relation.base.settings.options?.map((group, index) => {
+                    {intermediate.relation.input.options?.map((group, index) => {
                       return (
                         <SortableAdd
                           ids={items
-                            .flatMap((item) => item[intermediate.relation.handle] || [])
-                            .map((x) => x.handle)}
+                            .flatMap((item) => item[intermediate.relation.id] || [])
+                            .map((x) => x.id)}
                           items={children}
                           group={group as GroupedSelectOption}
                           setItems={(groupItems) => {
@@ -340,7 +341,7 @@ function SortableGrid({
                               getContainerIdentifier(container) === identifier
                                 ? {
                                     ...container,
-                                    [intermediate.relation.handle]: groupItems,
+                                    [intermediate.relation.id]: groupItems,
                                   }
                                 : container,
                             );
@@ -355,15 +356,15 @@ function SortableGrid({
                 key={identifier}
               >
                 <SortableListContext
-                  {...intermediate.relation.base.settings}
+                  {...intermediate.relation.input}
                   items={children}
-                  options={intermediate.relation.base.settings.options as GroupedSelectOption[]}
+                  options={intermediate.relation.input.options as GroupedSelectOption[]}
                   setItems={(groupItems) => {
                     const updatedItems = items.map((container) =>
                       getContainerIdentifier(container) === identifier
                         ? {
                             ...container,
-                            [intermediate.relation.handle]: groupItems,
+                            [intermediate.relation.id]: groupItems,
                           }
                         : container,
                     );

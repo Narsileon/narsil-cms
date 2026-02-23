@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Str;
 use Narsil\Base\Implementations\FormRequest;
 use Narsil\Base\Validation\FormRule;
-use Narsil\Cms\Contracts\Fields\BuilderField;
 use Narsil\Cms\Contracts\Requests\EntityFormRequest as Contract;
 use Narsil\Cms\Models\Collections\Block;
 use Narsil\Cms\Models\Collections\Element;
@@ -123,7 +122,7 @@ class EntityFormRequest extends FormRequest implements Contract
                 {
                     $attributes[$key] = $handle;
                 }
-                else if ($field->{Field::TYPE} === BuilderField::class)
+                else if ($field->{Field::TYPE} === 'builder')
                 {
                     $attributes["$key.*"] = $handle;
 
@@ -193,7 +192,7 @@ class EntityFormRequest extends FormRequest implements Contract
 
                     $rules["$key.*"] = $fieldValidationRules;
                 }
-                else if ($field->{Field::TYPE} === BuilderField::class)
+                else if ($field->{Field::TYPE} === 'builder')
                 {
                     $rules["$key.*"] = $fieldRules;
 

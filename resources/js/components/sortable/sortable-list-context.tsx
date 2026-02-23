@@ -3,7 +3,7 @@ import {
   SortableContext,
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
-import type { FormType, GroupedSelectOption, SelectOption } from "@narsil-cms/types";
+import type { FormType, GroupedSelectOption } from "@narsil-cms/types";
 import { useTranslator } from "@narsil-ui/components/translator";
 import { getTranslatableData, getUntranslatableData } from "@narsil-ui/lib/data";
 import { type AnonymousItem } from ".";
@@ -15,7 +15,6 @@ type SortableListContextProps = {
   items: AnonymousItem[];
   options: GroupedSelectOption[];
   unique?: boolean;
-  widthOptions?: SelectOption[];
   setItems: (items: AnonymousItem[]) => void;
 };
 
@@ -25,7 +24,6 @@ function SortableListContext({
   items,
   options,
   unique,
-  widthOptions,
   setItems,
 }: SortableListContextProps) {
   const { locale } = useTranslator();
@@ -75,7 +73,6 @@ function SortableListContext({
               item={item}
               label={label}
               optionValue={group.optionValue}
-              widthOptions={widthOptions}
               onItemChange={(value: AnonymousItem) => {
                 setItems(
                   items.map((x) => {

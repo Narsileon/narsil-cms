@@ -1,8 +1,8 @@
 import { type UniqueIdentifier } from "@dnd-kit/core";
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
-import { WidthSelector } from "@narsil-cms/blocks/width-selector";
-import type { FormType, GroupedSelectOption, SelectOption } from "@narsil-cms/types";
+import type { FormType, GroupedSelectOption } from "@narsil-cms/types";
+import { WidthSelector } from "@narsil-ui/blocks/width-selector";
 import { Button } from "@narsil-ui/components/button";
 import {
   CardContent,
@@ -39,7 +39,6 @@ type SortableItemProps = Omit<ComponentProps<typeof CardRoot>, "id"> & {
   optionValue?: string;
   placeholder?: boolean;
   tooltip?: string;
-  widthOptions?: SelectOption[];
   onItemChange?: (value: AnonymousItem) => void;
   onItemRemove?: () => void;
 };
@@ -59,7 +58,6 @@ function SortableItem({
   optionValue,
   placeholder,
   style,
-  widthOptions,
   onItemChange,
   onItemRemove,
   ...props
@@ -133,9 +131,8 @@ function SortableItem({
                     ) : null}
                   </div>
                   <div className="flex items-center justify-between gap-1 justify-self-end">
-                    {item && widthOptions ? (
+                    {item ? (
                       <WidthSelector
-                        options={widthOptions}
                         value={item.width as number}
                         onValueChange={(value) => onItemChange?.({ ...item, width: value })}
                       />

@@ -1,9 +1,9 @@
 import { Link } from "@inertiajs/react";
 import { Sidebar } from "@narsil-cms/blocks/sidebar";
-import { ThemeToggleGroup } from "@narsil-cms/blocks/toggle-group";
 import { SidebarInset, SidebarProvider, SidebarTrigger } from "@narsil-cms/components/sidebar";
 import { GlobalProps } from "@narsil-cms/hooks/use-props";
 import { Bookmarks } from "@narsil-ui/blocks/bookmarks";
+import { Themes } from "@narsil-ui/blocks/themes";
 import { AlertDialogProvider } from "@narsil-ui/components/alert-dialog";
 import { AvatarFallback, AvatarImage, AvatarRoot } from "@narsil-ui/components/avatar";
 import { Breadcrumb } from "@narsil-ui/components/breadcrumb";
@@ -91,7 +91,7 @@ function AuthLayout({ children }: AuthLayoutProps) {
                                           href={route(item.route, item.parameters)}
                                           method={item.method}
                                         >
-                                          <Icon name={item.icon} />
+                                          {item.icon ? <Icon name={item.icon} /> : null}
                                           {item.label}
                                         </ModalLink>
                                       ) : (
@@ -99,7 +99,7 @@ function AuthLayout({ children }: AuthLayoutProps) {
                                           href={route(item.route, item.parameters)}
                                           method={item.method}
                                         >
-                                          <Icon name={item.icon} />
+                                          {item.icon ? <Icon name={item.icon} /> : null}
                                           {item.label}
                                         </Link>
                                       )
@@ -113,7 +113,7 @@ function AuthLayout({ children }: AuthLayoutProps) {
                       );
                     })}
                     <DropdownMenuSeparator />
-                    <ThemeToggleGroup className="w-full" />
+                    <Themes className="w-full" />
                   </DropdownMenuPopup>
                 </DropdownMenuPositioner>
               </DropdownMenuPortal>

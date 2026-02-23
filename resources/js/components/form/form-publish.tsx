@@ -1,4 +1,4 @@
-import { FormElement, registry } from "@narsil-ui/components/form";
+import { FormElement } from "@narsil-ui/components/form";
 import { cn } from "@narsil-ui/lib/utils";
 import type { FormData } from "@narsil-ui/types";
 import { Fragment, type ComponentProps } from "react";
@@ -14,7 +14,7 @@ function FormPublish({ className, form, ...props }: FormPublishProps) {
         return (
           <Fragment key={index}>
             {step.elements?.map((element, index) => {
-              return <FormElement {...element} registry={registry} key={index} />;
+              return <FormElement {...element} key={index} />;
             })}
           </Fragment>
         );

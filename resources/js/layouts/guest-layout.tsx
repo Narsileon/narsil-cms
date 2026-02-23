@@ -1,6 +1,6 @@
 import { Link } from "@inertiajs/react";
-import { ThemeToggleGroup } from "@narsil-cms/blocks/toggle-group";
 import { type GlobalProps } from "@narsil-cms/hooks/use-props";
+import { Themes } from "@narsil-ui/blocks/themes";
 import { Button } from "@narsil-ui/components/button";
 import { Container } from "@narsil-ui/components/container";
 import {
@@ -98,7 +98,7 @@ function GuestLayout({ children }: GuestLayoutProps) {
                     );
                   })}
                   <DropdownMenuSeparator />
-                  <ThemeToggleGroup className="w-full" />
+                  <Themes className="w-full" />
                 </DropdownMenuPopup>
               </DropdownMenuPositioner>
             </DropdownMenuPortal>

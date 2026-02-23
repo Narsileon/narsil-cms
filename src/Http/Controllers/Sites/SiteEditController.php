@@ -13,11 +13,11 @@ use Locale;
 use Narsil\Base\Casts\DiffForHumansCast;
 use Narsil\Base\Enums\AbilityEnum;
 use Narsil\Base\Enums\RequestMethodEnum;
+use Narsil\Base\Http\Controllers\RenderController;
 use Narsil\Base\Http\Data\OptionData;
 use Narsil\Base\Services\ModelService;
 use Narsil\Base\Support\TranslationsBag;
 use Narsil\Cms\Contracts\Forms\SiteForm;
-use Narsil\Base\Http\Controllers\RenderController;
 use Narsil\Cms\Http\Resources\Sites\SiteResource;
 use Narsil\Cms\Models\Hosts\HostLocale;
 use Narsil\Cms\Models\Hosts\HostLocaleLanguage;
@@ -153,7 +153,7 @@ class SiteEditController extends RenderController
         $form = app(SiteForm::class)
             ->action(route('sites.update', $site->{Site::HOSTNAME}))
             ->id($site->{Site::ID})
-            ->languageOptions(HostLocaleLanguage::getUniqueLanguages())
+            ->languages(HostLocaleLanguage::getUniqueLanguages())
             ->method(RequestMethodEnum::PATCH->value)
             ->submitLabel(trans('narsil::ui.update'));
 

@@ -9,6 +9,7 @@ use Narsil\Base\Http\Data\Forms\FieldData;
 use Narsil\Base\Http\Data\Forms\FormStepData;
 use Narsil\Base\Http\Data\Forms\Inputs\SwitchInputData;
 use Narsil\Base\Http\Data\Forms\Inputs\TextInputData;
+use Narsil\Base\Http\Data\OptionData;
 use Narsil\Base\Implementations\Form;
 use Narsil\Base\Services\ModelService;
 use Narsil\Base\Services\RouteService;
@@ -18,7 +19,6 @@ use Narsil\Cms\Http\Data\Forms\Inputs\RelationsInputData;
 use Narsil\Cms\Models\Collections\Block;
 use Narsil\Cms\Models\Collections\BlockElement;
 use Narsil\Cms\Models\Collections\Field;
-use Narsil\Cms\Support\SelectOption;
 
 #endregion
 
@@ -49,9 +49,8 @@ class BlockForm extends Form implements Contract
      */
     protected function getSteps(): array
     {
-        $blockSelectOptions = static::getBlockSelectOptions();
-        $fieldSelectOptions = static::getFieldSelectOptions();
-        $widthSelectOptions = static::getWidthSelectOptions();
+        $blockOptions = static::getBlockOptions();
+        $fieldOptions = static::getFieldOptions();
 
         return [
             new FormStepData(
@@ -83,13 +82,12 @@ class BlockForm extends Form implements Contract
                         id: Block::RELATION_ELEMENTS,
                         input: new RelationsInputData()
                             ->set('form', app(BlockElementForm::class))
-                            ->widthOptions($widthSelectOptions)
                             ->addOption(
                                 identifier: Block::TABLE,
                                 label: ModelService::getModelLabel(Block::TABLE),
                                 optionLabel: BlockElement::LABEL,
                                 optionValue: BlockElement::HANDLE,
-                                options: $blockSelectOptions,
+                                options: $blockOptions,
                                 routes: RouteService::getNames(Block::TABLE),
                             )
                             ->addOption(
@@ -97,7 +95,7 @@ class BlockForm extends Form implements Contract
                                 label: ModelService::getModelLabel(Field::TABLE),
                                 optionLabel: BlockElement::LABEL,
                                 optionValue: BlockElement::HANDLE,
-                                options: $fieldSelectOptions,
+                                options: $fieldOptions,
                                 routes: RouteService::getNames(Field::TABLE),
                             ),
                     ),
@@ -107,23 +105,24 @@ class BlockForm extends Form implements Contract
     }
 
     /**
-     * Get the block select options.
+     * Get the block options.
      *
-     * @return array<SelectOption>
+     * @return OptionData[]
      */
-    protected static function getBlockSelectOptions(): array
+    protected static function getBlockOptions(): array
     {
         return Block::query()
             ->orderBy(Block::LABEL)
             ->get()
             ->map(function (Block $block)
             {
-                $option = new SelectOption()
+                $option = new OptionData(
+                    label: $block->getTranslations(Block::LABEL),
+                    value: $block->{Block::HANDLE},
+                )
+                    ->icon($block->{Block::ATTRIBUTE_ICON})
                     ->id($block->{Block::ID})
-                    ->identifier($block->{Block::ATTRIBUTE_IDENTIFIER})
-                    ->optionIcon($block->{Block::ATTRIBUTE_ICON})
-                    ->optionLabel($block->getTranslations(Block::LABEL))
-                    ->optionValue($block->{Block::HANDLE});
+                    ->identifier($block->{Block::ATTRIBUTE_IDENTIFIER});
 
                 return $option;
             })
@@ -131,11 +130,11 @@ class BlockForm extends Form implements Contract
     }
 
     /**
-     * Get the field select options.
+     * Get the field options.
      *
-     * @return array<SelectOption>
+     * @return OptionData[]
      */
-    protected static function getFieldSelectOptions(): array
+    protected static function getFieldOptions(): array
     {
         return Field::query()
             ->orderBy(Field::LABEL)
@@ -143,37 +142,17 @@ class BlockForm extends Form implements Contract
             ->map(function (Field $field)
             {
 
-                $option = new SelectOption()
+                $option = new OptionData(
+                    label: $field->getTranslations(Field::LABEL),
+                    value: $field->{Field::HANDLE},
+                )
+                    ->icon($field->{Field::ATTRIBUTE_ICON})
                     ->id($field->{Field::ID})
-                    ->identifier($field->{Field::ATTRIBUTE_IDENTIFIER})
-                    ->optionIcon($field->{Field::ATTRIBUTE_ICON})
-                    ->optionLabel($field->getTranslations(Field::LABEL))
-                    ->optionValue($field->{Field::HANDLE});
+                    ->identifier($field->{Field::ATTRIBUTE_IDENTIFIER});
 
                 return $option;
             })
             ->toArray();
-    }
-
-    /**
-     * Get the width select options.
-     *
-     * @return array<SelectOption>
-     */
-    protected static function getWidthSelectOptions(): array
-    {
-        $widths = [25, 33, 50, 67, 75, 100];
-
-        $options = [];
-
-        foreach ($widths as $width)
-        {
-            $options[] = new SelectOption()
-                ->optionLabel($width . '%')
-                ->optionValue($width);
-        }
-
-        return $options;
     }
 
     #endregion

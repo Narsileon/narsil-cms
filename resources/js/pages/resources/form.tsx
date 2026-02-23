@@ -1,30 +1,32 @@
 import { RevisionSelect } from "@narsil-cms/blocks/revision-select";
 import { Status } from "@narsil-cms/blocks/status";
+import { FormCountry } from "@narsil-cms/components/form";
+import FormPublish from "@narsil-cms/components/form/form-publish";
+import registry from "@narsil-cms/components/form/inputs";
+import type { Revision, User } from "@narsil-cms/types";
+import { Button } from "@narsil-ui/components/button";
+import { DialogBody, DialogClose, DialogFooter } from "@narsil-ui/components/dialog";
 import {
-  FormCountry,
+  FormBlame,
   FormElement,
   FormLanguage,
   FormMenu,
   FormProvider,
   FormRoot,
   FormSave,
-  FormSteps,
-  FormTimestamp,
-} from "@narsil-cms/components/form";
-import FormPublish from "@narsil-cms/components/form/form-publish";
-import { useModalStore, type ModalType } from "@narsil-cms/stores/modal-store";
-import type { FormType, Revision, SelectOption, TemplateTab, User } from "@narsil-cms/types";
-import { Button } from "@narsil-ui/components/button";
-import { DialogBody, DialogClose, DialogFooter } from "@narsil-ui/components/dialog";
+  FormTabs,
+} from "@narsil-ui/components/form";
 import { Heading } from "@narsil-ui/components/heading";
 import { Icon } from "@narsil-ui/components/icon";
 import { SectionContent, SectionRoot } from "@narsil-ui/components/section";
 import { useTranslator } from "@narsil-ui/components/translator";
 import { cn } from "@narsil-ui/lib/utils";
+import { useModalStore, type ModalData } from "@narsil-ui/stores/modal-store";
+import type { FormData, FormStepData, OptionData } from "@narsil-ui/types";
 import { isEmpty } from "lodash-es";
 
 type FormProps = {
-  countries?: SelectOption[];
+  countries?: OptionData[];
   data?: {
     created_at?: string;
     creator?: User;
@@ -32,9 +34,9 @@ type FormProps = {
     updated_at?: string;
     [key: string]: unknown;
   };
-  form: FormType;
-  modal?: ModalType;
-  publish?: FormType;
+  form: FormData;
+  modal?: ModalData;
+  publish?: FormData;
   revisions?: Revision[];
 };
 
@@ -42,25 +44,16 @@ function ResourceForm({ countries, data, form, modal, publish, revisions }: Form
   const { trans } = useTranslator();
   const { closeTopModal } = useModalStore();
 
-  const {
-    action,
-    autoSave,
-    defaultLanguage,
-    id,
-    languageOptions,
-    method,
-    routes,
-    submitLabel,
-    tabs,
-  } = form;
+  const { action, autoSave, defaultLanguage, id, languages, method, routes, submitLabel, steps } =
+    form;
 
-  const { sidebar, standardTabs } = tabs.reduce(
+  const { sidebar, standardTabs } = steps.reduce(
     (acc, element) => {
       if (!("elements" in element)) {
         return acc;
       }
 
-      switch (element.handle) {
+      switch (element.id) {
         case "sidebar":
           acc.sidebar = element;
           break;
@@ -72,8 +65,8 @@ function ResourceForm({ countries, data, form, modal, publish, revisions }: Form
       return acc;
     },
     {
-      sidebar: undefined as TemplateTab | undefined,
-      standardTabs: [] as TemplateTab[],
+      sidebar: undefined as FormStepData | undefined,
+      standardTabs: [] as FormStepData[],
     },
   );
 
@@ -89,11 +82,12 @@ function ResourceForm({ countries, data, form, modal, publish, revisions }: Form
     <FormProvider
       id={modal ? `${id}_${modal.id}` : id}
       action={action}
-      elements={tabs}
+      steps={steps}
       defaultLanguage={defaultLanguage}
-      languageOptions={languageOptions}
+      languages={languages}
       method={method}
-      initialValues={{
+      registry={registry}
+      initialData={{
         _back: modal !== undefined,
         ...data,
       }}
@@ -106,7 +100,7 @@ function ResourceForm({ countries, data, form, modal, publish, revisions }: Form
               preserveState: true,
               onSuccess: (response) => {
                 if (modal) {
-                  modal.linkProps?.onSuccess?.(response);
+                  modal.link?.onSuccess?.(response);
 
                   closeTopModal();
                 }
@@ -116,7 +110,7 @@ function ResourceForm({ countries, data, form, modal, publish, revisions }: Form
             {modal ? (
               <>
                 <DialogBody className="col-span-full h-full p-0">
-                  <FormSteps tabs={standardTabs} />
+                  <FormTabs steps={standardTabs} />
                 </DialogBody>
                 <DialogFooter className="col-span-full h-fit border-t">
                   <DialogClose render={<Button variant="ghost">{trans("ui.cancel")}</Button>} />
@@ -136,7 +130,7 @@ function ResourceForm({ countries, data, form, modal, publish, revisions }: Form
                   )}
                 >
                   <SectionContent>
-                    <FormSteps tabs={standardTabs} />
+                    <FormTabs steps={standardTabs} />
                   </SectionContent>
                 </SectionRoot>
                 <SectionRoot
@@ -175,15 +169,15 @@ function ResourceForm({ countries, data, form, modal, publish, revisions }: Form
                         {data?.created_at ? (
                           <div className="grid gap-2">
                             {data?.created_at ? (
-                              <FormTimestamp
-                                label={trans("datetime.created")}
+                              <FormBlame
+                                label={trans("blame.created")}
                                 date={data.created_at}
                                 name={data.creator?.full_name}
                               />
                             ) : null}
                             {data?.updated_at ? (
-                              <FormTimestamp
-                                label={trans("datetime.updated")}
+                              <FormBlame
+                                label={trans("blame.updated")}
                                 date={data.updated_at}
                                 name={data.editor?.full_name ?? data.creator?.full_name}
                               />
@@ -204,7 +198,7 @@ function ResourceForm({ countries, data, form, modal, publish, revisions }: Form
                         <FormCountry className="pr-2" countries={countries} />
                       </div>
                     ) : null}
-                    {languageOptions?.length > 0 ? (
+                    {languages?.length > 0 ? (
                       <div className="grid gap-1 border-b p-2">
                         <div className="flex items-center justify-start gap-2 pl-2.5">
                           <Icon className="size-4" name="globe" />
