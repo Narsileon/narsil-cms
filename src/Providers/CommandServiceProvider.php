@@ -16,7 +16,7 @@ use Narsil\Cms\Console\Commands\SyncPermissions;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class CommandServiceProvider extends ServiceProvider
+final class CommandServiceProvider extends ServiceProvider
 {
     #region PUBLIC METHODS
 

@@ -7,6 +7,7 @@ namespace Narsil\Cms\Http\Data\Forms;
 use Illuminate\Support\Facades\Config;
 use Narsil\Base\Http\Data\Forms\FieldData as BaseFieldData;
 use Narsil\Base\Http\Data\Forms\Inputs\TextInputData;
+use Narsil\Cms\Models\Collections\Block;
 use Narsil\Cms\Models\Collections\Element;
 use Narsil\Cms\Models\Collections\Field;
 
@@ -20,7 +21,7 @@ class FieldData extends BaseFieldData
 {
     #region PUBLIC METHODS
 
-    public static function fromModel(Element $element)
+    public static function fromElement(Element $element)
     {
         $field = $element->{Element::RELATION_BASE};
 
@@ -34,6 +35,10 @@ class FieldData extends BaseFieldData
             translatable: $element->{Element::TRANSLATABLE},
             width: $element->{Element::WIDTH},
             input: new $input()
+                ->blocks($field->{Field::RELATION_BLOCKS}->map(function (Block $block)
+                {
+                    return FieldsetData::fromBlock($block);
+                })->toArray())
                 ->options($field->{Field::RELATION_OPTIONS}),
         );
     }

@@ -1,7 +1,6 @@
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import { SortableItem } from "@narsil-cms/components/sortable";
-import type { Block } from "@narsil-cms/types";
 import { useAlertDialog } from "@narsil-ui/components/alert-dialog";
 import { Button } from "@narsil-ui/components/button";
 import { CardContent, CardHeader, CardRoot, CardTitle } from "@narsil-ui/components/card";
@@ -17,6 +16,7 @@ import { Switch } from "@narsil-ui/components/switch";
 import { Tooltip } from "@narsil-ui/components/tooltip";
 import { useTranslator } from "@narsil-ui/components/translator";
 import { cn } from "@narsil-ui/lib/utils";
+import type { FieldsetData } from "@narsil-ui/types";
 import { get } from "lodash-es";
 import { useState, type ComponentProps } from "react";
 import { type BuilderElement } from ".";
@@ -24,7 +24,7 @@ import { type BuilderElement } from ".";
 type BuilderItemProps = Omit<ComponentProps<typeof SortableItem>, "item"> &
   Pick<ComponentProps<typeof SortableItemMenu>, "onMoveDown" | "onMoveUp" | "onRemove"> & {
     baseHandle?: string;
-    block: Block;
+    block: FieldsetData;
     item: BuilderElement;
   };
 
@@ -139,23 +139,18 @@ function BuilderItem({
         <CollapsiblePanel>
           <CardContent className="grid-cols-12">
             {block.elements?.map((element, index) => {
-              const child = element.base;
+              let childHandle = `${baseHandle}.children.${element.id}`;
 
-              let childHandle = `${baseHandle}.children.${element.handle}`;
-
-              if ("type" in child) {
-                if (
-                  child.type !== "Narsil\\Cms\\Contracts\\Fields\\BuilderField" &&
-                  !element.translatable
-                ) {
+              if ("input" in element) {
+                if (element.input.type !== "builder" && !element.translatable) {
                   childHandle = `${childHandle}.en`;
                 }
 
-                return <FormElement {...element} handle={childHandle} key={index} />;
+                return <FormElement {...element} id={childHandle} key={index} />;
               } else {
-                child.virtual = false;
+                element.virtual = false;
 
-                return <FormElement {...element} base={child} handle={childHandle} key={index} />;
+                return <FormElement {...element} id={childHandle} key={index} />;
               }
             })}
           </CardContent>

@@ -2,7 +2,6 @@
 
 return [
     'active_columns'     => 'Active columns',
-    'add_child'          => 'Add a child',
     'add_group'          => 'Add a group',
     'add_tab'            => 'Add a tab',
     'available_columns'  => 'Available columns',

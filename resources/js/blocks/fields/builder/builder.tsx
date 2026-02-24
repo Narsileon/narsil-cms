@@ -12,10 +12,11 @@ import {
   type DragStartEvent,
 } from "@dnd-kit/core";
 import { arrayMove, SortableContext, verticalListSortingStrategy } from "@dnd-kit/sortable";
-import { useForm } from "@narsil-cms/components/form";
 import type { Block } from "@narsil-cms/types";
 import { BackgroundRoot } from "@narsil-ui/components/background";
 import BackgroundGrid from "@narsil-ui/components/background/background-grid";
+import { useForm } from "@narsil-ui/components/form";
+import { FieldsetData } from "@narsil-ui/types";
 import { get, isEmpty } from "lodash-es";
 import { Fragment, useState } from "react";
 import { type BuilderElement } from ".";
@@ -23,13 +24,13 @@ import BuilderAdd from "./builder-add";
 import BuilderItem from "./builder-item";
 
 type BuilderProps = {
-  blocks: Block[];
+  blocks: FieldsetData[];
   name: string;
 };
 
 function Builder({ blocks, name }: BuilderProps) {
   const { data, setData } = useForm();
-
+  console.log(blocks);
   let items = get(data, name, []) as BuilderElement[];
 
   if (isEmpty(items)) {
@@ -49,7 +50,7 @@ function Builder({ blocks, name }: BuilderProps) {
   );
 
   function getBlock(id: number): Block {
-    return blocks.find((block) => block.id === id) as Block;
+    return blocks.find((block) => block.block_id === id) as Block;
   }
 
   function onDragCancel({}: DragCancelEvent) {

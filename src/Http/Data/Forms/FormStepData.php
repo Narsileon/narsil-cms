@@ -19,7 +19,7 @@ class FormStepData extends BaseFormStepData
 {
     #region PUBLIC METHODS
 
-    public static function fromModel(TemplateTab $templateTab)
+    public static function fromElement(TemplateTab $templateTab)
     {
         return new FormStepData(
             id: $templateTab->{TemplateTab::HANDLE},
@@ -28,11 +28,11 @@ class FormStepData extends BaseFormStepData
             {
                 if ($element->{TemplateTabElement::BASE_TYPE} === Field::TABLE)
                 {
-                    return FieldData::fromModel($element);
+                    return FieldData::fromElement($element);
                 }
                 else
                 {
-                    return FieldsetData::fromModel($element);
+                    return FieldsetData::fromElement($element);
                 }
             })->toArray(),
         );

@@ -43,8 +43,9 @@ class TreeInputData extends InputData
     public static function registerTranslations(): void
     {
         app(TranslationsBag::class)
-            ->add('narsil::ui.add')
+            ->add('narsil::ui.add_child')
             ->add('narsil::ui.delete')
+            ->add('narsil::ui.edit')
             ->add('narsil::ui.move_down')
             ->add('narsil::ui.move_up');
     }

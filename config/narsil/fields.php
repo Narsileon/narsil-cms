@@ -33,4 +33,6 @@ return [
     InputTypeEnum::TEXT->value => \Narsil\Base\Http\Data\Forms\Inputs\TextInputData::class,
     InputTypeEnum::TEXTAREA->value => \Narsil\Base\Http\Data\Forms\Inputs\TextareaInputData::class,
     InputTypeEnum::TIME->value => \Narsil\Base\Http\Data\Forms\Inputs\TimeInputData::class,
+
+    'builder' => \Narsil\Cms\Http\Data\Forms\Inputs\BuilderInputData::class,
 ];
