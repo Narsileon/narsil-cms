@@ -30,13 +30,13 @@ class PublishForm extends Form implements Contract
             new FormStepData(
                 elements: [
                     new FieldData(
-                        className: 'flex-row justify-between',
                         id: Entity::PUBLISHED_FROM,
+                        className: 'flex-row justify-between',
                         input: new DatetimeInputData(),
                     ),
                     new FieldData(
-                        className: 'flex-row justify-between',
                         id: Entity::PUBLISHED_TO,
+                        className: 'flex-row justify-between',
                         input: new DatetimeInputData(),
                     ),
                 ],

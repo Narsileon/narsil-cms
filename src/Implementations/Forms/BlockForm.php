@@ -56,14 +56,14 @@ class BlockForm extends Form implements Contract
             new FormStepData(
                 elements: [
                     new FieldData(
-                        description: ModelService::getAttributeDescription(Block::TABLE, Block::HANDLE),
                         id: Block::HANDLE,
+                        description: ModelService::getAttributeDescription(Block::TABLE, Block::HANDLE),
                         required: true,
                         input: new TextInputData(),
                     ),
                     new FieldData(
-                        description: ModelService::getAttributeDescription(Block::TABLE, Block::LABEL),
                         id: Block::LABEL,
+                        description: ModelService::getAttributeDescription(Block::TABLE, Block::LABEL),
                         required: true,
                         translatable: true,
                         input: new TextInputData(),

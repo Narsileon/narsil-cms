@@ -54,8 +54,8 @@ class HeaderForm extends Form implements Contract
                         input: new TextInputData(),
                     ),
                     new FieldData(
-                        icon: 'image',
                         id: Header::LOGO,
+                        icon: 'image',
                         input: new FileInputData(
                             accept: 'image/*',
                         ),

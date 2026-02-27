@@ -102,6 +102,7 @@ class BuilderInputData extends InputData
             ->add('narsil-cms::dialogs.descriptions.deactivation')
             ->add('narsil-cms::dialogs.titles.activation')
             ->add('narsil-cms::dialogs.titles.deactivation')
+            ->add('narsil::ui.add')
             ->add('narsil::ui.collapse')
             ->add('narsil::ui.delete')
             ->add('narsil::ui.expand')

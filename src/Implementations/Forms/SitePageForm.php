@@ -61,8 +61,8 @@ class SitePageForm extends Form implements Contract
 
         return [
             new FormStepData(
-                id: 'main',
-                label: trans('narsil::ui.main'),
+                id: 'definition',
+                label: trans('narsil::ui.definition'),
                 elements: [
                     new FieldData(
                         id: SitePage::TITLE,
@@ -170,8 +170,8 @@ class SitePageForm extends Form implements Contract
                                 input: new TextareaInputData(),
                             ),
                             new FieldData(
-                                icon: 'image',
                                 id: SitePage::OPEN_GRAPH_IMAGE,
+                                icon: 'image',
                                 label: Translator::trans('validation.attributes.image'),
                                 translatable: true,
                                 input: new FileInputData(

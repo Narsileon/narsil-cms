@@ -69,21 +69,21 @@ class FieldForm extends Form implements Contract
                 label: trans('narsil-cms::ui.definition'),
                 elements: [
                     new FieldData(
-                        description: ModelService::getAttributeDescription(Field::TABLE, Field::HANDLE),
                         id: Field::HANDLE,
+                        description: ModelService::getAttributeDescription(Field::TABLE, Field::HANDLE),
                         required: true,
                         input: new TextInputData(),
                     ),
                     new FieldData(
-                        description: ModelService::getAttributeDescription(Field::TABLE, Field::LABEL),
                         id: Field::LABEL,
+                        description: ModelService::getAttributeDescription(Field::TABLE, Field::LABEL),
                         required: true,
                         translatable: true,
                         input: new TextInputData(),
                     ),
                     new FieldData(
-                        description: ModelService::getAttributeDescription(Field::TABLE, Field::DESCRIPTION),
                         id: Field::DESCRIPTION,
+                        description: ModelService::getAttributeDescription(Field::TABLE, Field::DESCRIPTION),
                         translatable: true,
                         input: new TextInputData(),
                     ),

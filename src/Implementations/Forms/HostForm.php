@@ -58,14 +58,14 @@ class HostForm extends Form implements Contract
                 label: trans('narsil-cms::ui.definition'),
                 elements: [
                     new FieldData(
-                        description: ModelService::getAttributeDescription(Host::TABLE, Host::HOSTNAME),
                         id: Host::HOSTNAME,
+                        description: ModelService::getAttributeDescription(Host::TABLE, Host::HOSTNAME),
                         required: true,
                         input: new TextInputData(),
                     ),
                     new FieldData(
-                        description: ModelService::getAttributeDescription(Host::TABLE, Host::LABEL),
                         id: Host::LABEL,
+                        description: ModelService::getAttributeDescription(Host::TABLE, Host::LABEL),
                         required: true,
                         translatable: true,
                         input: new TextInputData(),
@@ -77,10 +77,10 @@ class HostForm extends Form implements Contract
                 label: trans('narsil-cms::ui.default_country'),
                 elements: [
                     new FieldData(
+                        id: HostLocale::PATTERN,
                         description: ModelService::getAttributeDescription(HostLocale::TABLE, HostLocale::PATTERN, [
                             'example' => 'https://{host}/{language}'
                         ]),
-                        id: HostLocale::PATTERN,
                         prefix: Host::RELATION_DEFAULT_LOCALE,
                         required: true,
                         input: new TextInputData(
@@ -116,10 +116,10 @@ class HostForm extends Form implements Contract
                             labelPath: HostLocale::COUNTRY,
                             elements: [
                                 new FieldData(
+                                    id: HostLocale::PATTERN,
                                     description: ModelService::getAttributeDescription(HostLocale::TABLE, HostLocale::PATTERN, [
                                         'example' => 'https://{host}/{language}-{country}'
                                     ]),
-                                    id: HostLocale::PATTERN,
                                     required: true,
                                     input: new TextInputData(
                                         defaultValue: 'https://{host}/{language}-{country}'
