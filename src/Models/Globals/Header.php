@@ -25,7 +25,7 @@ use Narsil\Cms\Models\Sites\Site;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-#[ObservedBy([ModelObserver::class])]
+#[ObservedBy(ModelObserver::class)]
 #[UseFactory(HeaderFactory::class)]
 class Header extends Model
 {

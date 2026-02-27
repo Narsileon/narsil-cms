@@ -4,8 +4,11 @@ namespace Narsil\Cms\Models\Collections;
 
 #region USE
 
+use Illuminate\Database\Eloquent\Attributes\UseFactory;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Narsil\Cms\Database\Factories\ElementFactory;
 
 #endregion
 
@@ -13,8 +16,11 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
+#[UseFactory(ElementFactory::class)]
 class BlockElement extends Element
 {
+    use HasFactory;
+
     #region CONSTRUCTOR
 
     /**

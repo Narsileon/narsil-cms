@@ -4,6 +4,8 @@ namespace Narsil\Cms\Models\Collections;
 
 #region USE
 
+use Illuminate\Database\Eloquent\Attributes\UseFactory;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -11,6 +13,7 @@ use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Narsil\Base\Traits\HasTranslations;
 use Narsil\Base\Traits\HasUuidPrimaryKey;
 use Narsil\Base\Traits\Orderable;
+use Narsil\Cms\Database\Factories\TemplateTabFactory;
 
 #endregion
 
@@ -18,8 +21,10 @@ use Narsil\Base\Traits\Orderable;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
+#[UseFactory(TemplateTabFactory::class)]
 class TemplateTab extends Model
 {
+    use HasFactory;
     use HasTranslations;
     use HasUuidPrimaryKey;
     use Orderable;

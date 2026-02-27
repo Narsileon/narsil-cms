@@ -9,6 +9,7 @@ use Narsil\Cms\Console\Commands\MakeEntityCommand;
 use Narsil\Cms\Console\Commands\MakeEntityNodeCommand;
 use Narsil\Cms\Console\Commands\MakeEntityNodeRelationCommand;
 use Narsil\Cms\Console\Commands\SyncPermissions;
+use Narsil\Cms\Console\Commands\TestCommand;
 
 #endregion
 
@@ -46,6 +47,7 @@ final class CommandServiceProvider extends ServiceProvider
             MakeEntityNodeCommand::class,
             MakeEntityNodeRelationCommand::class,
             SyncPermissions::class,
+            TestCommand::class,
         ]);
     }
 

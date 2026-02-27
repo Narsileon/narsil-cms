@@ -5,17 +5,17 @@ namespace Narsil\Cms\Database\Seeders\Entities;
 #region USE
 
 use Faker\Factory;
-use Narsil\Cms\Database\Seeders\Blocks\AccordionBlockSeeder;
-use Narsil\Cms\Database\Seeders\Blocks\AccordionItemBlockSeeder;
-use Narsil\Cms\Database\Seeders\Blocks\ButtonBlockSeeder;
-use Narsil\Cms\Database\Seeders\Blocks\CallToActionBlockSeeder;
-use Narsil\Cms\Database\Seeders\Blocks\HeadlineBlockSeeder;
-use Narsil\Cms\Database\Seeders\Blocks\HeroHeaderBlockSeeder;
-use Narsil\Cms\Database\Seeders\Blocks\LayoutBlockSeeder;
-use Narsil\Cms\Database\Seeders\Blocks\LinkBlockSeeder;
-use Narsil\Cms\Database\Seeders\Blocks\PaddingBlockSeeder;
+use Narsil\Cms\Database\Factories\Blocks\AccordionBlock;
+use Narsil\Cms\Database\Factories\Blocks\AccordionItemBlock;
+use Narsil\Cms\Database\Factories\Blocks\ButtonBlock;
+use Narsil\Cms\Database\Factories\Blocks\CallToActionBlock;
+use Narsil\Cms\Database\Factories\Blocks\HeadlineBlock;
+use Narsil\Cms\Database\Factories\Blocks\HeroHeaderBlock;
+use Narsil\Cms\Database\Factories\Blocks\LayoutBlock;
+use Narsil\Cms\Database\Factories\Blocks\LinkBlock;
+use Narsil\Cms\Database\Factories\Blocks\PaddingBlock;
+use Narsil\Cms\Database\Factories\Templates\ContentTemplate;
 use Narsil\Cms\Database\Seeders\EntitySeeder;
-use Narsil\Cms\Database\Seeders\Templates\ContentTemplateSeeder;
 use Narsil\Cms\Models\Collections\Block;
 use Narsil\Cms\Models\Collections\Template;
 use Narsil\Cms\Models\Entities\Entity;
@@ -39,41 +39,41 @@ class HomeEntitySeeder extends EntitySeeder
     {
         $faker = Factory::create();
 
-        $accordionBlock = new AccordionBlockSeeder()->run();
-        $accordionItemBlock = new AccordionItemBlockSeeder()->run();
-        $buttonBlock = new ButtonBlockSeeder()->run();
-        $callToActionBlock = new CallToActionBlockSeeder()->run();
-        $heroHeaderBlock = new HeroHeaderBlockSeeder()->run();
+        $accordionBlock = AccordionBlock::run();
+        $accordionItemBlock = AccordionItemBlock::run();
+        $buttonBlock = ButtonBlock::run();
+        $callToActionBlock = CallToActionBlock::run();
+        $heroHeaderBlock = HeroHeaderBlock::run();
 
         $contactPage = SitePage::query()
             ->where(SitePage::SLUG . '->en', '=', 'contact')
             ->first();
 
         return [
-            ContentTemplateSeeder::CONTENT => [
+            ContentTemplate::CONTENT => [
                 [
                     EntityNode::BLOCK_ID => $heroHeaderBlock->{Block::ID},
                     EntityNode::RELATION_CHILDREN => [
-                        HeroHeaderBlockSeeder::LAYOUT => [
-                            LayoutBlockSeeder::SIZE => 'lg',
-                            LayoutBlockSeeder::PADDING => [
-                                PaddingBlockSeeder::TOP => 'md',
-                                PaddingBlockSeeder::BOTTOM => 'md',
+                        HeroHeaderBlock::LAYOUT => [
+                            LayoutBlock::SIZE => 'lg',
+                            LayoutBlock::PADDING => [
+                                PaddingBlock::TOP => 'md',
+                                PaddingBlock::BOTTOM => 'md',
                             ],
                         ],
-                        HeroHeaderBlockSeeder::HEADLINE => [
-                            HeadlineBlockSeeder::HEADLINE => 'Welcome to Narsil CMS!',
-                            HeadlineBlockSeeder::HEADLINE_LEVEL => 'h1',
-                            HeadlineBlockSeeder::HEADLINE_STYLE => 'h1',
+                        HeroHeaderBlock::HEADLINE => [
+                            HeadlineBlock::TITLE => 'Welcome to Narsil CMS!',
+                            HeadlineBlock::LEVEL => 'h1',
+                            HeadlineBlock::STYLE => 'h1',
                         ],
-                        HeroHeaderBlockSeeder::EXCERPT => '<p>' . $faker->sentences(6, true) . '</p>',
-                        HeroHeaderBlockSeeder::BUTTONS => [[
+                        HeroHeaderBlock::EXCERPT => '<p>' . $faker->sentences(6, true) . '</p>',
+                        HeroHeaderBlock::BUTTONS => [[
                             EntityNode::BLOCK_ID => $buttonBlock->{Block::ID},
                             EntityNode::RELATION_CHILDREN => [
-                                ButtonBlockSeeder::LABEL => 'Get started',
-                                ButtonBlockSeeder::LINK => [
-                                    LinkBlockSeeder::TYPE => 'external',
-                                    LinkBlockSeeder::URL => '/admin',
+                                ButtonBlock::LABEL => 'Get started',
+                                ButtonBlock::LINK => [
+                                    LinkBlock::TYPE => 'external',
+                                    LinkBlock::URL => '/admin',
                                 ]
                             ],
                         ]],
@@ -82,33 +82,33 @@ class HomeEntitySeeder extends EntitySeeder
                 [
                     EntityNode::BLOCK_ID => $accordionBlock->{Block::ID},
                     EntityNode::RELATION_CHILDREN => [
-                        AccordionBlockSeeder::LAYOUT => [
-                            LayoutBlockSeeder::SIZE => 'sm',
-                            LayoutBlockSeeder::PADDING => [
-                                PaddingBlockSeeder::TOP => 'none',
-                                PaddingBlockSeeder::BOTTOM => 'md',
+                        AccordionBlock::LAYOUT => [
+                            LayoutBlock::SIZE => 'sm',
+                            LayoutBlock::PADDING => [
+                                PaddingBlock::TOP => 'none',
+                                PaddingBlock::BOTTOM => 'md',
                             ],
                         ],
-                        AccordionBlockSeeder::ACCORDION_BUILDER => [
+                        AccordionBlock::ITEMS => [
                             [
                                 EntityNode::BLOCK_ID => $accordionItemBlock->{Block::ID},
                                 EntityNode::RELATION_CHILDREN => [
-                                    AccordionItemBlockSeeder::ACCORDION_ITEM_TRIGGER => $faker->sentence(6, true),
-                                    AccordionItemBlockSeeder::ACCORDION_ITEM_CONTENT => $faker->sentences(6, true),
+                                    AccordionItemBlock::TRIGGER => $faker->sentence(6, true),
+                                    AccordionItemBlock::CONTENT => $faker->sentences(6, true),
                                 ],
                             ],
                             [
                                 EntityNode::BLOCK_ID => $accordionItemBlock->{Block::ID},
                                 EntityNode::RELATION_CHILDREN => [
-                                    AccordionItemBlockSeeder::ACCORDION_ITEM_TRIGGER => $faker->sentence(6, true),
-                                    AccordionItemBlockSeeder::ACCORDION_ITEM_CONTENT => $faker->sentences(6, true),
+                                    AccordionItemBlock::TRIGGER => $faker->sentence(6, true),
+                                    AccordionItemBlock::CONTENT => $faker->sentences(6, true),
                                 ],
                             ],
                             [
                                 EntityNode::BLOCK_ID => $accordionItemBlock->{Block::ID},
                                 EntityNode::RELATION_CHILDREN => [
-                                    AccordionItemBlockSeeder::ACCORDION_ITEM_TRIGGER => $faker->sentence(6, true),
-                                    AccordionItemBlockSeeder::ACCORDION_ITEM_CONTENT => $faker->sentences(6, true),
+                                    AccordionItemBlock::TRIGGER => $faker->sentence(6, true),
+                                    AccordionItemBlock::CONTENT => $faker->sentences(6, true),
                                 ],
                             ],
                         ],
@@ -117,17 +117,17 @@ class HomeEntitySeeder extends EntitySeeder
                 [
                     EntityNode::BLOCK_ID => $callToActionBlock->{Block::ID},
                     EntityNode::RELATION_CHILDREN => [
-                        CallToActionBlockSeeder::LAYOUT => [
-                            LayoutBlockSeeder::SIZE => 'sm',
-                            LayoutBlockSeeder::PADDING => [
-                                PaddingBlockSeeder::TOP => 'none',
-                                PaddingBlockSeeder::BOTTOM => 'md',
+                        CallToActionBlock::LAYOUT => [
+                            LayoutBlock::SIZE => 'sm',
+                            LayoutBlock::PADDING => [
+                                PaddingBlock::TOP => 'none',
+                                PaddingBlock::BOTTOM => 'md',
                             ],
                         ],
-                        CallToActionBlockSeeder::LABEL => 'Contact us',
-                        CallToActionBlockSeeder::LINK => [
-                            LinkBlockSeeder::TYPE => 'internal',
-                            LinkBlockSeeder::LINK => $contactPage?->{SitePage::ATTRIBUTE_IDENTIFIER},
+                        CallToActionBlock::LABEL => 'Contact us',
+                        CallToActionBlock::LINK => [
+                            LinkBlock::TYPE => 'internal',
+                            LinkBlock::PAGE => $contactPage?->{SitePage::ATTRIBUTE_IDENTIFIER},
                         ]
                     ],
                 ],

@@ -5,6 +5,8 @@ namespace Narsil\Cms\Models\Collections;
 #region USE
 
 use Illuminate\Database\Eloquent\Attributes\ObservedBy;
+use Illuminate\Database\Eloquent\Attributes\UseFactory;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Facades\Cache;
@@ -15,6 +17,7 @@ use Narsil\Base\Traits\AuditLoggable;
 use Narsil\Base\Traits\Blameable;
 use Narsil\Base\Traits\HasDatetimes;
 use Narsil\Base\Traits\HasTranslations;
+use Narsil\Cms\Database\Factories\TemplateFactory;
 
 #endregion
 
@@ -22,12 +25,14 @@ use Narsil\Base\Traits\HasTranslations;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-#[ObservedBy([ModelObserver::class])]
+#[ObservedBy(ModelObserver::class)]
+#[UseFactory(TemplateFactory::class)]
 class Template extends Model
 {
     use Blameable;
     use AuditLoggable;
     use HasDatetimes;
+    use HasFactory;
     use HasTranslations;
 
     #region CONSTRUCTOR

@@ -4,10 +4,13 @@ namespace Narsil\Cms\Models\Collections;
 
 #region USE
 
+use Illuminate\Database\Eloquent\Attributes\UseFactory;
 use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Narsil\Base\Casts\JsonCast;
+use Narsil\Cms\Database\Factories\FieldFactory;
 use Narsil\Cms\Models\ValidationRule;
 use Narsil\Cms\Services\FieldService;
 use Narsil\Cms\Traits\HasValidationRules;
@@ -18,8 +21,10 @@ use Narsil\Cms\Traits\HasValidationRules;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
+#[UseFactory(FieldFactory::class)]
 class Field extends BaseElement
 {
+    use HasFactory;
     use HasValidationRules;
 
     #region CONSTRUCTOR

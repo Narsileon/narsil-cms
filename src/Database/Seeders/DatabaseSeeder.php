@@ -5,7 +5,7 @@ namespace Narsil\Cms\Database\Seeders;
 #region USE
 
 use Illuminate\Database\Seeder;
-use Narsil\Cms\Database\Seeders\Templates\ContentTemplateSeeder;
+use Narsil\Cms\Database\Factories\Templates\ContentTemplate;
 
 #endregion
 
@@ -22,9 +22,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        $this->call([
-            ContentTemplateSeeder::class,
-        ]);
+        ContentTemplate::run();
     }
 
     #endregion
