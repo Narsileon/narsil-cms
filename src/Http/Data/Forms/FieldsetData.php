@@ -16,12 +16,22 @@ use Narsil\Cms\Models\Collections\Field;
 /**
  * @version 1.0.0
  * @author Jonathan Rigaux
+ *
+ * @property boolean $collapsible
+ * @property boolean $virtual
  */
 class FieldsetData extends BaseFieldsetData
 {
     #region PUBLIC METHODS
 
-    public static function fromBlock(Block $block)
+    /**
+     * Get the fieldset data of a block.
+     *
+     * @param Block $block
+     *
+     * @return FieldsetData
+     */
+    public static function fromBlock(Block $block): FieldsetData
     {
         return new FieldsetData(
             description: $block->{Block::DESCRIPTION},
@@ -41,7 +51,14 @@ class FieldsetData extends BaseFieldsetData
         )->block_id($block->{Block::ID});
     }
 
-    public static function fromElement(Element $element)
+    /**
+     * Get the fieldset data of an element.
+     *
+     * @param Element $element
+     *
+     * @return FieldsetData
+     */
+    public static function fromElement(Element $element): FieldsetData
     {
         $block = $element->{Element::RELATION_BASE};
 
@@ -61,6 +78,36 @@ class FieldsetData extends BaseFieldsetData
                 }
             })->toArray(),
         );
+    }
+
+    /**
+     * Get the block of a fieldset data.
+     *
+     * @param FieldsetData $fieldsetData
+     *
+     * @return Block
+     */
+    public static function toBlock(FieldsetData $fieldsetData): Block
+    {
+        foreach ($fieldsetData->elements as $element)
+        {
+            if ($element instanceof FieldData)
+            {
+                $fieldsetData->elements[] = FieldData::toBlock($element);
+            }
+            else if ($element instanceof FieldsetData)
+            {
+                $fieldsetData->elements[] = FieldsetData::toBlock($element);
+            }
+        }
+
+        return new Block([
+            Block::COLLAPSIBLE => $fieldsetData->collapsible,
+            Block::DESCRIPTION => $fieldsetData->description,
+            Block::HANDLE => $fieldsetData->id,
+            Block::LABEL => $fieldsetData->label,
+            Block::VIRTUAL => $fieldsetData->virtual,
+        ]);
     }
 
     #endregion

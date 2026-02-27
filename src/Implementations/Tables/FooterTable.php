@@ -4,7 +4,9 @@ namespace Narsil\Cms\Implementations\Tables;
 
 #region USE
 
-use Narsil\Base\Enums\InputTypeEnum;
+use Narsil\Base\Http\Data\Forms\Inputs\DatetimeInputData;
+use Narsil\Base\Http\Data\Forms\Inputs\NumberInputData;
+use Narsil\Base\Http\Data\Forms\Inputs\TextInputData;
 use Narsil\Base\Http\Data\TanStackTables\ColumnDefData;
 use Narsil\Base\Implementations\Table;
 use Narsil\Base\Services\ModelService;
@@ -43,78 +45,78 @@ class FooterTable extends Table
         return [
             new ColumnDefData(
                 id: Footer::ID,
-                type: InputTypeEnum::NUMBER,
+                type: NumberInputData::TYPE,
                 visibility: true,
             ),
             new ColumnDefData(
                 id: Footer::SLUG,
-                type: InputTypeEnum::TEXT,
+                type: TextInputData::TYPE,
                 visibility: true,
             ),
             new ColumnDefData(
                 id: Footer::ORGANIZATION,
-                type: InputTypeEnum::TEXT,
+                type: TextInputData::TYPE,
             ),
             new ColumnDefData(
                 id: Footer::EMAIL,
-                type: InputTypeEnum::TEXT,
+                type: TextInputData::TYPE,
             ),
             new ColumnDefData(
                 id: Footer::PHONE,
-                type: InputTypeEnum::TEXT,
+                type: TextInputData::TYPE,
             ),
             new ColumnDefData(
                 id: Footer::STREET,
-                type: InputTypeEnum::TEXT,
+                type: TextInputData::TYPE,
                 visibility: true,
             ),
             new ColumnDefData(
                 id: Footer::POSTAL_CODE,
-                type: InputTypeEnum::TEXT,
+                type: TextInputData::TYPE,
                 visibility: true,
             ),
             new ColumnDefData(
                 id: Footer::CITY,
-                type: InputTypeEnum::TEXT,
+                type: TextInputData::TYPE,
                 visibility: true,
             ),
             new ColumnDefData(
                 id: Footer::COUNTRY,
-                type: InputTypeEnum::TEXT,
+                type: TextInputData::TYPE,
             ),
             new ColumnDefData(
                 id: Footer::ORGANIZATION_SCHEMA,
-                type: InputTypeEnum::TEXT,
+                type: TextInputData::TYPE,
             ),
             new ColumnDefData(
                 enableColumnFilter: false,
                 header: ModelService::getTableLabel(Site::VIRTUAL_TABLE),
                 id: Footer::COUNT_WEBSITES,
-                type: InputTypeEnum::NUMBER,
+                type: NumberInputData::TYPE,
                 visibility: true,
             ),
             new ColumnDefData(
                 enableColumnFilter: false,
                 header: ModelService::getTableLabel(FooterLink::TABLE),
                 id: Footer::COUNT_LINKS,
-                type: InputTypeEnum::NUMBER,
+                type: NumberInputData::TYPE,
                 visibility: true,
             ),
             new ColumnDefData(
                 enableColumnFilter: false,
                 header: ModelService::getTableLabel(FooterSocialMedium::TABLE),
                 id: Footer::COUNT_SOCIAL_MEDIA,
-                type: InputTypeEnum::NUMBER,
+                type: NumberInputData::TYPE,
                 visibility: true,
             ),
             new ColumnDefData(
                 id: Footer::CREATED_AT,
-                type: InputTypeEnum::DATETIME,
+                type: DatetimeInputData::TYPE,
                 visibility: true,
             ),
             new ColumnDefData(
                 id: Footer::UPDATED_AT,
-                type: InputTypeEnum::DATETIME,
+                type: DatetimeInputData::TYPE,
                 visibility: true,
             ),
         ];

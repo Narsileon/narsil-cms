@@ -4,7 +4,9 @@ namespace Narsil\Cms\Implementations\Tables;
 
 #region USE
 
-use Narsil\Base\Enums\InputTypeEnum;
+use Narsil\Base\Http\Data\Forms\Inputs\DatetimeInputData;
+use Narsil\Base\Http\Data\Forms\Inputs\NumberInputData;
+use Narsil\Base\Http\Data\Forms\Inputs\TextInputData;
 use Narsil\Base\Http\Data\TanStackTables\ColumnDefData;
 use Narsil\Base\Implementations\Table;
 use Narsil\Base\Services\ModelService;
@@ -42,29 +44,29 @@ class HeaderTable extends Table
         return [
             new ColumnDefData(
                 id: Header::ID,
-                type: InputTypeEnum::NUMBER,
+                type: NumberInputData::TYPE,
                 visibility: true,
             ),
             new ColumnDefData(
                 id: Header::SLUG,
-                type: InputTypeEnum::TEXT,
+                type: TextInputData::TYPE,
                 visibility: true,
             ),
             new ColumnDefData(
                 enableColumnFilter: false,
                 header: ModelService::getTableLabel(Site::VIRTUAL_TABLE),
                 id: Footer::COUNT_WEBSITES,
-                type: InputTypeEnum::NUMBER,
+                type: NumberInputData::TYPE,
                 visibility: true,
             ),
             new ColumnDefData(
                 id: Header::CREATED_AT,
-                type: InputTypeEnum::DATETIME,
+                type: DatetimeInputData::TYPE,
                 visibility: true,
             ),
             new ColumnDefData(
                 id: Header::UPDATED_AT,
-                type: InputTypeEnum::DATETIME,
+                type: DatetimeInputData::TYPE,
                 visibility: true,
             ),
         ];

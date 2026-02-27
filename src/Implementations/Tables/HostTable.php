@@ -4,7 +4,9 @@ namespace Narsil\Cms\Implementations\Tables;
 
 #region USE
 
-use Narsil\Base\Enums\InputTypeEnum;
+use Narsil\Base\Http\Data\Forms\Inputs\DatetimeInputData;
+use Narsil\Base\Http\Data\Forms\Inputs\NumberInputData;
+use Narsil\Base\Http\Data\Forms\Inputs\TextInputData;
 use Narsil\Base\Http\Data\TanStackTables\ColumnDefData;
 use Narsil\Base\Implementations\Table;
 use Narsil\Base\Services\ModelService;
@@ -42,41 +44,41 @@ class HostTable extends Table
         return [
             new ColumnDefData(
                 id: Host::ID,
-                type: InputTypeEnum::NUMBER,
+                type: NumberInputData::TYPE,
                 visibility: true,
             ),
             new ColumnDefData(
                 id: Host::HOSTNAME,
-                type: InputTypeEnum::TEXT,
+                type: TextInputData::TYPE,
                 visibility: true,
             ),
             new ColumnDefData(
                 id: Host::LABEL,
-                type: InputTypeEnum::TEXT,
+                type: TextInputData::TYPE,
                 visibility: true,
             ),
             new ColumnDefData(
                 enableColumnFilter: false,
                 header: ModelService::getTableLabel(HostLocale::TABLE),
                 id: Host::COUNT_LOCALES,
-                type: InputTypeEnum::NUMBER,
+                type: NumberInputData::TYPE,
                 visibility: true,
             ),
             new ColumnDefData(
                 enableColumnFilter: false,
                 header: ModelService::getTableLabel(HostLocaleLanguage::TABLE),
                 id: Host::COUNT_LANGUAGES,
-                type: InputTypeEnum::NUMBER,
+                type: NumberInputData::TYPE,
                 visibility: true,
             ),
             new ColumnDefData(
                 id: Host::CREATED_AT,
-                type: InputTypeEnum::DATETIME,
+                type: DatetimeInputData::TYPE,
                 visibility: true,
             ),
             new ColumnDefData(
                 id: Host::UPDATED_AT,
-                type: InputTypeEnum::DATETIME,
+                type: DatetimeInputData::TYPE,
                 visibility: true,
             ),
         ];

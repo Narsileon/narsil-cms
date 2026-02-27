@@ -13,14 +13,14 @@ use Narsil\Base\Support\TranslationsBag;
  * @version 1.0.0
  * @author Jonathan Rigaux
  *
- * @property array $defaultValue The "default value" attribute of the input.
+ * @property array $defaultValue The value of the "default value" attribute.
  */
 class TreeInputData extends InputData
 {
     #region CONSTRUCTOR
 
     /**
-     * @param array $defaultValue The "default value" attribute of the input.
+     * @param array $defaultValue The value of the "default value" attribute.
      *
      * @return void
      */
@@ -28,10 +28,21 @@ class TreeInputData extends InputData
         array $defaultValue = [],
     )
     {
-        $this->set('defaultValue', $defaultValue);
+        $this->set(self::DEFAULT_VALUE, $defaultValue);
 
-        parent::__construct('tree');
+        parent::__construct(static::TYPE);
     }
+
+    #endregion
+
+    #region CONSTANTS
+
+    /**
+     * The name of the "type" attribute.
+     *
+     * @var string
+     */
+    final public const TYPE = 'tree';
 
     #endregion
 
@@ -46,6 +57,7 @@ class TreeInputData extends InputData
             ->add('narsil::ui.add_child')
             ->add('narsil::ui.delete')
             ->add('narsil::ui.edit')
+            ->add('narsil::ui.menu')
             ->add('narsil::ui.move_down')
             ->add('narsil::ui.move_up');
     }

@@ -4,7 +4,9 @@ namespace Narsil\Cms\Implementations\Tables;
 
 #region USE
 
-use Narsil\Base\Enums\InputTypeEnum;
+use Narsil\Base\Http\Data\Forms\Inputs\DatetimeInputData;
+use Narsil\Base\Http\Data\Forms\Inputs\NumberInputData;
+use Narsil\Base\Http\Data\Forms\Inputs\TextInputData;
 use Narsil\Base\Http\Data\TanStackTables\ColumnDefData;
 use Narsil\Base\Implementations\Table;
 use Narsil\Base\Services\RouteService;
@@ -28,22 +30,22 @@ class EntityTable extends Table
         return [
             new ColumnDefData(
                 id: Entity::ID,
-                type: InputTypeEnum::NUMBER,
+                type: NumberInputData::TYPE,
                 visibility: true,
             ),
             new ColumnDefData(
                 id: Entity::SLUG,
-                type: InputTypeEnum::TEXT,
+                type: TextInputData::TYPE,
                 visibility: true,
             ),
             new ColumnDefData(
                 id: Entity::CREATED_AT,
-                type: InputTypeEnum::TEXT,
+                type: DatetimeInputData::TYPE,
                 visibility: true,
             ),
             new ColumnDefData(
                 id: Entity::UPDATED_AT,
-                type: InputTypeEnum::TEXT,
+                type: DatetimeInputData::TYPE,
                 visibility: true,
             ),
         ];

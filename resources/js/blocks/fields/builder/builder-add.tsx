@@ -1,4 +1,3 @@
-import type { Block } from "@narsil-cms/types";
 import { Button } from "@narsil-ui/components/button";
 import {
   DropdownMenuItem,
@@ -12,15 +11,16 @@ import { Icon } from "@narsil-ui/components/icon";
 import { Tooltip } from "@narsil-ui/components/tooltip";
 import { useTranslator } from "@narsil-ui/components/translator";
 import { cn } from "@narsil-ui/lib/utils";
+import type { FieldsetData } from "@narsil-ui/types";
 import { useState, type ComponentProps } from "react";
 import { type BuilderElement } from ".";
 
 type BuilderAddProps = ComponentProps<typeof DropdownMenuTrigger> & {
-  blocks: Block[];
+  elements: FieldsetData[];
   onAdd: (node: BuilderElement) => void;
 };
 
-function BuilderAdd({ blocks, onAdd, ...props }: BuilderAddProps) {
+function BuilderAdd({ elements, onAdd, ...props }: BuilderAddProps) {
   const { trans } = useTranslator();
 
   const [open, onOpenChange] = useState<boolean>(false);
@@ -40,18 +40,22 @@ function BuilderAdd({ blocks, onAdd, ...props }: BuilderAddProps) {
       <DropdownMenuPortal>
         <DropdownMenuPositioner>
           <DropdownMenuPopup>
-            {blocks.map((block, index) => {
+            {elements.map((element, index) => {
               return (
                 <DropdownMenuItem
                   onClick={() => {
-                    const node = { uuid: crypto.randomUUID(), block_id: block.id, children: {} };
+                    const node = {
+                      uuid: crypto.randomUUID(),
+                      block_id: element.id as string,
+                      children: {},
+                    };
 
                     onAdd(node as BuilderElement);
                   }}
                   key={index}
                 >
-                  {block.icon ? <Icon name={block.icon} /> : null}
-                  <span>{block.label}</span>
+                  {element.icon ? <Icon name={element.icon} /> : null}
+                  <span>{element.label}</span>
                 </DropdownMenuItem>
               );
             })}

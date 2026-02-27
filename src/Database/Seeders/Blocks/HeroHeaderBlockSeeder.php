@@ -4,7 +4,7 @@ namespace Narsil\Cms\Database\Seeders\Blocks;
 
 #region USE
 
-use Narsil\Base\Enums\InputTypeEnum;
+use Narsil\Base\Http\Data\Forms\Inputs\RichTextInputData;
 use Narsil\Cms\Database\Seeders\BlockSeeder;
 use Narsil\Cms\Models\Collections\Block;
 use Narsil\Cms\Models\Collections\BlockElement;
@@ -96,7 +96,7 @@ class HeroHeaderBlockSeeder extends BlockSeeder
                 ])->setRelation(
                     BlockElement::RELATION_BASE,
                     new Field([
-                        Field::TYPE => InputTypeEnum::RICH_TEXT_EDITOR,
+                        Field::TYPE => RichTextInputData::TYPE,
                     ]),
                 ),
                 new BlockElement([

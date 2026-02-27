@@ -58,7 +58,7 @@ class FieldForm extends Form implements Contract
         {
             $concrete = Config::get("narsil.fields.$type");
 
-            $settings = $concrete::form(Field::SETTINGS);
+            $settings = $concrete::getInputForm(Field::SETTINGS);
         }
 
         $typeOptions = static::getTypeOptions();

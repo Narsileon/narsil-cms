@@ -14,14 +14,14 @@ use Narsil\Base\Support\TranslationsBag;
  * @version 1.0.0
  * @author Jonathan Rigaux
  *
- * @property array $defaultValue The "default value" attribute of the input.
+ * @property array $defaultValue The value of the "default value" attribute.
  */
 class RelationsInputData extends InputData
 {
     #region CONSTRUCTOR
 
     /**
-     * @param array $defaultValue The "default value" attribute of the input.
+     * @param array $defaultValue The value of the "default value" attribute.
      *
      * @return void
      */
@@ -29,10 +29,21 @@ class RelationsInputData extends InputData
         array $defaultValue = [],
     )
     {
-        $this->set('defaultValue', $defaultValue);
+        $this->set(self::DEFAULT_VALUE, $defaultValue);
 
-        parent::__construct('relations');
+        parent::__construct(static::TYPE);
     }
+
+    #endregion
+
+    #region CONSTANTS
+
+    /**
+     * The name of the "type" attribute.
+     *
+     * @var string
+     */
+    final public const TYPE = 'relations';
 
     #endregion
 

@@ -8,7 +8,6 @@ use Narsil\Base\Http\Data\Forms\FieldData;
 use Narsil\Base\Http\Data\Forms\InputData;
 use Narsil\Base\Http\Data\Forms\Inputs\SelectInputData;
 use Narsil\Base\Http\Data\Forms\Inputs\SwitchInputData;
-use Narsil\Base\Http\Data\Forms\Inputs\TextInputData;
 use Narsil\Cms\Models\Collections\Template;
 
 #endregionx
@@ -17,37 +16,58 @@ use Narsil\Cms\Models\Collections\Template;
  * @version 1.0.0
  * @author Jonathan Rigaux
  *
- * @property array $collection The "collection" attribute of the input.
- * @property string $defaultValue The "default value" attribute of the input.
- * @property boolean $multiple The "multiple" attribute of the input.
- * @property string $placeholder The "placeholder" attribute of the input.
+ * @property string $defaultValue The value of the "default value" attribute.
+ * @property array $collections The value of the "collections" attribute.
+ * @property boolean $multiple The value of the "multiple" attribute.
  */
 class EntityInputData extends InputData
 {
     #region CONSTRUCTOR
 
     /**
-     * @param array $collections The "collection" attribute of the input.
-     * @param string $defaultValue The "default value" attribute of the input.
-     * @param boolean $multiple The "multiple" attribute of the input.
-     * @param string $placeholder The "placeholder" attribute of the input.
+     * @param string $defaultValue The value of the "default value" attribute.
+     * @param array $collections The value of the "collections" attribute.
+     * @param boolean $multiple The value of the "multiple" attribute.
      *
      * @return void
      */
     public function __construct(
-        array $collections,
         string $defaultValue = '',
+        array $collections = [],
         bool $multiple = false,
-        string $placeholder = '',
     )
     {
-        $this->set('collections', $collections);
-        $this->set('defaultValue', $defaultValue);
-        $this->set('multiple', $multiple);
-        $this->set('placeholder', $placeholder);
+        $this->set(self::COLLECTIONS, $collections);
+        $this->set(self::DEFAULT_VALUE, $defaultValue);
+        $this->set(self::MULTIPLE, $multiple);
 
-        parent::__construct('tree');
+        parent::__construct(static::TYPE);
     }
+
+    #endregion
+
+    #region CONSTANTS
+
+    /**
+     * The name of the "collections" attribute.
+     *
+     * @var string
+     */
+    final public const COLLECTIONS = 'collections';
+
+    /**
+     * The name of the "multiple" attribute.
+     *
+     * @var string
+     */
+    final public const MULTIPLE = 'multiple';
+
+    /**
+     * The name of the "type" attribute.
+     *
+     * @var string
+     */
+    final public const TYPE = 'entity';
 
     #endregion
 
@@ -56,7 +76,7 @@ class EntityInputData extends InputData
     /**
      * {@inheritDoc}
      */
-    public static function form(?string $prefix = null): array
+    public static function getInputForm(?string $prefix = null): array
     {
         return [
             new FieldData(
@@ -68,12 +88,7 @@ class EntityInputData extends InputData
                 ),
             ),
             new FieldData(
-                id: 'placeholder',
-                prefix: $prefix,
-                input: new TextInputData(),
-            ),
-            new FieldData(
-                id: 'multiple',
+                id: self::MULTIPLE,
                 prefix: $prefix,
                 input: new SwitchInputData(),
             ),

@@ -4,10 +4,7 @@ namespace Narsil\Cms\Http\Data\Forms\Inputs;
 
 #region USE
 
-use Narsil\Base\Http\Data\Forms\FieldData;
 use Narsil\Base\Http\Data\Forms\InputData;
-use Narsil\Base\Http\Data\Forms\Inputs\SwitchInputData;
-use Narsil\Base\Http\Data\Forms\Inputs\TextInputData;
 
 #endregionx
 
@@ -15,56 +12,36 @@ use Narsil\Base\Http\Data\Forms\Inputs\TextInputData;
  * @version 1.0.0
  * @author Jonathan Rigaux
  *
- * @property string $defaultValue The "default value" attribute of the input.
- * @property string $placeholder The "placeholder" attribute of the input.
- * @property bool $multiple The "multiple" attribute of the input.
+ * @property string $defaultValue The value of the "default value" attribute.
  */
 class LinkInputData extends InputData
 {
     #region CONSTRUCTOR
 
     /**
-     * @param string $defaultValue The "default value" attribute of the input.
-     * @param string $placeholder The "placeholder" attribute of the input.
-     * @param bool $multiple The "multiple" attribute of the input.
+     * @param string $defaultValue The value of the "default value" attribute.
      *
      * @return void
      */
     public function __construct(
         string $defaultValue = '',
-        string $placeholder = '',
-        bool $multiple = false
     )
     {
-        $this->set('defaultValue', $defaultValue);
-        $this->set('placeholder', $placeholder);
-        $this->set('multiple', $multiple);
+        $this->set(self::DEFAULT_VALUE, $defaultValue);
 
-        parent::__construct('link');
+        parent::__construct(static::TYPE);
     }
 
     #endregion
 
-    #region PUBLIC METHODS
+    #region CONSTANTS
 
     /**
-     * {@inheritDoc}
+     * The name of the "type" attribute.
+     *
+     * @var string
      */
-    public static function form(?string $prefix = null): array
-    {
-        return [
-            new FieldData(
-                id: 'placeholder',
-                prefix: $prefix,
-                input: new TextInputData(),
-            ),
-            new FieldData(
-                id: 'multiple',
-                prefix: $prefix,
-                input: new SwitchInputData(),
-            ),
-        ];
-    }
+    final public const TYPE = 'link';
 
     #endregion
 }

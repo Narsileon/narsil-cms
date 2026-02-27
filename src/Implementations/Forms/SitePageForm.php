@@ -6,7 +6,7 @@ namespace Narsil\Cms\Implementations\Forms;
 
 use Illuminate\Database\Eloquent\Model;
 use Narsil\Base\Helpers\Translator;
-use Narsil\Base\Http\Data\ConditionData;
+use Narsil\Base\Http\Data\Forms\ConditionData;
 use Narsil\Base\Http\Data\Forms\FieldData;
 use Narsil\Base\Http\Data\Forms\FieldsetData;
 use Narsil\Base\Http\Data\Forms\FormStepData;

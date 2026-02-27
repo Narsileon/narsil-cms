@@ -19,7 +19,14 @@ class FormStepData extends BaseFormStepData
 {
     #region PUBLIC METHODS
 
-    public static function fromElement(TemplateTab $templateTab)
+    /**
+     * Get the form step data of a template tab.
+     *
+     * @param TemplateTab $templateTab
+     *
+     * @return FormStepData
+     */
+    public static function fromElement(TemplateTab $templateTab): FormStepData
     {
         return new FormStepData(
             id: $templateTab->{TemplateTab::HANDLE},

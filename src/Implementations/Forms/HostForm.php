@@ -113,8 +113,8 @@ class HostForm extends Form implements Contract
                         id: Host::RELATION_OTHER_LOCALES,
                         label: trans('narsil-cms::validation.attributes.locales'),
                         input: new ArrayInputData(
-                            labelKey: HostLocale::COUNTRY,
-                            form: [
+                            labelPath: HostLocale::COUNTRY,
+                            elements: [
                                 new FieldData(
                                     description: ModelService::getAttributeDescription(HostLocale::TABLE, HostLocale::PATTERN, [
                                         'example' => 'https://{host}/{language}-{country}'

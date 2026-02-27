@@ -12,7 +12,6 @@ import {
   type DragStartEvent,
 } from "@dnd-kit/core";
 import { arrayMove, SortableContext, verticalListSortingStrategy } from "@dnd-kit/sortable";
-import type { Block } from "@narsil-cms/types";
 import { BackgroundRoot } from "@narsil-ui/components/background";
 import BackgroundGrid from "@narsil-ui/components/background/background-grid";
 import { useForm } from "@narsil-ui/components/form";
@@ -24,13 +23,13 @@ import BuilderAdd from "./builder-add";
 import BuilderItem from "./builder-item";
 
 type BuilderProps = {
-  blocks: FieldsetData[];
+  elements: FieldsetData[];
   name: string;
 };
 
-function Builder({ blocks, name }: BuilderProps) {
+function Builder({ elements, name }: BuilderProps) {
   const { data, setData } = useForm();
-  console.log(blocks);
+
   let items = get(data, name, []) as BuilderElement[];
 
   if (isEmpty(items)) {
@@ -49,8 +48,8 @@ function Builder({ blocks, name }: BuilderProps) {
     useSensor(KeyboardSensor),
   );
 
-  function getBlock(id: number): Block {
-    return blocks.find((block) => block.block_id === id) as Block;
+  function getBlock(id: number): FieldsetData {
+    return elements.find((element) => element.block_id === id) as FieldsetData;
   }
 
   function onDragCancel({}: DragCancelEvent) {
@@ -118,7 +117,7 @@ function Builder({ blocks, name }: BuilderProps) {
               <Fragment key={item.uuid}>
                 <BuilderAdd
                   className="mb-2"
-                  blocks={blocks}
+                  elements={elements}
                   onAdd={(item) => {
                     const newItems = [...items];
 
@@ -130,7 +129,6 @@ function Builder({ blocks, name }: BuilderProps) {
                 <BuilderItem
                   baseHandle={baseHandle}
                   block={getBlock(item.block_id)}
-                  id={item.uuid}
                   item={item}
                   onMoveDown={index < items.length - 1 ? () => onMoveDown(item.uuid) : undefined}
                   onMoveUp={index !== 0 ? () => onMoveUp(item.uuid) : undefined}
@@ -141,7 +139,7 @@ function Builder({ blocks, name }: BuilderProps) {
           })}
           <BuilderAdd
             className="not-first:mt-2"
-            blocks={blocks}
+            elements={elements}
             onAdd={(item) => {
               const nextItems = [...items, item];
 
@@ -155,12 +153,7 @@ function Builder({ blocks, name }: BuilderProps) {
       </SortableContext>
       <DragOverlay>
         {active ? (
-          <BuilderItem
-            block={getBlock(active.block_id)}
-            collapsed={true}
-            id={active.uuid}
-            item={active}
-          />
+          <BuilderItem block={getBlock(active.block_id)} collapsed={true} item={active} />
         ) : null}
       </DragOverlay>
     </DndContext>

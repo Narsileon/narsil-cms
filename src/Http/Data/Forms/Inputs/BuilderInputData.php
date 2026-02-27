@@ -19,25 +19,47 @@ use Narsil\Cms\Models\Collections\Field;
  * @version 1.0.0
  * @author Jonathan Rigaux
  *
- * @property array $defaultValue The "default value" attribute of the input.
+ * @property array $defaultValue The value of the "default value" attribute.
+ * @property FieldsetData[] $elements The value of the "elements" attribute.
  */
 class BuilderInputData extends InputData
 {
     #region CONSTRUCTOR
 
     /**
-     * @param array $defaultValue The "default value" attribute of the input.
+     * @param array $defaultValue The value of the "default value" attribute.
+     * @param FieldsetData[] $elements The value of the "elements" attribute.
      *
      * @return void
      */
     public function __construct(
         array $defaultValue = [],
+        array $elements = [],
     )
     {
-        $this->set('defaultValue', $defaultValue);
+        $this->set(self::DEFAULT_VALUE, $defaultValue);
+        $this->set(self::ELEMENTS, $elements);
 
-        parent::__construct('builder');
+        parent::__construct(static::TYPE);
     }
+
+    #endregion
+
+    #region CONSTANTS
+
+    /**
+     * The name of the "elements" attribute.
+     *
+     * @var string
+     */
+    final public const ELEMENTS = 'elements';
+
+    /**
+     * The name of the "type" attribute.
+     *
+     * @var string
+     */
+    final public const TYPE = 'builder';
 
     #endregion
 
@@ -46,7 +68,7 @@ class BuilderInputData extends InputData
     /**
      * {@inheritDoc}
      */
-    public static function form(?string $prefix = null): array
+    public static function getInputForm(?string $prefix = null): array
     {
         $blockOptions = static::getBlockOptions();
 

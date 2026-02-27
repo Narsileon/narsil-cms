@@ -8,7 +8,6 @@ import { CollapsibleRoot, CollapsibleTrigger } from "@narsil-ui/components/colla
 import { useForm } from "@narsil-ui/components/form";
 import { ModalLink } from "@narsil-ui/components/modal";
 import { SortableHandle } from "@narsil-ui/components/sortable";
-import { useTranslator } from "@narsil-ui/components/translator";
 import { cn } from "@narsil-ui/lib/utils";
 import { type ComponentProps } from "react";
 import { FlatNode, TreeItemMenu } from ".";
@@ -31,7 +30,6 @@ function TreeItem({
   ...props
 }: TreeItemProps) {
   const { formLanguage } = useForm();
-  const { trans } = useTranslator();
 
   const {
     attributes,

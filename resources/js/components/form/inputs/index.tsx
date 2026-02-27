@@ -21,7 +21,7 @@ const registry: Registry = {
     }
   },
   ["tree"]: (props) => {
-    return <Tree {...props} items={props.value} setItems={props.setValue} />;
+    return <Tree {...props.input} items={props.value} setItems={props.setValue} />;
   },
 };
 

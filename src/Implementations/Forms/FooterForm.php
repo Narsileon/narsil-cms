@@ -130,8 +130,8 @@ class FooterForm extends Form implements Contract
                         id: Footer::RELATION_LINKS,
                         label: trans('narsil-cms::ui.links'),
                         input: new ArrayInputData(
-                            labelKey: FooterLink::LABEL,
-                            form: [
+                            labelPath: FooterLink::LABEL,
+                            elements: [
                                 new FieldData(
                                     id: FooterLink::SITE_PAGE_ID,
                                     required: true,
@@ -150,8 +150,8 @@ class FooterForm extends Form implements Contract
                         id: Footer::RELATION_SOCIAL_MEDIA,
                         label: trans('narsil-cms::ui.links'),
                         input: new ArrayInputData(
-                            labelKey: FooterSocialMedium::LABEL,
-                            form: [
+                            labelPath: FooterSocialMedium::LABEL,
+                            elements: [
                                 new FieldData(
                                     id: FooterSocialMedium::LABEL,
                                     required: true,

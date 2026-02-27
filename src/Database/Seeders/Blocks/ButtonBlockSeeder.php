@@ -4,7 +4,7 @@ namespace Narsil\Cms\Database\Seeders\Blocks;
 
 #region USE
 
-use Narsil\Base\Enums\InputTypeEnum;
+use Narsil\Base\Http\Data\Forms\Inputs\TextInputData;
 use Narsil\Cms\Database\Seeders\BlockSeeder;
 use Narsil\Cms\Models\Collections\Block;
 use Narsil\Cms\Models\Collections\BlockElement;
@@ -59,7 +59,7 @@ class ButtonBlockSeeder extends BlockSeeder
                 ])->setRelation(
                     BlockElement::RELATION_BASE,
                     new Field([
-                        Field::TYPE => InputTypeEnum::TEXT,
+                        Field::TYPE => TextInputData::TYPE,
                     ]),
                 ),
                 new BlockElement([

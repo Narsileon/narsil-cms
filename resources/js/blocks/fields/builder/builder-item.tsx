@@ -1,6 +1,5 @@
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
-import { SortableItem } from "@narsil-cms/components/sortable";
 import { useAlertDialog } from "@narsil-ui/components/alert-dialog";
 import { Button } from "@narsil-ui/components/button";
 import { CardContent, CardHeader, CardRoot, CardTitle } from "@narsil-ui/components/card";
@@ -21,21 +20,21 @@ import { get } from "lodash-es";
 import { useState, type ComponentProps } from "react";
 import { type BuilderElement } from ".";
 
-type BuilderItemProps = Omit<ComponentProps<typeof SortableItem>, "item"> &
-  Pick<ComponentProps<typeof SortableItemMenu>, "onMoveDown" | "onMoveUp" | "onRemove"> & {
-    baseHandle?: string;
-    block: FieldsetData;
-    item: BuilderElement;
-  };
+type BuilderItemProps = Pick<
+  ComponentProps<typeof SortableItemMenu>,
+  "onMoveDown" | "onMoveUp" | "onRemove"
+> & {
+  baseHandle?: string;
+  collapsed?: boolean;
+  block: FieldsetData;
+  item: BuilderElement;
+};
 
 function BuilderItem({
   baseHandle,
   block,
-  className,
   collapsed = false,
-  id,
   item,
-  style,
   onMoveDown,
   onMoveUp,
   onRemove,
@@ -56,7 +55,7 @@ function BuilderItem({
     setActivatorNodeRef,
     setNodeRef,
   } = useSortable({
-    id: id,
+    id: item.uuid,
   });
 
   const activeHandle = `${baseHandle}.active`;
@@ -66,10 +65,9 @@ function BuilderItem({
   return (
     <CollapsibleRoot
       ref={setNodeRef}
-      className={cn("w-full", isDragging && "opacity-50", className)}
+      className={cn("w-full", isDragging && "opacity-50")}
       open={open}
       style={{
-        ...style,
         transform: CSS.Transform.toString(transform),
         transition: transition,
       }}

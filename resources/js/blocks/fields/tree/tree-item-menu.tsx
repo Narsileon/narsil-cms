@@ -24,6 +24,7 @@ function TreeItemMenu({ disabled, item, ...props }: TreeItemMenuProps) {
       {item.create_url ? (
         <DropdownMenuItem
           disabled={isDirty}
+          nativeButton={false}
           render={
             <ModalLink href={item.create_url as string} variant="right">
               <Icon name="plus" />
@@ -36,6 +37,7 @@ function TreeItemMenu({ disabled, item, ...props }: TreeItemMenuProps) {
       {item.edit_url ? (
         <DropdownMenuItem
           disabled={isDirty}
+          nativeButton={false}
           render={
             <ModalLink href={item.edit_url as string} variant="right">
               <Icon name="edit" />
