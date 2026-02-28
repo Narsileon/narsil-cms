@@ -23,7 +23,7 @@ abstract class PaddingBlock
      *
      * @var string
      */
-    public const BOTTOM = 'botton';
+    public const BOTTOM = 'bottom';
 
     /**
      * The name of the "top" field.

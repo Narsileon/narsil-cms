@@ -96,7 +96,7 @@ abstract class HeroHeaderBlock
                     BlockElement::REQUIRED => true,
                     BlockElement::TRANSLATABLE => true,
                 ],
-                Block::RELATION_BLOCKS
+                Block::RELATION_FIELDS
             )
             ->hasAttached(
                 Field::factory()->state([
