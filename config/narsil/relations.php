@@ -11,7 +11,5 @@ return [
     |
     */
 
-    \Narsil\Cms\Contracts\Fields\EntityField::class,
-    \Narsil\Cms\Contracts\Fields\FormField::class,
-    \Narsil\Cms\Contracts\Fields\LinkField::class,
+    \Narsil\Cms\Http\Data\Forms\Inputs\LinkInputData::TYPE,
 ];

@@ -31,28 +31,28 @@ class FieldData extends BaseFieldData
      */
     public static function fromElement(Element $element): FieldData
     {
-        $field = $element->{Element::RELATION_BASE};
+        $base = $element->{Element::RELATION_BASE};
 
-        $input = Config::get('narsil.fields.' . $field->{Field::TYPE}, TextInputData::class);
+        $input = Config::get('narsil.fields.' . $base->{Field::TYPE}, TextInputData::class);
 
-        if ($field->{Field::TYPE} === BuilderInputData::TYPE)
+        if ($base->{Field::TYPE} === BuilderInputData::TYPE)
         {
             $input = BuilderInputData::class;
         }
 
         return new FieldData(
-            id: $element->{Element::HANDLE} ?? $field->{Field::HANDLE},
-            label: $element->{Element::LABEL} ?? $field->{Field::LABEL},
-            description: $element->{Element::DESCRIPTION} ?? $field->{Field::DESCRIPTION},
+            id: $element->{Element::HANDLE} ?? $base->{Field::HANDLE},
+            label: $element->{Element::LABEL} ?? $base->{Field::LABEL},
+            description: $element->{Element::DESCRIPTION} ?? $base->{Field::DESCRIPTION},
             required: $element->{Element::REQUIRED},
             translatable: $element->{Element::TRANSLATABLE},
             width: $element->{Element::WIDTH},
             input: new $input()
-                ->elements($field->{Field::RELATION_BLOCKS}->map(function (Block $block)
+                ->elements($base->{Field::RELATION_BLOCKS}->map(function (Block $block)
                 {
                     return FieldsetData::fromBlock($block);
                 })->toArray())
-                ->options($field->{Field::RELATION_OPTIONS}),
+                ->options($base->{Field::RELATION_OPTIONS}),
         );
     }
 

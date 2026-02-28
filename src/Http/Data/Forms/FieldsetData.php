@@ -60,13 +60,13 @@ class FieldsetData extends BaseFieldsetData
      */
     public static function fromElement(Element $element): FieldsetData
     {
-        $block = $element->{Element::RELATION_BASE};
+        $base = $element->{Element::RELATION_BASE};
 
         return new FieldsetData(
-            description: $element->{Element::DESCRIPTION} ?? $block->{Block::DESCRIPTION},
-            id: $element->{Element::HANDLE} ?? $block->{Block::HANDLE},
-            label: $element->{Element::LABEL} ?? $block->{Block::LABEL},
-            elements: $block->{Block::RELATION_ELEMENTS}->map(function ($element)
+            description: $element->{Element::DESCRIPTION} ?? $base->{Block::DESCRIPTION},
+            id: $element->{Element::HANDLE} ?? $base->{Block::HANDLE},
+            label: $element->{Element::LABEL} ?? $base->{Block::LABEL},
+            elements: $base->{Block::RELATION_ELEMENTS}->map(function ($element)
             {
                 if ($element->{BlockElement::BASE_TYPE} === Field::TABLE)
                 {
