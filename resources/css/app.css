@@ -5,7 +5,7 @@
 
 @layer base {
   * {
-    @apply border-border outline-ring/50;
+    @apply border-border outline-primary;
   }
   body {
     @apply bg-background text-sm text-foreground;
