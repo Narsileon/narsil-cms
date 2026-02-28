@@ -56,21 +56,5 @@ class FieldData extends BaseFieldData
         );
     }
 
-    /**
-     * Get the field of a field data.
-     *
-     * @param FieldData $fieldData
-     *
-     * @return Field
-     */
-    public static function toField(FieldData $fieldData): Field
-    {
-        return new Field([
-            Field::DESCRIPTION => $fieldData->description,
-            Field::HANDLE => $fieldData->id,
-            Field::LABEL => $fieldData->label,
-        ]);
-    }
-
     #endregion
 }

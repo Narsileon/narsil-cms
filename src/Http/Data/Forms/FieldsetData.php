@@ -80,35 +80,6 @@ class FieldsetData extends BaseFieldsetData
         );
     }
 
-    /**
-     * Get the block of a fieldset data.
-     *
-     * @param FieldsetData $fieldsetData
-     *
-     * @return Block
-     */
-    public static function toBlock(FieldsetData $fieldsetData): Block
-    {
-        foreach ($fieldsetData->elements as $element)
-        {
-            if ($element instanceof FieldData)
-            {
-                $fieldsetData->elements[] = FieldData::toBlock($element);
-            }
-            else if ($element instanceof FieldsetData)
-            {
-                $fieldsetData->elements[] = FieldsetData::toBlock($element);
-            }
-        }
-
-        return new Block([
-            Block::COLLAPSIBLE => $fieldsetData->collapsible,
-            Block::DESCRIPTION => $fieldsetData->description,
-            Block::HANDLE => $fieldsetData->id,
-            Block::LABEL => $fieldsetData->label,
-            Block::VIRTUAL => $fieldsetData->virtual,
-        ]);
-    }
 
     #endregion
 }
