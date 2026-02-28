@@ -71,10 +71,7 @@ function ResourceIndex({ collection, title }: ResourceIndexProps) {
             </Tooltip>
           ) : null}
         </SectionHeader>
-        <SectionContent
-          className="grow overflow-y-auto"
-          render={<DataTable collection={collection} />}
-        />
+        <SectionContent className="grow" render={<DataTable collection={collection} />} />
       </SectionRoot>
     </DataTableProvider>
   );

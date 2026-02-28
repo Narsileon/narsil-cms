@@ -222,7 +222,7 @@ function Relations({
                           </Heading>
                         </SectionHeader>
                         <SectionContent
-                          className="grow overflow-y-auto"
+                          className="grow"
                           render={<DataTable collection={collection} />}
                         />
                       </SectionRoot>
