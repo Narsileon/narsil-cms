@@ -1,10 +1,11 @@
 <?php
 
-namespace Narsil\Cms\Database\Factories\Blocks;
+namespace Narsil\Cms\Database\Seeders\Blocks;
 
 #region USE
 
-use Narsil\Cms\Database\Factories\Fields\TitleField;
+use Illuminate\Database\Seeder;
+use Narsil\Cms\Database\Seeders\Fields\TitleFieldSeeder;
 use Narsil\Cms\Models\Collections\Block;
 use Narsil\Cms\Models\Collections\BlockElement;
 
@@ -14,7 +15,7 @@ use Narsil\Cms\Models\Collections\BlockElement;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-abstract class CallToActionBlock
+final class CallToActionBlockSeeder extends Seeder
 {
     #region CONSTANTS
 
@@ -46,20 +47,20 @@ abstract class CallToActionBlock
     /**
      * @return Block
      */
-    public static function run(): Block
+    public function run(): Block
     {
         if ($block = Block::firstWhere(Block::HANDLE, 'call_to_action'))
         {
             return $block;
         }
 
-        $layoutBlock = LayoutBlock::run();
-        $linkBlock = LinkBlock::run();
-        $titleField = TitleField::run();
+        $LayoutBlockSeeder = new LayoutBlockSeeder()->run();
+        $LinkBlockSeeder = new LinkBlockSeeder()->run();
+        $TitleFieldSeeder = new TitleFieldSeeder()->run();
 
         return Block::factory()
             ->hasAttached(
-                $layoutBlock,
+                $LayoutBlockSeeder,
                 [
                     BlockElement::HANDLE => self::LAYOUT,
                     BlockElement::LABEL => 'Layout',
@@ -68,7 +69,7 @@ abstract class CallToActionBlock
                 Block::RELATION_BLOCKS
             )
             ->hasAttached(
-                $titleField,
+                $TitleFieldSeeder,
                 [
                     BlockElement::HANDLE => self::LABEL,
                     BlockElement::LABEL  => 'Label',
@@ -79,7 +80,7 @@ abstract class CallToActionBlock
                 Block::RELATION_FIELDS
             )
             ->hasAttached(
-                $linkBlock,
+                $LinkBlockSeeder,
                 [
                     BlockElement::HANDLE => self::LINK,
                     BlockElement::LABEL  => 'Link',

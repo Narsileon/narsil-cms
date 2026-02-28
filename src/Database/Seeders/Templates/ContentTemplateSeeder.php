@@ -1,12 +1,13 @@
 <?php
 
-namespace Narsil\Cms\Database\Factories\Templates;
+namespace Narsil\Cms\Database\Seeders\Templates;
 
 #region USE
 
-use Narsil\Cms\Database\Factories\Blocks\AccordionBlock;
-use Narsil\Cms\Database\Factories\Blocks\CallToActionBlock;
-use Narsil\Cms\Database\Factories\Blocks\HeroHeaderBlock;
+use Illuminate\Database\Seeder;
+use Narsil\Cms\Database\Seeders\Blocks\AccordionBlockSeeder;
+use Narsil\Cms\Database\Seeders\Blocks\CallToActionBlockSeeder;
+use Narsil\Cms\Database\Seeders\Blocks\HeroHeaderBlockSeeder;
 use Narsil\Cms\Http\Data\Forms\Inputs\BuilderInputData;
 use Narsil\Cms\Models\Collections\Field;
 use Narsil\Cms\Models\Collections\Template;
@@ -19,7 +20,7 @@ use Narsil\Cms\Models\Collections\TemplateTabElement;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-abstract class ContentTemplate
+final class ContentTemplateSeeder extends Seeder
 {
     #region CONSTANTS
 
@@ -38,16 +39,16 @@ abstract class ContentTemplate
     /**
      * @return Template
      */
-    public static function run(): Template
+    public function run(): Template
     {
         if ($field = Template::firstWhere(Template::TABLE_NAME, 'content'))
         {
             return $field;
         }
 
-        $accordionBlock = AccordionBlock::run();
-        $callToActionBlock = CallToActionBlock::run();
-        $heroHeaderBlock = HeroHeaderBlock::run();
+        $AccordionBlockSeeder = new AccordionBlockSeeder()->run();
+        $CallToActionBlockSeeder = new CallToActionBlockSeeder()->run();
+        $HeroHeaderBlockSeeder = new HeroHeaderBlockSeeder()->run();
 
         return Template::factory()
             ->has(
@@ -60,15 +61,15 @@ abstract class ContentTemplate
                         Field::LABEL => 'Content Builder',
                         Field::TYPE => BuilderInputData::TYPE,
                     ])->hasAttached(
-                        $accordionBlock,
+                        $AccordionBlockSeeder,
                         [],
                         Field::RELATION_BLOCKS
                     )->hasAttached(
-                        $callToActionBlock,
+                        $CallToActionBlockSeeder,
                         [],
                         Field::RELATION_BLOCKS
                     )->hasAttached(
-                        $heroHeaderBlock,
+                        $HeroHeaderBlockSeeder,
                         [],
                         Field::RELATION_BLOCKS
                     ),

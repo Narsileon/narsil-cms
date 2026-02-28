@@ -1,9 +1,10 @@
 <?php
 
-namespace Narsil\Cms\Database\Factories\Fields;
+namespace Narsil\Cms\Database\Seeders\Fields;
 
 #region USE
 
+use Illuminate\Database\Seeder;
 use Narsil\Base\Http\Data\Forms\Inputs\TextInputData;
 use Narsil\Cms\Models\Collections\Field;
 
@@ -13,14 +14,14 @@ use Narsil\Cms\Models\Collections\Field;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-abstract class TitleField
+final class TitleFieldSeeder extends Seeder
 {
     #region PUBLIC METHODS
 
     /**
      * @return Field
      */
-    public static function run(): Field
+    public function run(): Field
     {
         if ($field = Field::firstWhere(Field::HANDLE, 'title'))
         {

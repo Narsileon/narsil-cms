@@ -1,9 +1,10 @@
 <?php
 
-namespace Narsil\Cms\Database\Factories\Blocks;
+namespace Narsil\Cms\Database\Seeders\Blocks;
 
 #region USE
 
+use Illuminate\Database\Seeder;
 use Narsil\Cms\Http\Data\Forms\Inputs\BuilderInputData;
 use Narsil\Cms\Models\Collections\Block;
 use Narsil\Cms\Models\Collections\BlockElement;
@@ -15,7 +16,7 @@ use Narsil\Cms\Models\Collections\Field;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-abstract class AccordionBlock
+final class AccordionBlockSeeder extends Seeder
 {
     #region CONSTANTS
 
@@ -40,19 +41,19 @@ abstract class AccordionBlock
     /**
      * @return Block
      */
-    public static function run(): Block
+    public function run(): Block
     {
         if ($block = Block::firstWhere(Block::HANDLE, 'accordion'))
         {
             return $block;
         }
 
-        $accordionItemBlock = AccordionItemBlock::run();
-        $layoutBlock = LayoutBlock::run();
+        $AccordionItemBlockSeeder = new AccordionItemBlockSeeder()->run();
+        $LayoutBlockSeeder = new LayoutBlockSeeder()->run();
 
         return Block::factory()
             ->hasAttached(
-                $layoutBlock,
+                $LayoutBlockSeeder,
                 [
                     BlockElement::HANDLE => self::LAYOUT,
                     BlockElement::LABEL => 'Layout',
@@ -66,7 +67,7 @@ abstract class AccordionBlock
                     Field::LABEL => 'Accordion Builder',
                     Field::TYPE => BuilderInputData::TYPE,
                 ])->hasAttached(
-                    $accordionItemBlock,
+                    $AccordionItemBlockSeeder,
                     [],
                     Field::RELATION_BLOCKS
                 ),

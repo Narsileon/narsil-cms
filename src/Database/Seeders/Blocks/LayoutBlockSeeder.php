@@ -1,10 +1,11 @@
 <?php
 
-namespace Narsil\Cms\Database\Factories\Blocks;
+namespace Narsil\Cms\Database\Seeders\Blocks;
 
 #region USE
 
-use Narsil\Cms\Database\Factories\Fields\SizeField;
+use Illuminate\Database\Seeder;
+use Narsil\Cms\Database\Seeders\Fields\SizeFieldSeeder;
 use Narsil\Cms\Models\Collections\Block;
 use Narsil\Cms\Models\Collections\BlockElement;
 
@@ -14,7 +15,7 @@ use Narsil\Cms\Models\Collections\BlockElement;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-abstract class LayoutBlock
+final class LayoutBlockSeeder extends Seeder
 {
     #region CONSTANTS
 
@@ -39,19 +40,19 @@ abstract class LayoutBlock
     /**
      * @return Block
      */
-    public static function run(): Block
+    public function run(): Block
     {
         if ($block = Block::firstWhere(Block::HANDLE, 'layout'))
         {
             return $block;
         }
 
-        $paddingBlock = PaddingBlock::run();
-        $sizeField = SizeField::run();
+        $PaddingBlockSeeder = new PaddingBlockSeeder()->run();
+        $SizeFieldSeeder = new SizeFieldSeeder()->run();
 
         return Block::factory()
             ->hasAttached(
-                $sizeField,
+                $SizeFieldSeeder,
                 [
                     BlockElement::HANDLE => self::SIZE,
                     BlockElement::LABEL => 'Size',
@@ -61,7 +62,7 @@ abstract class LayoutBlock
                 Block::RELATION_FIELDS
             )
             ->hasAttached(
-                $paddingBlock,
+                $PaddingBlockSeeder,
                 [
                     BlockElement::HANDLE => self::PADDING,
                     BlockElement::LABEL => 'Padding',

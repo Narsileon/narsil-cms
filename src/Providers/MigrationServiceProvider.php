@@ -7,12 +7,9 @@ namespace Narsil\Cms\Providers;
 use Illuminate\Database\Events\MigrationsEnded;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Cache;
-use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\ServiceProvider;
-use Narsil\Cms\Database\Seeders\DatabaseSeeder;
 use Narsil\Cms\Database\Seeders\ValidationRuleSeeder;
-use Narsil\Cms\Models\Sites\Site;
 
 #endregion
 
@@ -52,13 +49,6 @@ final class MigrationServiceProvider extends ServiceProvider
 
             $this->syncPermissions();
 
-            if (!Site::exists())
-            {
-                new DatabaseSeeder()->run();
-
-                $this->createSite();
-            }
-
             new ValidationRuleSeeder()->run();
         });
     }
@@ -78,19 +68,6 @@ final class MigrationServiceProvider extends ServiceProvider
     #endregion
 
     #region PROTECTED METHODS
-
-    /**
-     * @return void
-     */
-    protected function createSite(): void
-    {
-        $baseUrl = parse_url(Config::get('app.url'), PHP_URL_HOST);
-
-        Site::factory()->create([
-            Site::HOSTNAME => $baseUrl,
-            Site::LABEL => 'Main',
-        ]);
-    }
 
     /**
      * @return void

@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Attributes\UseFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Facades\Cache;
 use Narsil\Base\Http\Data\OptionData;
@@ -18,6 +19,7 @@ use Narsil\Base\Traits\HasDatetimes;
 use Narsil\Base\Traits\HasTranslations;
 use Narsil\Cms\Database\Factories\FooterFactory;
 use Narsil\Cms\Models\Sites\Site;
+use Narsil\Cms\Models\Sites\SitePage;
 
 #endregion
 
@@ -196,6 +198,13 @@ class Footer extends Model
     final public const RELATION_LINKS = 'links';
 
     /**
+     * The name of the "site pages" relation.
+     *
+     * @var string
+     */
+    final public const RELATION_SITE_PAGES = 'site_pages';
+
+    /**
      * The name of the "social media" relation.
      *
      * @var string
@@ -252,6 +261,24 @@ class Footer extends Model
                 FooterLink::FOOTER_ID,
                 self::ID
             )
+            ->orderBy(FooterLink::POSITION);
+    }
+
+    /**
+     * Get the associated site pages.
+     *
+     * @return HasMany
+     */
+    final public function site_pages(): BelongsToMany
+    {
+        return $this
+            ->belongsToMany(
+                SitePage::class,
+                FooterLink::TABLE,
+                FooterLink::FOOTER_ID,
+                FooterLink::SITE_PAGE_ID,
+            )
+            ->using(FooterLink::class)
             ->orderBy(FooterLink::POSITION);
     }
 

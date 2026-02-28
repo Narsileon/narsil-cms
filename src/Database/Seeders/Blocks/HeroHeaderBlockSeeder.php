@@ -1,11 +1,11 @@
 <?php
 
-namespace Narsil\Cms\Database\Factories\Blocks;
+namespace Narsil\Cms\Database\Seeders\Blocks;
 
 #region USE
 
-use Narsil\Cms\Database\Factories\Fields\RichTextField;
-use Narsil\Cms\Database\Factories\Fields\TitleField;
+use Illuminate\Database\Seeder;
+use Narsil\Cms\Database\Seeders\Fields\RichTextFieldSeeder;
 use Narsil\Cms\Http\Data\Forms\Inputs\BuilderInputData;
 use Narsil\Cms\Models\Collections\Block;
 use Narsil\Cms\Models\Collections\BlockElement;
@@ -17,7 +17,7 @@ use Narsil\Cms\Models\Collections\Field;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-abstract class HeroHeaderBlock
+final class HeroHeaderBlockSeeder extends Seeder
 {
     #region CONSTANTS
 
@@ -56,21 +56,21 @@ abstract class HeroHeaderBlock
     /**
      * @return Block
      */
-    public static function run(): Block
+    public function run(): Block
     {
         if ($block = Block::firstWhere(Block::HANDLE, 'hero_header'))
         {
             return $block;
         }
 
-        $buttonBlock = ButtonBlock::run();
-        $headlineBlock = HeadlineBlock::run();
-        $layoutBlock = LayoutBlock::run();
-        $richTextField = RichTextField::run();
+        $ButtonBlockSeeder = new ButtonBlockSeeder()->run();
+        $HeadlineBlockSeeder = new HeadlineBlockSeeder()->run();
+        $LayoutBlockSeeder = new LayoutBlockSeeder()->run();
+        $RichTextFieldSeeder = new RichTextFieldSeeder()->run();
 
         return Block::factory()
             ->hasAttached(
-                $layoutBlock,
+                $LayoutBlockSeeder,
                 [
                     BlockElement::HANDLE => self::LAYOUT,
                     BlockElement::LABEL => 'Layout',
@@ -79,7 +79,7 @@ abstract class HeroHeaderBlock
                 Block::RELATION_BLOCKS
             )
             ->hasAttached(
-                $headlineBlock,
+                $HeadlineBlockSeeder,
                 [
                     BlockElement::HANDLE => self::HEADLINE,
                     BlockElement::LABEL => 'Headline',
@@ -88,7 +88,7 @@ abstract class HeroHeaderBlock
                 Block::RELATION_BLOCKS
             )
             ->hasAttached(
-                $richTextField,
+                $RichTextFieldSeeder,
                 [
                     BlockElement::HANDLE => self::EXCERPT,
                     BlockElement::LABEL  => 'Excerpt',
@@ -104,7 +104,7 @@ abstract class HeroHeaderBlock
                     Field::LABEL => 'Hero Header Builder',
                     Field::TYPE => BuilderInputData::TYPE,
                 ])->hasAttached(
-                    $buttonBlock,
+                    $ButtonBlockSeeder,
                     [],
                     Field::RELATION_BLOCKS
                 ),

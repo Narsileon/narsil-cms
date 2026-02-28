@@ -5,7 +5,7 @@ namespace Narsil\Cms\Database\Factories;
 #region USE
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Narsil\Cms\Models\Collections\FieldOption;
+use Narsil\Cms\Models\Sites\SitePage;
 
 #endregion
 
@@ -13,7 +13,7 @@ use Narsil\Cms\Models\Collections\FieldOption;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class FieldOptionFactory extends Factory
+class SitePageFactory extends Factory
 {
     #region PUBLIC METHODS
 
@@ -23,8 +23,8 @@ class FieldOptionFactory extends Factory
     public function definition(): array
     {
         return [
-            FieldOption::LABEL => $this->faker->words(1),
-            FieldOption::VALUE => $this->faker->randomNumber(6),
+            SitePage::SLUG => $this->faker->slug(1),
+            SitePage::TITLE => $this->faker->words(1),
         ];
     }
 

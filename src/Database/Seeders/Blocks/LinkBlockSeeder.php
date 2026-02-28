@@ -1,9 +1,10 @@
 <?php
 
-namespace Narsil\Cms\Database\Factories\Blocks;
+namespace Narsil\Cms\Database\Seeders\Blocks;
 
 #region USE
 
+use Illuminate\Database\Seeder;
 use Narsil\Base\Enums\OperatorEnum;
 use Narsil\Base\Http\Data\Forms\Inputs\SelectInputData;
 use Narsil\Base\Http\Data\Forms\Inputs\TextInputData;
@@ -20,7 +21,7 @@ use Narsil\Cms\Models\Collections\FieldOption;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-abstract class LinkBlock
+final class LinkBlockSeeder extends Seeder
 {
     #region CONSTANTS
 
@@ -52,7 +53,7 @@ abstract class LinkBlock
     /**
      * @return Block
      */
-    public static function run(): Block
+    public function run(): Block
     {
         if ($block = Block::firstWhere(Block::HANDLE, 'link'))
         {

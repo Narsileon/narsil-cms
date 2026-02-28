@@ -1,10 +1,11 @@
 <?php
 
-namespace Narsil\Cms\Database\Factories\Blocks;
+namespace Narsil\Cms\Database\Seeders\Blocks;
 
 #region USE
 
-use Narsil\Cms\Database\Factories\Fields\PaddingField;
+use Illuminate\Database\Seeder;
+use Narsil\Cms\Database\Seeders\Fields\PaddingFieldSeeder;
 use Narsil\Cms\Models\Collections\Block;
 use Narsil\Cms\Models\Collections\BlockElement;
 
@@ -14,7 +15,7 @@ use Narsil\Cms\Models\Collections\BlockElement;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-abstract class PaddingBlock
+final class PaddingBlockSeeder extends Seeder
 {
     #region CONSTANTS
 
@@ -39,18 +40,18 @@ abstract class PaddingBlock
     /**
      * @return Block
      */
-    public static function run(): Block
+    public function run(): Block
     {
         if ($block = Block::firstWhere(Block::HANDLE, 'padding'))
         {
             return $block;
         }
 
-        $paddingField = PaddingField::run();
+        $PaddingFieldSeeder = new PaddingFieldSeeder()->run();
 
         return Block::factory()
             ->hasAttached(
-                $paddingField,
+                $PaddingFieldSeeder,
                 [
                     BlockElement::HANDLE => self::TOP,
                     BlockElement::LABEL  => 'Top',
@@ -61,7 +62,7 @@ abstract class PaddingBlock
                 Block::RELATION_FIELDS
             )
             ->hasAttached(
-                $paddingField,
+                $PaddingFieldSeeder,
                 [
                     BlockElement::HANDLE => self::BOTTOM,
                     BlockElement::LABEL => 'Bottom',

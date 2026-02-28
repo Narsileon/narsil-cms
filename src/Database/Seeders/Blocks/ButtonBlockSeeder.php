@@ -1,10 +1,11 @@
 <?php
 
-namespace Narsil\Cms\Database\Factories\Blocks;
+namespace Narsil\Cms\Database\Seeders\Blocks;
 
 #region USE
 
-use Narsil\Cms\Database\Factories\Fields\TitleField;
+use Illuminate\Database\Seeder;
+use Narsil\Cms\Database\Seeders\Fields\TitleFieldSeeder;
 use Narsil\Cms\Models\Collections\Block;
 use Narsil\Cms\Models\Collections\BlockElement;
 
@@ -14,7 +15,7 @@ use Narsil\Cms\Models\Collections\BlockElement;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-abstract class ButtonBlock
+final class ButtonBlockSeeder extends Seeder
 {
     #region CONSTANTS
 
@@ -39,19 +40,19 @@ abstract class ButtonBlock
     /**
      * @return Block
      */
-    public static function run(): Block
+    public function run(): Block
     {
         if ($block = Block::firstWhere(Block::HANDLE, 'button'))
         {
             return $block;
         }
 
-        $linkBlock = LinkBlock::run();
-        $titleField = TitleField::run();
+        $LinkBlockSeeder = new LinkBlockSeeder()->run();
+        $TitleFieldSeeder = new TitleFieldSeeder()->run();
 
         return Block::factory()
             ->hasAttached(
-                $titleField,
+                $TitleFieldSeeder,
                 [
                     BlockElement::HANDLE => self::LABEL,
                     BlockElement::LABEL => 'Label',
@@ -62,7 +63,7 @@ abstract class ButtonBlock
                 Block::RELATION_FIELDS
             )
             ->hasAttached(
-                $linkBlock,
+                $LinkBlockSeeder,
                 [
                     BlockElement::HANDLE => self::LINK,
                     BlockElement::LABEL  => 'Link',

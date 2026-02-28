@@ -1,11 +1,12 @@
 <?php
 
-namespace Narsil\Cms\Database\Factories\Blocks;
+namespace Narsil\Cms\Database\Seeders\Blocks;
 
 #region USE
 
-use Narsil\Cms\Database\Factories\Fields\HeadlineField;
-use Narsil\Cms\Database\Factories\Fields\TitleField;
+use Illuminate\Database\Seeder;
+use Narsil\Cms\Database\Seeders\Fields\HeadlineFieldSeeder;
+use Narsil\Cms\Database\Seeders\Fields\TitleFieldSeeder;
 use Narsil\Cms\Models\Collections\Block;
 use Narsil\Cms\Models\Collections\BlockElement;
 
@@ -15,9 +16,9 @@ use Narsil\Cms\Models\Collections\BlockElement;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-abstract class HeadlineBlock
+final class HeadlineBlockSeeder extends Seeder
 {
-        #region CONSTANTS
+    #region CONSTANTS
 
     /**
      * The name of the "level" field.
@@ -47,19 +48,19 @@ abstract class HeadlineBlock
     /**
      * @return Block
      */
-    public static function run(): Block
+    public function run(): Block
     {
         if ($block = Block::firstWhere(Block::HANDLE, 'headline'))
         {
             return $block;
         }
 
-        $headlineField = HeadlineField::run();
-        $titleField = TitleField::run();
+        $HeadlineFieldSeeder = new HeadlineFieldSeeder()->run();
+        $TitleFieldSeeder = new TitleFieldSeeder()->run();
 
         return Block::factory()
             ->hasAttached(
-                $titleField,
+                $TitleFieldSeeder,
                 [
                     BlockElement::HANDLE => self::TITLE,
                     BlockElement::LABEL => 'Title',
@@ -70,7 +71,7 @@ abstract class HeadlineBlock
                 Block::RELATION_FIELDS
             )
             ->hasAttached(
-                $headlineField,
+                $HeadlineFieldSeeder,
                 [
                     BlockElement::HANDLE => self::LEVEL,
                     BlockElement::LABEL  => 'Level',
@@ -81,7 +82,7 @@ abstract class HeadlineBlock
                 Block::RELATION_FIELDS
             )
             ->hasAttached(
-                $headlineField,
+                $HeadlineFieldSeeder,
                 [
                     BlockElement::HANDLE => self::STYLE,
                     BlockElement::LABEL => 'Style',

@@ -1,10 +1,11 @@
 <?php
 
-namespace Narsil\Cms\Database\Factories\Fields;
+namespace Narsil\Cms\Database\Seeders\Fields;
 
 #region USE
 
 use Illuminate\Database\Eloquent\Factories\Sequence;
+use Illuminate\Database\Seeder;
 use Narsil\Base\Http\Data\Forms\Inputs\SelectInputData;
 use Narsil\Cms\Models\Collections\Field;
 use Narsil\Cms\Models\Collections\FieldOption;
@@ -15,14 +16,14 @@ use Narsil\Cms\Models\Collections\FieldOption;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-abstract class PaddingField
+final class PaddingFieldSeeder extends Seeder
 {
     #region PUBLIC METHODS
 
     /**
      * @return Field
      */
-    public static function run(): Field
+    public function run(): Field
     {
         if ($field = Field::firstWhere(Field::HANDLE, 'padding'))
         {

@@ -4,8 +4,10 @@ namespace Narsil\Cms\Models\Sites;
 
 #region USE
 
+use Illuminate\Database\Eloquent\Attributes\UseFactory;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
@@ -14,6 +16,7 @@ use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Session;
 use Narsil\Base\Traits\HasIdentifier;
 use Narsil\Base\Traits\HasTranslations;
+use Narsil\Cms\Database\Factories\SitePageFactory;
 use Narsil\Cms\Models\Hosts\HostLocaleLanguage;
 use Narsil\Cms\Models\TreeModel;
 
@@ -23,8 +26,10 @@ use Narsil\Cms\Models\TreeModel;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
+#[UseFactory(SitePageFactory::class)]
 class SitePage extends TreeModel
 {
+    use HasFactory;
     use HasIdentifier;
     use HasTranslations;
 

@@ -1,11 +1,12 @@
 <?php
 
-namespace Narsil\Cms\Database\Factories\Blocks;
+namespace Narsil\Cms\Database\Seeders\Blocks;
 
 #region USE
 
-use Narsil\Cms\Database\Factories\Fields\RichTextField;
-use Narsil\Cms\Database\Factories\Fields\TitleField;
+use Illuminate\Database\Seeder;
+use Narsil\Cms\Database\Seeders\Fields\RichTextFieldSeeder;
+use Narsil\Cms\Database\Seeders\Fields\TitleFieldSeeder;
 use Narsil\Cms\Models\Collections\Block;
 use Narsil\Cms\Models\Collections\BlockElement;
 
@@ -15,7 +16,7 @@ use Narsil\Cms\Models\Collections\BlockElement;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-abstract class AccordionItemBlock
+final class AccordionItemBlockSeeder extends Seeder
 {
     #region CONSTANTS
 
@@ -40,19 +41,19 @@ abstract class AccordionItemBlock
     /**
      * @return Block
      */
-    public static function run(): Block
+    public function run(): Block
     {
         if ($block = Block::firstWhere(Block::HANDLE, 'accordion_item'))
         {
             return $block;
         }
 
-        $titleField = TitleField::run();
-        $richTextField = RichTextField::run();
+        $TitleFieldSeeder = new TitleFieldSeeder()->run();
+        $RichTextFieldSeeder = new RichTextFieldSeeder()->run();
 
         return Block::factory()
             ->hasAttached(
-                $titleField,
+                $TitleFieldSeeder,
                 [
                     BlockElement::HANDLE => self::TRIGGER,
                     BlockElement::LABEL => 'Trigger',
@@ -63,7 +64,7 @@ abstract class AccordionItemBlock
                 Block::RELATION_FIELDS
             )
             ->hasAttached(
-                $richTextField,
+                $RichTextFieldSeeder,
                 [
                     BlockElement::HANDLE => self::CONTENT,
                     BlockElement::LABEL  => 'Content',
