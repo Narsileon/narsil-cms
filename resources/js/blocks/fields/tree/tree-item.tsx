@@ -66,7 +66,7 @@ function TreeItem({
     >
       <CardRoot {...props}>
         <CollapsibleTrigger
-          className={cn(disabled && "cursor-default")}
+          className={cn(disabled ? "cursor-default" : "cursor-pointer")}
           nativeButton={false}
           render={
             <CardHeader className="flex min-h-9 items-center justify-start gap-2 py-0 pr-1 pl-0">
