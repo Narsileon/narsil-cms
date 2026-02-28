@@ -1,5 +1,6 @@
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
+import { FormBlock } from "@narsil-cms/components/form";
 import { useAlertDialog } from "@narsil-ui/components/alert-dialog";
 import { Button } from "@narsil-ui/components/button";
 import { CardContent, CardHeader, CardRoot, CardTitle } from "@narsil-ui/components/card";
@@ -148,7 +149,16 @@ function BuilderItem({
               } else {
                 element.virtual = false;
 
-                return <FormElement {...element} id={childHandle} key={index} />;
+                return (
+                  <FormElement
+                    {...element}
+                    id={childHandle}
+                    render={(fieldset) => {
+                      return <FormBlock baseId={childHandle} fieldset={fieldset} />;
+                    }}
+                    key={index}
+                  />
+                );
               }
             })}
           </CardContent>
