@@ -33,11 +33,11 @@ abstract class CallToActionBlock
     public const LAYOUT = 'layout';
 
     /**
-     * The name of the "limk" block.
+     * The name of the "link" block.
      *
      * @var string
      */
-    public const LINK = 'limk';
+    public const LINK = 'link';
 
     #endregion
 
