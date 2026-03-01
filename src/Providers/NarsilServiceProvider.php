@@ -6,9 +6,6 @@ namespace Narsil\Cms\Providers;
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Support\Str;
-use RecursiveDirectoryIterator;
-use RecursiveIteratorIterator;
 
 #endregion
 
@@ -68,61 +65,6 @@ abstract class NarsilServiceProvider extends ServiceProvider
             'web',
         ])
             ->group($path);
-    }
-
-    /**
-     * Merge the configuration.
-     *
-     * @param string $configPath
-     *
-     * @return void
-     */
-    protected function mergeConfiguration(string $configPath): void
-    {
-        $files = $this->getConfigurationFiles($configPath);
-
-        foreach ($files as $file)
-        {
-            if (!$file->isFile() || $file->getExtension() !== 'php')
-            {
-                continue;
-            }
-
-            $pathname = $file->getPathname();
-            $key = $this->getConfigurationKey($pathname);
-
-            $this->mergeConfigFrom($pathname, $key);
-        }
-    }
-
-    #endregion
-
-    #region PRIVATE METHODS
-
-    /**
-     * @param string $pathname
-     *
-     * @return string
-     */
-    private function getConfigurationKey(string $pathname): string
-    {
-        return Str::of($pathname)
-            ->after('config' . DIRECTORY_SEPARATOR)
-            ->replace(DIRECTORY_SEPARATOR, '.')
-            ->beforeLast('.php');
-    }
-
-    /**
-     * @param string $configPath
-     *
-     * @return iterable
-     */
-    private function getConfigurationFiles(string $configPath): iterable
-    {
-        $directories = new RecursiveDirectoryIterator("$configPath/narsil", RecursiveDirectoryIterator::SKIP_DOTS);
-        $files = new RecursiveIteratorIterator($directories);
-
-        return $files;
     }
 
     #endregion

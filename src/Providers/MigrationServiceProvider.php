@@ -8,8 +8,11 @@ use Illuminate\Database\Events\MigrationsEnded;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Event;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
+use Narsil\Base\Models\Policies\Permission;
 use Narsil\Cms\Database\Seeders\ValidationRuleSeeder;
+use Narsil\Cms\Models\ValidationRule;
 
 #endregion
 
@@ -47,9 +50,14 @@ final class MigrationServiceProvider extends ServiceProvider
         {
             Cache::flush();
 
-            $this->syncPermissions();
-
-            new ValidationRuleSeeder()->run();
+            if (Schema::hasTable(Permission::TABLE))
+            {
+                $this->syncPermissions();
+            }
+            if (Schema::hasTable(ValidationRule::TABLE))
+            {
+                new ValidationRuleSeeder()->run();
+            }
         });
     }
 

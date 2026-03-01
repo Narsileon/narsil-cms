@@ -6,9 +6,9 @@ namespace Narsil\Cms\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Session;
 use Narsil\Base\Models\Users\UserConfiguration;
+use Narsil\Base\Traits\HasSchemas;
 
 #endregion
 
@@ -16,8 +16,10 @@ use Narsil\Base\Models\Users\UserConfiguration;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class LocaleMiddleware
+class SchemaMiddleware
 {
+    use HasSchemas;
+
     #region PUBLIC METHODS
 
     /**
@@ -30,28 +32,16 @@ class LocaleMiddleware
      */
     public function handle(Request $request, Closure $next): mixed
     {
-        $this->setApplicationLocale();
+        $schema = Session::get(UserConfiguration::SCHEMA, 'cms');
+
+        if ($schema == 'public')
+        {
+            $schema = 'cms';
+        }
+
+        $this->setSearchPath($schema);
 
         return $next($request);
-    }
-
-    #endregion
-
-    #region PROTECTED METHODS
-
-    /**
-     * Set the locale of the application.
-     *
-     * @return void
-     */
-    protected function setApplicationLocale(): void
-    {
-        $language = Session::get(UserConfiguration::LANGUAGE);
-
-        if ($language)
-        {
-            App::setLocale($language);
-        }
     }
 
     #endregion

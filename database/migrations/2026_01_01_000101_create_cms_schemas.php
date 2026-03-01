@@ -4,11 +4,14 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Support\Facades\DB;
+use Narsil\Base\Traits\HasSchemas;
 
 #endregion
 
 return new class extends Migration
 {
+    use HasSchemas;
+
     #region PUBLIC METHODS
 
     /**
@@ -19,7 +22,10 @@ return new class extends Migration
 
     public function up(): void
     {
-        DB::statement('CREATE SCHEMA IF NOT EXISTS cms');
+        foreach ($this->getSchemas() as $schema)
+        {
+            DB::statement("CREATE SCHEMA IF NOT EXISTS $schema");
+        };
     }
 
     /**
@@ -29,7 +35,10 @@ return new class extends Migration
      */
     public function down(): void
     {
-        DB::statement('DROP SCHEMA IF EXISTS cms CASCADE');
+        foreach ($this->getSchemas() as $schema)
+        {
+            DB::statement("DROP SCHEMA IF EXISTS $schema CASCADE");
+        };
     }
 
     #endregion

@@ -9,6 +9,7 @@ use Illuminate\Support\Arr;
 use Narsil\Base\Enums\ModelEventEnum;
 use Narsil\Base\Http\Controllers\RedirectController;
 use Narsil\Base\Services\ModelService;
+use Narsil\Base\Traits\HasSchemas;
 use Narsil\Cms\Implementations\Requests\SiteFormRequest;
 use Narsil\Cms\Jobs\SitemapJob;
 use Narsil\Cms\Models\Sites\Site;
@@ -22,6 +23,8 @@ use Narsil\Cms\Models\Sites\SitePage;
  */
 class SiteUpdateController extends RedirectController
 {
+    use HasSchemas;
+
     #region PUBLIC METHODS
 
     /**
@@ -40,7 +43,7 @@ class SiteUpdateController extends RedirectController
 
         SitePage::rebuildTree($tree);
 
-        SitemapJob::dispatch($site);
+        SitemapJob::dispatch($site, $this->getCurrentSchema());
 
         return back()
             ->with('success', ModelService::getSuccessMessage(Site::TABLE, ModelEventEnum::UPDATED));

@@ -41,7 +41,7 @@ final class ContentTemplateSeeder extends Seeder
      */
     public function run(): Template
     {
-        if ($field = Template::firstWhere(Template::TABLE_NAME, 'content'))
+        if ($field = Template::firstWhere(Template::TABLE_NAME, 'contents'))
         {
             return $field;
         }

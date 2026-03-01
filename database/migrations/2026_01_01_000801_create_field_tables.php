@@ -6,6 +6,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 use Narsil\Base\Models\User;
+use Narsil\Base\Traits\HasSchemas;
 use Narsil\Cms\Models\Collections\Field;
 use Narsil\Cms\Models\Collections\FieldOption;
 use Narsil\Cms\Models\Collections\FieldValidationRule;
@@ -15,6 +16,8 @@ use Narsil\Cms\Models\ValidationRule;
 
 return new class extends Migration
 {
+    use HasSchemas;
+
     #region PUBLIC METHODS
 
     /**
@@ -24,18 +27,21 @@ return new class extends Migration
      */
     public function up(): void
     {
-        if (!Schema::hasTable(Field::TABLE))
+        foreach ($this->getSchemas() as $schema)
         {
-            $this->createFieldsTable();
-        }
-        if (!Schema::hasTable(FieldOption::TABLE))
-        {
-            $this->createFieldOptionsTable();
-        }
-        if (!Schema::hasTable(FieldValidationRule::TABLE))
-        {
-            $this->createFieldValidationRuleTable();
-        }
+            if (!Schema::hasTable("$schema." . Field::TABLE))
+            {
+                $this->createFieldsTable($schema);
+            }
+            if (!Schema::hasTable("$schema." . FieldOption::TABLE))
+            {
+                $this->createFieldOptionsTable($schema);
+            }
+            if (!Schema::hasTable("$schema." . FieldValidationRule::TABLE))
+            {
+                $this->createFieldValidationRuleTable($schema);
+            }
+        };
     }
 
     /**
@@ -45,9 +51,12 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists(FieldValidationRule::TABLE);
-        Schema::dropIfExists(FieldOption::TABLE);
-        Schema::dropIfExists(Field::TABLE);
+        foreach ($this->getSchemas() as $schema)
+        {
+            Schema::dropIfExists("$schema." . FieldValidationRule::TABLE);
+            Schema::dropIfExists("$schema." . FieldOption::TABLE);
+            Schema::dropIfExists("$schema." . Field::TABLE);
+        };
     }
 
     #endregion
@@ -57,18 +66,20 @@ return new class extends Migration
     /**
      * Create the field options table.
      *
+     * @param string $schema
+     *
      * @return void
      */
-    private function createFieldOptionsTable(): void
+    private function createFieldOptionsTable(string $schema): void
     {
-        Schema::create(FieldOption::TABLE, function (Blueprint $blueprint)
+        Schema::create("$schema." . FieldOption::TABLE, function (Blueprint $blueprint) use ($schema)
         {
             $blueprint
                 ->uuid(FieldOption::UUID)
                 ->primary();
             $blueprint
                 ->foreignId(FieldOption::FIELD_ID)
-                ->constrained(Field::TABLE, Field::ID)
+                ->constrained("$schema." . Field::TABLE, Field::ID)
                 ->cascadeOnDelete();
             $blueprint
                 ->string(FieldOption::VALUE);
@@ -86,18 +97,20 @@ return new class extends Migration
     /**
      * Create the field validation rule table.
      *
+     * @param string $schema
+     *
      * @return void
      */
-    private function createFieldValidationRuleTable(): void
+    private function createFieldValidationRuleTable(string $schema): void
     {
-        Schema::create(FieldValidationRule::TABLE, function (Blueprint $blueprint)
+        Schema::create("$schema." . FieldValidationRule::TABLE, function (Blueprint $blueprint) use ($schema)
         {
             $blueprint
                 ->uuid(FieldValidationRule::UUID)
                 ->primary();
             $blueprint
                 ->foreignId(FieldValidationRule::FIELD_ID)
-                ->constrained(Field::TABLE, Field::ID)
+                ->constrained("$schema." . Field::TABLE, Field::ID)
                 ->cascadeOnDelete();
             $blueprint
                 ->foreignId(FieldValidationRule::VALIDATION_RULE_ID)
@@ -109,11 +122,13 @@ return new class extends Migration
     /**
      * Create the fields table.
      *
+     * @param string $schema
+     *
      * @return void
      */
-    private function createFieldsTable(): void
+    private function createFieldsTable(string $schema): void
     {
-        Schema::create(Field::TABLE, function (Blueprint $blueprint)
+        Schema::create("$schema." . Field::TABLE, function (Blueprint $blueprint)
         {
             $blueprint
                 ->id(Field::ID);

@@ -5,12 +5,15 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Narsil\Base\Traits\HasSchemas;
 use Narsil\Cms\Models\ValidationRule;
 
 #endregion
 
 return new class extends Migration
 {
+    use HasSchemas;
+
     #region PUBLIC METHODS
 
     /**
@@ -20,9 +23,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        if (!Schema::hasTable(ValidationRule::TABLE))
+        $schema = $this->getDefaultSchema();
+
+        if (!Schema::hasTable("$schema." . ValidationRule::TABLE))
         {
-            $this->createValidationRulesTable();
+            $this->createValidationRulesTable($schema);
         }
     }
 
@@ -33,7 +38,9 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists(ValidationRule::TABLE);
+        $schema = $this->getDefaultSchema();
+
+        Schema::dropIfExists("$schema." . ValidationRule::TABLE);
     }
 
     #endregion
@@ -43,11 +50,13 @@ return new class extends Migration
     /**
      * Create the validation rules table.
      *
+     * @param string $schema
+     *
      * @return void
      */
-    private function createValidationRulesTable(): void
+    private function createValidationRulesTable(string $schema): void
     {
-        Schema::create(ValidationRule::TABLE, function (Blueprint $blueprint)
+        Schema::create("$schema." . ValidationRule::TABLE, function (Blueprint $blueprint)
         {
             $blueprint
                 ->id(ValidationRule::ID);

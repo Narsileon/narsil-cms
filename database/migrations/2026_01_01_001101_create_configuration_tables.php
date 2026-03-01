@@ -6,12 +6,15 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 use Narsil\Base\Models\User;
+use Narsil\Base\Traits\HasSchemas;
 use Narsil\Cms\Models\Configuration;
 
 #endregion
 
 return new class extends Migration
 {
+    use HasSchemas;
+
     #region PUBLIC METHODS
 
     /**
@@ -21,10 +24,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        if (!Schema::hasTable(Configuration::TABLE))
+        foreach ($this->getSchemas() as $schema)
         {
-            $this->createConfigurationsTable();
-        }
+            if (!Schema::hasTable("$schema." . Configuration::TABLE))
+            {
+                $this->createConfigurationsTable($schema);
+            }
+        };
     }
 
     /**
@@ -34,7 +40,10 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists(Configuration::TABLE);
+        foreach ($this->getSchemas() as $schema)
+        {
+            Schema::dropIfExists("$schema." . Configuration::TABLE);
+        };
     }
 
     #endregion
@@ -44,11 +53,13 @@ return new class extends Migration
     /**
      * Create the audit logs table.
      *
+     * @param string $schema
+     *
      * @return void
      */
-    private function createConfigurationsTable(): void
+    private function createConfigurationsTable(string $schema): void
     {
-        Schema::create(Configuration::TABLE, function (Blueprint $blueprint)
+        Schema::create("$schema." . Configuration::TABLE, function (Blueprint $blueprint)
         {
             $blueprint
                 ->id(Configuration::ID);

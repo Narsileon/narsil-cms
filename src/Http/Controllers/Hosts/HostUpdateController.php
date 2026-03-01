@@ -8,7 +8,9 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Arr;
 use Narsil\Base\Enums\ModelEventEnum;
 use Narsil\Base\Http\Controllers\RedirectController;
+use Narsil\Base\Models\Users\UserConfiguration;
 use Narsil\Base\Services\ModelService;
+use Narsil\Base\Traits\HasSchemas;
 use Narsil\Cms\Contracts\Requests\HostFormRequest;
 use Narsil\Cms\Jobs\SitemapJob;
 use Narsil\Cms\Models\Hosts\Host;
@@ -24,6 +26,8 @@ use Narsil\Cms\Services\HostService;
  */
 class HostUpdateController extends RedirectController
 {
+    use HasSchemas;
+
     #region PUBLIC METHODS
 
     /**
@@ -51,7 +55,7 @@ class HostUpdateController extends RedirectController
 
         HostService::syncOtherLocales($host, Arr::get($attributes, Host::RELATION_OTHER_LOCALES, []));
 
-        SitemapJob::dispatch($host);
+        SitemapJob::dispatch($host, $this->getCurrentSchema());
 
         return $this
             ->redirect(route('hosts.index'))

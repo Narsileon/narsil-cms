@@ -22,7 +22,7 @@ use Narsil\Cms\Models\Sites\SitePage;
  */
 class SitePageStoreController extends RedirectController
 {
-    #region CONSTRUCTORS
+    #region CONSTRUCTOR
 
     /**
      * @return void

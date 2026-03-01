@@ -6,10 +6,11 @@ namespace Narsil\Cms\Providers;
 
 use Illuminate\Routing\Router;
 use Illuminate\Support\ServiceProvider;
+use Narsil\Base\Http\Middleware\LocaleMiddleware;
+use Narsil\Base\Http\Middleware\UserConfigurationMiddleware;
+use Narsil\Base\Http\Middleware\WithoutSsrMiddleware;
 use Narsil\Cms\Http\Middleware\InertiaMiddleware;
-use Narsil\Cms\Http\Middleware\LocaleMiddleware;
-use Narsil\Cms\Http\Middleware\UserConfigurationMiddleware;
-use Narsil\Cms\Http\Middleware\WithoutSsr;
+use Narsil\Cms\Http\Middleware\SchemaMiddleware;
 
 #endregion
 
@@ -45,8 +46,9 @@ final class MiddlewareServiceProvider extends ServiceProvider
         $router = $this->app->make(Router::class);
 
         $router->middlewareGroup('narsil-cms', [
-            WithoutSsr::class,
+            WithoutSsrMiddleware::class,
             UserConfigurationMiddleware::class,
+            SchemaMiddleware::class,
             LocaleMiddleware::class,
             InertiaMiddleware::class,
         ]);

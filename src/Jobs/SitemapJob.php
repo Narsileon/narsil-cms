@@ -5,6 +5,7 @@ namespace Narsil\Cms\Jobs;
 #region USE
 
 use Narsil\Base\Jobs\Job;
+use Narsil\Base\Traits\HasSchemas;
 use Narsil\Cms\Models\Hosts\Host;
 use Narsil\Cms\Support\SitemapIndex;
 
@@ -16,6 +17,8 @@ use Narsil\Cms\Support\SitemapIndex;
  */
 class SitemapJob extends Job
 {
+    use HasSchemas;
+
     #region CONSTRUCTOR
 
     /**
@@ -23,9 +26,10 @@ class SitemapJob extends Job
      *
      * @return void
      */
-    public function __construct(Host $host)
+    public function __construct(Host $host, string $schema)
     {
         $this->host = $host;
+        $this->schema = $schema;
     }
 
     #endregion
@@ -39,6 +43,13 @@ class SitemapJob extends Job
      */
     protected readonly Host $host;
 
+    /**
+     * The associated schema.
+     *
+     * @var string
+     */
+    protected readonly string $schema;
+
     #endregion
 
     #region PUBLIC METHODS
@@ -48,6 +59,8 @@ class SitemapJob extends Job
      */
     public function handle(): void
     {
+        $this->setSearchPath($this->schema);
+
         new SitemapIndex($this->host)
             ->generate();
     }

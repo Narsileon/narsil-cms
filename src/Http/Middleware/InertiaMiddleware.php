@@ -58,7 +58,6 @@ class InertiaMiddleware extends Middleware
      */
     public function share(Request $request): array
     {
-
         $user = Auth::user();
 
         $auth = $user ? app(UserResource::class, [

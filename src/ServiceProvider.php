@@ -63,7 +63,17 @@ class ServiceProvider extends NarsilServiceProvider
      */
     public function register(): void
     {
-        $this->mergeConfiguration(__DIR__ . '/../config');
+        $this->mergeConfigFrom(__DIR__ . '/../config/bindings/forms.php', 'narsil.bindings.forms');
+        $this->mergeConfigFrom(__DIR__ . '/../config/bindings/menus.php', 'narsil.bindings.menus');
+        $this->mergeConfigFrom(__DIR__ . '/../config/bindings/requests.php', 'narsil.bindings.requests');
+        $this->mergeConfigFrom(__DIR__ . '/../config/bindings/resources.php', 'narsil.bindings.resources');
+        $this->mergeConfigFrom(__DIR__ . '/../config/fields.php', 'narsil.fields');
+        $this->mergeConfigFrom(__DIR__ . '/../config/models/morphs.php', 'narsil.models.morphs');
+        $this->mergeConfigFrom(__DIR__ . '/../config/models/observers.php', 'narsil.models.observers');
+        $this->mergeConfigFrom(__DIR__ . '/../config/models/policies.php', 'narsil.models.policies');
+        $this->mergeConfigFrom(__DIR__ . '/../config/models/tables.php', 'narsil.models.tables');
+        $this->mergeConfigFrom(__DIR__ . '/../config/relations.php', 'narsil.relations');
+        $this->mergeConfigFrom(__DIR__ . '/../config/schemas.php', 'narsil.schemas');
 
         $this->registerProviders();
     }

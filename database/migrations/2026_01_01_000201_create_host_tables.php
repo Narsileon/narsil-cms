@@ -6,6 +6,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 use Narsil\Base\Models\User;
+use Narsil\Base\Traits\HasSchemas;
 use Narsil\Cms\Models\Hosts\Host;
 use Narsil\Cms\Models\Hosts\HostLocale;
 use Narsil\Cms\Models\Hosts\HostLocaleLanguage;
@@ -14,6 +15,8 @@ use Narsil\Cms\Models\Hosts\HostLocaleLanguage;
 
 return new class extends Migration
 {
+    use HasSchemas;
+
     #region PUBLIC METHODS
 
     /**
@@ -23,18 +26,21 @@ return new class extends Migration
      */
     public function up(): void
     {
-        if (!Schema::hasTable(Host::TABLE))
+        foreach ($this->getSchemas() as $schema)
         {
-            $this->createHostsTable();
-        }
-        if (!Schema::hasTable(HostLocale::TABLE))
-        {
-            $this->createHostLocalesTable();
-        }
-        if (!Schema::hasTable(HostLocaleLanguage::TABLE))
-        {
-            $this->createHostLocaleLanguagesTable();
-        }
+            if (!Schema::hasTable("$schema." . Host::TABLE))
+            {
+                $this->createHostsTable($schema);
+            }
+            if (!Schema::hasTable("$schema." . HostLocale::TABLE))
+            {
+                $this->createHostLocalesTable($schema);
+            }
+            if (!Schema::hasTable("$schema." . HostLocaleLanguage::TABLE))
+            {
+                $this->createHostLocaleLanguagesTable($schema);
+            }
+        };
     }
 
     /**
@@ -44,9 +50,12 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists(HostLocaleLanguage::TABLE);
-        Schema::dropIfExists(HostLocale::TABLE);
-        Schema::dropIfExists(Host::TABLE);
+        foreach ($this->getSchemas() as $schema)
+        {
+            Schema::dropIfExists("$schema." . HostLocaleLanguage::TABLE);
+            Schema::dropIfExists("$schema." . HostLocale::TABLE);
+            Schema::dropIfExists("$schema." . Host::TABLE);
+        };
     }
 
     #endregion
@@ -56,11 +65,13 @@ return new class extends Migration
     /**
      * Create the host locale languages table.
      *
+     * @param string $schema
+     *
      * @return void
      */
-    private function createHostLocaleLanguagesTable(): void
+    private function createHostLocaleLanguagesTable(string $schema): void
     {
-        Schema::create(HostLocaleLanguage::TABLE, function (Blueprint $blueprint)
+        Schema::create("$schema." . HostLocaleLanguage::TABLE, function (Blueprint $blueprint) use ($schema)
         {
             $blueprint
                 ->uuid(HostLocaleLanguage::UUID)
@@ -68,7 +79,7 @@ return new class extends Migration
             $blueprint
                 ->foreignUuid(HostLocaleLanguage::LOCALE_UUID)
                 ->nullable()
-                ->constrained(HostLocale::TABLE, HostLocale::UUID)
+                ->constrained("$schema." . HostLocale::TABLE, HostLocale::UUID)
                 ->cascadeOnDelete();
             $blueprint
                 ->string(HostLocaleLanguage::LANGUAGE);
@@ -84,11 +95,13 @@ return new class extends Migration
     /**
      * Create the host locales table.
      *
+     * @param string $schema
+     *
      * @return void
      */
-    private function createHostLocalesTable(): void
+    private function createHostLocalesTable(string $schema): void
     {
-        Schema::create(HostLocale::TABLE, function (Blueprint $blueprint)
+        Schema::create("$schema." . HostLocale::TABLE, function (Blueprint $blueprint) use ($schema)
         {
             $blueprint
                 ->uuid(HostLocale::UUID)
@@ -96,7 +109,7 @@ return new class extends Migration
             $blueprint
                 ->foreignId(HostLocale::HOST_ID)
                 ->nullable()
-                ->constrained(Host::TABLE, Host::ID)
+                ->constrained("$schema." . Host::TABLE, Host::ID)
                 ->cascadeOnDelete();
             $blueprint
                 ->string(HostLocale::COUNTRY)
@@ -117,11 +130,13 @@ return new class extends Migration
     /**
      * Create the hosts table.
      *
+     * @param string $schema
+     *
      * @return void
      */
-    private function createHostsTable(): void
+    private function createHostsTable(string $schema): void
     {
-        Schema::create(Host::TABLE, function (Blueprint $blueprint)
+        Schema::create("$schema." . Host::TABLE, function (Blueprint $blueprint)
         {
             $blueprint
                 ->id(Host::ID);

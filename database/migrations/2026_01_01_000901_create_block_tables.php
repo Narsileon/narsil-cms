@@ -7,6 +7,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 use Narsil\Base\Enums\OperatorEnum;
 use Narsil\Base\Models\User;
+use Narsil\Base\Traits\HasSchemas;
 use Narsil\Cms\Models\Collections\Block;
 use Narsil\Cms\Models\Collections\BlockElement;
 use Narsil\Cms\Models\Collections\BlockElementCondition;
@@ -17,6 +18,8 @@ use Narsil\Cms\Models\Collections\FieldBlock;
 
 return new class extends Migration
 {
+    use HasSchemas;
+
     #region PUBLIC METHODS
 
     /**
@@ -26,23 +29,26 @@ return new class extends Migration
      */
     public function up(): void
     {
-        if (!Schema::hasTable(Block::TABLE))
+        foreach ($this->getSchemas() as $schema)
         {
-            $this->createBlocksTable();
-        }
-        if (!Schema::hasTable(BlockElement::TABLE))
-        {
-            $this->createBlockElementTable();
-        }
-        if (!Schema::hasTable(BlockElementCondition::TABLE))
-        {
-            $this->createBlockElementConditionsTable();
-        }
+            if (!Schema::hasTable("$schema." . Block::TABLE))
+            {
+                $this->createBlocksTable($schema);
+            }
+            if (!Schema::hasTable("$schema." . BlockElement::TABLE))
+            {
+                $this->createBlockElementTable($schema);
+            }
+            if (!Schema::hasTable("$schema." . BlockElementCondition::TABLE))
+            {
+                $this->createBlockElementConditionsTable($schema);
+            }
 
-        if (!Schema::hasTable(FieldBlock::TABLE))
-        {
-            $this->createFieldBlockTable();
-        }
+            if (!Schema::hasTable("$schema." . FieldBlock::TABLE))
+            {
+                $this->createFieldBlockTable($schema);
+            }
+        };
     }
 
     /**
@@ -52,11 +58,14 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists(FieldBlock::TABLE);
+        foreach ($this->getSchemas() as $schema)
+        {
+            Schema::dropIfExists("$schema." . FieldBlock::TABLE);
 
-        Schema::dropIfExists(BlockElementCondition::TABLE);
-        Schema::dropIfExists(BlockElement::TABLE);
-        Schema::dropIfExists(Block::TABLE);
+            Schema::dropIfExists("$schema." . BlockElementCondition::TABLE);
+            Schema::dropIfExists("$schema." . BlockElement::TABLE);
+            Schema::dropIfExists("$schema." . Block::TABLE);
+        };
     }
 
     #endregion
@@ -66,18 +75,20 @@ return new class extends Migration
     /**
      * Create the block element conditions table.
      *
+     * @param string $schema
+     *
      * @return void
      */
-    private function createBlockElementConditionsTable(): void
+    private function createBlockElementConditionsTable(string $schema): void
     {
-        Schema::create(BlockElementCondition::TABLE, function (Blueprint $blueprint)
+        Schema::create("$schema." . BlockElementCondition::TABLE, function (Blueprint $blueprint) use ($schema)
         {
             $blueprint
                 ->uuid(BlockElementCondition::UUID)
                 ->primary();
             $blueprint
                 ->foreignUuid(BlockElementCondition::BLOCK_ELEMENT_UUID)
-                ->constrained(BlockElement::TABLE, BlockElement::UUID)
+                ->constrained("$schema." . BlockElement::TABLE, BlockElement::UUID)
                 ->cascadeOnDelete();
             $blueprint
                 ->integer(BlockElementCondition::POSITION)
@@ -96,30 +107,32 @@ return new class extends Migration
     /**
      * Create the block elements table.
      *
+     * @param string $schema
+     *
      * @return void
      */
-    private function createBlockElementTable(): void
+    private function createBlockElementTable(string $schema): void
     {
-        Schema::create(BlockElement::TABLE, function (Blueprint $blueprint)
+        Schema::create("$schema." . BlockElement::TABLE, function (Blueprint $blueprint) use ($schema)
         {
             $blueprint
                 ->uuid(BlockElement::UUID)
                 ->primary();
             $blueprint
                 ->foreignId(BlockElement::OWNER_ID)
-                ->constrained(Block::TABLE, Block::ID)
+                ->constrained("$schema." . Block::TABLE, Block::ID)
                 ->cascadeOnDelete();
             $blueprint
                 ->morphs(BlockElement::RELATION_BASE);
             $blueprint
                 ->foreignId(BlockElement::BLOCK_ID)
                 ->nullable()
-                ->constrained(Block::TABLE, Block::ID)
+                ->constrained("$schema." . Block::TABLE, Block::ID)
                 ->cascadeOnDelete();
             $blueprint
                 ->foreignId(BlockElement::FIELD_ID)
                 ->nullable()
-                ->constrained(Field::TABLE, Field::ID)
+                ->constrained("$schema." . Field::TABLE, Field::ID)
                 ->cascadeOnDelete();
             $blueprint
                 ->string(BlockElement::HANDLE);
@@ -147,11 +160,13 @@ return new class extends Migration
     /**
      * Create the blocks table.
      *
+     * @param string $schema
+     *
      * @return void
      */
-    private function createBlocksTable(): void
+    private function createBlocksTable(string $schema): void
     {
-        Schema::create(Block::TABLE, function (Blueprint $blueprint)
+        Schema::create("$schema." . Block::TABLE, function (Blueprint $blueprint)
         {
             $blueprint
                 ->id(Block::ID);
@@ -186,22 +201,24 @@ return new class extends Migration
     /**
      * Create the block set table.
      *
+     * @param string $schema
+     *
      * @return void
      */
-    private function createFieldBlockTable(): void
+    private function createFieldBlockTable(string $schema): void
     {
-        Schema::create(FieldBlock::TABLE, function (Blueprint $blueprint)
+        Schema::create("$schema." . FieldBlock::TABLE, function (Blueprint $blueprint) use ($schema)
         {
             $blueprint
                 ->uuid(FieldBlock::UUID)
                 ->primary();
             $blueprint
                 ->foreignId(FieldBlock::BLOCK_ID)
-                ->constrained(Block::TABLE, Block::ID)
+                ->constrained("$schema." . Block::TABLE, Block::ID)
                 ->cascadeOnDelete();
             $blueprint
                 ->foreignId(FieldBlock::FIELD_ID)
-                ->constrained(Field::TABLE, Field::ID)
+                ->constrained("$schema." . Field::TABLE, Field::ID)
                 ->cascadeOnDelete();
         });
     }
