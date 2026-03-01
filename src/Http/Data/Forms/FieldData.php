@@ -5,9 +5,11 @@ namespace Narsil\Cms\Http\Data\Forms;
 #region USE
 
 use Illuminate\Support\Facades\Config;
+use Narsil\Base\Http\Data\Forms\ConditionData;
 use Narsil\Base\Http\Data\Forms\FieldData as BaseFieldData;
 use Narsil\Base\Http\Data\Forms\Inputs\TextInputData;
 use Narsil\Cms\Http\Data\Forms\Inputs\BuilderInputData;
+use Narsil\Cms\Models\AbstractCondition;
 use Narsil\Cms\Models\Collections\Block;
 use Narsil\Cms\Models\Collections\Element;
 use Narsil\Cms\Models\Collections\Field;
@@ -47,6 +49,14 @@ class FieldData extends BaseFieldData
             required: $element->{Element::REQUIRED},
             translatable: $element->{Element::TRANSLATABLE},
             width: $element->{Element::WIDTH},
+            conditions: $element->{Element::RELATION_CONDITIONS}->map(function ($condition)
+            {
+                return new ConditionData(
+                    handle: $condition->{AbstractCondition::HANDLE},
+                    operator: $condition->{AbstractCondition::OPERATOR},
+                    value: $condition->{AbstractCondition::VALUE},
+                );
+            })->toArray(),
             input: new $input()
                 ->elements($base->{Field::RELATION_BLOCKS}->map(function (Block $block)
                 {
