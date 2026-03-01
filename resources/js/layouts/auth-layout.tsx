@@ -1,4 +1,4 @@
-import { Link } from "@inertiajs/react";
+import { Link, router } from "@inertiajs/react";
 import { Sidebar } from "@narsil-cms/blocks/sidebar";
 import { SidebarInset, SidebarProvider, SidebarTrigger } from "@narsil-cms/components/sidebar";
 import { GlobalProps } from "@narsil-cms/hooks/use-props";
@@ -19,6 +19,7 @@ import {
 } from "@narsil-ui/components/dropdown-menu";
 import { Icon } from "@narsil-ui/components/icon";
 import { ModalLink, ModalRenderer } from "@narsil-ui/components/modal";
+import { Select } from "@narsil-ui/components/select";
 import { Separator } from "@narsil-ui/components/separator";
 import { Tooltip } from "@narsil-ui/components/tooltip";
 import { useTranslator } from "@narsil-ui/components/translator";
@@ -39,10 +40,22 @@ function AuthLayout({ children }: AuthLayoutProps) {
   const isMobile = useMaxLg();
   const mainRef = useRef<HTMLDivElement>(null);
 
-  const { auth, navigation } = children?.props;
+  const { auth, navigation, session } = children?.props;
 
   const groupedMenu = groupBy(navigation?.userMenu, (item) => item.group ?? "default");
 
+  function onSchemaChange(schema: string) {
+    console.log(schema);
+    router.post(
+      route("user-configurations.update"),
+      {
+        schema: schema,
+      },
+      {
+        preserveState: false,
+      },
+    );
+  }
   return (
     <AlertDialogProvider>
       <SidebarProvider isMobile={isMobile}>
@@ -56,6 +69,13 @@ function AuthLayout({ children }: AuthLayoutProps) {
               </>
             ) : null}
             <Breadcrumb breadcrumb={navigation.breadcrumb} className="grow" />
+            {session.schemas.length > 1 ? (
+              <Select
+                value={session.schema}
+                onValueChange={(value) => onSchemaChange(value as string)}
+                options={session.schemas}
+              />
+            ) : null}
             <Bookmarks breadcrumb={navigation.breadcrumb} />
             <DropdownMenuRoot>
               <Tooltip tooltip={trans("accessibility.user_menu")}>
