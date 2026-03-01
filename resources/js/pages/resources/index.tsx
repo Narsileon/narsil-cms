@@ -50,7 +50,7 @@ function ResourceIndex({ collection, title }: ResourceIndexProps) {
     >
       <SectionRoot className="h-full animate-in gap-4 p-4 fade-in-0">
         <SectionHeader className="flex items-center justify-between gap-2">
-          <Heading level="h2" variant="h4" className="min-w-1/5">
+          <Heading level="h1" variant="h4" className="min-w-1/5">
             {title}
           </Heading>
           {collection.meta.routes.create ? (
