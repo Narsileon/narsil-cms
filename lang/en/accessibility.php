@@ -10,6 +10,6 @@ return [
     'open_sidebar'          => 'Open sidebar',
     'show_password'         => 'Show password',
     'toggle_sidebar'        => 'Toggle sidebar',
-    'toggle_user_menu'      => 'Toggle user menu',
+    'user_menu'             => 'User menu',
     'user_settings'         => 'User settings',
 ];

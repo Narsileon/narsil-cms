@@ -28,11 +28,11 @@ class AuthMenu extends Menu implements Contract
     public function __construct()
     {
         app(TranslationsBag::class)
-            ->add('narsil-cms::accessibility.toggle_user_menu')
-            ->add('narsil-cms::bookmarks.tooltip')
+            ->add('narsil::bookmarks.menu')
             ->add('narsil::themes.dark')
             ->add('narsil::themes.light')
-            ->add('narsil::themes.system');
+            ->add('narsil::themes.system')
+            ->add('narsil-cms::accessibility.user_menu');
     }
 
     #endregion

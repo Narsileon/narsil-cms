@@ -58,7 +58,7 @@ function AuthLayout({ children }: AuthLayoutProps) {
             <Breadcrumb breadcrumb={navigation.breadcrumb} className="grow" />
             <Bookmarks breadcrumb={navigation.breadcrumb} />
             <DropdownMenuRoot>
-              <Tooltip tooltip={trans("accessibility.toggle_user_menu")}>
+              <Tooltip tooltip={trans("accessibility.user_menu")}>
                 <DropdownMenuTrigger>
                   <AvatarRoot>
                     {auth.avatar ? (

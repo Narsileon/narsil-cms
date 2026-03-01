@@ -41,7 +41,7 @@ function GuestLayout({ children }: GuestLayoutProps) {
         <Container className="h-full flex-row justify-between">
           <Icon name="narsil" />
           <DropdownMenuRoot>
-            <Tooltip tooltip={trans("accessibility.toggle_user_menu")}>
+            <Tooltip tooltip={trans("accessibility.user_menu")}>
               <DropdownMenuTrigger
                 render={
                   <Button size="icon" variant="ghost">
