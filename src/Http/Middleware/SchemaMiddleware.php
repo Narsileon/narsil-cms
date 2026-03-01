@@ -6,8 +6,6 @@ namespace Narsil\Cms\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Session;
-use Narsil\Base\Models\Users\UserConfiguration;
 use Narsil\Base\Traits\HasSchemas;
 
 #endregion
@@ -32,11 +30,12 @@ class SchemaMiddleware
      */
     public function handle(Request $request, Closure $next): mixed
     {
-        $schema = Session::get(UserConfiguration::SCHEMA, 'cms');
+        $defaultSchema = $this->getDefaultSchema();
+        $schema = $this->getCurrentSchema();
 
         if ($schema == 'public')
         {
-            $schema = 'cms';
+            $schema = $defaultSchema;
         }
 
         $this->setSearchPath($schema);

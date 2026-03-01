@@ -73,7 +73,6 @@ class ServiceProvider extends NarsilServiceProvider
         $this->mergeConfigFrom(__DIR__ . '/../config/models/policies.php', 'narsil.models.policies');
         $this->mergeConfigFrom(__DIR__ . '/../config/models/tables.php', 'narsil.models.tables');
         $this->mergeConfigFrom(__DIR__ . '/../config/relations.php', 'narsil.relations');
-        $this->mergeConfigFrom(__DIR__ . '/../config/schemas.php', 'narsil.schemas');
 
         $this->registerProviders();
     }

@@ -6,8 +6,6 @@ namespace Narsil\Cms\Providers;
 
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Support\Facades\Cache;
-use Illuminate\Support\Facades\Session;
-use Narsil\Base\Models\Users\UserConfiguration;
 use Narsil\Base\Providers\MorphServiceProvider as BaseMorphServiceProvider;
 use Narsil\Base\Traits\HasSchemas;
 use Narsil\Cms\Models\Collections\Template;
@@ -31,7 +29,7 @@ final class MorphServiceProvider extends BaseMorphServiceProvider
     {
         parent::bootMorphMap();
 
-        $schema = Session::get(UserConfiguration::SCHEMA, 'cms');
+        $schema = $this->getCurrentSchema();
 
         $this->setSearchPath($schema);
 

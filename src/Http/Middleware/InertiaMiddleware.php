@@ -16,7 +16,7 @@ use Narsil\Cms\Contracts\Menus\GuestMenu;
 use Narsil\Cms\Contracts\Menus\Sidebar;
 use Narsil\Cms\Services\BreadcrumbService;
 
-#endregions
+#endregion
 
 /**
  * @version 1.0.0

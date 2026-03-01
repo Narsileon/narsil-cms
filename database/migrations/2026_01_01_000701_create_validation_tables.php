@@ -23,7 +23,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        $schema = $this->getDefaultSchema();
+        $schema = $this->getFallbackSchema();
 
         if (!Schema::hasTable("$schema." . ValidationRule::TABLE))
         {
@@ -38,7 +38,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        $schema = $this->getDefaultSchema();
+        $schema = $this->getFallbackSchema();
 
         Schema::dropIfExists("$schema." . ValidationRule::TABLE);
     }
