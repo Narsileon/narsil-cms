@@ -1,7 +1,6 @@
 import { usePage } from "@inertiajs/react";
 import type { MenuItem } from "@narsil-cms/types";
 import { type Theme } from "@narsil-ui/stores/theme-store";
-import { isEmpty } from "lodash-es";
 
 export type GlobalProps = {
   auth: AuthProps;
@@ -45,18 +44,6 @@ type RedirectProps = {
   warning: string;
 };
 
-export function useAuth() {
-  const { auth } = usePage<GlobalProps>().props;
-
-  return isEmpty(auth) ? null : auth;
-}
-
 export function useNavigation() {
   return usePage<GlobalProps>().props.navigation ?? {};
-}
-
-export function useProps() {
-  const { props } = usePage<GlobalProps>();
-
-  return props;
 }
