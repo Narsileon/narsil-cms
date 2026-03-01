@@ -4,45 +4,6 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
-use Narsil\Base\Http\Controllers\Policies\Permissions\PermissionEditController;
-use Narsil\Base\Http\Controllers\Policies\Permissions\PermissionIndexController;
-use Narsil\Base\Http\Controllers\Policies\Permissions\PermissionUpdateController;
-use Narsil\Base\Http\Controllers\Policies\Roles\RoleCreateController;
-use Narsil\Base\Http\Controllers\Policies\Roles\RoleDestroyController;
-use Narsil\Base\Http\Controllers\Policies\Roles\RoleDestroyManyController;
-use Narsil\Base\Http\Controllers\Policies\Roles\RoleEditController;
-use Narsil\Base\Http\Controllers\Policies\Roles\RoleIndexController;
-use Narsil\Base\Http\Controllers\Policies\Roles\RoleReplicateController;
-use Narsil\Base\Http\Controllers\Policies\Roles\RoleReplicateManyController;
-use Narsil\Base\Http\Controllers\Policies\Roles\RoleStoreController;
-use Narsil\Base\Http\Controllers\Policies\Roles\RoleUpdateController;
-use Narsil\Base\Http\Controllers\Storages\Assets\AssetCreateController;
-use Narsil\Base\Http\Controllers\Storages\Assets\AssetDestroyController;
-use Narsil\Base\Http\Controllers\Storages\Assets\AssetDestroyManyController;
-use Narsil\Base\Http\Controllers\Storages\Assets\AssetEditController;
-use Narsil\Base\Http\Controllers\Storages\Assets\AssetIndexController;
-use Narsil\Base\Http\Controllers\Storages\Assets\AssetStoreController;
-use Narsil\Base\Http\Controllers\Storages\Assets\AssetUpdateController;
-use Narsil\Base\Http\Controllers\Users\Bookmarks\UserBookmarkDestroyController;
-use Narsil\Base\Http\Controllers\Users\Bookmarks\UserBookmarkIndexController;
-use Narsil\Base\Http\Controllers\Users\Bookmarks\UserBookmarkStoreController;
-use Narsil\Base\Http\Controllers\Users\Bookmarks\UserBookmarkUpdateController;
-use Narsil\Base\Http\Controllers\Users\Configurations\UserConfigurationEditController;
-use Narsil\Base\Http\Controllers\Users\Configurations\UserConfigurationUpdateController;
-use Narsil\Base\Http\Controllers\Users\Sessions\SessionController;
-use Narsil\Base\Http\Controllers\Users\UserCreateController;
-use Narsil\Base\Http\Controllers\Users\UserDestroyController;
-use Narsil\Base\Http\Controllers\Users\UserDestroyManyController;
-use Narsil\Base\Http\Controllers\Users\UserEditController;
-use Narsil\Base\Http\Controllers\Users\UserIndexController;
-use Narsil\Base\Http\Controllers\Users\UserStoreController;
-use Narsil\Base\Http\Controllers\Users\UserUpdateController;
-use Narsil\Base\Models\Policies\Permission;
-use Narsil\Base\Models\Policies\Role;
-use Narsil\Base\Models\Storages\Asset;
-use Narsil\Base\Models\User;
-use Narsil\Base\Models\Users\UserBookmark;
-use Narsil\Base\Models\Users\UserConfiguration;
 use Narsil\Cms\Http\Controllers\Collections\Blocks\BlockCreateController;
 use Narsil\Cms\Http\Controllers\Collections\Blocks\BlockDestroyController;
 use Narsil\Cms\Http\Controllers\Collections\Blocks\BlockDestroyManyController;
@@ -257,56 +218,6 @@ Route::middleware([
                 ->name('replicate-many');
         });
 
-        Route::prefix(Str::slug(Asset::TABLE))->name(Str::slug(Asset::TABLE) . '.')->group(function ()
-        {
-            Route::get('/', AssetIndexController::class)
-                ->name('index');
-            Route::get('//create', AssetCreateController::class)
-                ->name('create');
-            Route::post('/', AssetStoreController::class)
-                ->name('store');
-            Route::get('/{asset}/edit', AssetEditController::class)
-                ->name('edit');
-            Route::patch('/{asset}', AssetUpdateController::class)
-                ->name('update');
-            Route::delete('/{asset}', AssetDestroyController::class)
-                ->name('destroy');
-            Route::delete('/', AssetDestroyManyController::class)
-                ->name('destroy-many');
-        });
-
-        Route::prefix(Str::slug(Permission::TABLE))->name(Str::slug(Permission::TABLE) . '.')->group(function ()
-        {
-            Route::get('/', PermissionIndexController::class)
-                ->name('index');
-            Route::get('/{permission}/edit', PermissionEditController::class)
-                ->name('edit');
-            Route::patch('/{permission}', PermissionUpdateController::class)
-                ->name('update');
-        });
-
-        Route::prefix(Str::slug(Role::TABLE))->name(Str::slug(Role::TABLE) . '.')->group(function ()
-        {
-            Route::get('/', RoleIndexController::class)
-                ->name('index');
-            Route::get('/create', RoleCreateController::class)
-                ->name('create');
-            Route::post('/', RoleStoreController::class)
-                ->name('store');
-            Route::get('/{role}/edit', RoleEditController::class)
-                ->name('edit');
-            Route::patch('/{role}', RoleUpdateController::class)
-                ->name('update');
-            Route::delete('/{role}', RoleDestroyController::class)
-                ->name('destroy');
-            Route::delete('/', RoleDestroyManyController::class)
-                ->name('destroy-many');
-            Route::post('/{role}/replicate', RoleReplicateController::class)
-                ->name('replicate');
-            Route::post('/replicate-many', RoleReplicateManyController::class)
-                ->name('replicate-many');
-        });
-
         Route::prefix(Str::slug(Site::VIRTUAL_TABLE))->name(Str::slug(Site::VIRTUAL_TABLE) . '.')->group(function ()
         {
             Route::get('/', SiteSummaryController::class)
@@ -360,36 +271,6 @@ Route::middleware([
                 ->name('replicate-many');
         });
 
-        Route::prefix(Str::slug(User::TABLE))->name(Str::slug(User::TABLE) . '.')->group(function ()
-        {
-            Route::get('/', UserIndexController::class)
-                ->name('index');
-            Route::get('/create', UserCreateController::class)
-                ->name('create');
-            Route::post('/', UserStoreController::class)
-                ->name('store');
-            Route::get('/{user}/edit', UserEditController::class)
-                ->name('edit');
-            Route::patch('/{user}', UserUpdateController::class)
-                ->name('update');
-            Route::delete('/{user}', UserDestroyController::class)
-                ->name('destroy');
-            Route::delete('/', UserDestroyManyController::class)
-                ->name('destroy-many');
-        });
-
-        Route::prefix(Str::slug(UserBookmark::TABLE))->name(Str::slug(UserBookmark::TABLE) . '.')->group(function ()
-        {
-            Route::get('/', UserBookmarkIndexController::class)
-                ->name('index');
-            Route::post('/', UserBookmarkStoreController::class)
-                ->name('store');
-            Route::patch('/{userBookmark}', UserBookmarkUpdateController::class)
-                ->name('update');
-            Route::delete('/{userBookmark}', UserBookmarkDestroyController::class)
-                ->name('destroy');
-        });
-
         Route::prefix('collections')->name('collections.')->group(function ()
         {
             Route::get('/', CollectionSummaryController::class)
@@ -427,18 +308,3 @@ Route::middleware([
         #endregion
     }
 );
-
-#region USERS
-
-Route::prefix(Str::slug(UserConfiguration::TABLE))->name(Str::slug(UserConfiguration::TABLE) . '.')->group(function ()
-{
-    Route::get('/', UserConfigurationEditController::class)
-        ->name('edit');
-    Route::post('/', UserConfigurationUpdateController::class)
-        ->name('update');
-});
-
-Route::delete('/sessions', SessionController::class)
-    ->name('sessions.delete');
-
-#endregion
