@@ -55,7 +55,7 @@ abstract class FooterService
                 FooterLink::POSITION => $key,
             ], [
                 ...$link,
-                FooterLink::FOOTER_ID => $footer->{Footer::ID},
+                FooterLink::POSITION => $key,
             ]);
 
             $uuids[] = $fieldOption->{FooterLink::UUID};
@@ -84,7 +84,7 @@ abstract class FooterService
                 FooterSocialMedium::POSITION => $key,
             ], [
                 ...$socialMedium,
-                FooterSocialMedium::FOOTER_ID => $footer->{Footer::ID},
+                FooterSocialMedium::POSITION => $key,
             ]);
 
             $uuids[] = $fieldOption->{FooterLink::UUID};

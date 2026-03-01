@@ -25,7 +25,7 @@ class FooterFactory extends Factory
         [
             FooterSocialMedium::ICON => 'facebook',
             FooterSocialMedium::LABEL => 'Facebook',
-            FooterSocialMedium::URL => 'https://www.facebook.com/'
+            FooterSocialMedium::URL => 'https://www.facebook.com'
         ],
         [
             FooterSocialMedium::ICON => 'instagram',
@@ -45,7 +45,7 @@ class FooterFactory extends Factory
         [
             FooterSocialMedium::ICON => 'youtube',
             FooterSocialMedium::LABEL => 'Youtube',
-            FooterSocialMedium::URL => 'https://www.youtube.com/'
+            FooterSocialMedium::URL => 'https://www.youtube.com'
         ],
     ];
 
