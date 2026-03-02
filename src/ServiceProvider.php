@@ -126,10 +126,10 @@ class ServiceProvider extends NarsilServiceProvider
         $this->app->register(MenuServiceProvider::class);
         $this->app->register(MiddlewareServiceProvider::class);
         $this->app->register(MigrationServiceProvider::class);
-        $this->app->register(ResourceServiceProvider::class);
+        $this->app->register(MorphServiceProvider::class);
         $this->app->register(ObserverServiceProvider::class);
         $this->app->register(PolicyServiceProvider::class);
-        $this->app->register(MorphServiceProvider::class);
+        $this->app->register(ResourceServiceProvider::class);
         $this->app->register(TableServiceProvider::class);
         $this->app->register(TranslationServiceProvider::class);
     }

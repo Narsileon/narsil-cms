@@ -4,8 +4,14 @@ namespace Narsil\Cms\Providers;
 
 #region USE
 
+use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
+use Illuminate\Cookie\Middleware\EncryptCookies;
+use Illuminate\Foundation\Http\Middleware\ValidateCsrfToken;
+use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Routing\Router;
+use Illuminate\Session\Middleware\StartSession;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\View\Middleware\ShareErrorsFromSession;
 use Narsil\Base\Http\Middleware\LocaleMiddleware;
 use Narsil\Base\Http\Middleware\UserConfigurationMiddleware;
 use Narsil\Base\Http\Middleware\WithoutSsrMiddleware;
@@ -45,10 +51,19 @@ final class MiddlewareServiceProvider extends ServiceProvider
     {
         $router = $this->app->make(Router::class);
 
+        $router->middlewareGroup('web', [
+            EncryptCookies::class,
+            AddQueuedCookiesToResponse::class,
+            StartSession::class,
+            SchemaMiddleware::class,
+            ShareErrorsFromSession::class,
+            ValidateCsrfToken::class,
+            SubstituteBindings::class,
+        ]);
+
         $router->middlewareGroup('narsil-cms', [
             WithoutSsrMiddleware::class,
             UserConfigurationMiddleware::class,
-            SchemaMiddleware::class,
             LocaleMiddleware::class,
             InertiaMiddleware::class,
         ]);
