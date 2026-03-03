@@ -71,6 +71,7 @@ function AuthLayout({ children }: AuthLayoutProps) {
             <Breadcrumb breadcrumb={navigation.breadcrumb} className="grow" />
             {session.schemas.length > 1 ? (
               <Select
+                className="min-w-24"
                 value={session.schema}
                 onValueChange={(value) => onSchemaChange(value as string)}
                 options={session.schemas}
