@@ -1,4 +1,4 @@
-import { Link } from "@narsil-cms/blocks/link";
+import { Link } from "@inertiajs/react";
 import {
   SidebarContent,
   SidebarFooter,
@@ -64,7 +64,6 @@ function Sidebar({ ...props }: SidebarProps) {
                     render={
                       <Link
                         href={route(items[0].route, items[0].parameters)}
-                        target={items[0].target}
                         onSuccess={() => setOpenMobile(false)}
                       >
                         {items[0].icon ? <Icon name={items[0].icon} /> : null}
@@ -90,16 +89,20 @@ function Sidebar({ ...props }: SidebarProps) {
                             nativeButton={false}
                             variant="sidebar"
                             render={
-                              <Link
-                                href={route(item.route, item.parameters)}
-                                target={item.target}
-                                {...(item.target !== "_blank"
-                                  ? { onSuccess: () => setOpenMobile(false) }
-                                  : {})}
-                              >
-                                {item.icon ? <Icon name={item.icon} /> : null}
-                                {item.label}
-                              </Link>
+                              item.target === "_blank" ? (
+                                <a href={route(item.route, item.parameters)} target="_blank">
+                                  {item.icon ? <Icon name={item.icon} /> : null}
+                                  {item.label}
+                                </a>
+                              ) : (
+                                <Link
+                                  href={route(item.route, item.parameters)}
+                                  onSuccess={() => setOpenMobile(false)}
+                                >
+                                  {item.icon ? <Icon name={item.icon} /> : null}
+                                  {item.label}
+                                </Link>
+                              )
                             }
                           />
                         </Tooltip>
