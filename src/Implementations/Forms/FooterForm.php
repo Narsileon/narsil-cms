@@ -15,6 +15,7 @@ use Narsil\Base\Http\Data\Forms\Inputs\TextInputData;
 use Narsil\Base\Implementations\Form;
 use Narsil\Base\Services\RouteService;
 use Narsil\Cms\Contracts\Forms\FooterForm as Contract;
+use Narsil\Cms\Http\Data\Forms\Inputs\LinkInputData;
 use Narsil\Cms\Models\Globals\Footer;
 use Narsil\Cms\Models\Globals\FooterLink;
 use Narsil\Cms\Models\Globals\FooterSocialMedium;
@@ -135,7 +136,7 @@ class FooterForm extends Form implements Contract
                                 new FieldData(
                                     id: FooterLink::SITE_PAGE_ID,
                                     required: true,
-                                    input: new SelectInputData(),
+                                    input: new LinkInputData(),
                                 ),
                             ],
                         ),

@@ -2,12 +2,26 @@ import { Builder } from "@narsil-cms/blocks/fields/builder";
 import { Relations } from "@narsil-cms/blocks/fields/relations";
 import { Tree } from "@narsil-cms/blocks/fields/tree";
 import { SortableGrid, SortableList } from "@narsil-cms/components/sortable";
-import base, { type Registry } from "@narsil-ui/components/form/inputs";
+import { type Registry } from "@narsil-ui/components/form/inputs";
+import { dynamic } from "@narsil-ui/lib/dynamic";
+
+const AsyncCombobox = dynamic(() => import("@narsil-ui/components/combobox/aync-combobox"));
 
 const registry: Registry = {
-  ...base,
   ["builder"]: (props) => {
     return <Builder {...props.input} blocks={props.input.blocks} name={props.id} />;
+  },
+  ["link"]: (props) => {
+    return (
+      <AsyncCombobox
+        {...props.input}
+        id={props.id}
+        fetchRoute="site-pages.search"
+        required={props.required}
+        value={props.value}
+        setValue={props.setValue}
+      />
+    );
   },
   ["relations"]: (props) => {
     if ("intermediate" in props.input) {
