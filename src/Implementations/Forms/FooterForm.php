@@ -135,6 +135,11 @@ class FooterForm extends Form implements Contract
                             labelPath: FooterLink::LABEL,
                             elements: [
                                 new FieldData(
+                                    id: FooterLink::LABEL,
+                                    translatable: true,
+                                    input: new TextInputData(),
+                                ),
+                                new FieldData(
                                     id: FooterLink::SITE_PAGE_ID,
                                     required: true,
                                     input: new LinkInputData(
