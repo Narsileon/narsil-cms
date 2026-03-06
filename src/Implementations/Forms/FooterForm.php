@@ -19,6 +19,7 @@ use Narsil\Cms\Http\Data\Forms\Inputs\LinkInputData;
 use Narsil\Cms\Models\Globals\Footer;
 use Narsil\Cms\Models\Globals\FooterLink;
 use Narsil\Cms\Models\Globals\FooterSocialMedium;
+use Narsil\Cms\Models\Sites\SitePage;
 use Narsil\Cms\Services\LocaleService;
 
 #endregion
@@ -136,7 +137,9 @@ class FooterForm extends Form implements Contract
                                 new FieldData(
                                     id: FooterLink::SITE_PAGE_ID,
                                     required: true,
-                                    input: new LinkInputData(),
+                                    input: new LinkInputData(
+                                        values: $this->model?->{Footer::RELATION_LINKS}->pluck(FooterLink::SITE_PAGE_ID)->toArray() ?? [],
+                                    ),
                                 ),
                             ],
                         ),
