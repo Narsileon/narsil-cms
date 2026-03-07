@@ -9,6 +9,7 @@ use Narsil\Cms\Database\Seeders\Blocks\AccordionBlockSeeder;
 use Narsil\Cms\Database\Seeders\Blocks\CallToActionBlockSeeder;
 use Narsil\Cms\Database\Seeders\Blocks\HeroHeaderBlockSeeder;
 use Narsil\Cms\Http\Data\Forms\Inputs\BuilderInputData;
+use Narsil\Cms\Models\Collections\Block;
 use Narsil\Cms\Models\Collections\Field;
 use Narsil\Cms\Models\Collections\Template;
 use Narsil\Cms\Models\Collections\TemplateTab;
@@ -22,6 +23,28 @@ use Narsil\Cms\Models\Collections\TemplateTabElement;
  */
 final class ContentTemplateSeeder extends Seeder
 {
+    #region CONSTRUCTOR
+
+    /**
+     * @param Block[] $blocks
+     *
+     * @return void
+     */
+    public function __construct(array $blocks = [])
+    {
+        $accordionBlockSeeder = new AccordionBlockSeeder()->run();
+        $callToActionBlockSeeder = new CallToActionBlockSeeder()->run();
+        $heroHeaderBlockSeeder = new HeroHeaderBlockSeeder()->run();
+
+        $this->blocks = array_merge($blocks, [
+            $accordionBlockSeeder,
+            $callToActionBlockSeeder,
+            $heroHeaderBlockSeeder,
+        ]);
+    }
+
+    #endregion
+
     #region CONSTANTS
 
     /**
@@ -33,6 +56,14 @@ final class ContentTemplateSeeder extends Seeder
 
     #endregion
 
+    #region PROPERTIES
+
+    /**
+     * @var Block[]
+     */
+    private readonly array $blocks;
+
+    #endregion
 
     #region PUBLIC METHODS
 
@@ -46,9 +77,20 @@ final class ContentTemplateSeeder extends Seeder
             return $field;
         }
 
-        $AccordionBlockSeeder = new AccordionBlockSeeder()->run();
-        $CallToActionBlockSeeder = new CallToActionBlockSeeder()->run();
-        $HeroHeaderBlockSeeder = new HeroHeaderBlockSeeder()->run();
+        $fieldFactory = Field::factory()->state([
+            Field::HANDLE => 'content_builder',
+            Field::LABEL => 'Content Builder',
+            Field::TYPE => BuilderInputData::TYPE,
+        ]);
+
+        foreach ($this->blocks as $block)
+        {
+            $fieldFactory = $fieldFactory->hasAttached(
+                $block,
+                [],
+                Field::RELATION_BLOCKS
+            );
+        }
 
         return Template::factory()
             ->has(
@@ -56,23 +98,7 @@ final class ContentTemplateSeeder extends Seeder
                     TemplateTab::HANDLE => 'content',
                     TemplateTab::LABEL => 'content',
                 ])->hasAttached(
-                    Field::factory()->state([
-                        Field::HANDLE => 'content_builder',
-                        Field::LABEL => 'Content Builder',
-                        Field::TYPE => BuilderInputData::TYPE,
-                    ])->hasAttached(
-                        $AccordionBlockSeeder,
-                        [],
-                        Field::RELATION_BLOCKS
-                    )->hasAttached(
-                        $CallToActionBlockSeeder,
-                        [],
-                        Field::RELATION_BLOCKS
-                    )->hasAttached(
-                        $HeroHeaderBlockSeeder,
-                        [],
-                        Field::RELATION_BLOCKS
-                    ),
+                    $fieldFactory,
                     [
                         TemplateTabElement::HANDLE => self::CONTENT,
                         TemplateTabElement::LABEL  => 'Content',

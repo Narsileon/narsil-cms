@@ -15,6 +15,7 @@ use Narsil\Base\Http\Data\Forms\Inputs\SelectInputData;
 use Narsil\Base\Http\Data\Forms\Inputs\TextInputData;
 use Narsil\Base\Http\Data\OptionData;
 use Narsil\Base\Implementations\Form;
+use Narsil\Base\Services\FormService;
 use Narsil\Base\Services\ModelService;
 use Narsil\Base\Services\RouteService;
 use Narsil\Cms\Contracts\Forms\FieldForm as Contract;
@@ -50,9 +51,11 @@ class FieldForm extends Form implements Contract
      */
     protected function getSteps(): array
     {
+        $validationRuleOptions = FormService::getOptions(ValidationRule::class);
+
         $settings = [];
 
-        $type = request()->get(Field::TYPE);
+        $type = request()->input(Field::TYPE);
 
         if ($type)
         {
@@ -112,7 +115,7 @@ class FieldForm extends Form implements Contract
                         id: Field::RELATION_VALIDATION_RULES,
                         label: trans('narsil-cms::ui.rules'),
                         input: new CheckboxInputData(
-                            options: ValidationRule::options(),
+                            options: $validationRuleOptions->toArray(),
                         ),
                     ),
                 ],

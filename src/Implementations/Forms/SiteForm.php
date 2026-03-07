@@ -8,6 +8,7 @@ use Narsil\Base\Http\Data\Forms\FieldData;
 use Narsil\Base\Http\Data\Forms\FormStepData;
 use Narsil\Base\Http\Data\Forms\Inputs\SelectInputData;
 use Narsil\Base\Implementations\Form;
+use Narsil\Base\Services\FormService;
 use Narsil\Cms\Contracts\Forms\SiteForm as Contract;
 use Narsil\Cms\Http\Data\Forms\Inputs\TreeInputData;
 use Narsil\Cms\Models\Globals\Footer;
@@ -29,6 +30,9 @@ class SiteForm extends Form implements Contract
      */
     protected function getSteps(): array
     {
+        $footerOptions = FormService::getOptions(Footer::class);
+        $headerOptions = FormService::getOptions(Header::class);
+
         return [
             new FormStepData(
                 id: Site::RELATION_PAGES,
@@ -37,13 +41,13 @@ class SiteForm extends Form implements Contract
                     new FieldData(
                         id: Site::HEADER_ID,
                         input: new SelectInputData(
-                            options: Header::options(),
+                            options: $headerOptions->toArray(),
                         ),
                     ),
                     new FieldData(
                         id: Site::FOOTER_ID,
                         input: new SelectInputData(
-                            options: Footer::options(),
+                            options: $footerOptions->toArray(),
                         ),
                     ),
                     new FieldData(

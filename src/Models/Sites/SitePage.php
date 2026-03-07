@@ -14,6 +14,8 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Session;
+use Narsil\Base\Http\Data\OptionData;
+use Narsil\Base\Interfaces\Searchable;
 use Narsil\Base\Traits\HasIdentifier;
 use Narsil\Base\Traits\HasTranslations;
 use Narsil\Cms\Database\Factories\SitePageFactory;
@@ -27,7 +29,7 @@ use Narsil\Cms\Models\TreeModel;
  * @author Jonathan Rigaux
  */
 #[UseFactory(SitePageFactory::class)]
-class SitePage extends TreeModel
+final class SitePage extends TreeModel implements Searchable
 {
     use HasFactory;
     use HasIdentifier;
@@ -281,6 +283,18 @@ class SitePage extends TreeModel
         {
             $override->delete();
         }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function toOption(): OptionData
+    {
+        return new OptionData(
+            label: $this->{self::SLUG},
+            value: $this->{self::ID},
+        )
+            ->identifier($this->{self::ATTRIBUTE_IDENTIFIER});
     }
 
     #region • RELATIONSHIPS

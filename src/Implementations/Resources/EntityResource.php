@@ -30,13 +30,8 @@ class EntityResource extends Resource implements Contract
      */
     public function __construct(mixed $resource)
     {
-        $nodes = $resource->{Entity::RELATION_NODES};
-
-        $nodes->loadMissing([
-            EntityNode::RELATION_ELEMENT,
-        ]);
-
-        $this->nodes = $nodes->groupBy(EntityNode::PARENT_UUID);
+        $this->nodes = $resource->{Entity::RELATION_NODES}
+            ->groupBy(EntityNode::PARENT_UUID);
 
         return parent::__construct($resource);
     }

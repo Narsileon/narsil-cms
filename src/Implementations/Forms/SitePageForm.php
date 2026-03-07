@@ -17,6 +17,7 @@ use Narsil\Base\Http\Data\Forms\Inputs\SwitchInputData;
 use Narsil\Base\Http\Data\Forms\Inputs\TextareaInputData;
 use Narsil\Base\Http\Data\Forms\Inputs\TextInputData;
 use Narsil\Base\Implementations\Form;
+use Narsil\Base\Services\FormService;
 use Narsil\Base\Services\RouteService;
 use Narsil\Cms\Contracts\Forms\SitePageForm as Contract;
 use Narsil\Cms\Enums\SEO\ChangeFreqEnum;
@@ -57,6 +58,8 @@ class SitePageForm extends Form implements Contract
      */
     protected function getSteps(): array
     {
+        $templateOptions = FormService::getOptions(Template::class);
+
         $collections = $this->getCollections();
 
         return [
@@ -109,7 +112,7 @@ class SitePageForm extends Form implements Contract
                             ),
                         ],
                         input: new SelectInputData(
-                            options: Template::options(),
+                            options: $templateOptions->toArray(),
                         ),
                     ),
                     new FieldData(

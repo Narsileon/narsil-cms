@@ -11,6 +11,19 @@ const registry: Registry = {
   ["builder"]: (props) => {
     return <Builder {...props.input} blocks={props.input.blocks} name={props.id} />;
   },
+  ["form"]: (props) => {
+    return (
+      <AsyncCombobox
+        {...props.input}
+        id={props.id}
+        fetchRoute="forms.search"
+        required={props.required}
+        value={props.value}
+        valuePath={props.input.valuePath ?? "identifier"}
+        setValue={props.setValue}
+      />
+    );
+  },
   ["link"]: (props) => {
     return (
       <AsyncCombobox
@@ -19,6 +32,7 @@ const registry: Registry = {
         fetchRoute="site-pages.search"
         required={props.required}
         value={props.value}
+        valuePath={props.input.valuePath ?? "identifier"}
         setValue={props.setValue}
       />
     );

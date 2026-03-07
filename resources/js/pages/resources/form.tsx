@@ -44,8 +44,18 @@ function ResourceForm({ countries, data, form, modal, publish, revisions }: Form
   const { trans } = useTranslator();
   const { closeTopModal } = useModalStore();
 
-  const { action, autoSave, defaultLanguage, id, languages, method, routes, submitLabel, steps } =
-    form;
+  const {
+    action,
+    autoSave,
+    defaultLanguage,
+    id,
+    languages,
+    method,
+    options,
+    routes,
+    submitLabel,
+    steps,
+  } = form;
 
   const { sidebar, standardTabs } = steps.reduce(
     (acc, element) => {
@@ -82,11 +92,12 @@ function ResourceForm({ countries, data, form, modal, publish, revisions }: Form
     <FormProvider
       id={modal ? `${id}_${modal.id}` : id}
       action={action}
-      steps={steps}
       defaultLanguage={defaultLanguage}
       languages={languages}
       method={method}
+      options={options}
       registry={registry}
+      steps={steps}
       initialData={{
         _back: modal !== undefined,
         ...data,

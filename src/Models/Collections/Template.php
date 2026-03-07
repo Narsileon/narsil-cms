@@ -130,28 +130,6 @@ class Template extends Model
     #region PUBLIC METHODS
 
     /**
-     * Get the templates as options.
-     *
-     * @return OptionData[]
-     */
-    public static function options(): array
-    {
-        return Cache::tags([self::TABLE])
-            ->rememberForever('options', function ()
-            {
-                return self::all()
-                    ->map(function (Template $template)
-                    {
-                        return new OptionData(
-                            label: $template->{Template::PLURAL},
-                            value: $template->{Template::ID},
-                        );
-                    })
-                    ->all();
-            });
-    }
-
-    /**
      * Get the class of the entity model.
      *
      * @return string
@@ -231,6 +209,17 @@ class Template extends Model
         $table = Str::snake(Str::singular($this->{self::TABLE_NAME}));
 
         return $table . '_node_relation';
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function toOption(): OptionData
+    {
+        return new OptionData(
+            label: $this->{self::PLURAL},
+            value: $this->{self::ID},
+        );
     }
 
     #region • RELATIONSHIPS

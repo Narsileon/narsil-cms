@@ -19,7 +19,6 @@ use Narsil\Cms\Http\Data\Forms\Inputs\LinkInputData;
 use Narsil\Cms\Models\Globals\Footer;
 use Narsil\Cms\Models\Globals\FooterLink;
 use Narsil\Cms\Models\Globals\FooterSocialMedium;
-use Narsil\Cms\Models\Sites\SitePage;
 use Narsil\Cms\Services\LocaleService;
 
 #endregion

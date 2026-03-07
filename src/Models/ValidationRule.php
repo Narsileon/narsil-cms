@@ -7,6 +7,8 @@ namespace Narsil\Cms\Models;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Narsil\Base\Http\Data\OptionData;
+use Narsil\Base\Interfaces\Searchable;
+use Narsil\Base\Traits\HasIdentifier;
 
 #endregion
 
@@ -14,8 +16,10 @@ use Narsil\Base\Http\Data\OptionData;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-class ValidationRule extends Model
+class ValidationRule extends Model implements Searchable
 {
+    use HasIdentifier;
+
     #region CONSTRUCTOR
 
     /**
@@ -81,21 +85,15 @@ class ValidationRule extends Model
     #region PUBLIC METHODS
 
     /**
-     * Get the validation rules as options.
-     *
-     * @return array<OptionData>
+     * {@inheritDoc}
      */
-    public static function options(): array
+    public function toOption(): OptionData
     {
-        return self::all()
-            ->map(function (ValidationRule $validationRule)
-            {
-                return new OptionData(
-                    label: $validationRule->{self::ATTRIBUTE_NAME},
-                    value: $validationRule->{self::ID},
-                );
-            })
-            ->all();
+        return new OptionData(
+            label: $this->{self::ATTRIBUTE_NAME},
+            value: $this->{self::ID},
+        )
+            ->identifier($this->{self::ATTRIBUTE_IDENTIFIER});
     }
 
     #endregion

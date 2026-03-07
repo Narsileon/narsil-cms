@@ -17,6 +17,8 @@ use Narsil\Cms\Contracts\Resources\EntityResource;
 use Narsil\Cms\Models\Collections\Template;
 use Narsil\Cms\Models\Configuration;
 use Narsil\Cms\Models\Entities\Entity;
+use Narsil\Cms\Models\Entities\EntityNode;
+use Narsil\Cms\Models\Entities\EntityNodeRelation;
 use Narsil\Cms\Models\Hosts\HostLocaleLanguage;
 use Narsil\Cms\Traits\IsCollectionController;
 
@@ -108,6 +110,9 @@ class EntityEditController extends RenderController
         if ($revision = $request->query('revision'))
         {
             $entity = $this->entityClass::withTrashed()
+                ->with([
+                    Entity::RELATION_NODES,
+                ])
                 ->firstWhere([
                     Entity::UUID => $revision
                 ]);
@@ -128,6 +133,11 @@ class EntityEditController extends RenderController
             }
         }
 
+        $entity->{Entity::RELATION_NODES}->loadMissing([
+            EntityNode::RELATION_ELEMENT,
+            EntityNode::RELATION_RELATIONS . '.' . EntityNodeRelation::RELATION_TARGET,
+        ]);
+
         return $entity;
     }
 
@@ -140,6 +150,25 @@ class EntityEditController extends RenderController
      */
     protected function getForm(Entity $entity): EntityForm
     {
+        $options = $entity->{Entity::RELATION_NODES}
+            ->filter(function ($node)
+            {
+                return $node->{EntityNode::RELATION_RELATIONS}?->isNotEmpty();
+            })
+            ->mapWithKeys(function ($node)
+            {
+                return [
+                    $node->{EntityNode::PATH} => $node->{EntityNode::RELATION_RELATIONS}
+                        ->map(function ($relation)
+                        {
+                            return $relation->{EntityNodeRelation::RELATION_TARGET}->toOption();
+                        })
+                        ->values()
+                        ->toArray(),
+                ];
+            })
+            ->toArray();
+
         $configuration = Configuration::firstOrCreate();
 
         $form = app()
@@ -155,6 +184,7 @@ class EntityEditController extends RenderController
             ->defaultLanguage($configuration->{Configuration::DEFAULT_LANGUAGE} ?? 'en')
             ->languageOptions(HostLocaleLanguage::getUniqueLanguages())
             ->method(RequestMethodEnum::PATCH->value)
+            ->options($options)
             ->submitLabel(trans('narsil::ui.update'));
 
         return $form;

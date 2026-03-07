@@ -9,12 +9,13 @@ use Illuminate\Database\Eloquent\Attributes\UseFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Support\Facades\Cache;
 use Narsil\Base\Http\Data\OptionData;
+use Narsil\Base\Interfaces\Searchable;
 use Narsil\Base\Observers\ModelObserver;
 use Narsil\Base\Traits\AuditLoggable;
 use Narsil\Base\Traits\Blameable;
 use Narsil\Base\Traits\HasDatetimes;
+use Narsil\Base\Traits\HasIdentifier;
 use Narsil\Base\Traits\HasTranslations;
 use Narsil\Cms\Database\Factories\HeaderFactory;
 use Narsil\Cms\Models\Sites\Site;
@@ -27,12 +28,13 @@ use Narsil\Cms\Models\Sites\Site;
  */
 #[ObservedBy(ModelObserver::class)]
 #[UseFactory(HeaderFactory::class)]
-class Header extends Model
+class Header extends Model implements Searchable
 {
     use Blameable;
     use AuditLoggable;
     use HasDatetimes;
     use HasFactory;
+    use HasIdentifier;
     use HasTranslations;
 
     #region CONSTRUCTOR
@@ -114,25 +116,15 @@ class Header extends Model
     #region PUBLIC METHODS
 
     /**
-     * Get the headers as options.
-     *
-     * @return OptionData[]
+     * {@inheritDoc}
      */
-    public static function options(): array
+    public function toOption(): OptionData
     {
-        return Cache::tags([self::TABLE])
-            ->rememberForever('options', function ()
-            {
-                return self::all()
-                    ->map(function (Header $header)
-                    {
-                        return new OptionData(
-                            label: $header->{self::SLUG},
-                            value: $header->{self::ID},
-                        );
-                    })
-                    ->all();
-            });
+        return new OptionData(
+            label: $this->{self::SLUG},
+            value: $this->{self::ID},
+        )
+            ->identifier($this->{self::ATTRIBUTE_IDENTIFIER});
     }
 
     #region • RELATIONSHIPS

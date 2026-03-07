@@ -8,6 +8,7 @@ use Narsil\Base\Http\Data\Forms\FieldData;
 use Narsil\Base\Http\Data\Forms\InputData;
 use Narsil\Base\Http\Data\Forms\Inputs\SelectInputData;
 use Narsil\Base\Http\Data\Forms\Inputs\SwitchInputData;
+use Narsil\Base\Services\FormService;
 use Narsil\Cms\Models\Collections\Template;
 
 #endregionx
@@ -78,13 +79,15 @@ class EntityInputData extends InputData
      */
     public static function getInputForm(?string $prefix = null): array
     {
+        $templateOptions = FormService::getOptions(Template::class);
+
         return [
             new FieldData(
                 id: 'collections',
                 prefix: $prefix,
                 input: new SelectInputData(
                     multiple: true,
-                    options: Template::options(),
+                    options: $templateOptions->toArray(),
                 ),
             ),
             new FieldData(

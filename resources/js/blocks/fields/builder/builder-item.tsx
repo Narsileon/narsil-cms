@@ -141,7 +141,7 @@ function BuilderItem({
 
               if ("input" in element) {
                 if (element.input.type !== "builder" && !element.translatable) {
-                  childHandle = `${childHandle}.en`;
+                  childHandle = `${childHandle}`;
                 }
 
                 return <FormElement {...element} id={childHandle} key={index} />;
