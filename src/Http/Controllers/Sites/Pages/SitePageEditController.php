@@ -35,10 +35,11 @@ class SitePageEditController extends RenderController
     {
         $this->authorize(AbilityEnum::UPDATE, $sitePage);
 
+        $form = $this->getForm($site, $sitePage);
+
         $this->transformEntities($sitePage);
 
         $data = $this->getData($sitePage);
-        $form = $this->getForm($site, $sitePage);
 
         return $this->render('narsil/cms::resources/form', [
             'data' => $data,
@@ -82,6 +83,16 @@ class SitePageEditController extends RenderController
      */
     protected function getForm(string $site, SitePage $sitePage): SitePageForm
     {
+        $options = [
+            SitePage::RELATION_ENTITIES => $sitePage->{SitePage::RELATION_ENTITIES}
+                ->map(function ($entity)
+                {
+                    return $entity->{SitePageEntity::RELATION_TARGET}->toOption();
+                })
+                ->values()
+                ->toArray(),
+        ];
+
         $form = app(SitePageForm::class)
             ->action(route('sites.pages.update', [
                 'sitePage' => $sitePage->{SitePage::ID},
@@ -89,6 +100,7 @@ class SitePageEditController extends RenderController
             ]))
             ->id($sitePage->{SitePage::ID})
             ->method(RequestMethodEnum::PATCH->value)
+            ->options($options)
             ->submitLabel(trans('narsil::ui.update'));
 
         return $form;

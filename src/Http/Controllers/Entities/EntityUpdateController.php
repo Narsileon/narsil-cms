@@ -49,9 +49,9 @@ class EntityUpdateController extends RedirectController
         $entity = $entities->firstWhere(Entity::REVISION, '>', 0);
         $draftEntity = $entities->firstWhere(Entity::REVISION, '=', -1);
 
-        if (!$request->get('_dirty'))
+        if (!$request->input('_dirty'))
         {
-            if ($request->get(Entity::PUBLISHED) && !$entity->{Entity::PUBLISHED})
+            if ($request->input(Entity::PUBLISHED) && !$entity->{Entity::PUBLISHED})
             {
                 $entity->updateQuietly([
                     Entity::PUBLISHED => true,

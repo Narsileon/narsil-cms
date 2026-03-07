@@ -43,7 +43,7 @@ class EntitySearchController extends RedirectController
 
         $search = $request->validated(SearchRequest::SEARCH);
 
-        $collections = $request->get(self::COLLECTIONS);
+        $collections = $request->input(self::COLLECTIONS);
 
         $templates = Template::query()
             ->when($collections, function ($query) use ($collections)

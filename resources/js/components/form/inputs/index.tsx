@@ -24,6 +24,19 @@ const registry: Registry = {
       />
     );
   },
+  ["entity"]: (props) => {
+    return (
+      <AsyncCombobox
+        {...props.input}
+        id={props.id}
+        fetchRoute="entities.search"
+        required={props.required}
+        value={props.value}
+        valuePath="identifier"
+        setValue={props.setValue}
+      />
+    );
+  },
   ["link"]: (props) => {
     return (
       <AsyncCombobox

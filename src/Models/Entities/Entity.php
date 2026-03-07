@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Narsil\Base\Http\Data\OptionData;
+use Narsil\Base\Interfaces\Searchable;
 use Narsil\Base\Traits\AuditLoggable;
 use Narsil\Base\Traits\Blameable;
 use Narsil\Base\Traits\HasIdentifier;
@@ -22,7 +24,7 @@ use Narsil\Cms\Traits\HasRevisions;
  * @version 1.0.0
  * @author Jonathan Rigaux
  */
-abstract class Entity extends Model
+abstract class Entity extends Model implements Searchable
 {
     use AuditLoggable;
     use Blameable;
@@ -99,6 +101,18 @@ abstract class Entity extends Model
     #endregion
 
     #region PUBLIC METHODS
+
+    /**
+     * {@inheritDoc}
+     */
+    public function toOption(): OptionData
+    {
+        return new OptionData(
+            label: $this->{self::SLUG},
+            value: $this->{self::ID},
+        )
+            ->identifier($this->{self::ATTRIBUTE_IDENTIFIER});
+    }
 
     #region • RELATIONSHIPS
 
