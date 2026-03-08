@@ -7,10 +7,12 @@ namespace Narsil\Cms\Providers;
 use Illuminate\Database\Events\MigrationsEnded;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 use Narsil\Base\Models\Policies\Permission;
+use Narsil\Base\Traits\HasSchemas;
 use Narsil\Cms\Database\Seeders\ValidationRuleSeeder;
 use Narsil\Cms\Models\ValidationRule;
 
@@ -21,6 +23,8 @@ use Narsil\Cms\Models\ValidationRule;
  */
 final class MigrationServiceProvider extends ServiceProvider
 {
+    use HasSchemas;
+
     #region PUBLIC METHODS
 
     /**
@@ -45,6 +49,14 @@ final class MigrationServiceProvider extends ServiceProvider
      */
     protected function bootEvent(): void
     {
+        if (app()->runningInConsole() && request()->server('argv')[1] === 'migrate:fresh')
+        {
+            foreach ($this->getSchemas() as $schema)
+            {
+                DB::statement("DROP SCHEMA IF EXISTS {$schema} CASCADE");
+            }
+        }
+
         Event::listen(MigrationsEnded::class, function ()
         {
             Cache::flush();
