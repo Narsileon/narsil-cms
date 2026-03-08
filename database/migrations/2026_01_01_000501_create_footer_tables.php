@@ -183,7 +183,8 @@ return new class extends Migration
                 ->constrained(User::TABLE, User::ID)
                 ->nullOnDelete();
             $blueprint
-                ->timestamp(Footer::UPDATED_AT);
+                ->timestamp(Footer::UPDATED_AT)
+                ->index();
             $blueprint
                 ->foreignId(Footer::UPDATED_BY)
                 ->nullable()
