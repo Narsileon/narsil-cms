@@ -7,6 +7,7 @@ namespace Narsil\Cms;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
+use Narsil\Base\Providers\ActionServiceProvider;
 use Narsil\Base\Providers\FormRequestServiceProvider;
 use Narsil\Base\Providers\FormServiceProvider;
 use Narsil\Base\Providers\FortifyServiceProvider;
@@ -116,6 +117,7 @@ class ServiceProvider extends NarsilServiceProvider
     protected function registerProviders(): void
     {
         $this->app->register(PluginServiceProvider::class);
+        $this->app->register(ActionServiceProvider::class);
         $this->app->register(CommandServiceProvider::class);
         $this->app->register(FormRequestServiceProvider::class);
         $this->app->register(FormServiceProvider::class);
