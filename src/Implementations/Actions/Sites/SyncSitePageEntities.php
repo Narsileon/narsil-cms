@@ -1,9 +1,11 @@
 <?php
 
-namespace Narsil\Cms\Services;
+namespace Narsil\Cms\Implementations\Actions\Sites;
 
 #region USE
 
+use Narsil\Base\Implementations\Action;
+use Narsil\Cms\Contracts\Actions\Sites\SyncSitePageEntities as Contract;
 use Narsil\Cms\Models\Sites\SitePage;
 use Narsil\Cms\Models\Sites\SitePageEntity;
 
@@ -12,17 +14,14 @@ use Narsil\Cms\Models\Sites\SitePageEntity;
 /**
  * @author Jonathan Rigaux
  */
-abstract class SitePageService
+class SyncSitePageEntities extends Action implements Contract
 {
     #region PUBLIC METHODS
 
     /**
-     * @param SitePage $sitePage
-     * @param array $entities
-     *
-     * @return void
+     * {@inheritDoc}
      */
-    public static function syncEntities(SitePage $sitePage, array $entities): void
+    public function run(SitePage $sitePage, array $entities): SitePage
     {
         $uuids = [];
 
@@ -45,6 +44,8 @@ abstract class SitePageService
             ->entities()
             ->whereNotIn(SitePageEntity::UUID, $uuids)
             ->delete();
+
+        return $sitePage;
     }
 
     #endregion

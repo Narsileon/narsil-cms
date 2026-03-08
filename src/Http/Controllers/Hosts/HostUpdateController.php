@@ -8,15 +8,12 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Arr;
 use Narsil\Base\Enums\ModelEventEnum;
 use Narsil\Base\Http\Controllers\RedirectController;
-use Narsil\Base\Models\Users\UserConfiguration;
 use Narsil\Base\Services\ModelService;
 use Narsil\Base\Traits\HasSchemas;
+use Narsil\Cms\Contracts\Actions\Hosts\SyncHostLocales;
 use Narsil\Cms\Contracts\Requests\HostFormRequest;
 use Narsil\Cms\Jobs\SitemapJob;
 use Narsil\Cms\Models\Hosts\Host;
-use Narsil\Cms\Models\Hosts\HostLocale;
-use Narsil\Cms\Services\HostLocaleService;
-use Narsil\Cms\Services\HostService;
 
 #endregion
 
@@ -41,18 +38,11 @@ class HostUpdateController extends RedirectController
 
         $host->update($attributes);
 
-        if ($defaultLocale = Arr::get($attributes, Host::RELATION_DEFAULT_LOCALE))
-        {
-            $hostLocale = $host->{Host::RELATION_DEFAULT_LOCALE};
-
-            $hostLocale->update([
-                HostLocale::PATTERN  => Arr::get($defaultLocale, HostLocale::PATTERN),
+        app(SyncHostLocales::class)
+            ->run($host, [
+                Arr::get($attributes, Host::RELATION_DEFAULT_LOCALE, []),
+                ...Arr::get($attributes, Host::RELATION_OTHER_LOCALES, []),
             ]);
-
-            HostLocaleService::syncLanguages($hostLocale, Arr::get($defaultLocale, HostLocale::RELATION_LANGUAGES, []));
-        }
-
-        HostService::syncOtherLocales($host, Arr::get($attributes, Host::RELATION_OTHER_LOCALES, []));
 
         SitemapJob::dispatch($host, $this->getCurrentSchema());
 

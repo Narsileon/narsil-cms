@@ -9,12 +9,9 @@ use Illuminate\Support\Arr;
 use Narsil\Base\Enums\ModelEventEnum;
 use Narsil\Base\Http\Controllers\RedirectController;
 use Narsil\Base\Services\ModelService;
+use Narsil\Cms\Contracts\Actions\Hosts\SyncHostLocales;
 use Narsil\Cms\Contracts\Requests\HostFormRequest;
 use Narsil\Cms\Models\Hosts\Host;
-use Narsil\Cms\Models\Hosts\HostLocale;
-use Narsil\Cms\Services\HostLocaleService;
-use Narsil\Cms\Services\HostService;
-
 #endregion
 
 /**
@@ -35,17 +32,11 @@ class HostStoreController extends RedirectController
 
         $host = Host::create($attributes);
 
-        if ($defaultLocale = Arr::get($attributes, Host::RELATION_DEFAULT_LOCALE))
-        {
-            $hostLocale = HostLocale::create([
-                HostLocale::HOST_ID  => $host->id,
-                HostLocale::PATTERN  => Arr::get($defaultLocale, HostLocale::PATTERN),
+        app(SyncHostLocales::class)
+            ->run($host, [
+                Arr::get($attributes, Host::RELATION_DEFAULT_LOCALE, []),
+                ...Arr::get($attributes, Host::RELATION_OTHER_LOCALES, []),
             ]);
-
-            HostLocaleService::syncLanguages($hostLocale, Arr::get($defaultLocale, HostLocale::RELATION_LANGUAGES, []));
-        }
-
-        HostService::syncOtherLocales($host, Arr::get($attributes, Host::RELATION_OTHER_LOCALES, []));
 
         return $this
             ->redirect(route('hosts.index'))

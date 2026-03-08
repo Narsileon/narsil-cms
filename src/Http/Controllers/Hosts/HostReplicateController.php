@@ -10,8 +10,8 @@ use Narsil\Base\Enums\AbilityEnum;
 use Narsil\Base\Enums\ModelEventEnum;
 use Narsil\Base\Http\Controllers\RedirectController;
 use Narsil\Base\Services\ModelService;
+use Narsil\Cms\Contracts\Actions\Hosts\ReplicateHost;
 use Narsil\Cms\Models\Hosts\Host;
-use Narsil\Cms\Services\HostService;
 
 #endregion
 
@@ -32,7 +32,8 @@ class HostReplicateController extends RedirectController
     {
         $this->authorize(AbilityEnum::CREATE, Host::class);
 
-        HostService::replicate($host);
+        app(ReplicateHost::class)
+            ->run($host);
 
         return back()
             ->with('success', ModelService::getSuccessMessage(Host::TABLE, ModelEventEnum::REPLICATED));

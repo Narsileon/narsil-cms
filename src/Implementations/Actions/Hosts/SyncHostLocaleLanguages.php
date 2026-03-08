@@ -1,10 +1,12 @@
 <?php
 
-namespace Narsil\Cms\Services;
+namespace Narsil\Cms\Implementations\Actions\Hosts;
 
 #region USE
 
 use Illuminate\Support\Arr;
+use Narsil\Base\Implementations\Action;
+use Narsil\Cms\Contracts\Actions\Hosts\SyncHostLocaleLanguages as Contract;
 use Narsil\Cms\Models\Hosts\HostLocale;
 use Narsil\Cms\Models\Hosts\HostLocaleLanguage;
 
@@ -13,17 +15,14 @@ use Narsil\Cms\Models\Hosts\HostLocaleLanguage;
 /**
  * @author Jonathan Rigaux
  */
-abstract class HostLocaleService
+class SyncHostLocaleLanguages extends Action implements Contract
 {
     #region PUBLIC METHODS
 
     /**
-     * @param HostLocale $hostLocale
-     * @param array $languages
-     *
-     * @return void
+     * {@inheritDoc}
      */
-    public static function syncLanguages(HostLocale $hostLocale, array $languages): void
+    public function run(HostLocale $hostLocale, array $languages): HostLocale
     {
         $processed = [];
 
@@ -60,6 +59,8 @@ abstract class HostLocaleService
             ->languages()
             ->whereNotIn(HostLocaleLanguage::UUID, $processed)
             ->delete();
+
+        return $hostLocale;
     }
 
     #endregion

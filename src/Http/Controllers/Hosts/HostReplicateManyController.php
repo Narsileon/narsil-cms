@@ -11,8 +11,8 @@ use Narsil\Base\Enums\ModelEventEnum;
 use Narsil\Base\Http\Controllers\RedirectController;
 use Narsil\Base\Http\Requests\ReplicateManyRequest;
 use Narsil\Base\Services\ModelService;
+use Narsil\Cms\Contracts\Actions\Hosts\ReplicateHost;
 use Narsil\Cms\Models\Hosts\Host;
-use Narsil\Cms\Services\HostService;
 
 #endregion
 
@@ -39,7 +39,8 @@ class HostReplicateManyController extends RedirectController
 
         foreach ($hosts as $host)
         {
-            HostService::replicate($host);
+            app(ReplicateHost::class)
+                ->run($host);
         }
 
         return back()

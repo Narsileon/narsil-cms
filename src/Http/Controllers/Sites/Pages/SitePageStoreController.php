@@ -11,9 +11,9 @@ use Narsil\Base\Enums\AbilityEnum;
 use Narsil\Base\Enums\ModelEventEnum;
 use Narsil\Base\Http\Controllers\RedirectController;
 use Narsil\Base\Services\ModelService;
+use Narsil\Cms\Contracts\Actions\Sites\SyncSitePageEntities;
 use Narsil\Cms\Contracts\Requests\SitePageFormRequest;
 use Narsil\Cms\Models\Sites\SitePage;
-use Narsil\Cms\Services\SitePageService;
 
 #endregion
 
@@ -66,7 +66,8 @@ class SitePageStoreController extends RedirectController
             SitePage::LEFT_ID => $lastChild?->{SitePage::ID},
         ]));
 
-        SitePageService::syncEntities($sitePage, Arr::get($attributes, SitePage::RELATION_ENTITIES, []));
+        app(SyncSitePageEntities::class)
+            ->run($sitePage, Arr::get($attributes, SitePage::RELATION_ENTITIES, []));
 
         if ($lastChild)
         {
