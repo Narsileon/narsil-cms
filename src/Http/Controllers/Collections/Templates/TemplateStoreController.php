@@ -9,9 +9,9 @@ use Illuminate\Support\Arr;
 use Narsil\Base\Enums\ModelEventEnum;
 use Narsil\Base\Http\Controllers\RedirectController;
 use Narsil\Base\Services\ModelService;
+use Narsil\Cms\Contracts\Actions\Templates\SyncTemplateTabs;
 use Narsil\Cms\Contracts\Requests\TemplateFormRequest;
 use Narsil\Cms\Models\Collections\Template;
-use Narsil\Cms\Services\TemplateService;
 
 #endregion
 
@@ -33,7 +33,8 @@ class TemplateStoreController extends RedirectController
 
         $template = Template::create($attributes);
 
-        TemplateService::syncTemplateTabs($template, Arr::get($attributes, Template::RELATION_TABS, []));
+        app(SyncTemplateTabs::class)
+            ->run($template, Arr::get($attributes, Template::RELATION_TABS, []));
 
         return $this
             ->redirect(route('templates.index'))

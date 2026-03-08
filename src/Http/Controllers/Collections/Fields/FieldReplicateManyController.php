@@ -11,8 +11,8 @@ use Narsil\Base\Enums\ModelEventEnum;
 use Narsil\Base\Http\Controllers\RedirectController;
 use Narsil\Base\Http\Requests\ReplicateManyRequest;
 use Narsil\Base\Services\ModelService;
+use Narsil\Cms\Contracts\Actions\Fields\ReplicateField;
 use Narsil\Cms\Models\Collections\Field;
-use Narsil\Cms\Services\FieldService;
 
 #endregion
 
@@ -39,7 +39,8 @@ class FieldReplicateManyController extends RedirectController
 
         foreach ($fields as $field)
         {
-            FieldService::replicate($field);
+            app(ReplicateField::class)
+                ->run($field);
         }
 
         return back()

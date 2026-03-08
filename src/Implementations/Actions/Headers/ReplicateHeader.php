@@ -1,10 +1,12 @@
 <?php
 
-namespace Narsil\Cms\Services;
+namespace Narsil\Cms\Implementations\Actions\Headers;
 
 #region USE
 
+use Narsil\Base\Implementations\Action;
 use Narsil\Base\Services\DatabaseService;
+use Narsil\Cms\Contracts\Actions\Headers\ReplicateHeader as Contract;
 use Narsil\Cms\Models\Globals\Header;
 
 #endregion
@@ -12,16 +14,14 @@ use Narsil\Cms\Models\Globals\Header;
 /**
  * @author Jonathan Rigaux
  */
-abstract class HeaderService
+class ReplicateHeader extends Action implements Contract
 {
     #region PUBLIC METHODS
 
     /**
-     * @param Header $header
-     *
-     * @return void
+     * {@inheritDoc}
      */
-    public static function replicate(Header $header): void
+    public function run(Header $header): Header
     {
         $replicated = $header->replicate();
 
@@ -30,6 +30,8 @@ abstract class HeaderService
                 Header::SLUG => DatabaseService::generateUniqueValue($replicated, Header::SLUG, $header->{Header::SLUG}),
             ])
             ->save();
+
+        return $replicated;
     }
 
     #endregion

@@ -11,8 +11,8 @@ use Narsil\Base\Enums\ModelEventEnum;
 use Narsil\Base\Http\Controllers\RedirectController;
 use Narsil\Base\Http\Requests\ReplicateManyRequest;
 use Narsil\Base\Services\ModelService;
+use Narsil\Cms\Contracts\Actions\Blocks\ReplicateBlock;
 use Narsil\Cms\Models\Collections\Block;
-use Narsil\Cms\Services\BlockService;
 
 #endregion
 
@@ -39,7 +39,8 @@ class BlockReplicateManyController extends RedirectController
 
         foreach ($blocks as $block)
         {
-            BlockService::replicate($block);
+            app(ReplicateBlock::class)
+                ->run($block);
         }
 
         return back()

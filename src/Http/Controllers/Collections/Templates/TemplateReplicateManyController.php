@@ -11,8 +11,8 @@ use Narsil\Base\Enums\ModelEventEnum;
 use Narsil\Base\Http\Controllers\RedirectController;
 use Narsil\Base\Http\Requests\ReplicateManyRequest;
 use Narsil\Base\Services\ModelService;
+use Narsil\Cms\Contracts\Actions\Templates\ReplicateTemplate;
 use Narsil\Cms\Models\Collections\Template;
-use Narsil\Cms\Services\TemplateService;
 
 #endregion
 
@@ -39,7 +39,8 @@ class TemplateReplicateManyController extends RedirectController
 
         foreach ($templates as $template)
         {
-            TemplateService::replicate($template);
+            app(ReplicateTemplate::class)
+                ->run($template);
         }
 
         return back()

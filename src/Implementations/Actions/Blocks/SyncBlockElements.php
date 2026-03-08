@@ -1,12 +1,14 @@
 <?php
 
-namespace Narsil\Cms\Services;
+namespace Narsil\Cms\Implementations\Actions\Blocks;
 
 #region USE
 
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
-use Narsil\Base\Services\DatabaseService;
+use Narsil\Base\Implementations\Action;
+use Narsil\Cms\Contracts\Actions\Blocks\SyncBlockElements as Contract;
+use Narsil\Cms\Contracts\Actions\Elements\SyncElementConditions;
 use Narsil\Cms\Models\Collections\Block;
 use Narsil\Cms\Models\Collections\BlockElement;
 
@@ -15,35 +17,14 @@ use Narsil\Cms\Models\Collections\BlockElement;
 /**
  * @author Jonathan Rigaux
  */
-abstract class BlockService
+class SyncBlockElements extends Action implements Contract
 {
     #region PUBLIC METHODS
 
     /**
-     * @param Block $block
-     *
-     * @return void
+     * {@inheritDoc}
      */
-    public static function replicate(Block $block): void
-    {
-        $replicated = $block->replicate();
-
-        $replicated
-            ->fill([
-                Block::HANDLE => DatabaseService::generateUniqueValue($replicated, Block::HANDLE, $block->{Block::HANDLE}),
-            ])
-            ->save();
-
-        static::syncBlockElements($replicated, $block->elements()->get()->toArray());
-    }
-
-    /**
-     * @param Block $block
-     * @param array $elements
-     *
-     * @return void
-     */
-    public static function syncBlockElements(Block $block, array $elements): void
+    public function run(Block $block, array $elements): Block
     {
         $uuids = [];
 
@@ -72,7 +53,8 @@ abstract class BlockService
                 BlockElement::WIDTH => Arr::get($element, BlockElement::WIDTH, 100),
             ]);
 
-            ElementService::syncConditions($blockElement, Arr::get($element, BlockElement::RELATION_CONDITIONS, []));
+            app(SyncElementConditions::class)
+                ->run($blockElement, Arr::get($element, BlockElement::RELATION_CONDITIONS, []));
 
             $uuids[] = $blockElement->{BlockElement::UUID};
         }
@@ -81,6 +63,8 @@ abstract class BlockService
             ->elements()
             ->whereNotIn(BlockElement::UUID, $uuids)
             ->delete();
+
+        return $block;
     }
 
     #endregion

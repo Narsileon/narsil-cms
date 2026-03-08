@@ -9,9 +9,9 @@ use Illuminate\Support\Arr;
 use Narsil\Base\Enums\ModelEventEnum;
 use Narsil\Base\Http\Controllers\RedirectController;
 use Narsil\Base\Services\ModelService;
+use Narsil\Cms\Contracts\Actions\Blocks\SyncBlockElements;
 use Narsil\Cms\Contracts\Requests\BlockFormRequest;
 use Narsil\Cms\Models\Collections\Block;
-use Narsil\Cms\Services\BlockService;
 
 #endregion
 
@@ -34,7 +34,8 @@ class BlockUpdateController extends RedirectController
 
         $block->update($attributes);
 
-        BlockService::syncBlockElements($block, Arr::get($attributes, Block::RELATION_ELEMENTS, []));
+        app(SyncBlockElements::class)
+            ->run($block, Arr::get($attributes, Block::RELATION_ELEMENTS, []));
 
         return $this
             ->redirect(route('blocks.index'), $block)

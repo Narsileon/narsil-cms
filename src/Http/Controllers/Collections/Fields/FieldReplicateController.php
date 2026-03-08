@@ -10,8 +10,8 @@ use Narsil\Base\Enums\AbilityEnum;
 use Narsil\Base\Enums\ModelEventEnum;
 use Narsil\Base\Http\Controllers\RedirectController;
 use Narsil\Base\Services\ModelService;
+use Narsil\Cms\Contracts\Actions\Fields\ReplicateField;
 use Narsil\Cms\Models\Collections\Field;
-use Narsil\Cms\Services\FieldService;
 
 #endregion
 
@@ -32,7 +32,8 @@ class FieldReplicateController extends RedirectController
     {
         $this->authorize(AbilityEnum::CREATE, Field::class);
 
-        FieldService::replicate($field);
+        app(ReplicateField::class)
+            ->run($field);
 
         return back()
             ->with('success', ModelService::getSuccessMessage(Field::TABLE, ModelEventEnum::REPLICATED));
