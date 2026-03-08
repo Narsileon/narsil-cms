@@ -146,7 +146,8 @@ class TemplateMigration extends Migration
                 ->constrained(User::TABLE, User::ID)
                 ->nullOnDelete();
             $blueprint
-                ->timestamp(Entity::UPDATED_AT);
+                ->timestamp(Entity::UPDATED_AT)
+                ->index();
             $blueprint
                 ->foreignId(Entity::UPDATED_BY)
                 ->nullable()
