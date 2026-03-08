@@ -9,9 +9,10 @@ use Illuminate\Support\Arr;
 use Narsil\Base\Enums\ModelEventEnum;
 use Narsil\Base\Http\Controllers\RedirectController;
 use Narsil\Base\Services\ModelService;
+use Narsil\Cms\Contracts\Actions\Footers\SyncFooterLinks;
+use Narsil\Cms\Contracts\Actions\Footers\SyncFooterSocialMedia;
 use Narsil\Cms\Contracts\Requests\FooterFormRequest;
 use Narsil\Cms\Models\Globals\Footer;
-use Narsil\Cms\Services\FooterService;
 
 #endregion
 
@@ -33,8 +34,11 @@ class FooterStoreController extends RedirectController
 
         $footer = Footer::create($attributes);
 
-        FooterService::syncLinks($footer, Arr::get($attributes, Footer::RELATION_LINKS, []));
-        FooterService::syncSocialMedia($footer, Arr::get($attributes, Footer::RELATION_SOCIAL_MEDIA, []));
+        app(SyncFooterLinks::class)
+            ->run($footer, Arr::get($attributes, Footer::RELATION_LINKS, []));
+
+        app(SyncFooterSocialMedia::class)
+            ->run($footer, Arr::get($attributes, Footer::RELATION_SOCIAL_MEDIA, []));
 
         return $this
             ->redirect(route('footers.index'))
