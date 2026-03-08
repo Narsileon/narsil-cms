@@ -13,13 +13,13 @@ use Narsil\Base\Http\Data\Forms\Inputs\SelectInputData;
 use Narsil\Base\Http\Data\Forms\Inputs\SwitchInputData;
 use Narsil\Base\Http\Data\Forms\Inputs\TextInputData;
 use Narsil\Base\Implementations\Form;
+use Narsil\Base\Services\LocaleService;
 use Narsil\Base\Services\RouteService;
 use Narsil\Cms\Contracts\Forms\FooterForm as Contract;
 use Narsil\Cms\Http\Data\Forms\Inputs\LinkInputData;
 use Narsil\Cms\Models\Globals\Footer;
 use Narsil\Cms\Models\Globals\FooterLink;
 use Narsil\Cms\Models\Globals\FooterSocialMedium;
-use Narsil\Cms\Services\LocaleService;
 
 #endregion
 

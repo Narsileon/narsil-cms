@@ -12,13 +12,13 @@ use Narsil\Base\Http\Data\Forms\Inputs\SelectInputData;
 use Narsil\Base\Http\Data\Forms\Inputs\TableInputData;
 use Narsil\Base\Http\Data\Forms\Inputs\TextInputData;
 use Narsil\Base\Implementations\Form;
+use Narsil\Base\Services\LocaleService;
 use Narsil\Base\Services\ModelService;
 use Narsil\Base\Services\RouteService;
 use Narsil\Cms\Contracts\Forms\HostForm as Contract;
 use Narsil\Cms\Models\Hosts\Host;
 use Narsil\Cms\Models\Hosts\HostLocale;
 use Narsil\Cms\Models\Hosts\HostLocaleLanguage;
-use Narsil\Cms\Services\LocaleService;
 
 #endregion
 
