@@ -9,9 +9,9 @@ use Narsil\Base\Enums\AbilityEnum;
 use Narsil\Base\Enums\ModelEventEnum;
 use Narsil\Base\Http\Controllers\RedirectController;
 use Narsil\Base\Http\Requests\ReplicateManyRequest;
+use Narsil\Cms\Contracts\Actions\Entities\ReplicateEntity;
 use Narsil\Cms\Models\Collections\Template;
 use Narsil\Cms\Models\Entities\Entity;
-use Narsil\Cms\Services\EntityService;
 use Narsil\Cms\Traits\IsCollectionController;
 
 #endregion
@@ -42,7 +42,8 @@ class EntityReplicateManyController extends RedirectController
 
         foreach ($entities as $entity)
         {
-            EntityService::replicate($entity);
+            app(ReplicateEntity::class)
+                ->run($entity);
         }
 
         return back()

@@ -13,10 +13,10 @@ use Illuminate\Support\Facades\Validator;
 use Narsil\Base\Enums\AbilityEnum;
 use Narsil\Base\Enums\ModelEventEnum;
 use Narsil\Base\Http\Controllers\RedirectController;
+use Narsil\Cms\Contracts\Actions\Entities\SyncEntityNodes;
 use Narsil\Cms\Contracts\Requests\EntityFormRequest;
 use Narsil\Cms\Models\Collections\Template;
 use Narsil\Cms\Models\Entities\Entity;
-use Narsil\Cms\Services\EntityService;
 use Narsil\Cms\Traits\IsCollectionController;
 
 #endregion
@@ -110,7 +110,8 @@ class EntityUpdateController extends RedirectController
 
             $replicated->setRelation(Entity::RELATION_TEMPLATE, $this->template);
 
-            EntityService::syncNodes($replicated, $attributes);
+            app(SyncEntityNodes::class)
+                ->run($replicated, $attributes);
 
             return back();
         }
@@ -122,7 +123,8 @@ class EntityUpdateController extends RedirectController
 
             $replicated->setRelation(Entity::RELATION_TEMPLATE, $this->template);
 
-            EntityService::syncNodes($replicated, $attributes);
+            app(SyncEntityNodes::class)
+                ->run($replicated, $attributes);
 
             $entity->discardChanges();
             $entity->delete();

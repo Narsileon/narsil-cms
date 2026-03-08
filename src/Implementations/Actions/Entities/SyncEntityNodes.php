@@ -1,12 +1,14 @@
 <?php
 
-namespace Narsil\Cms\Services;
+namespace Narsil\Cms\Implementations\Actions\Entities;
 
 #region USE
 
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Config;
+use Narsil\Base\Implementations\Action;
+use Narsil\Cms\Contracts\Actions\Entities\SyncEntityNodes as Contract;
 use Narsil\Cms\Models\Collections\Block;
 use Narsil\Cms\Models\Collections\Element;
 use Narsil\Cms\Models\Collections\Field;
@@ -20,39 +22,26 @@ use Narsil\Cms\Models\Entities\EntityNode;
 /**
  * @author Jonathan Rigaux
  */
-abstract class EntityService
+class SyncEntityNodes extends Action implements Contract
 {
     #region PUBLIC METHODS
 
     /**
-     * @param Entity $entity
-     *
-     * @return void
+     * {@inheritDoc}
      */
-    public static function replicate(Entity $entity): void
-    {
-        $replicated = $entity->replicate();
-
-        $replicated
-            ->fill([
-                //
-            ])
-            ->save();
-    }
-
-    /**
-     * @param Entity $entity
-     * @param array $attributes
-     *
-     * @return void
-     */
-    public static function syncNodes(Entity $entity, array $attributes): void
+    public function run(Entity $entity, array $attributes): Entity
     {
         foreach ($entity->{Entity::RELATION_TEMPLATE}->{Template::RELATION_TABS} as $templateTab)
         {
             static::syncElements($entity, $templateTab->{TemplateTab::RELATION_ELEMENTS}, $attributes);
         }
+
+        return $entity;
     }
+
+    #endregion
+
+    #region PRIVATE METHODS
 
     /**
      * @param Entity $entity
@@ -63,7 +52,7 @@ abstract class EntityService
      *
      * @return void
      */
-    public static function syncElements(Entity $entity, Collection $elements, array $attributes, ?EntityNode $parent = null, ?string $path = null): void
+    private static function syncElements(Entity $entity, Collection $elements, array $attributes, ?EntityNode $parent = null, ?string $path = null): void
     {
         $entityNodeModel = $entity->{Entity::RELATION_TEMPLATE}->entityNodeClass();
 

@@ -6,9 +6,9 @@ namespace Narsil\Cms\Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Config;
+use Narsil\Cms\Contracts\Actions\Entities\SyncEntityNodes;
 use Narsil\Cms\Models\Collections\Template;
 use Narsil\Cms\Models\Entities\Entity;
-use Narsil\Cms\Services\EntityService;
 
 #endregion
 
@@ -99,7 +99,8 @@ abstract class EntitySeeder extends Seeder
 
         $model->setRelation(Entity::RELATION_TEMPLATE, $this->template);
 
-        EntityService::syncNodes($model, $data);
+        app(SyncEntityNodes::class)
+            ->run($model, $data);
 
         return $model;
     }

@@ -11,10 +11,10 @@ use Illuminate\Support\Facades\Validator;
 use Narsil\Base\Enums\AbilityEnum;
 use Narsil\Base\Enums\ModelEventEnum;
 use Narsil\Base\Http\Controllers\RedirectController;
+use Narsil\Cms\Contracts\Actions\Entities\SyncEntityNodes;
 use Narsil\Cms\Contracts\Requests\EntityFormRequest;
 use Narsil\Cms\Models\Collections\Template;
 use Narsil\Cms\Models\Entities\Entity;
-use Narsil\Cms\Services\EntityService;
 use Narsil\Cms\Traits\IsCollectionController;
 
 #endregion
@@ -56,7 +56,8 @@ class EntityStoreController extends RedirectController
 
         $entity->setRelation(Entity::RELATION_TEMPLATE, $this->template);
 
-        EntityService::syncNodes($entity, $attributes);
+        app(SyncEntityNodes::class)
+            ->run($entity, $attributes);
 
         return $this
             ->redirect(route('collections.index', [

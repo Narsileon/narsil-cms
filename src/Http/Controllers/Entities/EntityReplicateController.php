@@ -9,9 +9,9 @@ use Illuminate\Http\Request;
 use Narsil\Base\Enums\AbilityEnum;
 use Narsil\Base\Enums\ModelEventEnum;
 use Narsil\Base\Http\Controllers\RedirectController;
+use Narsil\Cms\Contracts\Actions\Entities\ReplicateEntity;
 use Narsil\Cms\Models\Collections\Template;
 use Narsil\Cms\Models\Entities\Entity;
-use Narsil\Cms\Services\EntityService;
 use Narsil\Cms\Traits\IsCollectionController;
 
 #endregion
@@ -41,7 +41,8 @@ class EntityReplicateController extends RedirectController
                 Entity::ID => $id
             ]);
 
-        EntityService::replicate($entity);
+        app(ReplicateEntity::class)
+            ->run($entity);
 
         return back()
             ->with('success', trans('narsil::toasts.success.' . ModelEventEnum::REPLICATED->value, [

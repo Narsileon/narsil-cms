@@ -14,6 +14,8 @@ return [
     \Narsil\Cms\Contracts\Actions\Blocks\ReplicateBlock::class => \Narsil\Cms\Implementations\Actions\Blocks\ReplicateBlock::class,
     \Narsil\Cms\Contracts\Actions\Blocks\SyncBlockElements::class => \Narsil\Cms\Implementations\Actions\Blocks\SyncBlockElements::class,
     \Narsil\Cms\Contracts\Actions\Elements\SyncElementConditions::class => \Narsil\Cms\Implementations\Actions\Elements\SyncElementConditions::class,
+    \Narsil\Cms\Contracts\Actions\Entities\ReplicateEntity::class => \Narsil\Cms\Implementations\Actions\Entities\ReplicateEntity::class,
+    \Narsil\Cms\Contracts\Actions\Entities\SyncEntityNodes::class => \Narsil\Cms\Implementations\Actions\Entities\SyncEntityNodes::class,
     \Narsil\Cms\Contracts\Actions\Fields\ReplicateField::class => \Narsil\Cms\Implementations\Actions\Fields\ReplicateField::class,
     \Narsil\Cms\Contracts\Actions\Fields\SyncFieldBlocks::class => \Narsil\Cms\Implementations\Actions\Fields\SyncFieldBlocks::class,
     \Narsil\Cms\Contracts\Actions\Fields\SyncFieldOptions::class => \Narsil\Cms\Implementations\Actions\Fields\SyncFieldOptions::class,
