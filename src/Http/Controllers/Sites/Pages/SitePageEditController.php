@@ -83,6 +83,10 @@ class SitePageEditController extends RenderController
      */
     protected function getForm(string $site, SitePage $sitePage): SitePageForm
     {
+        $sitePage->loadMissing([
+            SitePage::RELATION_ENTITIES . '.' . SitePageEntity::RELATION_TARGET,
+        ]);
+
         $options = [
             SitePage::RELATION_ENTITIES => $sitePage->{SitePage::RELATION_ENTITIES}
                 ->map(function ($entity)

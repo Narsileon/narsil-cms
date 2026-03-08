@@ -13,6 +13,7 @@ use Narsil\Base\Http\Controllers\RedirectController;
 use Narsil\Base\Services\ModelService;
 use Narsil\Cms\Contracts\Requests\SitePageFormRequest;
 use Narsil\Cms\Models\Sites\SitePage;
+use Narsil\Cms\Services\SitePageService;
 
 #endregion
 
@@ -65,6 +66,8 @@ class SitePageStoreController extends RedirectController
         $sitePage = SitePage::create(array_merge($attributes, [
             SitePage::LEFT_ID => $lastChild?->{SitePage::ID},
         ]));
+
+        SitePageService::syncEntities($sitePage, Arr::get($attributes, SitePage::RELATION_ENTITIES, []));
 
         if ($lastChild)
         {

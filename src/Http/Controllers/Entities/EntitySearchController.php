@@ -69,10 +69,7 @@ class EntitySearchController extends RedirectController
 
             $results = $results->merge($models->map(function ($entity)
             {
-                return new OptionData(
-                    label: $entity->{Entity::SLUG},
-                    value: $entity->{Entity::ATTRIBUTE_IDENTIFIER}
-                );
+                return $entity->toOption();
             }));
         }
 
