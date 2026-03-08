@@ -3,7 +3,6 @@
 namespace Narsil\Cms\Contracts;
 
 /**
- * @version 1.0.0
  * @author Jonathan Rigaux
  */
 interface Field

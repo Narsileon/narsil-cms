@@ -18,7 +18,6 @@ use Narsil\Cms\Models\Globals\Footer;
 #endregion
 
 /**
- * @version 1.0.0
  * @author Jonathan Rigaux
  */
 class FooterEditController extends RenderController

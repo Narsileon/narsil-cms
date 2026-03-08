@@ -15,7 +15,6 @@ use Narsil\Cms\Models\Sites\SitePage;
 #endregion
 
 /**
- * @version 1.0.0
  * @author Jonathan Rigaux
  */
 class SitePageDestroyController extends RedirectController

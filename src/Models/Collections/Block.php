@@ -14,7 +14,6 @@ use Narsil\Cms\Database\Factories\BlockFactory;
 #endregion
 
 /**
- * @version 1.0.0
  * @author Jonathan Rigaux
  */
 #[UseFactory(BlockFactory::class)]

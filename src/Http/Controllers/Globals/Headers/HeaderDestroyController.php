@@ -15,7 +15,6 @@ use Narsil\Cms\Models\Globals\Header;
 #endregion
 
 /**
- * @version 1.0.0
  * @author Jonathan Rigaux
  */
 class HeaderDestroyController extends RedirectController

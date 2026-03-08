@@ -14,7 +14,6 @@ use Narsil\Cms\Models\Entities\Entity;
 #endregion
 
 /**
- * @version 1.0.0
  * @author Jonathan Rigaux
  */
 class PublishForm extends Form implements Contract

@@ -16,7 +16,6 @@ use Narsil\Cms\Models\Collections\BlockElement;
 #endregion
 
 /**
- * @version 1.0.0
  * @author Jonathan Rigaux
  */
 class BlockElementForm extends Form implements Contract

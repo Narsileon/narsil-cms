@@ -14,7 +14,6 @@ use Narsil\Cms\Models\Collections\Field;
 #endregion
 
 /**
- * @version 1.0.0
  * @author Jonathan Rigaux
  */
 final class HeroHeaderBlockSeeder extends Seeder

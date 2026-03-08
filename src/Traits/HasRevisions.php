@@ -18,7 +18,6 @@ use Narsil\Base\Traits\Publisheable;
 #endregion
 
 /**
- * @version 1.0.0
  * @author Jonathan Rigaux
  */
 trait HasRevisions

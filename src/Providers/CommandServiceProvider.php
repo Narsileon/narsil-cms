@@ -14,7 +14,6 @@ use Narsil\Cms\Console\Commands\TestCommand;
 #endregion
 
 /**
- * @version 1.0.0
  * @author Jonathan Rigaux
  */
 final class CommandServiceProvider extends ServiceProvider

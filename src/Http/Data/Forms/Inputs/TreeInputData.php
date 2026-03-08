@@ -10,7 +10,6 @@ use Narsil\Base\Support\TranslationsBag;
 #endregionx
 
 /**
- * @version 1.0.0
  * @author Jonathan Rigaux
  *
  * @property array $defaultValue The value of the "default value" attribute.

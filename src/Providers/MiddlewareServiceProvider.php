@@ -21,7 +21,6 @@ use Narsil\Cms\Http\Middleware\SchemaMiddleware;
 #endregion
 
 /**
- * @version 1.0.0
  * @author Jonathan Rigaux
  */
 final class MiddlewareServiceProvider extends ServiceProvider

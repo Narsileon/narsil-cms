@@ -28,7 +28,6 @@ use Narsil\Cms\Support\MenuItem;
 #endregion
 
 /**
- * @version 1.0.0
  * @author Jonathan Rigaux
  */
 class Sidebar extends Menu implements Contract

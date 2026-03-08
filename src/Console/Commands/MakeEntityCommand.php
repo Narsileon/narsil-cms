@@ -3,7 +3,6 @@
 namespace Narsil\Cms\Console\Commands;
 
 /**
- * @version 1.0.0
  * @author Jonathan Rigaux
  */
 class MakeEntityCommand extends MakeModelCommand

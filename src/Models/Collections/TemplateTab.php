@@ -18,7 +18,6 @@ use Narsil\Cms\Database\Factories\TemplateTabFactory;
 #endregion
 
 /**
- * @version 1.0.0
  * @author Jonathan Rigaux
  */
 #[UseFactory(TemplateTabFactory::class)]

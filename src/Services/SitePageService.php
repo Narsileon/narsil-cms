@@ -10,7 +10,6 @@ use Narsil\Cms\Models\Sites\SitePageEntity;
 #endregion
 
 /**
- * @version 1.0.0
  * @author Jonathan Rigaux
  */
 abstract class SitePageService

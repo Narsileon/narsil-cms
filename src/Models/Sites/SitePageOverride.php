@@ -11,7 +11,6 @@ use Narsil\Base\Traits\HasUuidPrimaryKey;
 #endregion
 
 /**
- * @version 1.0.0
  * @author Jonathan Rigaux
  */
 class SitePageOverride extends Model

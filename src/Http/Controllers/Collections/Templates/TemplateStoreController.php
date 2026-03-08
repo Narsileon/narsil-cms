@@ -16,7 +16,6 @@ use Narsil\Cms\Services\TemplateService;
 #endregion
 
 /**
- * @version 1.0.0
  * @author Jonathan Rigaux
  */
 class TemplateStoreController extends RedirectController

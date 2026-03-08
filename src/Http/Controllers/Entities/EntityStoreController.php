@@ -20,7 +20,6 @@ use Narsil\Cms\Traits\IsCollectionController;
 #endregion
 
 /**
- * @version 1.0.0
  * @author Jonathan Rigaux
  */
 class EntityStoreController extends RedirectController

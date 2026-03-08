@@ -19,7 +19,6 @@ use Narsil\Cms\Database\Factories\HostFactory;
 #endregion
 
 /**
- * @version 1.0.0
  * @author Jonathan Rigaux
  */
 #[UseFactory(HostFactory::class)]

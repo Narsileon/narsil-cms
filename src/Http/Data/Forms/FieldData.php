@@ -17,7 +17,6 @@ use Narsil\Cms\Models\Collections\Field;
 #endregionx
 
 /**
- * @version 1.0.0
  * @author Jonathan Rigaux
  */
 class FieldData extends BaseFieldData

@@ -17,7 +17,6 @@ use Narsil\Cms\Services\TemplateService;
 #endregion
 
 /**
- * @version 1.0.0
  * @author Jonathan Rigaux
  */
 class TemplateReplicateManyController extends RedirectController

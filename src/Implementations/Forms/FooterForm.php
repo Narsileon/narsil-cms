@@ -24,7 +24,6 @@ use Narsil\Cms\Services\LocaleService;
 #endregion
 
 /**
- * @version 1.0.0
  * @author Jonathan Rigaux
  */
 class FooterForm extends Form implements Contract

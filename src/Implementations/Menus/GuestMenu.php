@@ -14,7 +14,6 @@ use Narsil\Cms\Support\MenuItem;
 #endregion
 
 /**
- * @version 1.0.0
  * @author Jonathan Rigaux
  */
 class GuestMenu extends Menu implements Contract

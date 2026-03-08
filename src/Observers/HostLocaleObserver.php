@@ -10,7 +10,6 @@ use Narsil\Cms\Models\Hosts\HostLocale;
 
 
 /**
- * @version 1.0.0
  * @author Jonathan Rigaux
  */
 class HostLocaleObserver

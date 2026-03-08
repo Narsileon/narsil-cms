@@ -9,7 +9,6 @@ use Narsil\Cms\Models\Collections\Template;
 #endregion
 
 /**
- * @version 1.0.0
  * @author Jonathan Rigaux
  */
 trait IsCollectionController

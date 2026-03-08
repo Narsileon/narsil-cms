@@ -11,7 +11,6 @@ use Narsil\Cms\Models\Collections\Block;
 #endregion
 
 /**
- * @version 1.0.0
  * @author Jonathan Rigaux
  */
 class BlockFactory extends Factory

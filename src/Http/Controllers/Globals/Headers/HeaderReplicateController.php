@@ -16,7 +16,6 @@ use Narsil\Cms\Services\HeaderService;
 #endregion
 
 /**
- * @version 1.0.0
  * @author Jonathan Rigaux
  */
 class HeaderReplicateController extends RedirectController

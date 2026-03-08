@@ -10,7 +10,6 @@ use Narsil\Base\Traits\Policies\IsViewable;
 #endregion
 
 /**
- * @version 1.0.0
  * @author Jonathan Rigaux
  */
 class SitePolicy

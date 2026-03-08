@@ -19,7 +19,6 @@ use Narsil\Cms\Models\Collections\TemplateTabElement;
 #endregion
 
 /**
- * @version 1.0.0
  * @author Jonathan Rigaux
  */
 abstract class EntityNode extends Model

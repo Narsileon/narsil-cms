@@ -25,7 +25,6 @@ use Narsil\Cms\Models\Collections\TemplateTab;
 #endregion
 
 /**
- * @version 1.0.0
  * @author Jonathan Rigaux
  */
 class TemplateForm extends Form implements Contract

@@ -25,7 +25,6 @@ use Narsil\Cms\Models\ValidationRule;
 #endregion
 
 /**
- * @version 1.0.0
  * @author Jonathan Rigaux
  */
 class FieldForm extends Form implements Contract

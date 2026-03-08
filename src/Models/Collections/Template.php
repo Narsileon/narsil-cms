@@ -22,7 +22,6 @@ use Narsil\Cms\Database\Factories\TemplateFactory;
 #endregion
 
 /**
- * @version 1.0.0
  * @author Jonathan Rigaux
  */
 #[ObservedBy(ModelObserver::class)]

@@ -18,7 +18,6 @@ use Narsil\Cms\Traits\HasValidationRules;
 #endregion
 
 /**
- * @version 1.0.0
  * @author Jonathan Rigaux
  */
 #[UseFactory(FieldFactory::class)]

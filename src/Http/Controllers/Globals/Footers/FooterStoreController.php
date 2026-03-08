@@ -16,7 +16,6 @@ use Narsil\Cms\Services\FooterService;
 #endregion
 
 /**
- * @version 1.0.0
  * @author Jonathan Rigaux
  */
 class FooterStoreController extends RedirectController

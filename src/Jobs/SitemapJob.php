@@ -12,7 +12,6 @@ use Narsil\Cms\Support\SitemapIndex;
 #endregion
 
 /**
- * @version 1.0.0
  * @author Jonathan Rigaux
  */
 class SitemapJob extends Job

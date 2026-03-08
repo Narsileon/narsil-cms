@@ -10,7 +10,6 @@ use Narsil\Cms\Models\AbstractCondition;
 #endregion
 
 /**
- * @version 1.0.0
  * @author Jonathan Rigaux
  */
 abstract class ElementService

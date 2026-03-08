@@ -9,7 +9,6 @@ use Narsil\Base\Traits\Policies\IsUpdatable;
 #endregion
 
 /**
- * @version 1.0.0
  * @author Jonathan Rigaux
  */
 class ConfigurationPolicy

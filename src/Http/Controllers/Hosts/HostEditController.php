@@ -19,7 +19,6 @@ use Narsil\Cms\Models\Hosts\HostLocale;
 #endregion
 
 /**
- * @version 1.0.0
  * @author Jonathan Rigaux
  */
 class HostEditController extends RenderController

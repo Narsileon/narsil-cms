@@ -11,7 +11,6 @@ use Narsil\Base\Http\Controllers\RenderController;
 #endregion
 
 /**
- * @version 1.0.0
  * @author Jonathan Rigaux
  */
 class DashboardController extends RenderController

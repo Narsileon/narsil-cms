@@ -22,7 +22,6 @@ use Narsil\Cms\Services\BreadcrumbService;
 #endregion
 
 /**
- * @version 1.0.0
  * @author Jonathan Rigaux
  */
 class InertiaMiddleware extends Middleware

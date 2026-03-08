@@ -12,7 +12,6 @@ use Narsil\Cms\Models\Globals\FooterSocialMedium;
 #endregion
 
 /**
- * @version 1.0.0
  * @author Jonathan Rigaux
  */
 abstract class FooterService

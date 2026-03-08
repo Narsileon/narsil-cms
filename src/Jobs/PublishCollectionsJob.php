@@ -14,7 +14,6 @@ use Throwable;
 #endregion
 
 /**
- * @version 1.0.0
  * @author Jonathan Rigaux
  */
 class PublishCollectionsJob extends Job

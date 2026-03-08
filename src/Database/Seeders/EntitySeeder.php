@@ -13,7 +13,6 @@ use Narsil\Cms\Services\EntityService;
 #endregion
 
 /**
- * @version 1.0.0
  * @author Jonathan Rigaux
  */
 abstract class EntitySeeder extends Seeder

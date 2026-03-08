@@ -18,7 +18,6 @@ use Narsil\Cms\Services\HostService;
 #endregion
 
 /**
- * @version 1.0.0
  * @author Jonathan Rigaux
  */
 class HostStoreController extends RedirectController

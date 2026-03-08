@@ -17,7 +17,6 @@ use Narsil\Base\Traits\Orderable;
 #endregion
 
 /**
- * @version 1.0.0
  * @author Jonathan Rigaux
  */
 abstract class Element extends MorphPivot

@@ -16,7 +16,6 @@ use Narsil\Cms\Services\SitePageService;
 #endregion
 
 /**
- * @version 1.0.0
  * @author Jonathan Rigaux
  */
 class SitePageUpdateController extends RedirectController

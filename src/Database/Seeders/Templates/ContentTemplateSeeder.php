@@ -18,7 +18,6 @@ use Narsil\Cms\Models\Collections\TemplateTabElement;
 #endregion
 
 /**
- * @version 1.0.0
  * @author Jonathan Rigaux
  */
 final class ContentTemplateSeeder extends Seeder

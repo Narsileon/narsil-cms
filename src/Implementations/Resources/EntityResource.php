@@ -18,7 +18,6 @@ use Narsil\Cms\Models\Entities\EntityNode;
 #endregion
 
 /**
- * @version 1.0.0
  * @author Jonathan Rigaux
  */
 class EntityResource extends Resource implements Contract

@@ -9,7 +9,6 @@ use Illuminate\Support\Fluent;
 #endregion
 
 /**
- * @version 1.0.0
  * @author Jonathan Rigaux
  */
 class SummaryData extends Fluent

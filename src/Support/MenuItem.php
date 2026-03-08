@@ -13,7 +13,6 @@ use Narsil\Base\Enums\RequestMethodEnum;
 #endregion
 
 /**
- * @version 1.0.0
  * @author Jonathan Rigaux
  */
 class MenuItem extends Fluent

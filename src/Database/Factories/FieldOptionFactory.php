@@ -10,7 +10,6 @@ use Narsil\Cms\Models\Collections\FieldOption;
 #endregion
 
 /**
- * @version 1.0.0
  * @author Jonathan Rigaux
  */
 class FieldOptionFactory extends Factory

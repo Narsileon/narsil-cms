@@ -21,7 +21,6 @@ use Narsil\Cms\Services\HostService;
 #endregion
 
 /**
- * @version 1.0.0
  * @author Jonathan Rigaux
  */
 class HostUpdateController extends RedirectController

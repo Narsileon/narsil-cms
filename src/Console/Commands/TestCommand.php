@@ -9,7 +9,6 @@ use Illuminate\Console\Command;
 #endregion
 
 /**
- * @version 1.0.0
  * @author Jonathan Rigaux
  */
 class TestCommand extends Command

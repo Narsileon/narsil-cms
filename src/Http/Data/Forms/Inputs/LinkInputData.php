@@ -12,7 +12,6 @@ use Narsil\Cms\Models\Sites\SitePage;
 #endregionx
 
 /**
- * @version 1.0.0
  * @author Jonathan Rigaux
  *
  * @property string $defaultValue The value of the "default value" attribute.

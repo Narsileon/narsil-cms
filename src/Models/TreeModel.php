@@ -14,7 +14,6 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 #endregion
 
 /**
- * @version 1.0.0
  * @author Jonathan Rigaux
  */
 abstract class TreeModel extends Model

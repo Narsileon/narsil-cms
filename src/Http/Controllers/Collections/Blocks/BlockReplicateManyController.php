@@ -17,7 +17,6 @@ use Narsil\Cms\Services\BlockService;
 #endregion
 
 /**
- * @version 1.0.0
  * @author Jonathan Rigaux
  */
 class BlockReplicateManyController extends RedirectController

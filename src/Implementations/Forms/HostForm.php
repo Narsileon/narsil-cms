@@ -23,7 +23,6 @@ use Narsil\Cms\Services\LocaleService;
 #endregion
 
 /**
- * @version 1.0.0
  * @author Jonathan Rigaux
  */
 class HostForm extends Form implements Contract

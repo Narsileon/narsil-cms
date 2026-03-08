@@ -10,7 +10,6 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 #endregion
 
 /**
- * @version 1.0.0
  * @author Jonathan Rigaux
  */
 class BlockElement extends Element

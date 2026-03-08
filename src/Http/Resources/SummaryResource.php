@@ -9,7 +9,6 @@ use Illuminate\Http\Resources\Json\JsonResource;
 #endregion
 
 /**
- * @version 1.0.0
  * @author Jonathan Rigaux
  */
 class SummaryResource extends JsonResource

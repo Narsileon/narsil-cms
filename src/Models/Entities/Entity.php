@@ -21,7 +21,6 @@ use Narsil\Cms\Traits\HasRevisions;
 #endregion
 
 /**
- * @version 1.0.0
  * @author Jonathan Rigaux
  */
 abstract class Entity extends Model implements Searchable
