@@ -35,7 +35,6 @@ type SortableGridProps = {
   columns?: 1 | 2 | 3 | 4;
   form?: FormType;
   items: AnonymousItem[];
-  placeholder: string;
   intermediate: {
     label: string;
     optionLabel: string;

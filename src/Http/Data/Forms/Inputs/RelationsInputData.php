@@ -101,7 +101,7 @@ class RelationsInputData extends InputData
     {
         app(TranslationsBag::class)
             ->add('narsil::ui.add')
-            ->add('narsil::ui.delete')
+            ->add('narsil::ui.create')
             ->add('narsil::ui.move_down')
             ->add('narsil::ui.move_up');
     }
