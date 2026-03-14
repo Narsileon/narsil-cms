@@ -52,12 +52,11 @@ function SortableGrid({
   columns = 2,
   form,
   items,
-  placeholder,
   intermediate,
   cancelDrop,
   setItems,
 }: SortableGridProps) {
-  const { locale } = useTranslator();
+  const { locale, trans } = useTranslator();
 
   const sensors = useSensors(
     useSensor(MouseSensor),
@@ -394,7 +393,7 @@ function SortableGrid({
                   placeholder={true}
                   item={{ id: PLACEHOLDER_ID, identifier: PLACEHOLDER_ID }}
                 >
-                  {placeholder}
+                  {trans("ui.add")}
                 </SortableItem>
               }
             />
