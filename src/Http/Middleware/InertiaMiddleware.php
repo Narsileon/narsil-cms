@@ -28,6 +28,17 @@ class InertiaMiddleware extends Middleware
 {
     use HasSchemas;
 
+    #region CONSTRUCTOR
+
+    public function __construct()
+    {
+        $this->withoutSsr = [
+            '*',
+        ];
+    }
+
+    #endregion
+
     #region PROPERTIES
 
     /**

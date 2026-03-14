@@ -14,7 +14,6 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 use Narsil\Base\Http\Middleware\LocaleMiddleware;
 use Narsil\Base\Http\Middleware\UserConfigurationMiddleware;
-use Narsil\Base\Http\Middleware\WithoutSsrMiddleware;
 use Narsil\Cms\Http\Middleware\InertiaMiddleware;
 use Narsil\Cms\Http\Middleware\SchemaMiddleware;
 
@@ -61,7 +60,6 @@ final class MiddlewareServiceProvider extends ServiceProvider
         ]);
 
         $router->middlewareGroup('narsil-cms', [
-            WithoutSsrMiddleware::class,
             UserConfigurationMiddleware::class,
             LocaleMiddleware::class,
             InertiaMiddleware::class,
