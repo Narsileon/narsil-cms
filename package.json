@@ -15,7 +15,8 @@
     "@dnd-kit/sortable": "^10.0.0",
     "@dnd-kit/utilities": "^3.2.2",
     "@fontsource/inter": "latest",
-    "@inertiajs/react": "^2.3.18",
+    "@inertiajs/react": "^3.0.0",
+    "@inertiajs/vite": "^3.0.0",
     "@tailwindcss/postcss": "^4.2.1",
     "@tanstack/react-table": "^8.21.3",
     "@tanstack/react-virtual": "^3.13.22",
@@ -38,7 +39,7 @@
     "zustand": "^5.0.11"
   },
   "devDependencies": {
-    "@inertiajs/react": "^2.3.18",
+    "@inertiajs/react": "^3.0.0",
     "@tailwindcss/vite": "^4.2.1",
     "@tanstack/react-table": "^8.21.3",
     "@types/lodash-es": "^4.17.12",

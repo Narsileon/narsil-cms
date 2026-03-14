@@ -1,7 +1,7 @@
 import { Badge } from "@narsil-ui/components/badge";
 import { Button } from "@narsil-ui/components/button";
 import {
-  type TableData,
+  type DataTableData,
   DataTable,
   DataTableProvider,
   getSelectColumn,
@@ -186,7 +186,7 @@ function Relations({
                 })}
               </TabsList>
               {Object.entries(dataTables).map(([id, collection]) => {
-                const finalColumns: ColumnDef<TableData>[] = [
+                const finalColumns: ColumnDef<DataTableData>[] = [
                   selectColumn,
                   ...collection.meta.columns,
                 ];
@@ -197,19 +197,19 @@ function Relations({
                       columns={finalColumns}
                       data={collection.data}
                       enableMultiRowSelection={multiple}
-                      initialState={collection.meta.tableData}
+                      initialState={collection.meta.state}
                       state={{
-                        rowSelection: selectedRows[collection.meta.tableData.table_name] ?? {},
+                        rowSelection: selectedRows[collection.meta.state.table_name] ?? {},
                       }}
                       onRowSelectionChange={(updater) => {
                         setSelectedRows((prev) => {
-                          const oldSelection = prev[collection.meta.tableData.table_name] ?? {};
+                          const oldSelection = prev[collection.meta.state.table_name] ?? {};
                           const newSelection =
                             typeof updater === "function" ? updater(oldSelection) : updater;
 
                           return {
                             ...prev,
-                            [collection.meta.tableData.table_name]: newSelection,
+                            [collection.meta.state.table_name]: newSelection,
                           };
                         });
                       }}
