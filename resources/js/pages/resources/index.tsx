@@ -48,7 +48,7 @@ function ResourceIndex({ collection, title }: ResourceIndexProps) {
       columns={finalColumns}
       initialState={collection.meta.tableData}
     >
-      <SectionRoot className="h-full animate-in gap-4 p-4 fade-in-0">
+      <SectionRoot className="h-full animate-in gap-3 p-4 fade-in-0">
         <SectionHeader className="flex items-center justify-between gap-2">
           <Heading level="h1" variant="h4" className="min-w-1/5">
             {title}
