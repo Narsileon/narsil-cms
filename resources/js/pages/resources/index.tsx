@@ -71,7 +71,7 @@ function ResourceIndex({ collection, title }: ResourceIndexProps) {
             </Tooltip>
           ) : null}
         </SectionHeader>
-        <SectionContent className="grow" render={<DataTable collection={collection} />} />
+        <SectionContent className="grow gap-3" render={<DataTable collection={collection} />} />
       </SectionRoot>
     </DataTableProvider>
   );
