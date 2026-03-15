@@ -11,19 +11,6 @@ export function registerFields() {
   registerField("builder", (props) => {
     return <Builder {...props.input} blocks={props.input.blocks} name={props.id} />;
   });
-  registerField("form", (props) => {
-    return (
-      <AsyncCombobox
-        {...props.input}
-        id={props.id}
-        fetchRoute="forms.search"
-        required={props.required}
-        value={props.value}
-        valuePath={props.input.valuePath ?? "identifier"}
-        setValue={props.setValue}
-      />
-    );
-  });
   registerField("entity", (props) => {
     return (
       <AsyncCombobox
