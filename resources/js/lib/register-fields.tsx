@@ -2,16 +2,16 @@ import { Builder } from "@narsil-cms/blocks/fields/builder";
 import { Relations } from "@narsil-cms/blocks/fields/relations";
 import { Tree } from "@narsil-cms/blocks/fields/tree";
 import { SortableGrid, SortableList } from "@narsil-cms/components/sortable";
-import { type Registry } from "@narsil-ui/components/form/inputs";
+import { registerField } from "@narsil-ui/components/form/inputs";
 import { dynamic } from "@narsil-ui/lib/dynamic";
 
 const AsyncCombobox = dynamic(() => import("@narsil-ui/components/combobox/aync-combobox"));
 
-const registry: Registry = {
-  ["builder"]: (props) => {
+export function registerFields() {
+  registerField("builder", (props) => {
     return <Builder {...props.input} blocks={props.input.blocks} name={props.id} />;
-  },
-  ["form"]: (props) => {
+  });
+  registerField("form", (props) => {
     return (
       <AsyncCombobox
         {...props.input}
@@ -23,8 +23,8 @@ const registry: Registry = {
         setValue={props.setValue}
       />
     );
-  },
-  ["entity"]: (props) => {
+  });
+  registerField("entity", (props) => {
     return (
       <AsyncCombobox
         {...props.input}
@@ -36,8 +36,8 @@ const registry: Registry = {
         setValue={props.setValue}
       />
     );
-  },
-  ["link"]: (props) => {
+  });
+  registerField("link", (props) => {
     return (
       <AsyncCombobox
         {...props.input}
@@ -49,8 +49,8 @@ const registry: Registry = {
         setValue={props.setValue}
       />
     );
-  },
-  ["relations"]: (props) => {
+  });
+  registerField("relations", (props) => {
     if ("intermediate" in props.input) {
       return <SortableGrid {...props.input} items={props.value ?? []} setItems={props.setValue} />;
     } else if ("options" in props.input) {
@@ -60,10 +60,8 @@ const registry: Registry = {
         <Relations {...props.input} id={props.id} value={props.value} setValue={props.setValue} />
       );
     }
-  },
-  ["tree"]: (props) => {
+  });
+  registerField("tree", (props) => {
     return <Tree {...props.input} items={props.value} setItems={props.setValue} />;
-  },
-};
-
-export default registry;
+  });
+}

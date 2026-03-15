@@ -2,7 +2,7 @@ import { RevisionSelect } from "@narsil-cms/blocks/revision-select";
 import { Status } from "@narsil-cms/blocks/status";
 import { FormCountry } from "@narsil-cms/components/form";
 import FormPublish from "@narsil-cms/components/form/form-publish";
-import registry from "@narsil-cms/components/form/inputs";
+import { registerFields } from "@narsil-cms/lib/register-fields";
 import type { Revision } from "@narsil-cms/types";
 import { Button } from "@narsil-ui/components/button";
 import { DialogBody, DialogClose, DialogFooter } from "@narsil-ui/components/dialog";
@@ -83,6 +83,8 @@ function ResourceForm({ countries, data, form, modal, publish, revisions }: Form
     </>
   ) : null;
 
+  registerFields();
+
   return (
     <FormProvider
       id={modal ? `${id}_${modal.id}` : id}
@@ -91,7 +93,6 @@ function ResourceForm({ countries, data, form, modal, publish, revisions }: Form
       languages={languages}
       method={method}
       options={options}
-      registry={registry}
       steps={steps}
       initialData={{
         _back: modal !== undefined,
