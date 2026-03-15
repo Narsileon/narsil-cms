@@ -8,6 +8,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Inertia\Response;
+use Narsil\Base\Casts\DiffForHumansCast;
 use Narsil\Base\Enums\AbilityEnum;
 use Narsil\Base\Enums\RequestMethodEnum;
 use Narsil\Base\Http\Controllers\RenderController;
@@ -75,10 +76,17 @@ class EntityEditController extends RenderController
      */
     protected function getData(Entity $entity): array
     {
+        $entity->loadMissingCreatorAndEditor();
+
         $entity->append([
             Entity::ATTRIBUTE_HAS_DRAFT,
             Entity::ATTRIBUTE_HAS_NEW_REVISION,
             Entity::ATTRIBUTE_HAS_PUBLISHED_REVISION,
+        ]);
+
+        $entity->mergeCasts([
+            Entity::CREATED_AT => DiffForHumansCast::class,
+            Entity::UPDATED_AT => DiffForHumansCast::class,
         ]);
 
         $data = app(EntityResource::class, [

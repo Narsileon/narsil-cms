@@ -61,13 +61,18 @@ class EntityResource extends Resource implements Contract
     public function toArray(Request $request): array
     {
         $this->data = [
+            Entity::CREATED_AT => $this->{Entity::CREATED_AT},
             Entity::ID => $this->{Entity::ID},
             Entity::SLUG => $this->getTranslations(Entity::SLUG),
+            Entity::UPDATED_AT => $this->{Entity::UPDATED_AT},
             Entity::UUID => $this->{Entity::UUID},
 
             Entity::ATTRIBUTE_HAS_DRAFT => $this->{Entity::ATTRIBUTE_HAS_DRAFT},
             Entity::ATTRIBUTE_HAS_NEW_REVISION => $this->{Entity::ATTRIBUTE_HAS_NEW_REVISION},
             Entity::ATTRIBUTE_HAS_PUBLISHED_REVISION => $this->{Entity::ATTRIBUTE_HAS_PUBLISHED_REVISION},
+
+            Entity::RELATION_CREATOR => $this->{Entity::RELATION_CREATOR},
+            Entity::RELATION_EDITOR => $this->{Entity::RELATION_EDITOR},
         ];
 
         $this->processNodes();

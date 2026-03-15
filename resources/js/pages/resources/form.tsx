@@ -3,7 +3,7 @@ import { Status } from "@narsil-cms/blocks/status";
 import { FormCountry } from "@narsil-cms/components/form";
 import FormPublish from "@narsil-cms/components/form/form-publish";
 import registry from "@narsil-cms/components/form/inputs";
-import type { Revision, User } from "@narsil-cms/types";
+import type { Revision } from "@narsil-cms/types";
 import { Button } from "@narsil-ui/components/button";
 import { DialogBody, DialogClose, DialogFooter } from "@narsil-ui/components/dialog";
 import {
@@ -15,9 +15,8 @@ import {
   FormRoot,
   FormSave,
   FormTabs,
+  type FormBlameData,
 } from "@narsil-ui/components/form";
-import { Heading } from "@narsil-ui/components/heading";
-import { Icon } from "@narsil-ui/components/icon";
 import { SectionContent, SectionRoot } from "@narsil-ui/components/section";
 import { useTranslator } from "@narsil-ui/components/translator";
 import { cn } from "@narsil-ui/lib/utils";
@@ -27,11 +26,7 @@ import { isEmpty } from "lodash-es";
 
 type FormProps = {
   countries?: OptionData[];
-  data?: {
-    created_at?: string;
-    creator?: User;
-    editor?: User;
-    updated_at?: string;
+  data?: FormBlameData & {
     [key: string]: unknown;
   };
   form: FormData;
@@ -175,54 +170,21 @@ function ResourceForm({ countries, data, form, modal, publish, revisions }: Form
                       ) : null}
                     </div>
                     {publish ? <FormPublish form={publish} /> : null}
-                    {data?.created_at ? (
-                      <div className="grid items-start gap-4 border-b p-4">
-                        {data?.created_at ? (
-                          <div className="grid gap-2">
-                            {data?.created_at ? (
-                              <FormBlame
-                                label={trans("blame.created")}
-                                date={data.created_at}
-                                name={data.creator?.full_name}
-                              />
-                            ) : null}
-                            {data?.updated_at ? (
-                              <FormBlame
-                                label={trans("blame.updated")}
-                                date={data.updated_at}
-                                name={data.editor?.full_name ?? data.creator?.full_name}
-                              />
-                            ) : null}
-                          </div>
-                        ) : null}
-                        {revisions ? <RevisionSelect revisions={revisions} /> : null}
-                      </div>
-                    ) : null}
-                    {countries ? (
-                      <div className="grid gap-1 border-b p-2">
-                        <div className="flex items-center justify-start gap-2 pl-2.5">
-                          <Icon className="size-4" name="globe" />
-                          <Heading level="h3" variant="discreet">
-                            {trans("ui.countries")}
-                          </Heading>
-                        </div>
-                        <FormCountry className="pr-2" countries={countries} />
-                      </div>
-                    ) : null}
+
+                    <div className="grid items-start gap-4 border-b p-4">
+                      <FormBlame
+                        data={{
+                          created_at: data?.created_at,
+                          updated_at: data?.updated_at,
+                          creator: data?.creator,
+                          editor: data?.editor,
+                        }}
+                      />
+                      {revisions ? <RevisionSelect revisions={revisions} /> : null}
+                    </div>
+                    {countries ? <FormCountry countries={countries} /> : null}
                     {languages?.length > 0 ? (
-                      <div className="grid gap-1 border-b p-2">
-                        <div className="flex items-center justify-start gap-2 pl-2.5">
-                          <Icon className="size-4" name="globe" />
-                          <Heading level="h3" variant="discreet">
-                            {trans("ui.translations")}
-                          </Heading>
-                        </div>
-                        <FormLanguage
-                          className="pr-2"
-                          value={formLanguage}
-                          onValueChange={setFormLanguage}
-                        />
-                      </div>
+                      <FormLanguage value={formLanguage} onValueChange={setFormLanguage} />
                     ) : null}
 
                     <div className="grid gap-y-4 p-4 lg:col-span-4">{sidebarContent}</div>
