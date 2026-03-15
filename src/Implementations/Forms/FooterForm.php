@@ -12,6 +12,7 @@ use Narsil\Base\Http\Data\Forms\Inputs\FileInputData;
 use Narsil\Base\Http\Data\Forms\Inputs\SelectInputData;
 use Narsil\Base\Http\Data\Forms\Inputs\SwitchInputData;
 use Narsil\Base\Http\Data\Forms\Inputs\TextInputData;
+use Narsil\Base\Http\Data\OptionData;
 use Narsil\Base\Implementations\Form;
 use Narsil\Base\Services\LocaleService;
 use Narsil\Base\Services\RouteService;
@@ -141,6 +142,7 @@ class FooterForm extends Form implements Contract
                                     id: FooterLink::SITE_PAGE_ID,
                                     required: true,
                                     input: new LinkInputData(
+                                        valuePath: OptionData::VALUE,
                                         values: $this->model?->{Footer::RELATION_LINKS}->pluck(FooterLink::SITE_PAGE_ID)->toArray() ?? [],
                                     ),
                                 ),
