@@ -1,5 +1,6 @@
 import { Link } from "@inertiajs/react";
 import { type GlobalProps } from "@narsil-cms/hooks/use-props";
+import { ModalRenderer } from "@narsil-ui/blocks/modal";
 import { Themes } from "@narsil-ui/blocks/themes";
 import { Tooltip } from "@narsil-ui/blocks/tooltip";
 import { Button } from "@narsil-ui/components/button";
@@ -14,7 +15,7 @@ import {
   DropdownMenuTrigger,
 } from "@narsil-ui/components/dropdown-menu";
 import { Icon } from "@narsil-ui/components/icon";
-import { ModalLink, ModalRenderer } from "@narsil-ui/components/modal";
+import { ModalLink } from "@narsil-ui/components/modal";
 import { useTranslator } from "@narsil-ui/components/translator";
 import { groupBy } from "lodash-es";
 import { Fragment, type ReactNode, useRef } from "react";

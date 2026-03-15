@@ -5,6 +5,7 @@ import { GlobalProps } from "@narsil-cms/hooks/use-props";
 import { AlertDialogProvider } from "@narsil-ui/blocks/alert-dialog";
 import { Bookmarks } from "@narsil-ui/blocks/bookmarks";
 import { Breadcrumb } from "@narsil-ui/blocks/breadcrumb";
+import { ModalRenderer } from "@narsil-ui/blocks/modal";
 import { Select } from "@narsil-ui/blocks/select";
 import { Themes } from "@narsil-ui/blocks/themes";
 import { Tooltip } from "@narsil-ui/blocks/tooltip";
@@ -20,7 +21,7 @@ import {
   DropdownMenuTrigger,
 } from "@narsil-ui/components/dropdown-menu";
 import { Icon } from "@narsil-ui/components/icon";
-import { ModalLink, ModalRenderer } from "@narsil-ui/components/modal";
+import { ModalLink } from "@narsil-ui/components/modal";
 import { Separator } from "@narsil-ui/components/separator";
 import { useTranslator } from "@narsil-ui/components/translator";
 import { useMaxLg } from "@narsil-ui/hooks/use-breakpoints";

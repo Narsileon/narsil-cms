@@ -1,7 +1,7 @@
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
+import { useAlertDialog } from "@narsil-ui/blocks/alert-dialog";
 import { Tooltip } from "@narsil-ui/blocks/tooltip";
-import { useAlertDialog } from "@narsil-ui/components/alert-dialog";
 import { Button } from "@narsil-ui/components/button";
 import { CardContent, CardHeader, CardRoot, CardTitle } from "@narsil-ui/components/card";
 import {
