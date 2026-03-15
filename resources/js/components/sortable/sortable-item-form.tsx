@@ -1,4 +1,5 @@
 import { type UniqueIdentifier } from "@dnd-kit/core";
+import { Tooltip } from "@narsil-ui/blocks/tooltip";
 import { Button } from "@narsil-ui/components/button";
 import {
   DialogBackdrop,
@@ -13,7 +14,6 @@ import {
   DialogTrigger,
 } from "@narsil-ui/components/dialog";
 import { FormProvider, FormRoot, FormTabs } from "@narsil-ui/components/form";
-import { Tooltip } from "@narsil-ui/components/tooltip";
 import { useTranslator } from "@narsil-ui/components/translator";
 import { cn } from "@narsil-ui/lib/utils";
 import type { FormData } from "@narsil-ui/types";

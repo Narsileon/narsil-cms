@@ -2,11 +2,12 @@ import { Link, router } from "@inertiajs/react";
 import { Sidebar } from "@narsil-cms/blocks/sidebar";
 import { SidebarInset, SidebarProvider, SidebarTrigger } from "@narsil-cms/components/sidebar";
 import { GlobalProps } from "@narsil-cms/hooks/use-props";
+import { AlertDialogProvider } from "@narsil-ui/blocks/alert-dialog";
 import { Bookmarks } from "@narsil-ui/blocks/bookmarks";
+import { Breadcrumb } from "@narsil-ui/blocks/breadcrumb";
 import { Themes } from "@narsil-ui/blocks/themes";
-import { AlertDialogProvider } from "@narsil-ui/components/alert-dialog";
+import { Tooltip } from "@narsil-ui/blocks/tooltip";
 import { AvatarFallback, AvatarImage, AvatarRoot } from "@narsil-ui/components/avatar";
-import { Breadcrumb } from "@narsil-ui/components/breadcrumb";
 import { Button } from "@narsil-ui/components/button";
 import {
   DropdownMenuItem,
@@ -21,7 +22,6 @@ import { Icon } from "@narsil-ui/components/icon";
 import { ModalLink, ModalRenderer } from "@narsil-ui/components/modal";
 import { Select } from "@narsil-ui/components/select";
 import { Separator } from "@narsil-ui/components/separator";
-import { Tooltip } from "@narsil-ui/components/tooltip";
 import { useTranslator } from "@narsil-ui/components/translator";
 import { useMaxLg } from "@narsil-ui/hooks/use-breakpoints";
 import { groupBy } from "lodash-es";

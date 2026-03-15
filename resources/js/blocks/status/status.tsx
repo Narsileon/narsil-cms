@@ -1,5 +1,5 @@
+import { Tooltip } from "@narsil-ui/blocks/tooltip";
 import { StatusItem, StatusRoot } from "@narsil-ui/components/status";
-import { Tooltip } from "@narsil-ui/components/tooltip";
 import { useTranslator } from "@narsil-ui/components/translator";
 import { type ComponentProps } from "react";
 

@@ -1,5 +1,6 @@
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
+import { Tooltip } from "@narsil-ui/blocks/tooltip";
 import { useAlertDialog } from "@narsil-ui/components/alert-dialog";
 import { Button } from "@narsil-ui/components/button";
 import { CardContent, CardHeader, CardRoot, CardTitle } from "@narsil-ui/components/card";
@@ -12,7 +13,6 @@ import { FormBlock, FormElement, useForm } from "@narsil-ui/components/form";
 import { Icon } from "@narsil-ui/components/icon";
 import { SortableHandle, SortableItemMenu } from "@narsil-ui/components/sortable";
 import { Switch } from "@narsil-ui/components/switch";
-import { Tooltip } from "@narsil-ui/components/tooltip";
 import { useTranslator } from "@narsil-ui/components/translator";
 import { cn } from "@narsil-ui/lib/utils";
 import type { FieldsetData } from "@narsil-ui/types";
