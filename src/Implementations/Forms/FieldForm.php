@@ -141,6 +141,11 @@ class FieldForm extends Form implements Contract
             );
         }
 
+        usort($options, function (OptionData $a, OptionData $b)
+        {
+            return strcmp($a->label, $b->label);
+        });
+
         return $options;
     }
 

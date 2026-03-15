@@ -11,6 +11,7 @@ return [
     |
     */
 
+    \Narsil\Base\Http\Data\Forms\Inputs\AssetInputData::TYPE => \Narsil\Base\Http\Data\Forms\Inputs\AssetInputData::class,
     \Narsil\Base\Http\Data\Forms\Inputs\CheckboxInputData::TYPE => \Narsil\Base\Http\Data\Forms\Inputs\CheckboxInputData::class,
     \Narsil\Base\Http\Data\Forms\Inputs\DateInputData::TYPE => \Narsil\Base\Http\Data\Forms\Inputs\DateInputData::class,
     \Narsil\Base\Http\Data\Forms\Inputs\DatetimeInputData::TYPE => \Narsil\Base\Http\Data\Forms\Inputs\DatetimeInputData::class,
