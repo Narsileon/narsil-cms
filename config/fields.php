@@ -17,6 +17,7 @@ return [
     \Narsil\Base\Http\Data\Forms\Inputs\DatetimeInputData::TYPE => \Narsil\Base\Http\Data\Forms\Inputs\DatetimeInputData::class,
     \Narsil\Base\Http\Data\Forms\Inputs\EmailInputData::TYPE => \Narsil\Base\Http\Data\Forms\Inputs\EmailInputData::class,
     \Narsil\Base\Http\Data\Forms\Inputs\FileInputData::TYPE => \Narsil\Base\Http\Data\Forms\Inputs\FileInputData::class,
+    \Narsil\Base\Http\Data\Forms\Inputs\IconInputData::TYPE => \Narsil\Base\Http\Data\Forms\Inputs\IconInputData::class,
     \Narsil\Base\Http\Data\Forms\Inputs\NumberInputData::TYPE => \Narsil\Base\Http\Data\Forms\Inputs\NumberInputData::class,
     \Narsil\Base\Http\Data\Forms\Inputs\PasswordInputData::TYPE => \Narsil\Base\Http\Data\Forms\Inputs\PasswordInputData::class,
     \Narsil\Base\Http\Data\Forms\Inputs\RangeInputData::TYPE => \Narsil\Base\Http\Data\Forms\Inputs\RangeInputData::class,

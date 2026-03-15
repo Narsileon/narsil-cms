@@ -298,7 +298,7 @@ function SortableGrid({
       onDragOver={onDragOver}
       onDragStart={onDragStart}
     >
-      <div className={cn(`relative grid-cols-${columns} grid gap-4 p-4`)}>
+      <div className={cn(`relative lg:grid-cols-${columns} grid grid-cols-1 gap-4 p-4`)}>
         <SortableContext
           items={items.map((container) => getContainerIdentifier(container))}
           strategy={rectSortingStrategy}

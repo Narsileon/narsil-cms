@@ -9,6 +9,7 @@ use Narsil\Base\Http\Data\Forms\FieldData;
 use Narsil\Base\Http\Data\Forms\FormStepData;
 use Narsil\Base\Http\Data\Forms\Inputs\ArrayInputData;
 use Narsil\Base\Http\Data\Forms\Inputs\FileInputData;
+use Narsil\Base\Http\Data\Forms\Inputs\IconInputData;
 use Narsil\Base\Http\Data\Forms\Inputs\SelectInputData;
 use Narsil\Base\Http\Data\Forms\Inputs\SwitchInputData;
 use Narsil\Base\Http\Data\Forms\Inputs\TextInputData;
@@ -161,6 +162,11 @@ class FooterForm extends Form implements Contract
                         input: new ArrayInputData(
                             labelPath: FooterSocialMedium::LABEL,
                             elements: [
+                                new FieldData(
+                                    id: FooterSocialMedium::ICON,
+                                    required: true,
+                                    input: new IconInputData(),
+                                ),
                                 new FieldData(
                                     id: FooterSocialMedium::LABEL,
                                     required: true,
