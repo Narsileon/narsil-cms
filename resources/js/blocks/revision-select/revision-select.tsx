@@ -1,6 +1,6 @@
 import { router } from "@inertiajs/react";
 import type { Revision } from "@narsil-cms/types";
-import { Select } from "@narsil-ui/components/select";
+import { Select } from "@narsil-ui/blocks/select";
 import { useMemo } from "react";
 
 type RevisionSelectProps = {
