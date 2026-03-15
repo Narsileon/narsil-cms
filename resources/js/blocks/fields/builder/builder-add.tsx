@@ -46,7 +46,7 @@ function BuilderAdd({ elements, onAdd, ...props }: BuilderAddProps) {
                   onClick={() => {
                     const node = {
                       uuid: crypto.randomUUID(),
-                      block_id: element.id as string,
+                      block_id: element.block_id,
                       children: {},
                     };
 
