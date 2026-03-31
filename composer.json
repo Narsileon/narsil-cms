@@ -15,8 +15,6 @@
   ],
   "license": "proprietary",
   "require": {
-    "php": "^8.4",
-    "inertiajs/inertia-laravel": "^3.0",
     "narsil/base": "dev-main"
   },
   "autoload": {

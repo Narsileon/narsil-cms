@@ -8,8 +8,6 @@
     "vendor/narsil/base"
   ],
   "dependencies": {
-    "graphiql": "^5.2.2",
-    "graphql": "^16.13.1",
     "react": "^19.2.4",
     "react-dom": "^19.2.4"
   }

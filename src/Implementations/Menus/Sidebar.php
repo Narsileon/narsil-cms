@@ -277,14 +277,6 @@ class Sidebar extends Menu implements Contract
 
         $this
             ->add(
-                new MenuItem('graphiql')
-                    ->group($group)
-                    ->icon('graph-ql')
-                    ->label('GraphQL')
-                    ->route('graphiql')
-                    ->target('_blank')
-            )
-            ->add(
                 new MenuItem('horizon')
                     ->group($group)
                     ->icon('horizon')

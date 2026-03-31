@@ -6,7 +6,6 @@ namespace Narsil\Cms;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\App;
-use Illuminate\Support\Facades\Route;
 use Narsil\Base\Providers\ActionServiceProvider;
 use Narsil\Base\Providers\FormRequestServiceProvider;
 use Narsil\Base\Providers\FormServiceProvider;
@@ -24,7 +23,6 @@ use Narsil\Cms\Providers\MorphServiceProvider;
 use Narsil\Cms\Providers\NarsilServiceProvider;
 use Narsil\Cms\Providers\PluginServiceProvider;
 use Narsil\Cms\Providers\TranslationServiceProvider;
-use Nuwave\Lighthouse\LighthouseServiceProvider;
 
 #endregion
 
@@ -52,7 +50,6 @@ class ServiceProvider extends NarsilServiceProvider
         $this->bootCmsRoutes(__DIR__ . '/../routes/cms.php');
         $this->bootWebRoutes(__DIR__ . '/../routes/web.php');
 
-        $this->bootGraphQLRoutes();
         $this->bootPublishes();
 
         Model::preventLazyLoading(!App::isProduction());
@@ -83,23 +80,6 @@ class ServiceProvider extends NarsilServiceProvider
     #region PROTECTED METHODS
 
     /**
-     * Boot the GraphQL routes.
-     *
-     * @return void
-     */
-    protected function bootGraphQLRoutes(): void
-    {
-        Route::middleware([
-            'web',
-            'auth',
-            'verified',
-            'narsil-cms',
-        ])
-            ->prefix('admin')
-            ->group(__DIR__ . '/../routes/graphql.php');
-    }
-
-    /**
      * Boot the publishes.
      *
      * @return void
@@ -124,7 +104,6 @@ class ServiceProvider extends NarsilServiceProvider
         $this->app->register(FormServiceProvider::class);
         $this->app->register(FortifyServiceProvider::class);
         $this->app->register(HorizonServiceProvider::class);
-        $this->app->register(LighthouseServiceProvider::class);
         $this->app->register(MenuServiceProvider::class);
         $this->app->register(MiddlewareServiceProvider::class);
         $this->app->register(MigrationServiceProvider::class);
