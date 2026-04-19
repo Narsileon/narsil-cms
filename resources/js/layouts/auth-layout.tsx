@@ -46,7 +46,6 @@ function AuthLayout({ children }: AuthLayoutProps) {
   const groupedMenu = groupBy(navigation?.userMenu, (item) => item.group ?? "default");
 
   function onSchemaChange(schema: string) {
-    console.log(schema);
     router.post(
       route("user-configurations.update"),
       {
