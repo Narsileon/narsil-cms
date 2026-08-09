@@ -1,10 +1,15 @@
 import { Status } from "@narsil-cms/blocks/status";
 import type { Model } from "@narsil-cms/types";
+import {
+  createDataTableColumnHelper,
+  type DataTableColumnDef,
+} from "@narsil-ui/components/data-table";
 import { cn } from "@narsil-ui/lib/utils";
-import { ColumnDef } from "@tanstack/react-table";
 
-function getStatusColumn(): ColumnDef<Model> {
-  return {
+const columnHelper = createDataTableColumnHelper<Model>();
+
+function getStatusColumn(): DataTableColumnDef<Model> {
+  return columnHelper.display({
     id: "_status",
     cell: ({ row }) => {
       return (
@@ -24,7 +29,7 @@ function getStatusColumn(): ColumnDef<Model> {
         "transition-[min-width,width,max-width] delay-100 duration-300",
       ),
     },
-  };
+  });
 }
 
 export default getStatusColumn;

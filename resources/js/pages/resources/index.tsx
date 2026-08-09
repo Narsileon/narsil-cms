@@ -15,7 +15,7 @@ import { Icon } from "@narsil-ui/components/icon";
 import { SectionContent, SectionHeader, SectionRoot } from "@narsil-ui/components/section";
 import { useTranslator } from "@narsil-ui/components/translator";
 import { useMinSm } from "@narsil-ui/hooks/use-breakpoints";
-import { ColumnDef } from "@tanstack/react-table";
+import { type DataTableColumnDef } from "@narsil-ui/components/data-table";
 import { route } from "ziggy-js";
 
 type ResourceIndexProps = {
@@ -36,7 +36,7 @@ function ResourceIndex({ collection, title }: ResourceIndexProps) {
   const selectColumn = getSelectColumn();
   const statusColumn = getStatusColumn();
 
-  const finalColumns: ColumnDef<DataTableData>[] = [
+  const finalColumns: DataTableColumnDef<DataTableData>[] = [
     ...(collection.meta.selectable !== false ? [selectColumn] : []),
     ...(collection.meta.revisionable === true ? [statusColumn] : []),
     ...collection.meta.columns,

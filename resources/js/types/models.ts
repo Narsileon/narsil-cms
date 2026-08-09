@@ -7,7 +7,7 @@ export type Model = {
   published_revision?: Model;
   saved?: boolean;
   draft?: Model;
-  [key: string]: unknown;
+  [key: string]: any;
 };
 
 export type Block = {

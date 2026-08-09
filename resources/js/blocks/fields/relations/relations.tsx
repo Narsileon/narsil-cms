@@ -1,6 +1,8 @@
 import { Badge } from "@narsil-ui/components/badge";
 import { Button } from "@narsil-ui/components/button";
 import {
+  type DataTableCollection,
+  type DataTableColumnDef,
   type DataTableData,
   DataTable,
   DataTableProvider,
@@ -25,8 +27,7 @@ import { Spinner } from "@narsil-ui/components/spinner";
 import { TabsList, TabsPanel, TabsRoot, TabsTab } from "@narsil-ui/components/tabs";
 import { useTranslator } from "@narsil-ui/components/translator";
 import { cn } from "@narsil-ui/lib/utils";
-import { DataTableCollection } from "@narsil-ui/types";
-import { type ColumnDef, type RowSelectionState } from "@tanstack/react-table";
+import { type RowSelectionState } from "@tanstack/react-table";
 import { flatMap, isArray, isEmpty } from "lodash-es";
 import { useEffect, useState } from "react";
 import { route } from "ziggy-js";
@@ -186,7 +187,7 @@ function Relations({
                 })}
               </TabsList>
               {Object.entries(dataTables).map(([id, collection]) => {
-                const finalColumns: ColumnDef<DataTableData>[] = [
+                const finalColumns: DataTableColumnDef<DataTableData>[] = [
                   selectColumn,
                   ...collection.meta.columns,
                 ];

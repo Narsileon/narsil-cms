@@ -2,15 +2,6 @@ import { type InertiaLinkProps } from "@inertiajs/react";
 import type { TemplateTab } from "@narsil-cms/types";
 import { type IconName } from "@narsil-ui/registries/icons";
 import { RoutesData } from "@narsil-ui/types";
-import { type RowData } from "@tanstack/react-table";
-
-declare module "@tanstack/react-table" {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  interface ColumnMeta<TData extends RowData, TValue> {
-    className?: string;
-    type?: string;
-  }
-}
 
 export type FormType = {
   action: string;
