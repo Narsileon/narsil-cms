@@ -67,6 +67,8 @@ abstract class Menu implements Contract
      */
     public function jsonSerialize(): mixed
     {
+        $this->menuItems = [];
+
         return $this->content();
     }
 

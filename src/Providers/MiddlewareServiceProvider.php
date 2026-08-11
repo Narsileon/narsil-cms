@@ -59,7 +59,7 @@ final class MiddlewareServiceProvider extends ServiceProvider
             SubstituteBindings::class,
         ]);
 
-        $router->middlewareGroup('narsil-cms', [
+        $router->middlewareGroup('narsil', [
             UserConfigurationMiddleware::class,
             LocaleMiddleware::class,
             InertiaMiddleware::class,

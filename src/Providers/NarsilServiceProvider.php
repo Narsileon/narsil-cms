@@ -45,11 +45,28 @@ abstract class NarsilServiceProvider extends ServiceProvider
     {
         Route::middleware([
             'web',
-            'narsil-cms',
+            'narsil',
         ])
-            ->prefix('admin')
+            ->prefix('narsil/cms')
             ->group($path);
     }
+
+    /**
+     * Boot the Narsil admin routes.
+     *
+     * @param string $path
+     *
+     * @return void
+     */
+        protected function bootNarsilRoutes(string $path): void
+        {
+            Route::middleware([
+                'web',
+                'narsil',
+            ])
+                ->prefix('narsil')
+                ->group($path);
+        }
 
     /**
      * Boot the web routes.

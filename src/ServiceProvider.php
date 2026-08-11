@@ -6,6 +6,7 @@ namespace Narsil\Cms;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Route;
 use Narsil\Base\Providers\ActionServiceProvider;
 use Narsil\Base\Providers\FormRequestServiceProvider;
 use Narsil\Base\Providers\FormServiceProvider;
@@ -42,9 +43,19 @@ class ServiceProvider extends NarsilServiceProvider
     {
         $this->loadTranslationsFrom(__DIR__ . '/../lang', 'narsil-cms');
 
-        $this->bootCmsRoutes(base_path('/vendor/narsil/base/routes/policies.php'));
-        $this->bootCmsRoutes(base_path('/vendor/narsil/base/routes/storages.php'));
-        $this->bootCmsRoutes(base_path('/vendor/narsil/base/routes/users.php'));
+        $this->bootNarsilRoutes(base_path('/vendor/narsil/base/routes/policies.php'));
+        $this->bootNarsilRoutes(base_path('/vendor/narsil/base/routes/storages.php'));
+        $this->bootNarsilRoutes(base_path('/vendor/narsil/base/routes/users.php'));
+
+        Route::middleware([
+            'web',
+            'narsil',
+        ])
+            ->prefix('narsil')
+            ->group(function ()
+            {
+                Route::redirect('/', '/narsil/cms');
+            });
 
         $this->bootApiRoutes(__DIR__ . '/../routes/api.php');
         $this->bootCmsRoutes(__DIR__ . '/../routes/cms.php');

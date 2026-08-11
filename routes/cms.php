@@ -99,10 +99,8 @@ Route::middleware([
 ])->group(
     function ()
     {
-        Route::get('/dashboard', DashboardController::class)
+        Route::get('/', DashboardController::class)
             ->name('dashboard');
-
-        Route::redirect('/', '/admin/dashboard');
 
         #region RESOURCES
 
