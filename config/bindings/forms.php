@@ -20,6 +20,7 @@ return [
     \Narsil\Cms\Contracts\Forms\FooterForm::class => \Narsil\Cms\Implementations\Forms\FooterForm::class,
     \Narsil\Cms\Contracts\Forms\HeaderForm::class => \Narsil\Cms\Implementations\Forms\HeaderForm::class,
     \Narsil\Cms\Contracts\Forms\HostForm::class => \Narsil\Cms\Implementations\Forms\HostForm::class,
+    \Narsil\Cms\Contracts\Forms\LiveEditor\EntityNodeInspectorForm::class => \Narsil\Cms\Implementations\Forms\LiveEditor\EntityNodeInspectorForm::class,
     \Narsil\Cms\Contracts\Forms\PublishForm::class => \Narsil\Cms\Implementations\Forms\PublishForm::class,
     \Narsil\Cms\Contracts\Forms\SiteForm::class => \Narsil\Cms\Implementations\Forms\SiteForm::class,
     \Narsil\Cms\Contracts\Forms\SitePageForm::class => \Narsil\Cms\Implementations\Forms\SitePageForm::class,

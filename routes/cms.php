@@ -71,6 +71,12 @@ use Narsil\Cms\Http\Controllers\Hosts\HostReplicateController;
 use Narsil\Cms\Http\Controllers\Hosts\HostReplicateManyController;
 use Narsil\Cms\Http\Controllers\Hosts\HostStoreController;
 use Narsil\Cms\Http\Controllers\Hosts\HostUpdateController;
+use Narsil\Cms\Http\Controllers\LiveEditor\LiveEditorNodeDestroyController;
+use Narsil\Cms\Http\Controllers\LiveEditor\LiveEditorNodeFormController;
+use Narsil\Cms\Http\Controllers\LiveEditor\LiveEditorNodeReorderController;
+use Narsil\Cms\Http\Controllers\LiveEditor\LiveEditorNodeStoreController;
+use Narsil\Cms\Http\Controllers\LiveEditor\LiveEditorNodeUpdateController;
+use Narsil\Cms\Http\Controllers\LiveEditor\LiveEditorShowController;
 use Narsil\Cms\Http\Controllers\Sites\Pages\SitePageCreateController;
 use Narsil\Cms\Http\Controllers\Sites\Pages\SitePageDestroyController;
 use Narsil\Cms\Http\Controllers\Sites\Pages\SitePageEditController;
@@ -293,6 +299,26 @@ Route::middleware([
                 ->name('replicate-many');
             Route::post('/{collection}/{id}/unpublish', EntityUnpublishController::class)
                 ->name('unpublish');
+        });
+
+        Route::prefix('live-editor')->name('live-editor.')->group(function ()
+        {
+            Route::get('/{sitePage}', LiveEditorShowController::class)
+                ->name('show');
+
+            Route::prefix('/{sitePage}/nodes')->name('nodes.')->group(function ()
+            {
+                Route::post('/', LiveEditorNodeStoreController::class)
+                    ->name('store');
+                Route::patch('/reorder', LiveEditorNodeReorderController::class)
+                    ->name('reorder');
+                Route::get('/{nodeUuid}/form', LiveEditorNodeFormController::class)
+                    ->name('form');
+                Route::patch('/{nodeUuid}', LiveEditorNodeUpdateController::class)
+                    ->name('update');
+                Route::delete('/{nodeUuid}', LiveEditorNodeDestroyController::class)
+                    ->name('destroy');
+            });
         });
 
         Route::prefix('settings')->name('settings.')->group(function ()
