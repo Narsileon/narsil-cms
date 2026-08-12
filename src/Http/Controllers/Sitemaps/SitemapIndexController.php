@@ -2,10 +2,11 @@
 
 namespace Narsil\Cms\Http\Controllers\Sitemaps;
 
-#region
+#region USE
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Storage;
 
 #endregion
@@ -20,9 +21,9 @@ class SitemapIndexController extends Controller
     /**
      * @param Request $request
      *
-     * @return mixed
+     * @return Response
      */
-    public function __invoke(Request $request): mixed
+    public function __invoke(Request $request): Response
     {
         $host = $request->getHost();
 
