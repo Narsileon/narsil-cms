@@ -8,10 +8,14 @@ namespace Narsil\Cms\Implementations\Definitions;
 
 use Narsil\Base\Enums\ModelOperationEnum as Operation;
 use Narsil\Base\Resources\AbstractModelDefinition;
+use Narsil\Base\Enums\ModelHookEventEnum;
 use Narsil\Cms\Contracts\Actions\Footers\ReplicateFooter;
 use Narsil\Cms\Contracts\Forms\FooterForm;
 use Narsil\Cms\Contracts\Requests\FooterFormRequest;
 use Narsil\Cms\Models\Globals\Footer;
+use Narsil\Cms\Implementations\Tables\FooterTable;
+use Narsil\Cms\Implementations\Hooks\Footers\SyncFooterLinksHook;
+use Narsil\Cms\Implementations\Hooks\Footers\SyncFooterSocialMediaHook;
 
 #endregion
 
@@ -25,6 +29,20 @@ final class FooterDefinition extends AbstractModelDefinition
     public function form(): ?string
     {
         return FooterForm::class;
+    }
+
+    public function hooks(): array
+    {
+        return [
+            ModelHookEventEnum::AFTER_STORE->value => [
+                ['hook' => SyncFooterLinksHook::class, 'priority' => 0],
+                ['hook' => SyncFooterSocialMediaHook::class, 'priority' => 0],
+            ],
+            ModelHookEventEnum::AFTER_UPDATE->value => [
+                ['hook' => SyncFooterLinksHook::class, 'priority' => 0],
+                ['hook' => SyncFooterSocialMediaHook::class, 'priority' => 0],
+            ],
+        ];
     }
 
     /**
@@ -55,6 +73,11 @@ final class FooterDefinition extends AbstractModelDefinition
     public function model(): string
     {
         return Footer::class;
+    }
+
+    public function morph(): ?string
+    {
+        return Footer::TABLE;
     }
 
     /**
@@ -96,6 +119,11 @@ final class FooterDefinition extends AbstractModelDefinition
     public function route(): string
     {
         return 'footers';
+    }
+
+    public function table(): ?string
+    {
+        return FooterTable::class;
     }
 
     #endregion

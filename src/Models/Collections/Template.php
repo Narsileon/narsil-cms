@@ -6,6 +6,7 @@ namespace Narsil\Cms\Models\Collections;
 
 use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Attributes\UseFactory;
+use Illuminate\Database\Eloquent\Attributes\UsePolicy;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -18,6 +19,8 @@ use Narsil\Base\Traits\Blameable;
 use Narsil\Base\Traits\HasDatetimes;
 use Narsil\Base\Traits\HasTranslations;
 use Narsil\Cms\Database\Factories\TemplateFactory;
+use Narsil\Cms\Observers\TemplateObserver;
+use Narsil\Cms\Policies\TemplatePolicy;
 
 #endregion
 
@@ -25,7 +28,9 @@ use Narsil\Cms\Database\Factories\TemplateFactory;
  * @author Jonathan Rigaux
  */
 #[ObservedBy(ModelObserver::class)]
+#[ObservedBy(TemplateObserver::class)]
 #[UseFactory(TemplateFactory::class)]
+#[UsePolicy(TemplatePolicy::class)]
 class Template extends Model
 {
     use Blameable;

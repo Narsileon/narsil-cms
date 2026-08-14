@@ -53,7 +53,7 @@ Route::middleware([
 
         #region RESOURCES
 
-        app(ModelRouteRegistrar::class)->register();
+        app(ModelRouteRegistrar::class)->register('Narsil\\Cms\\');
 
         Route::prefix(Str::slug(Entity::TABLE))->name(Str::slug(Entity::TABLE) . '.')->group(function ()
         {

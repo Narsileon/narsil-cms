@@ -4,17 +4,20 @@ namespace Narsil\Cms\Models\Sites;
 
 #region USE
 
+use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Database\Eloquent\Relations\Pivot;
 use Narsil\Base\Traits\HasUuidPrimaryKey;
 use Narsil\Cms\Models\Entities\Entity;
+use Narsil\Cms\Observers\SitePageEntityObserver;
 
 #endregion
 
 /**
  * @author Jonathan Rigaux
  */
+#[ObservedBy(SitePageEntityObserver::class)]
 class SitePageEntity extends Pivot
 {
     use HasUuidPrimaryKey;

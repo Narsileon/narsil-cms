@@ -4,6 +4,7 @@ namespace Narsil\Cms\Models\Entities;
 
 #region USE
 
+use Illuminate\Database\Eloquent\Attributes\UsePolicy;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -16,6 +17,7 @@ use Narsil\Base\Traits\HasIdentifier;
 use Narsil\Base\Traits\HasTranslations;
 use Narsil\Base\Traits\SoftBlameable;
 use Narsil\Cms\Models\Collections\Template;
+use Narsil\Cms\Policies\EntityPolicy;
 use Narsil\Cms\Traits\HasRevisions;
 
 #endregion
@@ -23,6 +25,7 @@ use Narsil\Cms\Traits\HasRevisions;
 /**
  * @author Jonathan Rigaux
  */
+#[UsePolicy(EntityPolicy::class)]
 abstract class Entity extends Model implements Searchable
 {
     use AuditLoggable;

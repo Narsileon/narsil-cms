@@ -5,11 +5,13 @@ namespace Narsil\Cms\Models\Collections;
 #region USE
 
 use Illuminate\Database\Eloquent\Attributes\UseFactory;
+use Illuminate\Database\Eloquent\Attributes\UsePolicy;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Narsil\Cms\Database\Factories\BlockFactory;
+use Narsil\Cms\Policies\BlockPolicy;
 
 #endregion
 
@@ -17,6 +19,7 @@ use Narsil\Cms\Database\Factories\BlockFactory;
  * @author Jonathan Rigaux
  */
 #[UseFactory(BlockFactory::class)]
+#[UsePolicy(BlockPolicy::class)]
 class Block extends BaseElement
 {
     use HasFactory;

@@ -7,10 +7,13 @@ namespace Narsil\Cms\Implementations\Definitions;
 #region USE
 
 use Narsil\Base\Resources\AbstractModelDefinition;
+use Narsil\Base\Enums\ModelHookEventEnum;
 use Narsil\Cms\Contracts\Actions\Templates\ReplicateTemplate;
 use Narsil\Cms\Contracts\Forms\TemplateForm;
 use Narsil\Cms\Contracts\Requests\TemplateFormRequest;
 use Narsil\Cms\Models\Collections\Template;
+use Narsil\Cms\Implementations\Tables\TemplateTable;
+use Narsil\Cms\Implementations\Hooks\Templates\SyncTemplateTabsHook;
 
 #endregion
 
@@ -34,6 +37,18 @@ final class TemplateDefinition extends AbstractModelDefinition
     public function form(): ?string
     {
         return TemplateForm::class;
+    }
+
+    public function hooks(): array
+    {
+        return [
+            ModelHookEventEnum::AFTER_STORE->value => [
+                ['hook' => SyncTemplateTabsHook::class, 'priority' => 0],
+            ],
+            ModelHookEventEnum::AFTER_UPDATE->value => [
+                ['hook' => SyncTemplateTabsHook::class, 'priority' => 0],
+            ],
+        ];
     }
 
     /**
@@ -76,6 +91,11 @@ final class TemplateDefinition extends AbstractModelDefinition
     public function route(): string
     {
         return 'templates';
+    }
+
+    public function table(): ?string
+    {
+        return TemplateTable::class;
     }
 
     #endregion

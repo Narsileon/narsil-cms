@@ -6,6 +6,7 @@ namespace Narsil\Cms\Models\Globals;
 
 use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Attributes\UseFactory;
+use Illuminate\Database\Eloquent\Attributes\UsePolicy;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -18,6 +19,7 @@ use Narsil\Base\Traits\HasDatetimes;
 use Narsil\Base\Traits\HasIdentifier;
 use Narsil\Base\Traits\HasTranslations;
 use Narsil\Cms\Database\Factories\HeaderFactory;
+use Narsil\Cms\Policies\HeaderPolicy;
 use Narsil\Cms\Models\Sites\Site;
 
 #endregion
@@ -27,6 +29,7 @@ use Narsil\Cms\Models\Sites\Site;
  */
 #[ObservedBy(ModelObserver::class)]
 #[UseFactory(HeaderFactory::class)]
+#[UsePolicy(HeaderPolicy::class)]
 class Header extends Model implements Searchable
 {
     use Blameable;

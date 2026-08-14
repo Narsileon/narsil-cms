@@ -7,10 +7,14 @@ namespace Narsil\Cms\Implementations\Definitions;
 #region USE
 
 use Narsil\Base\Resources\AbstractModelDefinition;
+use Narsil\Base\Enums\ModelHookEventEnum;
 use Narsil\Cms\Contracts\Actions\Hosts\ReplicateHost;
 use Narsil\Cms\Contracts\Forms\HostForm;
 use Narsil\Cms\Contracts\Requests\HostFormRequest;
 use Narsil\Cms\Models\Hosts\Host;
+use Narsil\Cms\Implementations\Tables\HostTable;
+use Narsil\Cms\Implementations\Hooks\Hosts\DispatchHostSitemapHook;
+use Narsil\Cms\Implementations\Hooks\Hosts\SyncHostLocalesHook;
 
 #endregion
 
@@ -36,6 +40,19 @@ final class HostDefinition extends AbstractModelDefinition
         return HostForm::class;
     }
 
+    public function hooks(): array
+    {
+        return [
+            ModelHookEventEnum::AFTER_STORE->value => [
+                ['hook' => SyncHostLocalesHook::class, 'priority' => 0],
+            ],
+            ModelHookEventEnum::AFTER_UPDATE->value => [
+                ['hook' => DispatchHostSitemapHook::class, 'priority' => 0],
+                ['hook' => SyncHostLocalesHook::class, 'priority' => 0],
+            ],
+        ];
+    }
+
     /**
      * {@inheritDoc}
      */
@@ -52,6 +69,11 @@ final class HostDefinition extends AbstractModelDefinition
     public function model(): string
     {
         return Host::class;
+    }
+
+    public function morph(): ?string
+    {
+        return Host::TABLE;
     }
 
     /**
@@ -76,6 +98,11 @@ final class HostDefinition extends AbstractModelDefinition
     public function route(): string
     {
         return 'hosts';
+    }
+
+    public function table(): ?string
+    {
+        return HostTable::class;
     }
 
     #endregion

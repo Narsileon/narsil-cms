@@ -4,10 +4,13 @@ namespace {{ namespace }};
 
 #region USE
 
+use Illuminate\Database\Eloquent\Attributes\UsePolicy;
 use Narsil\Cms\Models\Entities\Entity;
+use Narsil\Cms\Policies\EntityPolicy;
 
 #endregion
 
+#[UsePolicy(EntityPolicy::class)]
 class {{ class }} extends Entity
 {
     #region CONSTANTS

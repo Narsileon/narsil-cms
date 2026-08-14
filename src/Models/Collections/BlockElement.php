@@ -4,14 +4,17 @@ namespace Narsil\Cms\Models\Collections;
 
 #region USE
 
+use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Narsil\Cms\Observers\BlockElementObserver;
 
 #endregion
 
 /**
  * @author Jonathan Rigaux
  */
+#[ObservedBy(BlockElementObserver::class)]
 class BlockElement extends Element
 {
     #region CONSTRUCTOR

@@ -6,34 +6,19 @@ namespace Narsil\Cms\Implementations\Definitions;
 
 #region USE
 
-use Narsil\Base\Contracts\ModelDefinition;
+use Narsil\Base\Resources\AbstractModelDefinition;
 use Narsil\Base\Enums\ModelOperationEnum as Operation;
 use Narsil\Cms\Contracts\Requests\HeaderFormRequest;
 use Narsil\Cms\Contracts\Forms\HeaderForm;
 use Narsil\Cms\Models\Globals\Header;
+use Narsil\Cms\Implementations\Tables\HeaderTable;
 use Narsil\Cms\Contracts\Actions\Headers\ReplicateHeader;
 
 #endregion
 
-final class HeaderDefinition implements ModelDefinition
+final class HeaderDefinition extends AbstractModelDefinition
 {
     #region PUBLIC METHODS
-
-    /**
-     * {@inheritDoc}
-     */
-    public function model(): string
-    {
-        return Header::class;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function editWith(): array
-    {
-        return [];
-    }
 
     /**
      * {@inheritDoc}
@@ -66,6 +51,19 @@ final class HeaderDefinition implements ModelDefinition
     /**
      * {@inheritDoc}
      */
+    public function model(): string
+    {
+        return Header::class;
+    }
+
+    public function morph(): ?string
+    {
+        return Header::TABLE;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function operations(): array
     {
         return [
@@ -83,14 +81,6 @@ final class HeaderDefinition implements ModelDefinition
     /**
      * {@inheritDoc}
      */
-    public function request(): ?string
-    {
-        return HeaderFormRequest::class;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
     public function replicateAction(): ?string
     {
         return ReplicateHeader::class;
@@ -99,9 +89,22 @@ final class HeaderDefinition implements ModelDefinition
     /**
      * {@inheritDoc}
      */
+    public function request(): ?string
+    {
+        return HeaderFormRequest::class;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function route(): string
     {
         return 'headers';
+    }
+
+    public function table(): ?string
+    {
+        return HeaderTable::class;
     }
 
     #endregion

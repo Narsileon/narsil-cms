@@ -4,6 +4,7 @@ namespace Narsil\Cms\Models\Hosts;
 
 #region USE
 
+use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -11,12 +12,14 @@ use Narsil\Base\Traits\AuditLoggable;
 use Narsil\Base\Traits\HasUuidPrimaryKey;
 use Narsil\Base\Traits\Orderable;
 use Narsil\Cms\Models\Hosts\Host;
+use Narsil\Cms\Observers\HostLocaleObserver;
 
 #endregion
 
 /**
  * @author Jonathan Rigaux
  */
+#[ObservedBy(HostLocaleObserver::class)]
 class HostLocale extends Model
 {
     use AuditLoggable;

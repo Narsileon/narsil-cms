@@ -5,6 +5,8 @@ namespace Narsil\Cms\Models\Sites;
 #region USE
 
 use Illuminate\Database\Eloquent\Attributes\UseFactory;
+use Illuminate\Database\Eloquent\Attributes\ObservedBy;
+use Illuminate\Database\Eloquent\Attributes\UsePolicy;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -21,6 +23,8 @@ use Narsil\Base\Traits\HasTranslations;
 use Narsil\Cms\Database\Factories\SitePageFactory;
 use Narsil\Cms\Models\Hosts\HostLocaleLanguage;
 use Narsil\Cms\Models\TreeModel;
+use Narsil\Cms\Policies\SitePagePolicy;
+use Narsil\Cms\Observers\SitePageObserver;
 
 #endregion
 
@@ -28,6 +32,8 @@ use Narsil\Cms\Models\TreeModel;
  * @author Jonathan Rigaux
  */
 #[UseFactory(SitePageFactory::class)]
+#[ObservedBy(SitePageObserver::class)]
+#[UsePolicy(SitePagePolicy::class)]
 final class SitePage extends TreeModel implements Searchable
 {
     use HasFactory;

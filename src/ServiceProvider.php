@@ -15,10 +15,7 @@ use Narsil\Base\Providers\FormRequestServiceProvider;
 use Narsil\Base\Providers\FormServiceProvider;
 use Narsil\Base\Providers\FortifyServiceProvider;
 use Narsil\Base\Providers\HorizonServiceProvider;
-use Narsil\Base\Providers\ObserverServiceProvider;
-use Narsil\Base\Providers\PolicyServiceProvider;
 use Narsil\Base\Providers\ResourceServiceProvider;
-use Narsil\Base\Providers\TableServiceProvider;
 use Narsil\Cms\Providers\CommandServiceProvider;
 use Narsil\Cms\Providers\MenuServiceProvider;
 use Narsil\Cms\Providers\MiddlewareServiceProvider;
@@ -45,8 +42,6 @@ class ServiceProvider extends NarsilServiceProvider
     {
         $this->loadTranslationsFrom(__DIR__ . '/../lang', 'narsil-cms');
 
-        $this->bootNarsilRoutes(base_path('/vendor/narsil/base/routes/policies.php'));
-        $this->bootNarsilRoutes(base_path('/vendor/narsil/base/routes/storages.php'));
         $this->bootNarsilRoutes(base_path('/vendor/narsil/base/routes/users.php'));
 
         Route::middleware([
@@ -103,47 +98,6 @@ class ServiceProvider extends NarsilServiceProvider
             ->modelDefinition(\Narsil\Cms\Models\Globals\Header::class, \Narsil\Cms\Implementations\Definitions\HeaderDefinition::class)
             ->modelDefinition(\Narsil\Cms\Models\Collections\Block::class, \Narsil\Cms\Implementations\Definitions\BlockDefinition::class)
             ->modelDefinition(\Narsil\Cms\Models\Collections\Field::class, \Narsil\Cms\Implementations\Definitions\FieldDefinition::class)
-            ->modelHook(\Narsil\Cms\Models\Collections\Block::class, \Narsil\Base\Enums\ModelHookEventEnum::AFTER_STORE, function (\Narsil\Base\Http\Data\ModelHookContext $context)
-            {
-                if ($context->model instanceof \Narsil\Cms\Models\Collections\Block)
-                {
-                    app(\Narsil\Cms\Contracts\Actions\Blocks\SyncBlockElements::class)->run($context->model, \Illuminate\Support\Arr::get($context->attributes, \Narsil\Cms\Models\Collections\Block::RELATION_ELEMENTS, []));
-                }
-            })
-            ->modelHook(\Narsil\Cms\Models\Collections\Block::class, \Narsil\Base\Enums\ModelHookEventEnum::AFTER_UPDATE, function (\Narsil\Base\Http\Data\ModelHookContext $context)
-            {
-                if ($context->model instanceof \Narsil\Cms\Models\Collections\Block)
-                {
-                    app(\Narsil\Cms\Contracts\Actions\Blocks\SyncBlockElements::class)->run($context->model, \Illuminate\Support\Arr::get($context->attributes, \Narsil\Cms\Models\Collections\Block::RELATION_ELEMENTS, []));
-                }
-            })
-            ->modelHook(\Narsil\Cms\Models\Collections\Field::class, \Narsil\Base\Enums\ModelHookEventEnum::AFTER_STORE, function (\Narsil\Base\Http\Data\ModelHookContext $context)
-            {
-                if ($context->model instanceof \Narsil\Cms\Models\Collections\Field)
-                {
-                    app(\Narsil\Cms\Contracts\Actions\Fields\SyncFieldBlocks::class)->run($context->model, \Illuminate\Support\Arr::pluck(\Illuminate\Support\Arr::get($context->attributes, \Narsil\Cms\Models\Collections\Field::RELATION_BLOCKS, []), \Narsil\Cms\Models\Collections\Block::ID));
-                    app(\Narsil\Cms\Contracts\Actions\Fields\SyncFieldOptions::class)->run($context->model, \Illuminate\Support\Arr::get($context->attributes, \Narsil\Cms\Models\Collections\Field::RELATION_OPTIONS, []));
-                    app(\Narsil\Cms\Contracts\Actions\Fields\SyncFieldValidationRules::class)->run($context->model, \Illuminate\Support\Arr::get($context->attributes, \Narsil\Cms\Models\Collections\Field::RELATION_VALIDATION_RULES, []));
-                }
-            })
-            ->modelHook(\Narsil\Cms\Models\Collections\Field::class, \Narsil\Base\Enums\ModelHookEventEnum::AFTER_UPDATE, function (\Narsil\Base\Http\Data\ModelHookContext $context)
-            {
-                if ($context->model instanceof \Narsil\Cms\Models\Collections\Field)
-                {
-                    app(\Narsil\Cms\Contracts\Actions\Fields\SyncFieldBlocks::class)->run($context->model, \Illuminate\Support\Arr::pluck(\Illuminate\Support\Arr::get($context->attributes, \Narsil\Cms\Models\Collections\Field::RELATION_BLOCKS, []), \Narsil\Cms\Models\Collections\Block::ID));
-                    app(\Narsil\Cms\Contracts\Actions\Fields\SyncFieldOptions::class)->run($context->model, \Illuminate\Support\Arr::get($context->attributes, \Narsil\Cms\Models\Collections\Field::RELATION_OPTIONS, []));
-                    app(\Narsil\Cms\Contracts\Actions\Fields\SyncFieldValidationRules::class)->run($context->model, \Illuminate\Support\Arr::get($context->attributes, \Narsil\Cms\Models\Collections\Field::RELATION_VALIDATION_RULES, []));
-                }
-            })
-            ->modelHook(\Narsil\Cms\Models\Globals\Footer::class, \Narsil\Base\Enums\ModelHookEventEnum::AFTER_STORE, \Narsil\Cms\Implementations\Hooks\Footers\SyncFooterLinksHook::class)
-            ->modelHook(\Narsil\Cms\Models\Globals\Footer::class, \Narsil\Base\Enums\ModelHookEventEnum::AFTER_STORE, \Narsil\Cms\Implementations\Hooks\Footers\SyncFooterSocialMediaHook::class)
-            ->modelHook(\Narsil\Cms\Models\Globals\Footer::class, \Narsil\Base\Enums\ModelHookEventEnum::AFTER_UPDATE, \Narsil\Cms\Implementations\Hooks\Footers\SyncFooterLinksHook::class)
-            ->modelHook(\Narsil\Cms\Models\Globals\Footer::class, \Narsil\Base\Enums\ModelHookEventEnum::AFTER_UPDATE, \Narsil\Cms\Implementations\Hooks\Footers\SyncFooterSocialMediaHook::class)
-            ->modelHook(\Narsil\Cms\Models\Hosts\Host::class, \Narsil\Base\Enums\ModelHookEventEnum::AFTER_STORE, \Narsil\Cms\Implementations\Hooks\Hosts\SyncHostLocalesHook::class)
-            ->modelHook(\Narsil\Cms\Models\Hosts\Host::class, \Narsil\Base\Enums\ModelHookEventEnum::AFTER_UPDATE, \Narsil\Cms\Implementations\Hooks\Hosts\SyncHostLocalesHook::class)
-            ->modelHook(\Narsil\Cms\Models\Hosts\Host::class, \Narsil\Base\Enums\ModelHookEventEnum::AFTER_UPDATE, \Narsil\Cms\Implementations\Hooks\Hosts\DispatchHostSitemapHook::class)
-            ->modelHook(\Narsil\Cms\Models\Collections\Template::class, \Narsil\Base\Enums\ModelHookEventEnum::AFTER_STORE, \Narsil\Cms\Implementations\Hooks\Templates\SyncTemplateTabsHook::class)
-            ->modelHook(\Narsil\Cms\Models\Collections\Template::class, \Narsil\Base\Enums\ModelHookEventEnum::AFTER_UPDATE, \Narsil\Cms\Implementations\Hooks\Templates\SyncTemplateTabsHook::class)
             ->modelDefinition(\Narsil\Cms\Models\Globals\Footer::class, \Narsil\Cms\Implementations\Definitions\FooterDefinition::class)
             ->modelDefinition(\Narsil\Cms\Models\Hosts\Host::class, \Narsil\Cms\Implementations\Definitions\HostDefinition::class)
             ->modelDefinition(\Narsil\Cms\Models\Collections\Template::class, \Narsil\Cms\Implementations\Definitions\TemplateDefinition::class)
@@ -215,41 +169,14 @@ class ServiceProvider extends NarsilServiceProvider
             ->field(\Narsil\Cms\Http\Data\Forms\Inputs\BuilderInputData::TYPE, \Narsil\Cms\Http\Data\Forms\Inputs\BuilderInputData::class)
             ->field(\Narsil\Cms\Http\Data\Forms\Inputs\EntityInputData::TYPE, \Narsil\Cms\Http\Data\Forms\Inputs\EntityInputData::class)
             ->field(\Narsil\Cms\Http\Data\Forms\Inputs\LinkInputData::TYPE, \Narsil\Cms\Http\Data\Forms\Inputs\LinkInputData::class)
-            ->morph(\Narsil\Cms\Models\Collections\Block::class, \Narsil\Cms\Models\Collections\Block::TABLE)
             ->morph(\Narsil\Cms\Models\Collections\BlockElement::class, \Narsil\Cms\Models\Collections\BlockElement::TABLE)
-            ->morph(\Narsil\Cms\Models\Collections\Field::class, \Narsil\Cms\Models\Collections\Field::TABLE)
             ->morph(\Narsil\Cms\Models\Collections\TemplateTab::class, \Narsil\Cms\Models\Collections\TemplateTab::TABLE)
             ->morph(\Narsil\Cms\Models\Collections\TemplateTabElement::class, \Narsil\Cms\Models\Collections\TemplateTabElement::TABLE)
             ->morph(\Narsil\Cms\Models\Entities\Entity::class, \Narsil\Cms\Models\Entities\Entity::TABLE)
-            ->morph(\Narsil\Cms\Models\Globals\Footer::class, \Narsil\Cms\Models\Globals\Footer::TABLE)
-            ->morph(\Narsil\Cms\Models\Globals\Header::class, \Narsil\Cms\Models\Globals\Header::TABLE)
-            ->morph(\Narsil\Cms\Models\Hosts\Host::class, \Narsil\Cms\Models\Hosts\Host::TABLE)
             ->morph(\Narsil\Cms\Models\Hosts\HostLocale::class, \Narsil\Cms\Models\Hosts\HostLocale::TABLE)
             ->morph(\Narsil\Cms\Models\Hosts\HostLocaleLanguage::class, \Narsil\Cms\Models\Hosts\HostLocaleLanguage::TABLE)
             ->morph(\Narsil\Cms\Models\Sites\SitePage::class, \Narsil\Cms\Models\Sites\SitePage::TABLE)
-            ->observer(\Narsil\Cms\Models\Collections\BlockElement::class, \Narsil\Cms\Observers\BlockElementObserver::class)
-            ->observer(\Narsil\Cms\Models\Collections\Template::class, \Narsil\Cms\Observers\TemplateObserver::class)
-            ->observer(\Narsil\Cms\Models\Collections\TemplateTabElement::class, \Narsil\Cms\Observers\TemplateTabElementObserver::class)
-            ->observer(\Narsil\Cms\Models\Hosts\HostLocale::class, \Narsil\Cms\Observers\HostLocaleObserver::class)
-            ->observer(\Narsil\Cms\Models\Sites\SitePage::class, \Narsil\Cms\Observers\SitePageObserver::class)
-            ->observer(\Narsil\Cms\Models\Sites\SitePageEntity::class, \Narsil\Cms\Observers\SitePageEntityObserver::class)
-            ->policy(\Narsil\Cms\Models\Collections\Block::class, \Narsil\Cms\Policies\BlockPolicy::class)
-            ->policy(\Narsil\Cms\Models\Collections\Field::class, \Narsil\Cms\Policies\FieldPolicy::class)
-            ->policy(\Narsil\Cms\Models\Collections\Template::class, \Narsil\Cms\Policies\TemplatePolicy::class)
-            ->policy(\Narsil\Cms\Models\Configuration::class, \Narsil\Cms\Policies\ConfigurationPolicy::class)
-            ->policy(\Narsil\Cms\Models\Entities\Entity::class, \Narsil\Cms\Policies\EntityPolicy::class)
-            ->policy(\Narsil\Cms\Models\Globals\Footer::class, \Narsil\Cms\Policies\FooterPolicy::class)
-            ->policy(\Narsil\Cms\Models\Globals\Header::class, \Narsil\Cms\Policies\HeaderPolicy::class)
-            ->policy(\Narsil\Cms\Models\Hosts\Host::class, \Narsil\Cms\Policies\HostPolicy::class)
-            ->policy(\Narsil\Cms\Models\Sites\Site::class, \Narsil\Cms\Policies\SitePolicy::class)
-            ->policy(\Narsil\Cms\Models\Sites\SitePage::class, \Narsil\Cms\Policies\SitePagePolicy::class)
-            ->table(\Narsil\Cms\Models\Collections\Block::TABLE, \Narsil\Cms\Implementations\Tables\BlockTable::class)
-            ->table(\Narsil\Cms\Models\Collections\Field::TABLE, \Narsil\Cms\Implementations\Tables\FieldTable::class)
-            ->table(\Narsil\Cms\Models\Collections\Template::TABLE, \Narsil\Cms\Implementations\Tables\TemplateTable::class)
             ->table(\Narsil\Cms\Models\Entities\Entity::TABLE, \Narsil\Cms\Implementations\Tables\EntityTable::class)
-            ->table(\Narsil\Cms\Models\Globals\Footer::TABLE, \Narsil\Cms\Implementations\Tables\FooterTable::class)
-            ->table(\Narsil\Cms\Models\Globals\Header::TABLE, \Narsil\Cms\Implementations\Tables\HeaderTable::class)
-            ->table(\Narsil\Cms\Models\Hosts\Host::TABLE, \Narsil\Cms\Implementations\Tables\HostTable::class)
             ->relation(\Narsil\Cms\Http\Data\Forms\Inputs\LinkInputData::TYPE);
     }
 
@@ -278,10 +205,7 @@ class ServiceProvider extends NarsilServiceProvider
         $this->app->register(MiddlewareServiceProvider::class);
         $this->app->register(MigrationServiceProvider::class);
         $this->app->register(MorphServiceProvider::class);
-        $this->app->register(ObserverServiceProvider::class);
-        $this->app->register(PolicyServiceProvider::class);
         $this->app->register(ResourceServiceProvider::class);
-        $this->app->register(TableServiceProvider::class);
         $this->app->register(TranslationServiceProvider::class);
     }
 

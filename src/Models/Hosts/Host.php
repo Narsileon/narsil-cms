@@ -5,6 +5,7 @@ namespace Narsil\Cms\Models\Hosts;
 #region USE
 
 use Illuminate\Database\Eloquent\Attributes\UseFactory;
+use Illuminate\Database\Eloquent\Attributes\UsePolicy;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -15,6 +16,7 @@ use Narsil\Base\Traits\Blameable;
 use Narsil\Base\Traits\HasDatetimes;
 use Narsil\Base\Traits\HasTranslations;
 use Narsil\Cms\Database\Factories\HostFactory;
+use Narsil\Cms\Policies\HostPolicy;
 
 #endregion
 
@@ -22,6 +24,7 @@ use Narsil\Cms\Database\Factories\HostFactory;
  * @author Jonathan Rigaux
  */
 #[UseFactory(HostFactory::class)]
+#[UsePolicy(HostPolicy::class)]
 class Host extends Model
 {
     use Blameable;

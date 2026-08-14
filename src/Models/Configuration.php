@@ -4,17 +4,20 @@ namespace Narsil\Cms\Models;
 
 #region USE
 
+use Illuminate\Database\Eloquent\Attributes\UsePolicy;
 use Illuminate\Database\Eloquent\Model;
 use Narsil\Base\Traits\AuditLoggable;
 use Narsil\Base\Traits\Blameable;
 use Narsil\Base\Traits\HasDatetimes;
 use Narsil\Base\Traits\HasTranslations;
+use Narsil\Cms\Policies\ConfigurationPolicy;
 
 #endregion
 
 /**
  * @author Jonathan Rigaux
  */
+#[UsePolicy(ConfigurationPolicy::class)]
 class Configuration extends Model
 {
     use AuditLoggable;

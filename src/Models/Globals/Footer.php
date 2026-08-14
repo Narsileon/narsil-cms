@@ -6,6 +6,7 @@ namespace Narsil\Cms\Models\Globals;
 
 use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Attributes\UseFactory;
+use Illuminate\Database\Eloquent\Attributes\UsePolicy;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -18,6 +19,7 @@ use Narsil\Base\Traits\HasDatetimes;
 use Narsil\Base\Traits\HasIdentifier;
 use Narsil\Base\Traits\HasTranslations;
 use Narsil\Cms\Database\Factories\FooterFactory;
+use Narsil\Cms\Policies\FooterPolicy;
 use Narsil\Cms\Models\Sites\Site;
 use Narsil\Cms\Models\Sites\SitePage;
 
@@ -28,6 +30,7 @@ use Narsil\Cms\Models\Sites\SitePage;
  */
 #[ObservedBy(ModelObserver::class)]
 #[UseFactory(FooterFactory::class)]
+#[UsePolicy(FooterPolicy::class)]
 class Footer extends Model
 {
     use Blameable;
