@@ -4,34 +4,8 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
-use Narsil\Cms\Http\Controllers\Collections\Blocks\BlockCreateController;
-use Narsil\Cms\Http\Controllers\Collections\Blocks\BlockDestroyController;
-use Narsil\Cms\Http\Controllers\Collections\Blocks\BlockDestroyManyController;
-use Narsil\Cms\Http\Controllers\Collections\Blocks\BlockEditController;
-use Narsil\Cms\Http\Controllers\Collections\Blocks\BlockIndexController;
-use Narsil\Cms\Http\Controllers\Collections\Blocks\BlockReplicateController;
-use Narsil\Cms\Http\Controllers\Collections\Blocks\BlockReplicateManyController;
-use Narsil\Cms\Http\Controllers\Collections\Blocks\BlockStoreController;
-use Narsil\Cms\Http\Controllers\Collections\Blocks\BlockUpdateController;
+use Narsil\Base\Services\ModelRouteRegistrar;
 use Narsil\Cms\Http\Controllers\Collections\CollectionSummaryController;
-use Narsil\Cms\Http\Controllers\Collections\Fields\FieldCreateController;
-use Narsil\Cms\Http\Controllers\Collections\Fields\FieldDestroyController;
-use Narsil\Cms\Http\Controllers\Collections\Fields\FieldDestroyManyController;
-use Narsil\Cms\Http\Controllers\Collections\Fields\FieldEditController;
-use Narsil\Cms\Http\Controllers\Collections\Fields\FieldIndexController;
-use Narsil\Cms\Http\Controllers\Collections\Fields\FieldReplicateController;
-use Narsil\Cms\Http\Controllers\Collections\Fields\FieldReplicateManyController;
-use Narsil\Cms\Http\Controllers\Collections\Fields\FieldStoreController;
-use Narsil\Cms\Http\Controllers\Collections\Fields\FieldUpdateController;
-use Narsil\Cms\Http\Controllers\Collections\Templates\TemplateCreateController;
-use Narsil\Cms\Http\Controllers\Collections\Templates\TemplateDestroyController;
-use Narsil\Cms\Http\Controllers\Collections\Templates\TemplateDestroyManyController;
-use Narsil\Cms\Http\Controllers\Collections\Templates\TemplateEditController;
-use Narsil\Cms\Http\Controllers\Collections\Templates\TemplateIndexController;
-use Narsil\Cms\Http\Controllers\Collections\Templates\TemplateReplicateController;
-use Narsil\Cms\Http\Controllers\Collections\Templates\TemplateReplicateManyController;
-use Narsil\Cms\Http\Controllers\Collections\Templates\TemplateStoreController;
-use Narsil\Cms\Http\Controllers\Collections\Templates\TemplateUpdateController;
 use Narsil\Cms\Http\Controllers\Configurations\ConfigurationEditController;
 use Narsil\Cms\Http\Controllers\Configurations\ConfigurationUpdateController;
 use Narsil\Cms\Http\Controllers\DashboardController;
@@ -46,31 +20,6 @@ use Narsil\Cms\Http\Controllers\Entities\EntitySearchController;
 use Narsil\Cms\Http\Controllers\Entities\EntityStoreController;
 use Narsil\Cms\Http\Controllers\Entities\EntityUnpublishController;
 use Narsil\Cms\Http\Controllers\Entities\EntityUpdateController;
-use Narsil\Cms\Http\Controllers\Globals\Footers\FooterCreateController;
-use Narsil\Cms\Http\Controllers\Globals\Footers\FooterDestroyController;
-use Narsil\Cms\Http\Controllers\Globals\Footers\FooterDestroyManyController;
-use Narsil\Cms\Http\Controllers\Globals\Footers\FooterEditController;
-use Narsil\Cms\Http\Controllers\Globals\Footers\FooterIndexController;
-use Narsil\Cms\Http\Controllers\Globals\Footers\FooterReplicateController;
-use Narsil\Cms\Http\Controllers\Globals\Footers\FooterStoreController;
-use Narsil\Cms\Http\Controllers\Globals\Footers\FooterUpdateController;
-use Narsil\Cms\Http\Controllers\Globals\Headers\HeaderCreateController;
-use Narsil\Cms\Http\Controllers\Globals\Headers\HeaderDestroyController;
-use Narsil\Cms\Http\Controllers\Globals\Headers\HeaderDestroyManyController;
-use Narsil\Cms\Http\Controllers\Globals\Headers\HeaderEditController;
-use Narsil\Cms\Http\Controllers\Globals\Headers\HeaderIndexController;
-use Narsil\Cms\Http\Controllers\Globals\Headers\HeaderReplicateController;
-use Narsil\Cms\Http\Controllers\Globals\Headers\HeaderStoreController;
-use Narsil\Cms\Http\Controllers\Globals\Headers\HeaderUpdateController;
-use Narsil\Cms\Http\Controllers\Hosts\HostCreateController;
-use Narsil\Cms\Http\Controllers\Hosts\HostDestroyController;
-use Narsil\Cms\Http\Controllers\Hosts\HostDestroyManyController;
-use Narsil\Cms\Http\Controllers\Hosts\HostEditController;
-use Narsil\Cms\Http\Controllers\Hosts\HostIndexController;
-use Narsil\Cms\Http\Controllers\Hosts\HostReplicateController;
-use Narsil\Cms\Http\Controllers\Hosts\HostReplicateManyController;
-use Narsil\Cms\Http\Controllers\Hosts\HostStoreController;
-use Narsil\Cms\Http\Controllers\Hosts\HostUpdateController;
 use Narsil\Cms\Http\Controllers\LiveEditor\LiveEditorNodeDestroyController;
 use Narsil\Cms\Http\Controllers\LiveEditor\LiveEditorNodeFormController;
 use Narsil\Cms\Http\Controllers\LiveEditor\LiveEditorNodeReorderController;
@@ -87,13 +36,7 @@ use Narsil\Cms\Http\Controllers\Sites\SiteEditController;
 use Narsil\Cms\Http\Controllers\Sites\SiteSummaryController;
 use Narsil\Cms\Http\Controllers\Sites\SiteUpdateController;
 use Narsil\Cms\Http\Middleware\CountryMiddleware;
-use Narsil\Cms\Models\Collections\Block;
-use Narsil\Cms\Models\Collections\Field;
-use Narsil\Cms\Models\Collections\Template;
 use Narsil\Cms\Models\Entities\Entity;
-use Narsil\Cms\Models\Globals\Footer;
-use Narsil\Cms\Models\Globals\Header;
-use Narsil\Cms\Models\Hosts\Host;
 use Narsil\Cms\Models\Sites\Site;
 use Narsil\Cms\Models\Sites\SitePage;
 
@@ -110,116 +53,12 @@ Route::middleware([
 
         #region RESOURCES
 
-        Route::prefix(Str::slug(Block::TABLE))->name(Str::slug(Block::TABLE) . '.')->group(function ()
-        {
-            Route::get('/', BlockIndexController::class)
-                ->name('index');
-            Route::get('/create', BlockCreateController::class)
-                ->name('create');
-            Route::post('/', BlockStoreController::class)
-                ->name('store');
-            Route::get('/{block}/edit', BlockEditController::class)
-                ->name('edit');
-            Route::patch('/{block}', BlockUpdateController::class)
-                ->name('update');
-            Route::delete('/{block}', BlockDestroyController::class)
-                ->name('destroy');
-            Route::delete('/', BlockDestroyManyController::class)
-                ->name('destroy-many');
-            Route::post('/{block}/replicate', BlockReplicateController::class)
-                ->name('replicate');
-            Route::post('/replicate-many', BlockReplicateManyController::class)
-                ->name('replicate-many');
-        });
+        app(ModelRouteRegistrar::class)->register();
 
         Route::prefix(Str::slug(Entity::TABLE))->name(Str::slug(Entity::TABLE) . '.')->group(function ()
         {
             Route::get('/search', EntitySearchController::class)
                 ->name('search');
-        });
-
-        Route::prefix(Str::slug(Field::TABLE))->name(Str::slug(Field::TABLE) . '.')->group(function ()
-        {
-            Route::get('/', FieldIndexController::class)
-                ->name('index');
-            Route::get('/create', FieldCreateController::class)
-                ->name('create');
-            Route::post('/', FieldStoreController::class)
-                ->name('store');
-            Route::get('/{field}/edit', FieldEditController::class)
-                ->name('edit');
-            Route::patch('/{field}', FieldUpdateController::class)
-                ->name('update');
-            Route::delete('/{field}', FieldDestroyController::class)
-                ->name('destroy');
-            Route::delete('/', FieldDestroyManyController::class)
-                ->name('destroy-many');
-            Route::post('/{field}/replicate', FieldReplicateController::class)
-                ->name('replicate');
-            Route::post('/replicate-many', FieldReplicateManyController::class)
-                ->name('replicate-many');
-        });
-
-        Route::prefix(Str::slug(Footer::TABLE))->name(Str::slug(Footer::TABLE) . '.')->group(function ()
-        {
-            Route::get('/', FooterIndexController::class)
-                ->name('index');
-            Route::get('/create', FooterCreateController::class)
-                ->name('create');
-            Route::post('/', FooterStoreController::class)
-                ->name('store');
-            Route::get('/{footer}/edit', FooterEditController::class)
-                ->name('edit');
-            Route::patch('/{footer}', FooterUpdateController::class)
-                ->name('update');
-            Route::delete('/{footer}', FooterDestroyController::class)
-                ->name('destroy');
-            Route::delete('/', FooterDestroyManyController::class)
-                ->name('destroy-many');
-            Route::post('/{footer}/replicate', FooterReplicateController::class)
-                ->name('replicate');
-        });
-
-        Route::prefix(Str::slug(Header::TABLE))->name(Str::slug(Header::TABLE) . '.')->group(function ()
-        {
-            Route::get('/', HeaderIndexController::class)
-                ->name('index');
-            Route::get('/create', HeaderCreateController::class)
-                ->name('create');
-            Route::post('/', HeaderStoreController::class)
-                ->name('store');
-            Route::get('/{header}/edit', HeaderEditController::class)
-                ->name('edit');
-            Route::patch('/{header}', HeaderUpdateController::class)
-                ->name('update');
-            Route::delete('/{header}', HeaderDestroyController::class)
-                ->name('destroy');
-            Route::delete('/', HeaderDestroyManyController::class)
-                ->name('destroy-many');
-            Route::post('/{header}/replicate', HeaderReplicateController::class)
-                ->name('replicate');
-        });
-
-        Route::prefix(Str::slug(Host::TABLE))->name(Str::slug(Host::TABLE) . '.')->group(function ()
-        {
-            Route::get('/', HostIndexController::class)
-                ->name('index');
-            Route::get('/create', HostCreateController::class)
-                ->name('create');
-            Route::post('/', HostStoreController::class)
-                ->name('store');
-            Route::get('/{host}/edit', HostEditController::class)
-                ->name('edit');
-            Route::patch('/{host}', HostUpdateController::class)
-                ->name('update');
-            Route::delete('/{host}', HostDestroyController::class)
-                ->name('destroy');
-            Route::delete('/', HostDestroyManyController::class)
-                ->name('destroy-many');
-            Route::post('/{host}/replicate', HostReplicateController::class)
-                ->name('replicate');
-            Route::post('/replicate-many', HostReplicateManyController::class)
-                ->name('replicate-many');
         });
 
         Route::prefix(Str::slug(Site::VIRTUAL_TABLE))->name(Str::slug(Site::VIRTUAL_TABLE) . '.')->group(function ()
@@ -251,28 +90,6 @@ Route::middleware([
         {
             Route::get('/search', SitePageSearchController::class)
                 ->name('search');
-        });
-
-        Route::prefix(Str::slug(Template::TABLE))->name(Str::slug(Template::TABLE) . '.')->group(function ()
-        {
-            Route::get('/', TemplateIndexController::class)
-                ->name('index');
-            Route::get('/create', TemplateCreateController::class)
-                ->name('create');
-            Route::post('/', TemplateStoreController::class)
-                ->name('store');
-            Route::get('/{template}/edit', TemplateEditController::class)
-                ->name('edit');
-            Route::patch('/{template}', TemplateUpdateController::class)
-                ->name('update');
-            Route::delete('/{template}', TemplateDestroyController::class)
-                ->name('destroy');
-            Route::delete('/', TemplateDestroyManyController::class)
-                ->name('destroy-many');
-            Route::post('/{template}/replicate', TemplateReplicateController::class)
-                ->name('replicate');
-            Route::post('/replicate-many', TemplateReplicateManyController::class)
-                ->name('replicate-many');
         });
 
         Route::prefix('collections')->name('collections.')->group(function ()

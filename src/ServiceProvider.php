@@ -100,6 +100,53 @@ class ServiceProvider extends NarsilServiceProvider
             ->action(\Narsil\Cms\Contracts\Actions\Elements\SyncElementConditions::class, \Narsil\Cms\Implementations\Actions\Elements\SyncElementConditions::class)
             ->action(\Narsil\Cms\Contracts\Actions\Entities\ReplicateEntity::class, \Narsil\Cms\Implementations\Actions\Entities\ReplicateEntity::class)
             ->action(\Narsil\Cms\Contracts\Actions\Entities\SyncEntityNodes::class, \Narsil\Cms\Implementations\Actions\Entities\SyncEntityNodes::class)
+            ->modelDefinition(\Narsil\Cms\Models\Globals\Header::class, \Narsil\Cms\Implementations\Definitions\HeaderDefinition::class)
+            ->modelDefinition(\Narsil\Cms\Models\Collections\Block::class, \Narsil\Cms\Implementations\Definitions\BlockDefinition::class)
+            ->modelDefinition(\Narsil\Cms\Models\Collections\Field::class, \Narsil\Cms\Implementations\Definitions\FieldDefinition::class)
+            ->modelHook(\Narsil\Cms\Models\Collections\Block::class, \Narsil\Base\Enums\ModelHookEventEnum::AFTER_STORE, function (\Narsil\Base\Http\Data\ModelHookContext $context)
+            {
+                if ($context->model instanceof \Narsil\Cms\Models\Collections\Block)
+                {
+                    app(\Narsil\Cms\Contracts\Actions\Blocks\SyncBlockElements::class)->run($context->model, \Illuminate\Support\Arr::get($context->attributes, \Narsil\Cms\Models\Collections\Block::RELATION_ELEMENTS, []));
+                }
+            })
+            ->modelHook(\Narsil\Cms\Models\Collections\Block::class, \Narsil\Base\Enums\ModelHookEventEnum::AFTER_UPDATE, function (\Narsil\Base\Http\Data\ModelHookContext $context)
+            {
+                if ($context->model instanceof \Narsil\Cms\Models\Collections\Block)
+                {
+                    app(\Narsil\Cms\Contracts\Actions\Blocks\SyncBlockElements::class)->run($context->model, \Illuminate\Support\Arr::get($context->attributes, \Narsil\Cms\Models\Collections\Block::RELATION_ELEMENTS, []));
+                }
+            })
+            ->modelHook(\Narsil\Cms\Models\Collections\Field::class, \Narsil\Base\Enums\ModelHookEventEnum::AFTER_STORE, function (\Narsil\Base\Http\Data\ModelHookContext $context)
+            {
+                if ($context->model instanceof \Narsil\Cms\Models\Collections\Field)
+                {
+                    app(\Narsil\Cms\Contracts\Actions\Fields\SyncFieldBlocks::class)->run($context->model, \Illuminate\Support\Arr::pluck(\Illuminate\Support\Arr::get($context->attributes, \Narsil\Cms\Models\Collections\Field::RELATION_BLOCKS, []), \Narsil\Cms\Models\Collections\Block::ID));
+                    app(\Narsil\Cms\Contracts\Actions\Fields\SyncFieldOptions::class)->run($context->model, \Illuminate\Support\Arr::get($context->attributes, \Narsil\Cms\Models\Collections\Field::RELATION_OPTIONS, []));
+                    app(\Narsil\Cms\Contracts\Actions\Fields\SyncFieldValidationRules::class)->run($context->model, \Illuminate\Support\Arr::get($context->attributes, \Narsil\Cms\Models\Collections\Field::RELATION_VALIDATION_RULES, []));
+                }
+            })
+            ->modelHook(\Narsil\Cms\Models\Collections\Field::class, \Narsil\Base\Enums\ModelHookEventEnum::AFTER_UPDATE, function (\Narsil\Base\Http\Data\ModelHookContext $context)
+            {
+                if ($context->model instanceof \Narsil\Cms\Models\Collections\Field)
+                {
+                    app(\Narsil\Cms\Contracts\Actions\Fields\SyncFieldBlocks::class)->run($context->model, \Illuminate\Support\Arr::pluck(\Illuminate\Support\Arr::get($context->attributes, \Narsil\Cms\Models\Collections\Field::RELATION_BLOCKS, []), \Narsil\Cms\Models\Collections\Block::ID));
+                    app(\Narsil\Cms\Contracts\Actions\Fields\SyncFieldOptions::class)->run($context->model, \Illuminate\Support\Arr::get($context->attributes, \Narsil\Cms\Models\Collections\Field::RELATION_OPTIONS, []));
+                    app(\Narsil\Cms\Contracts\Actions\Fields\SyncFieldValidationRules::class)->run($context->model, \Illuminate\Support\Arr::get($context->attributes, \Narsil\Cms\Models\Collections\Field::RELATION_VALIDATION_RULES, []));
+                }
+            })
+            ->modelHook(\Narsil\Cms\Models\Globals\Footer::class, \Narsil\Base\Enums\ModelHookEventEnum::AFTER_STORE, \Narsil\Cms\Implementations\Hooks\Footers\SyncFooterLinksHook::class)
+            ->modelHook(\Narsil\Cms\Models\Globals\Footer::class, \Narsil\Base\Enums\ModelHookEventEnum::AFTER_STORE, \Narsil\Cms\Implementations\Hooks\Footers\SyncFooterSocialMediaHook::class)
+            ->modelHook(\Narsil\Cms\Models\Globals\Footer::class, \Narsil\Base\Enums\ModelHookEventEnum::AFTER_UPDATE, \Narsil\Cms\Implementations\Hooks\Footers\SyncFooterLinksHook::class)
+            ->modelHook(\Narsil\Cms\Models\Globals\Footer::class, \Narsil\Base\Enums\ModelHookEventEnum::AFTER_UPDATE, \Narsil\Cms\Implementations\Hooks\Footers\SyncFooterSocialMediaHook::class)
+            ->modelHook(\Narsil\Cms\Models\Hosts\Host::class, \Narsil\Base\Enums\ModelHookEventEnum::AFTER_STORE, \Narsil\Cms\Implementations\Hooks\Hosts\SyncHostLocalesHook::class)
+            ->modelHook(\Narsil\Cms\Models\Hosts\Host::class, \Narsil\Base\Enums\ModelHookEventEnum::AFTER_UPDATE, \Narsil\Cms\Implementations\Hooks\Hosts\SyncHostLocalesHook::class)
+            ->modelHook(\Narsil\Cms\Models\Hosts\Host::class, \Narsil\Base\Enums\ModelHookEventEnum::AFTER_UPDATE, \Narsil\Cms\Implementations\Hooks\Hosts\DispatchHostSitemapHook::class)
+            ->modelHook(\Narsil\Cms\Models\Collections\Template::class, \Narsil\Base\Enums\ModelHookEventEnum::AFTER_STORE, \Narsil\Cms\Implementations\Hooks\Templates\SyncTemplateTabsHook::class)
+            ->modelHook(\Narsil\Cms\Models\Collections\Template::class, \Narsil\Base\Enums\ModelHookEventEnum::AFTER_UPDATE, \Narsil\Cms\Implementations\Hooks\Templates\SyncTemplateTabsHook::class)
+            ->modelDefinition(\Narsil\Cms\Models\Globals\Footer::class, \Narsil\Cms\Implementations\Definitions\FooterDefinition::class)
+            ->modelDefinition(\Narsil\Cms\Models\Hosts\Host::class, \Narsil\Cms\Implementations\Definitions\HostDefinition::class)
+            ->modelDefinition(\Narsil\Cms\Models\Collections\Template::class, \Narsil\Cms\Implementations\Definitions\TemplateDefinition::class)
             ->action(\Narsil\Cms\Contracts\Actions\Fields\ReplicateField::class, \Narsil\Cms\Implementations\Actions\Fields\ReplicateField::class)
             ->action(\Narsil\Cms\Contracts\Actions\Fields\SyncFieldBlocks::class, \Narsil\Cms\Implementations\Actions\Fields\SyncFieldBlocks::class)
             ->action(\Narsil\Cms\Contracts\Actions\Fields\SyncFieldOptions::class, \Narsil\Cms\Implementations\Actions\Fields\SyncFieldOptions::class)
