@@ -9,9 +9,6 @@ use Illuminate\Support\ServiceProvider;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 abstract class NarsilServiceProvider extends ServiceProvider
 {
     #region PROTECTED METHODS
@@ -58,15 +55,15 @@ abstract class NarsilServiceProvider extends ServiceProvider
      *
      * @return void
      */
-        protected function bootNarsilRoutes(string $path): void
-        {
-            Route::middleware([
-                'web',
-                'narsil',
-            ])
-                ->prefix('narsil')
-                ->group($path);
-        }
+    protected function bootNarsilRoutes(string $path): void
+    {
+        Route::middleware([
+            'web',
+            'narsil',
+        ])
+            ->prefix('narsil')
+            ->group($path);
+    }
 
     /**
      * Boot the web routes.

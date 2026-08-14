@@ -11,9 +11,6 @@ use Narsil\Base\Traits\Policies\IsViewable;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class FooterPolicy
 {
     use IsCreatable;

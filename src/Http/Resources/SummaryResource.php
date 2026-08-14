@@ -8,9 +8,6 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class SummaryResource extends JsonResource
 {
     #region CONSTANTS

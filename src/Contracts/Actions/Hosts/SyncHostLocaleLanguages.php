@@ -9,9 +9,6 @@ use Narsil\Cms\Models\Hosts\HostLocale;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 interface SyncHostLocaleLanguages extends Action
 {
     #region PUBLIC METHODS

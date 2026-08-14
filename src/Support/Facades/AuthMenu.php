@@ -9,9 +9,6 @@ use Narsil\Cms\Contracts\Menus\AuthMenu as Contract;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class AuthMenu extends Facade
 {
     #region PROTECTED METHODS

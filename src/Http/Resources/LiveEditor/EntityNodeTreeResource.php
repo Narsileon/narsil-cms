@@ -10,9 +10,6 @@ use Narsil\Cms\Services\LiveEditor\EntityNodeTreeService;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class EntityNodeTreeResource extends Resource
 {
     #region PUBLIC METHODS

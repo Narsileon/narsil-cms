@@ -11,9 +11,6 @@ use Narsil\Cms\Support\SitemapIndex;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class SitemapJob extends Job
 {
     use HasSchemas;

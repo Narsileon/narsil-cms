@@ -12,9 +12,6 @@ use Narsil\Cms\Models\Entities\Entity;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 abstract class EntitySeeder extends Seeder
 {
     #region CONSTRUCTOR

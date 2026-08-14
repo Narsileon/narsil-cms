@@ -11,9 +11,6 @@ use Narsil\Cms\Models\Entities\Entity;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class PublishCollectionJob extends Job
 {
     #region CONSTRUCTOR

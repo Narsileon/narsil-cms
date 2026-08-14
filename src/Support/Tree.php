@@ -9,9 +9,6 @@ use Narsil\Cms\Models\TreeModel;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class Tree
 {
     #region CONSTRUCTOR

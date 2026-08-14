@@ -14,9 +14,6 @@ use Narsil\Cms\Models\Configuration;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class ConfigurationUpdateController extends RedirectController
 {
     #region PUBLIC METHODS

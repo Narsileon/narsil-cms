@@ -9,9 +9,6 @@ use Narsil\Cms\Models\Collections\TemplateTab;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 interface SyncTemplateTabElements extends Action
 {
     #region PUBLIC METHODS

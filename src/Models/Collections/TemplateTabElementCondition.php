@@ -10,9 +10,6 @@ use Narsil\Cms\Models\Collections\TemplateTabElement;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class TemplateTabElementCondition extends AbstractCondition
 {
     #region CONSTRUCTOR

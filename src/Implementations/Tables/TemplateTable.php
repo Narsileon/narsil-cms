@@ -15,9 +15,6 @@ use Narsil\Cms\Models\Collections\TemplateTab;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class TemplateTable extends Table
 {
     #region CONSTRUCTOR

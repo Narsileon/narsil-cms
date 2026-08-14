@@ -11,9 +11,6 @@ use Narsil\Cms\Models\Collections\BlockElement;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 final class PaddingBlockSeeder extends Seeder
 {
     #region CONSTANTS

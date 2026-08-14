@@ -12,9 +12,6 @@ use Narsil\Base\Traits\HasIdentifier;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class ValidationRule extends Model implements Searchable
 {
     use HasIdentifier;

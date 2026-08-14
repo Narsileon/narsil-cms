@@ -22,9 +22,6 @@ use Narsil\Cms\Traits\HasRevisions;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 #[UsePolicy(EntityPolicy::class)]
 abstract class Entity extends Model implements Searchable
 {

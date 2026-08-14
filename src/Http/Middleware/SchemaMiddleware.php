@@ -10,9 +10,6 @@ use Narsil\Base\Traits\HasSchemas;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class SchemaMiddleware
 {
     use HasSchemas;

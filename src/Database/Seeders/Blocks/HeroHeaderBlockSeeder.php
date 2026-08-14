@@ -13,9 +13,6 @@ use Narsil\Cms\Models\Collections\Field;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 final class HeroHeaderBlockSeeder extends Seeder
 {
     #region CONSTANTS

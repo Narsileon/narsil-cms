@@ -10,9 +10,6 @@ use Narsil\Cms\Models\Collections\Field;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class FieldFactory extends Factory
 {
     #region PUBLIC METHODS

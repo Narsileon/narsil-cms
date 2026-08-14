@@ -14,9 +14,6 @@ use Narsil\Cms\Models\Globals\Footer;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class FooterFormRequest extends FormRequest implements Contract
 {
     #region PUBLIC METHODS

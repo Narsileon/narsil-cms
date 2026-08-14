@@ -9,9 +9,6 @@ use Narsil\Cms\Models\Collections\Template;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 interface ReplicateTemplate extends Action
 {
     #region PUBLIC METHODS

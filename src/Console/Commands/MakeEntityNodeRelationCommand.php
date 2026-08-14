@@ -2,9 +2,6 @@
 
 namespace Narsil\Cms\Console\Commands;
 
-/**
- * @author Jonathan Rigaux
- */
 class MakeEntityNodeRelationCommand extends MakeModelCommand
 {
     #region PROPERTIES

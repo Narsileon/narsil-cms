@@ -25,9 +25,6 @@ use Narsil\Cms\Traits\IsCollectionController;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class EntityEditController extends RenderController
 {
     use IsCollectionController;

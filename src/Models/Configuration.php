@@ -14,9 +14,6 @@ use Narsil\Cms\Policies\ConfigurationPolicy;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 #[UsePolicy(ConfigurationPolicy::class)]
 class Configuration extends Model
 {

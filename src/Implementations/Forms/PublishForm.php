@@ -13,9 +13,6 @@ use Narsil\Cms\Models\Entities\Entity;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class PublishForm extends Form implements Contract
 {
     #region PROTECTED METHODS

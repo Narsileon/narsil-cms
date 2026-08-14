@@ -17,9 +17,6 @@ use Narsil\Cms\Models\Sites\Site;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class SiteForm extends Form implements Contract
 {
     #region PROTECTED METHODS

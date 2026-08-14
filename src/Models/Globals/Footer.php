@@ -25,9 +25,6 @@ use Narsil\Cms\Models\Sites\SitePage;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 #[ObservedBy(ModelObserver::class)]
 #[UseFactory(FooterFactory::class)]
 #[UsePolicy(FooterPolicy::class)]

@@ -10,9 +10,6 @@ use Narsil\Cms\Models\Collections\TemplateTab;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class TemplateTabFactory extends Factory
 {
     #region PUBLIC METHODS

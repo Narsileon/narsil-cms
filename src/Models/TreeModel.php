@@ -13,9 +13,6 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 abstract class TreeModel extends Model
 {
     #region CONSTANTS

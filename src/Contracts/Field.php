@@ -2,9 +2,6 @@
 
 namespace Narsil\Cms\Contracts;
 
-/**
- * @author Jonathan Rigaux
- */
 interface Field
 {
     #region PUBLIC METHODS

@@ -8,9 +8,6 @@ use Narsil\Cms\Models\Collections\Template;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 trait IsCollectionController
 {
     #region CONSTRUCTOR

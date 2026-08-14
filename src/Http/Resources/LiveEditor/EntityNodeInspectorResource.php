@@ -17,9 +17,6 @@ use Narsil\Cms\Services\LiveEditor\EntityNodeInspectorService;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class EntityNodeInspectorResource extends Resource
 {
     #region CONSTRUCTOR

@@ -11,9 +11,6 @@ use Narsil\Cms\Models\TreeModel;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class NestedTreeResource extends JsonResource
 {
     #region CONSTANTS

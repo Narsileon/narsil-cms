@@ -13,9 +13,6 @@ use Narsil\Cms\Services\LiveEditor\EntityNodeResolver;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 trait IsLiveEditorController
 {
     #region PROTECTED METHODS

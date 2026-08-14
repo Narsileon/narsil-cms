@@ -13,9 +13,6 @@ use Throwable;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class PublishCollectionsJob extends Job
 {
     #region PUBLIC METHODS

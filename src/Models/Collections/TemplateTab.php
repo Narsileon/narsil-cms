@@ -17,9 +17,6 @@ use Narsil\Cms\Database\Factories\TemplateTabFactory;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 #[UseFactory(TemplateTabFactory::class)]
 class TemplateTab extends Model
 {

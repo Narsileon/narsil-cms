@@ -13,9 +13,6 @@ use Narsil\Cms\Support\MenuItem;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class GuestMenu extends Menu implements Contract
 {
     #region CONSTRUCTOR

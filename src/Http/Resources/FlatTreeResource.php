@@ -10,9 +10,6 @@ use Narsil\Cms\Models\TreeModel;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class FlatTreeResource extends JsonResource
 {
     #region CONSTANTS

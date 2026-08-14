@@ -11,9 +11,6 @@ use Narsil\Cms\Models\Globals\Header;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class ReplicateHeader extends Action implements Contract
 {
     #region PUBLIC METHODS

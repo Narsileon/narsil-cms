@@ -26,9 +26,6 @@ use Narsil\Cms\Models\Sites\SitePage;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class SiteEditController extends RenderController
 {
     #region PUBLIC METHODS

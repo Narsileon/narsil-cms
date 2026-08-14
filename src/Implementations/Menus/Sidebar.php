@@ -27,9 +27,6 @@ use Narsil\Cms\Support\MenuItem;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class Sidebar extends Menu implements Contract
 {
     #region CONSTRUCTOR

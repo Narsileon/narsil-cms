@@ -28,9 +28,6 @@ use Narsil\Cms\Observers\SitePageObserver;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 #[UseFactory(SitePageFactory::class)]
 #[ObservedBy(SitePageObserver::class)]
 #[UsePolicy(SitePagePolicy::class)]

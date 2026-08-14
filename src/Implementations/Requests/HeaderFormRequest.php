@@ -14,9 +14,6 @@ use Narsil\Cms\Models\Globals\Header;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class HeaderFormRequest extends FormRequest implements Contract
 {
     #region PUBLIC METHODS

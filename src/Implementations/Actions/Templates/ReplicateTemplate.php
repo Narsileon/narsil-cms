@@ -12,9 +12,6 @@ use Narsil\Cms\Models\Collections\Template;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class ReplicateTemplate extends Action implements Contract
 {
     #region PUBLIC METHODS

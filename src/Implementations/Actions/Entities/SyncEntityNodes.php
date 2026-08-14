@@ -19,9 +19,6 @@ use Narsil\Cms\Models\Entities\EntityNode;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class SyncEntityNodes extends Action implements Contract
 {
     #region PUBLIC METHODS

@@ -9,9 +9,6 @@ use Narsil\Cms\Contracts\Menus\GuestMenu as Contract;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class GuestMenu extends Facade
 {
     #region PROTECTED METHODS

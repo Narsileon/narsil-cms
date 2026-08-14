@@ -8,9 +8,6 @@ use Illuminate\Support\Fluent;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class SummaryData extends Fluent
 {
     #region CONSTRUCTOR

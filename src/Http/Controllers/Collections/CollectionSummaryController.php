@@ -17,9 +17,6 @@ use Narsil\Cms\Models\Entities\Entity;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class CollectionSummaryController extends RenderController
 {
     #region PUBLIC METHODS

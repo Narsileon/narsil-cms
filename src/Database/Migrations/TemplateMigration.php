@@ -18,9 +18,6 @@ use Narsil\Cms\Models\Entities\EntityNodeRelation;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class TemplateMigration extends Migration
 {
     #region CONSTRUCTOR

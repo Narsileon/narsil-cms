@@ -13,9 +13,6 @@ use Narsil\Cms\Models\Hosts\HostLocale;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class SitemapIndex
 {
     #region CONSTRUCTOR

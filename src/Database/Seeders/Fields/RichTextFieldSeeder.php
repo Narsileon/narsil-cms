@@ -10,9 +10,6 @@ use Narsil\Cms\Models\Collections\Field;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 final class RichTextFieldSeeder extends Seeder
 {
     #region PUBLIC METHODS

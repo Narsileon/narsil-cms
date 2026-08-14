@@ -16,9 +16,6 @@ use Narsil\Cms\Observers\HostLocaleObserver;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 #[ObservedBy(HostLocaleObserver::class)]
 class HostLocale extends Model
 {

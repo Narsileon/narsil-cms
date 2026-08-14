@@ -13,9 +13,6 @@ use Narsil\Cms\Models\Collections\Template;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class TemplateFormRequest extends FormRequest implements Contract
 {
     #region PUBLIC METHODS

@@ -15,9 +15,6 @@ use Narsil\Cms\Database\Factories\FieldOptionFactory;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 #[UseFactory(FieldOptionFactory::class)]
 class FieldOption extends Model
 {

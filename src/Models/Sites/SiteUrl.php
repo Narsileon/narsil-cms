@@ -11,9 +11,6 @@ use Narsil\Cms\Models\Hosts\HostLocaleLanguage;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class SiteUrl extends Model
 {
     use HasUuidPrimaryKey;

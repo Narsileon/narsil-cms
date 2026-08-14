@@ -16,9 +16,6 @@ use Narsil\Cms\Models\Hosts\HostLocaleLanguage;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class HostTable extends Table
 {
     #region CONSTRUCTOR

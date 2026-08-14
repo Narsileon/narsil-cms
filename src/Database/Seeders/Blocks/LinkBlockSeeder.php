@@ -17,9 +17,6 @@ use Narsil\Cms\Models\Collections\FieldOption;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 final class LinkBlockSeeder extends Seeder
 {
     #region CONSTANTS

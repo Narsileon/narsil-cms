@@ -14,9 +14,6 @@ use Narsil\Cms\Support\MenuItem;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class AuthMenu extends Menu implements Contract
 {
     #region CONSTRUCTOR

@@ -13,9 +13,6 @@ use Narsil\Cms\Models\Collections\TemplateTab;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class TemplateTabForm extends Form implements Contract
 {
     #region PROTECTED METHODS

@@ -8,9 +8,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 trait HasValidationRules
 {
     #region CONSTANTS

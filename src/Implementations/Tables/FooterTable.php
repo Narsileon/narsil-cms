@@ -17,9 +17,6 @@ use Narsil\Cms\Models\Sites\Site;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class FooterTable extends Table
 {
     #region CONSTRUCTOR

@@ -14,9 +14,6 @@ use Narsil\Cms\Models\Entities\Entity;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class EntityTable extends Table
 {
     #region PUBLIC METHODS

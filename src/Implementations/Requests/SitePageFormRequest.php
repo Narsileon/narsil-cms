@@ -14,9 +14,6 @@ use Narsil\Cms\Models\Sites\SitePage;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class SitePageFormRequest extends FormRequest implements Contract
 {
     #region PUBLIC METHODS

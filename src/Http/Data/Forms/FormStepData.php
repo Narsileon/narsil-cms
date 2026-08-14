@@ -11,9 +11,6 @@ use Narsil\Cms\Models\Collections\TemplateTabElement;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class FormStepData extends BaseFormStepData
 {
     #region PUBLIC METHODS

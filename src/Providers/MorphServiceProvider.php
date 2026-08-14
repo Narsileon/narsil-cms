@@ -12,9 +12,6 @@ use Narsil\Cms\Models\Collections\Template;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 final class MorphServiceProvider extends BaseMorphServiceProvider
 {
     use HasSchemas;

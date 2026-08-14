@@ -8,9 +8,6 @@ use Illuminate\Support\Str;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 abstract class FieldService
 {
     #region PUBLIC METHODS

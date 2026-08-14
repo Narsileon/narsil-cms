@@ -9,9 +9,6 @@ use Narsil\Cms\Models\Globals\Footer;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 interface ReplicateFooter extends Action
 {
     #region PUBLIC METHODS

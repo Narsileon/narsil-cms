@@ -9,9 +9,6 @@ use Narsil\Cms\Models\Hosts\HostLocale;
 #endregion
 
 
-/**
- * @author Jonathan Rigaux
- */
 class HostLocaleObserver
 {
     #region PUBLIC METHODS

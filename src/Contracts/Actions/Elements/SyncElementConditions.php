@@ -9,9 +9,6 @@ use Narsil\Cms\Models\Collections\Element;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 interface SyncElementConditions extends Action
 {
     #region PUBLIC METHODS

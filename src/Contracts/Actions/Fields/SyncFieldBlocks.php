@@ -9,9 +9,6 @@ use Narsil\Cms\Models\Collections\Field;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 interface SyncFieldBlocks extends Action
 {
     #region PUBLIC METHODS

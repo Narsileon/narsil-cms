@@ -12,9 +12,6 @@ use Narsil\Cms\Support\Tree;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class SiteResource extends JsonResource
 {
     #region PROPERTIES

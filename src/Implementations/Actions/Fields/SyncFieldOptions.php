@@ -12,9 +12,6 @@ use Narsil\Cms\Models\Collections\FieldOption;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class SyncFieldOptions extends Action implements Contract
 {
     #region PUBLIC METHODS

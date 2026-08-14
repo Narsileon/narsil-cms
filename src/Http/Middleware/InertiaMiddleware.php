@@ -21,9 +21,6 @@ use Narsil\Cms\Services\BreadcrumbService;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class InertiaMiddleware extends Middleware
 {
     use HasSchemas;

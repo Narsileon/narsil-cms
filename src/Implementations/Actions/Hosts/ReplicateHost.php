@@ -12,9 +12,6 @@ use Narsil\Cms\Models\Hosts\Host;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class ReplicateHost extends Action implements Contract
 {
     #region PUBLIC METHODS

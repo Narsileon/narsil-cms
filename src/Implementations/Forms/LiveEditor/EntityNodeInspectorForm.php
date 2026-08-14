@@ -10,9 +10,6 @@ use Narsil\Cms\Http\Data\Forms\FormStepData;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class EntityNodeInspectorForm extends Form implements Contract
 {
     #region CONSTRUCTOR

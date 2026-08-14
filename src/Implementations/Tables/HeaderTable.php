@@ -16,9 +16,6 @@ use Narsil\Cms\Models\Sites\Site;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class HeaderTable extends Table
 {
     #region CONSTRUCTOR

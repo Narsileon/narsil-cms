@@ -10,9 +10,6 @@ use Narsil\Cms\Models\Collections\BlockElement;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class BlockElementCondition extends AbstractCondition
 {
     #region CONSTRUCTOR

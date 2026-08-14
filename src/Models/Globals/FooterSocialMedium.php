@@ -12,9 +12,6 @@ use Narsil\Base\Traits\Orderable;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class FooterSocialMedium extends Model
 {
     use HasTranslations;

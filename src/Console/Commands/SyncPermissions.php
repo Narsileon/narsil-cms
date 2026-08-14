@@ -16,9 +16,6 @@ use ReflectionClass;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class SyncPermissions extends Command
 {
     #region PROPERTIES

@@ -11,9 +11,6 @@ use Narsil\Cms\Models\Configuration;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class ConfigurationFormRequest extends FormRequest implements Contract
 {
     #region PUBLIC METHODS

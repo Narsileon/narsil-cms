@@ -20,9 +20,6 @@ use Narsil\Cms\Policies\HostPolicy;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 #[UseFactory(HostFactory::class)]
 #[UsePolicy(HostPolicy::class)]
 class Host extends Model

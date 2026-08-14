@@ -15,9 +15,6 @@ use Narsil\Cms\Models\Sites\SitePage;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class SitePageUpdateController extends RedirectController
 {
     #region PUBLIC METHODS

@@ -17,9 +17,6 @@ use Narsil\Cms\Models\Collections\TemplateTabElement;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 final class ContentTemplateSeeder extends Seeder
 {
     #region CONSTRUCTOR

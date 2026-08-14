@@ -17,9 +17,6 @@ use Narsil\Cms\Models\Sites\SitePage;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class SiteUpdateController extends RedirectController
 {
     use HasSchemas;

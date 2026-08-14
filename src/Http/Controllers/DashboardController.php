@@ -10,9 +10,6 @@ use Narsil\Base\Http\Controllers\RenderController;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class DashboardController extends RenderController
 {
     #region PUBLIC METHODS

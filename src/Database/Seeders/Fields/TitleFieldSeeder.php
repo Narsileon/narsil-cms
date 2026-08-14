@@ -10,9 +10,6 @@ use Narsil\Cms\Models\Collections\Field;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 final class TitleFieldSeeder extends Seeder
 {
     #region PUBLIC METHODS

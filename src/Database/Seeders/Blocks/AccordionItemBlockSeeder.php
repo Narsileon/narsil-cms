@@ -12,9 +12,6 @@ use Narsil\Cms\Models\Collections\BlockElement;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 final class AccordionItemBlockSeeder extends Seeder
 {
     #region CONSTANTS

@@ -15,9 +15,6 @@ use Narsil\Base\Traits\Orderable;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class HostLocaleLanguage extends Model
 {
     use AuditLoggable;

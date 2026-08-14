@@ -12,9 +12,6 @@ use Narsil\Cms\Models\Collections\Block;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class ReplicateBlock extends Action implements Contract
 {
     #region PUBLIC METHODS

@@ -10,9 +10,6 @@ use Narsil\Cms\Models\Collections\Block;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class BlockFactory extends Factory
 {
     #region PUBLIC METHODS

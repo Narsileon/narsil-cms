@@ -9,9 +9,6 @@ use Narsil\Base\Support\TranslationsBag;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class DataTableCollection extends BaseDataTableCollection
 {
     #region PUBLIC METHODS

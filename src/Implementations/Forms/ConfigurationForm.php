@@ -20,9 +20,6 @@ use Narsil\Cms\Models\Hosts\HostLocaleLanguage;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class ConfigurationForm extends Form implements Contract
 {
     #region CONSTRUCTOR

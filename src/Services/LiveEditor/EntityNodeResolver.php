@@ -13,9 +13,6 @@ use Narsil\Cms\Models\Sites\SitePageEntity;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class EntityNodeResolver
 {
     #region PUBLIC METHODS

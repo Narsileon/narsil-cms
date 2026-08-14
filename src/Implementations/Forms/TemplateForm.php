@@ -24,9 +24,6 @@ use Narsil\Cms\Models\Collections\TemplateTab;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class TemplateForm extends Form implements Contract
 {
     #region CONSTRUCTOR

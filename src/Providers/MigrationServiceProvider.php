@@ -18,9 +18,6 @@ use Narsil\Cms\Models\ValidationRule;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 final class MigrationServiceProvider extends ServiceProvider
 {
     use HasSchemas;

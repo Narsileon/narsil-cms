@@ -13,9 +13,6 @@ use Narsil\Cms\Models\Collections\Field;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class FieldFormRequest extends FormRequest implements Contract
 {
     #region PUBLIC METHODS

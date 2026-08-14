@@ -9,9 +9,6 @@ use Narsil\Cms\Contracts\Menus\Sidebar as Contract;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class Sidebar extends Facade
 {
     #region PROTECTED METHODS

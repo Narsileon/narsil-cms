@@ -16,9 +16,6 @@ use Narsil\Base\Traits\HasUuidPrimaryKey;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class EntityNodeRelation extends Pivot
 {
     use HasUuidPrimaryKey;

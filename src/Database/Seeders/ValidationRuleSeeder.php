@@ -10,9 +10,6 @@ use Narsil\Cms\Models\ValidationRule;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class ValidationRuleSeeder extends Seeder
 {
     #region PUBLIC METHODS

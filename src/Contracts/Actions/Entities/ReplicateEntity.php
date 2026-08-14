@@ -9,9 +9,6 @@ use Narsil\Cms\Models\Entities\Entity;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 interface ReplicateEntity extends Action
 {
     #region PUBLIC METHODS

@@ -15,9 +15,6 @@ use Narsil\Cms\Models\Configuration;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class ConfigurationEditController extends RenderController
 {
     #region PUBLIC METHODS

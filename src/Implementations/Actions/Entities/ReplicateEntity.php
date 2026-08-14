@@ -10,9 +10,6 @@ use Narsil\Cms\Models\Entities\Entity;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class ReplicateEntity extends Action implements Contract
 {
     #region PUBLIC METHODS

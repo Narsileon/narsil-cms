@@ -15,9 +15,6 @@ use Narsil\Cms\Policies\BlockPolicy;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 #[UseFactory(BlockFactory::class)]
 #[UsePolicy(BlockPolicy::class)]
 class Block extends BaseElement

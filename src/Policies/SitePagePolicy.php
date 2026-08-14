@@ -11,9 +11,6 @@ use Narsil\Base\Traits\Policies\IsViewable;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class SitePagePolicy
 {
     use IsCreatable;

@@ -18,9 +18,6 @@ use Narsil\Cms\Models\Collections\TemplateTabElement;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 abstract class EntityNode extends Model
 {
     use HasTranslations;

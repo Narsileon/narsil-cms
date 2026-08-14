@@ -15,9 +15,6 @@ use Narsil\Cms\Models\Collections\Field;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class BlockTable extends Table
 {
     #region CONSTRUCTOR

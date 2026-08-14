@@ -9,9 +9,6 @@ use Narsil\Cms\Models\Hosts\Host;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 interface ReplicateHost extends Action
 {
     #region PUBLIC METHODS

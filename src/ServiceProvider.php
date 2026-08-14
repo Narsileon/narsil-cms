@@ -26,9 +26,6 @@ use Narsil\Cms\Providers\TranslationServiceProvider;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class ServiceProvider extends NarsilServiceProvider
 {
     #region PUBLIC METHODS

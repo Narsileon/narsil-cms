@@ -16,9 +16,6 @@ use Narsil\Base\Traits\Orderable;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 abstract class Element extends MorphPivot
 {
     use HasIdentifier;

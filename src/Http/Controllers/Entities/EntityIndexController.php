@@ -17,9 +17,6 @@ use Narsil\Cms\Traits\IsCollectionController;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class EntityIndexController extends RenderController
 {
     use IsCollectionController;

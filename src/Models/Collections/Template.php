@@ -24,9 +24,6 @@ use Narsil\Cms\Policies\TemplatePolicy;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 #[ObservedBy(ModelObserver::class)]
 #[ObservedBy(TemplateObserver::class)]
 #[UseFactory(TemplateFactory::class)]

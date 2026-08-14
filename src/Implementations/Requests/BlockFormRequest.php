@@ -13,9 +13,6 @@ use Narsil\Cms\Models\Collections\Block;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class BlockFormRequest extends FormRequest implements Contract
 {
     #region PUBLIC METHODS

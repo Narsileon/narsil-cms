@@ -16,9 +16,6 @@ use Narsil\Cms\Models\Globals\Header;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class HeaderForm extends Form implements Contract
 {
     #region CONSTRUCTOR

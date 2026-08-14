@@ -19,9 +19,6 @@ use Narsil\Cms\Traits\IsCollectionController;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class EntityStoreController extends RedirectController
 {
     use IsCollectionController;

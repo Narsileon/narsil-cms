@@ -12,9 +12,6 @@ use Narsil\Cms\Models\Collections\FieldOption;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 final class PaddingFieldSeeder extends Seeder
 {
     #region PUBLIC METHODS

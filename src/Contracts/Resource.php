@@ -10,9 +10,6 @@ use JsonSerializable;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 interface Resource
 {
     #region PUBLIC METHODS

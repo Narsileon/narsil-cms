@@ -11,9 +11,6 @@ use Narsil\Cms\Observers\BlockElementObserver;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 #[ObservedBy(BlockElementObserver::class)]
 class BlockElement extends Element
 {

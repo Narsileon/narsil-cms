@@ -13,9 +13,6 @@ use Narsil\Cms\Models\Collections\Template;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class TemplateObserver
 {
     #region PUBLIC METHODS

@@ -9,9 +9,6 @@ use Narsil\Cms\Models\Entities\EntityNode;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 trait HasEntityNodeChildren
 {
     #region PROTECTED METHODS

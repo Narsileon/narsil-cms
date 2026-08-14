@@ -9,9 +9,6 @@ use Narsil\Cms\Support\MenuItem;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 abstract class Menu implements Contract
 {
     #region PROPERTIES

@@ -13,9 +13,6 @@ use Narsil\Cms\Models\Sites\SitePage;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class FooterLink extends Pivot
 {
     use HasTranslations;

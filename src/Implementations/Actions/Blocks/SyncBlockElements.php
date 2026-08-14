@@ -14,9 +14,6 @@ use Narsil\Cms\Models\Collections\BlockElement;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class SyncBlockElements extends Action implements Contract
 {
     #region PUBLIC METHODS

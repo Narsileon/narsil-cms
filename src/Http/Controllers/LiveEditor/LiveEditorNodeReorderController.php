@@ -15,9 +15,6 @@ use Narsil\Cms\Traits\IsLiveEditorController;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class LiveEditorNodeReorderController extends RedirectController
 {
     use IsLiveEditorController;

@@ -11,9 +11,6 @@ use Narsil\Cms\Observers\TemplateTabElementObserver;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 #[ObservedBy(TemplateTabElementObserver::class)]
 class TemplateTabElement extends Element
 {

@@ -10,9 +10,6 @@ use Narsil\Base\Traits\HasUuidPrimaryKey;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class SitePageOverride extends Model
 {
     use HasUuidPrimaryKey;

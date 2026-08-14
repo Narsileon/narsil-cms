@@ -19,9 +19,6 @@ use Narsil\Cms\Traits\HasValidationRules;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 #[UseFactory(FieldFactory::class)]
 #[UsePolicy(FieldPolicy::class)]
 class Field extends BaseElement

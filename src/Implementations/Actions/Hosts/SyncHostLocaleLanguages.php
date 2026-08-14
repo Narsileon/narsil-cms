@@ -12,9 +12,6 @@ use Narsil\Cms\Models\Hosts\HostLocaleLanguage;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class SyncHostLocaleLanguages extends Action implements Contract
 {
     #region PUBLIC METHODS

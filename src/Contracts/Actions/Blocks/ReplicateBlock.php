@@ -9,9 +9,6 @@ use Narsil\Cms\Models\Collections\Block;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 interface ReplicateBlock extends Action
 {
     #region PUBLIC METHODS

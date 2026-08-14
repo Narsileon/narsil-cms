@@ -18,9 +18,6 @@ use Narsil\Cms\Models\Collections\Element;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class ConditionForm extends Form implements Contract
 {
     #region CONSTRUCTOR

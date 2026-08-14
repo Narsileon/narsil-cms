@@ -16,9 +16,6 @@ use Narsil\Cms\Models\Entities\EntityNodeRelation;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class EntityNodeObserver
 {
     #region PUBLIC METHODS

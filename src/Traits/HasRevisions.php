@@ -17,9 +17,6 @@ use Narsil\Base\Traits\Publisheable;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 trait HasRevisions
 {
     use HasDatetimes;

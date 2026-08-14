@@ -16,9 +16,6 @@ use Narsil\Cms\Policies\SitePolicy;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 #[UseFactory(SiteFactory::class)]
 #[UsePolicy(SitePolicy::class)]
 class Site extends Host

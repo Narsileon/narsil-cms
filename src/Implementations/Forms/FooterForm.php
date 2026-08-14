@@ -25,9 +25,6 @@ use Narsil\Cms\Models\Globals\FooterSocialMedium;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class FooterForm extends Form implements Contract
 {
     #region CONSTRUCTOR

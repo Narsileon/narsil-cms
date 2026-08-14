@@ -12,9 +12,6 @@ use Narsil\Cms\Models\Globals\FooterSocialMedium;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class SyncFooterSocialMedia extends Action implements Contract
 {
     #region PUBLIC METHODS

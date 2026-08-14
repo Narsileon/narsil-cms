@@ -9,9 +9,6 @@ use Narsil\Cms\Support\MenuItem;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 interface Menu extends JsonSerializable
 {
     #region PUBLIC METHODS

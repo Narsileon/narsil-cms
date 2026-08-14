@@ -15,9 +15,6 @@ use Narsil\Cms\Models\Hosts\HostLocaleLanguage;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class HostFactory extends Factory
 {
     #region PUBLIC METHODS

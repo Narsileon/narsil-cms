@@ -10,9 +10,6 @@ use Narsil\Cms\Models\Collections\Template;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class TemplateFactory extends Factory
 {
     #region PUBLIC METHODS

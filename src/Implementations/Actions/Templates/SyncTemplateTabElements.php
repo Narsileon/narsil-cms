@@ -14,9 +14,6 @@ use Narsil\Cms\Models\Collections\TemplateTabElement;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class SyncTemplateTabElements extends Action implements Contract
 {
     #region PUBLIC METHODS

@@ -31,9 +31,6 @@ use Narsil\Cms\Models\Sites\SitePage;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class SitePageForm extends Form implements Contract
 {
     #region CONSTRUCTOR

@@ -11,9 +11,6 @@ use Narsil\Cms\Models\Hosts\HostLocale;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class CountryMiddleware
 {
     #region PUBLIC METHODS

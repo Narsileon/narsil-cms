@@ -8,9 +8,6 @@ use Illuminate\Console\Command;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class TestCommand extends Command
 {
     #region PROPERTIES

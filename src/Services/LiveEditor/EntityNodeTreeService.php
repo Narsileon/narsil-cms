@@ -14,9 +14,6 @@ use Narsil\Cms\Models\Entities\EntityNode;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class EntityNodeTreeService
 {
     #region CONSTANTS

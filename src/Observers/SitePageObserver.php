@@ -11,9 +11,6 @@ use Narsil\Cms\Models\Sites\SitePageEntity;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class SitePageObserver
 {
     use HasSchemas;

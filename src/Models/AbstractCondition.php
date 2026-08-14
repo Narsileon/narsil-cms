@@ -10,9 +10,6 @@ use Narsil\Base\Traits\Orderable;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 abstract class AbstractCondition extends Model
 {
     use HasUuidPrimaryKey;

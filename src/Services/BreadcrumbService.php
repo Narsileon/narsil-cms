@@ -10,9 +10,6 @@ use Narsil\Base\Services\ModelService;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 abstract class BreadcrumbService
 {
     #region PUBLIC METHODS

@@ -17,9 +17,6 @@ use Narsil\Cms\Models\Sites\SiteUrl;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 abstract class PageService
 {
     #region PUBLIC METHODS

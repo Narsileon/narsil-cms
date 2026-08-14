@@ -9,9 +9,6 @@ use Narsil\Cms\Models\Sites\SitePage;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class SitePageFactory extends Factory
 {
     #region PUBLIC METHODS

@@ -11,9 +11,6 @@ use Narsil\Cms\Models\Globals\Footer;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class ReplicateFooter extends Action implements Contract
 {
     #region PUBLIC METHODS

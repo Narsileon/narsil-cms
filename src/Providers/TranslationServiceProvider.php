@@ -9,9 +9,6 @@ use Narsil\Base\Support\TranslationsBag;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 final class TranslationServiceProvider extends ServiceProvider
 {
     #region PUBLIC METHODS

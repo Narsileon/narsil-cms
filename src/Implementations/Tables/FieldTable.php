@@ -15,9 +15,6 @@ use Narsil\Cms\Models\ValidationRule;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class FieldTable extends Table
 {
     #region CONSTRUCTOR

@@ -16,9 +16,6 @@ use Narsil\Cms\Models\Sites\SiteUrl;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class SitemapUrls
 {
     #region CONSTRUCTOR

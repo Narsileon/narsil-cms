@@ -14,9 +14,6 @@ use Narsil\Cms\Models\Entities\Entity;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class EntitySearchController extends RedirectController
 {
     #region CONSTANTS

@@ -15,9 +15,6 @@ use Narsil\Base\Traits\HasTranslations;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 abstract class BaseElement extends Model
 {
     use Blameable;

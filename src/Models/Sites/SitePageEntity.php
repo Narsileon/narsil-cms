@@ -14,9 +14,6 @@ use Narsil\Cms\Observers\SitePageEntityObserver;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 #[ObservedBy(SitePageEntityObserver::class)]
 class SitePageEntity extends Pivot
 {

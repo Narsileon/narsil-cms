@@ -9,9 +9,6 @@ use Narsil\Cms\Models\Collections\FieldOption;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class FieldOptionFactory extends Factory
 {
     #region PUBLIC METHODS

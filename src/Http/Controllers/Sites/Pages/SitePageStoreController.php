@@ -17,9 +17,6 @@ use Narsil\Cms\Models\Sites\SitePage;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class SitePageStoreController extends RedirectController
 {
     #region CONSTRUCTOR

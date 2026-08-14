@@ -9,9 +9,6 @@ use Narsil\Cms\Models\Globals\Header;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 interface ReplicateHeader extends Action
 {
     #region PUBLIC METHODS

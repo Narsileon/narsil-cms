@@ -9,9 +9,6 @@ use Narsil\Cms\Models\Globals\Header;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class HeaderFactory extends Factory
 {
     #region PUBLIC METHODS

@@ -16,9 +16,6 @@ use Narsil\Cms\Traits\IsCollectionController;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class EntityReplicateManyController extends RedirectController
 {
     use IsCollectionController;

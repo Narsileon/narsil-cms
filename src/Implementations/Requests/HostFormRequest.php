@@ -15,9 +15,6 @@ use Narsil\Cms\Models\Hosts\HostLocaleLanguage;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class HostFormRequest extends FormRequest implements Contract
 {
     #region PUBLIC METHODS

@@ -11,9 +11,6 @@ use Narsil\Cms\Models\Collections\Element;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class SyncElementConditions extends Action implements Contract
 {
     #region PUBLIC METHODS

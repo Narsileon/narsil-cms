@@ -11,9 +11,6 @@ use Narsil\Cms\Models\Globals\FooterLink;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class SyncFooterLinks extends Action implements Contract
 {
     #region PUBLIC METHODS

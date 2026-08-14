@@ -10,9 +10,6 @@ use Narsil\Cms\Models\Collections\Template;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 abstract class MakeModelCommand extends GeneratorCommand
 {
     #region PROPERTIES

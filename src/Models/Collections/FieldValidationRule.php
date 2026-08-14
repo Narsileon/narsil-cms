@@ -11,9 +11,6 @@ use Narsil\Cms\Models\ValidationRule;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class FieldValidationRule extends Pivot
 {
     use HasUuidPrimaryKey;

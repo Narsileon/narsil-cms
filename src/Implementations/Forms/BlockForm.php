@@ -22,9 +22,6 @@ use Narsil\Cms\Models\Collections\Field;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class BlockForm extends Form implements Contract
 {
     #region CONSTRUCTOR

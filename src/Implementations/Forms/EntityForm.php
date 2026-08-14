@@ -16,9 +16,6 @@ use Narsil\Cms\Models\Entities\Entity;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class EntityForm extends Form implements Contract
 {
     #region CONSTRUCTOR

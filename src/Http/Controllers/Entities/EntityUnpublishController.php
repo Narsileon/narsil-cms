@@ -12,9 +12,6 @@ use Narsil\Cms\Traits\IsCollectionController;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class EntityUnpublishController extends RedirectController
 {
     use IsCollectionController;

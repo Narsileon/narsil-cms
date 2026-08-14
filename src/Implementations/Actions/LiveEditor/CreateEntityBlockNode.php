@@ -17,9 +17,6 @@ use Narsil\Cms\Traits\HasEntityNodeChildren;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class CreateEntityBlockNode extends Action implements Contract
 {
     use HasEntityNodeChildren;

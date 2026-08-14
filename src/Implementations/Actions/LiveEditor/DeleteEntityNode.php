@@ -12,9 +12,6 @@ use Narsil\Cms\Traits\HasEntityNodeChildren;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class DeleteEntityNode extends Action implements Contract
 {
     use HasEntityNodeChildren;

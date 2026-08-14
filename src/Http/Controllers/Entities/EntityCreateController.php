@@ -20,9 +20,6 @@ use Narsil\Cms\Traits\IsCollectionController;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class EntityCreateController extends RenderController
 {
     use IsCollectionController;

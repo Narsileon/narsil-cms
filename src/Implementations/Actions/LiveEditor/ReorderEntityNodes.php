@@ -16,9 +16,6 @@ use Narsil\Cms\Traits\HasEntityNodeChildren;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class ReorderEntityNodes extends Action implements Contract
 {
     use HasEntityNodeChildren;

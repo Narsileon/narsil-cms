@@ -9,9 +9,6 @@ use Narsil\Cms\Models\Sites\SitePage;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 interface SyncSitePageEntities extends Action
 {
     #region PUBLIC METHODS

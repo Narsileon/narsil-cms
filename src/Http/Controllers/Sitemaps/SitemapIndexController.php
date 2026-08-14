@@ -11,9 +11,6 @@ use Illuminate\Support\Facades\Storage;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class SitemapIndexController extends Controller
 {
     #region PUBLIC METHODS

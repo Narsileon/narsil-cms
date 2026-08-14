@@ -14,9 +14,6 @@ use Narsil\Cms\Services\LiveEditor\LiveEditorSessionService;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class LiveEditorShowController extends RenderController
 {
     #region CONSTANTS

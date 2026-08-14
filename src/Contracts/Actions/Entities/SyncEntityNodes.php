@@ -9,9 +9,6 @@ use Narsil\Cms\Models\Entities\Entity;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 interface SyncEntityNodes extends Action
 {
     #region PUBLIC METHODS

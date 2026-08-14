@@ -13,9 +13,6 @@ use Narsil\Cms\Models\Sites\Site;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class SiteFormRequest extends FormRequest implements Contract
 {
     #region PUBLIC METHODS

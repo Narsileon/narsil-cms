@@ -10,9 +10,6 @@ use Narsil\Cms\Models\Globals\FooterSocialMedium;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- */
 class FooterFactory extends Factory
 {
     #region CONSTANTS
