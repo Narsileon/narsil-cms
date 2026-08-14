@@ -1,13 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Narsil\Cms\Implementations\Tables;
 
 #region USE
 
-use Narsil\Base\Http\Data\Forms\Inputs\DatetimeInputData;
-use Narsil\Base\Http\Data\Forms\Inputs\NumberInputData;
-use Narsil\Base\Http\Data\Forms\Inputs\TextInputData;
-use Narsil\Base\Http\Data\TanStackTables\ColumnDefData;
+use Narsil\Base\Http\Data\TanStackTables\Columns\DateTimeColumn;
+use Narsil\Base\Http\Data\TanStackTables\Columns\NumberColumn;
+use Narsil\Base\Http\Data\TanStackTables\Columns\TextColumn;
 use Narsil\Base\Implementations\Table;
 use Narsil\Base\Services\ModelService;
 use Narsil\Cms\Models\Globals\Footer;
@@ -39,80 +40,65 @@ class FooterTable extends Table
     public function columns(): array
     {
         return [
-            new ColumnDefData(
+            NumberColumn::make(
                 id: Footer::ID,
-                type: NumberInputData::TYPE,
                 visibility: true,
             ),
-            new ColumnDefData(
+            TextColumn::make(
                 id: Footer::SLUG,
-                type: TextInputData::TYPE,
                 visibility: true,
             ),
-            new ColumnDefData(
+            TextColumn::make(
                 id: Footer::ORGANIZATION,
-                type: TextInputData::TYPE,
             ),
-            new ColumnDefData(
+            TextColumn::make(
                 id: Footer::EMAIL,
-                type: TextInputData::TYPE,
             ),
-            new ColumnDefData(
+            TextColumn::make(
                 id: Footer::PHONE,
-                type: TextInputData::TYPE,
             ),
-            new ColumnDefData(
+            TextColumn::make(
                 id: Footer::STREET,
-                type: TextInputData::TYPE,
                 visibility: true,
             ),
-            new ColumnDefData(
+            TextColumn::make(
                 id: Footer::POSTAL_CODE,
-                type: TextInputData::TYPE,
                 visibility: true,
             ),
-            new ColumnDefData(
+            TextColumn::make(
                 id: Footer::CITY,
-                type: TextInputData::TYPE,
                 visibility: true,
             ),
-            new ColumnDefData(
+            TextColumn::make(
                 id: Footer::COUNTRY,
-                type: TextInputData::TYPE,
             ),
-            new ColumnDefData(
+            TextColumn::make(
                 id: Footer::ORGANIZATION_SCHEMA,
-                type: TextInputData::TYPE,
             ),
-            new ColumnDefData(
+            NumberColumn::make(
                 enableColumnFilter: false,
                 header: ModelService::getTableLabel(Site::VIRTUAL_TABLE),
                 id: Footer::COUNT_WEBSITES,
-                type: NumberInputData::TYPE,
                 visibility: true,
             ),
-            new ColumnDefData(
+            NumberColumn::make(
                 enableColumnFilter: false,
                 header: ModelService::getTableLabel(FooterLink::TABLE),
                 id: Footer::COUNT_LINKS,
-                type: NumberInputData::TYPE,
                 visibility: true,
             ),
-            new ColumnDefData(
+            NumberColumn::make(
                 enableColumnFilter: false,
                 header: ModelService::getTableLabel(FooterSocialMedium::TABLE),
                 id: Footer::COUNT_SOCIAL_MEDIA,
-                type: NumberInputData::TYPE,
                 visibility: true,
             ),
-            new ColumnDefData(
+            DateTimeColumn::make(
                 id: Footer::CREATED_AT,
-                type: DatetimeInputData::TYPE,
                 visibility: true,
             ),
-            new ColumnDefData(
+            DateTimeColumn::make(
                 id: Footer::UPDATED_AT,
-                type: DatetimeInputData::TYPE,
                 visibility: true,
             ),
         ];

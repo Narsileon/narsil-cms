@@ -1,13 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Narsil\Cms\Implementations\Tables;
 
 #region USE
 
-use Narsil\Base\Http\Data\Forms\Inputs\DatetimeInputData;
-use Narsil\Base\Http\Data\Forms\Inputs\NumberInputData;
-use Narsil\Base\Http\Data\Forms\Inputs\TextInputData;
-use Narsil\Base\Http\Data\TanStackTables\ColumnDefData;
+use Narsil\Base\Http\Data\TanStackTables\Columns\DateTimeColumn;
+use Narsil\Base\Http\Data\TanStackTables\Columns\NumberColumn;
+use Narsil\Base\Http\Data\TanStackTables\Columns\TextColumn;
 use Narsil\Base\Implementations\Table;
 use Narsil\Base\Services\ModelService;
 use Narsil\Cms\Models\Collections\Field;
@@ -37,44 +38,36 @@ class FieldTable extends Table
     public function columns(): array
     {
         return [
-            new ColumnDefData(
+            NumberColumn::make(
                 id: Field::ID,
-                type: NumberInputData::TYPE,
                 visibility: true,
             ),
-            new ColumnDefData(
+            TextColumn::make(
                 id: Field::HANDLE,
-                type: TextInputData::TYPE,
                 visibility: true,
             ),
-            new ColumnDefData(
+            TextColumn::make(
                 id: Field::LABEL,
-                type: TextInputData::TYPE,
                 visibility: true,
             ),
-            new ColumnDefData(
+            TextColumn::make(
                 id: Field::DESCRIPTION,
-                type: TextInputData::TYPE,
             ),
-            new ColumnDefData(
+            TextColumn::make(
                 id: Field::PLACEHOLDER,
-                type: TextInputData::TYPE,
             ),
-            new ColumnDefData(
+            NumberColumn::make(
                 enableColumnFilter: false,
                 header: ModelService::getTableLabel(ValidationRule::TABLE),
                 id: Field::COUNT_VALIDATION_RULES,
-                type: NumberInputData::TYPE,
                 visibility: true,
             ),
-            new ColumnDefData(
+            DateTimeColumn::make(
                 id: Field::CREATED_AT,
-                type: DatetimeInputData::TYPE,
                 visibility: true,
             ),
-            new ColumnDefData(
+            DateTimeColumn::make(
                 id: Field::UPDATED_AT,
-                type: DatetimeInputData::TYPE,
                 visibility: true,
             ),
         ];

@@ -1,13 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Narsil\Cms\Implementations\Tables;
 
 #region USE
 
-use Narsil\Base\Http\Data\Forms\Inputs\DatetimeInputData;
-use Narsil\Base\Http\Data\Forms\Inputs\NumberInputData;
-use Narsil\Base\Http\Data\Forms\Inputs\TextInputData;
-use Narsil\Base\Http\Data\TanStackTables\ColumnDefData;
+use Narsil\Base\Http\Data\TanStackTables\Columns\DateTimeColumn;
+use Narsil\Base\Http\Data\TanStackTables\Columns\NumberColumn;
+use Narsil\Base\Http\Data\TanStackTables\Columns\TextColumn;
 use Narsil\Base\Implementations\Table;
 use Narsil\Base\Services\ModelService;
 use Narsil\Cms\Models\Globals\Footer;
@@ -38,31 +39,26 @@ class HeaderTable extends Table
     public function columns(): array
     {
         return [
-            new ColumnDefData(
+            NumberColumn::make(
                 id: Header::ID,
-                type: NumberInputData::TYPE,
                 visibility: true,
             ),
-            new ColumnDefData(
+            TextColumn::make(
                 id: Header::SLUG,
-                type: TextInputData::TYPE,
                 visibility: true,
             ),
-            new ColumnDefData(
+            NumberColumn::make(
                 enableColumnFilter: false,
                 header: ModelService::getTableLabel(Site::VIRTUAL_TABLE),
                 id: Footer::COUNT_WEBSITES,
-                type: NumberInputData::TYPE,
                 visibility: true,
             ),
-            new ColumnDefData(
+            DateTimeColumn::make(
                 id: Header::CREATED_AT,
-                type: DatetimeInputData::TYPE,
                 visibility: true,
             ),
-            new ColumnDefData(
+            DateTimeColumn::make(
                 id: Header::UPDATED_AT,
-                type: DatetimeInputData::TYPE,
                 visibility: true,
             ),
         ];

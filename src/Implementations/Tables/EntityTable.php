@@ -1,13 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Narsil\Cms\Implementations\Tables;
 
 #region USE
 
-use Narsil\Base\Http\Data\Forms\Inputs\DatetimeInputData;
-use Narsil\Base\Http\Data\Forms\Inputs\NumberInputData;
-use Narsil\Base\Http\Data\Forms\Inputs\TextInputData;
-use Narsil\Base\Http\Data\TanStackTables\ColumnDefData;
+use Narsil\Base\Http\Data\TanStackTables\Columns\DateTimeColumn;
+use Narsil\Base\Http\Data\TanStackTables\Columns\NumberColumn;
+use Narsil\Base\Http\Data\TanStackTables\Columns\TextColumn;
 use Narsil\Base\Implementations\Table;
 use Narsil\Base\Services\RouteService;
 use Narsil\Cms\Models\Entities\Entity;
@@ -24,24 +25,20 @@ class EntityTable extends Table
     public function columns(): array
     {
         return [
-            new ColumnDefData(
+            NumberColumn::make(
                 id: Entity::ID,
-                type: NumberInputData::TYPE,
                 visibility: true,
             ),
-            new ColumnDefData(
+            TextColumn::make(
                 id: Entity::SLUG,
-                type: TextInputData::TYPE,
                 visibility: true,
             ),
-            new ColumnDefData(
+            DateTimeColumn::make(
                 id: Entity::CREATED_AT,
-                type: DatetimeInputData::TYPE,
                 visibility: true,
             ),
-            new ColumnDefData(
+            DateTimeColumn::make(
                 id: Entity::UPDATED_AT,
-                type: DatetimeInputData::TYPE,
                 visibility: true,
             ),
         ];

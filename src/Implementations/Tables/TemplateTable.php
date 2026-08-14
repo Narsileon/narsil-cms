@@ -1,13 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Narsil\Cms\Implementations\Tables;
 
 #region USE
 
-use Narsil\Base\Http\Data\Forms\Inputs\DatetimeInputData;
-use Narsil\Base\Http\Data\Forms\Inputs\NumberInputData;
-use Narsil\Base\Http\Data\Forms\Inputs\TextInputData;
-use Narsil\Base\Http\Data\TanStackTables\ColumnDefData;
+use Narsil\Base\Http\Data\TanStackTables\Columns\DateTimeColumn;
+use Narsil\Base\Http\Data\TanStackTables\Columns\NumberColumn;
+use Narsil\Base\Http\Data\TanStackTables\Columns\TextColumn;
 use Narsil\Base\Implementations\Table;
 use Narsil\Base\Services\ModelService;
 use Narsil\Cms\Models\Collections\Template;
@@ -37,41 +38,34 @@ class TemplateTable extends Table
     public function columns(): array
     {
         return [
-            new ColumnDefData(
+            NumberColumn::make(
                 id: Template::ID,
-                type: NumberInputData::TYPE,
                 visibility: true,
             ),
-            new ColumnDefData(
+            TextColumn::make(
                 id: Template::TABLE_NAME,
-                type: TextInputData::TYPE,
                 visibility: true,
             ),
-            new ColumnDefData(
+            TextColumn::make(
                 id: Template::SINGULAR,
-                type: TextInputData::TYPE,
                 visibility: true,
             ),
-            new ColumnDefData(
+            TextColumn::make(
                 id: Template::PLURAL,
-                type: TextInputData::TYPE,
                 visibility: true,
             ),
-            new ColumnDefData(
+            NumberColumn::make(
                 enableColumnFilter: false,
                 header: ModelService::getTableLabel(TemplateTab::TABLE),
                 id: Template::COUNT_TABS,
-                type: NumberInputData::TYPE,
                 visibility: true,
             ),
-            new ColumnDefData(
+            DateTimeColumn::make(
                 id: Template::CREATED_AT,
-                type: DatetimeInputData::TYPE,
                 visibility: true,
             ),
-            new ColumnDefData(
+            DateTimeColumn::make(
                 id: Template::UPDATED_AT,
-                type: DatetimeInputData::TYPE,
                 visibility: true,
             ),
         ];
