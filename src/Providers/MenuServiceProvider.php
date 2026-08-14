@@ -1,11 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Narsil\Cms\Providers;
 
 #region USE
 
-use Illuminate\Support\Facades\Config;
 use Illuminate\Support\ServiceProvider;
+use Narsil\Base\Narsil;
 
 #endregion
 
@@ -35,9 +37,9 @@ final class MenuServiceProvider extends ServiceProvider
      */
     protected function registerMenus(): void
     {
-        $config = Config::get('narsil.bindings.menus', []);
+        $menus = app(Narsil::class)->menus();
 
-        foreach ($config as $abstract => $concrete)
+        foreach ($menus as $abstract => $concrete)
         {
             $this->app->singleton($abstract, $concrete);
         }

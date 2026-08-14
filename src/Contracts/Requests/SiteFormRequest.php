@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Narsil\Cms\Contracts\Requests;
 
 #region USE
@@ -11,7 +13,7 @@ use Narsil\Base\Contracts\FormRequest;
 /**
  * @author Jonathan Rigaux
  *
- * @see vendor/narsil/cms/config/narsil/bindings/requests.php
+ * @see vendor/narsil/cms/src/ServiceProvider.php
  */
 interface SiteFormRequest extends FormRequest
 {

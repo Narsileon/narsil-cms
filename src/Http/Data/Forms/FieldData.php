@@ -1,20 +1,22 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Narsil\Cms\Http\Data\Forms;
 
 #region USE
 
-use Illuminate\Support\Facades\Config;
 use Narsil\Base\Http\Data\Forms\ConditionData;
 use Narsil\Base\Http\Data\Forms\FieldData as BaseFieldData;
 use Narsil\Base\Http\Data\Forms\Inputs\TextInputData;
+use Narsil\Base\Narsil;
 use Narsil\Cms\Http\Data\Forms\Inputs\BuilderInputData;
 use Narsil\Cms\Models\AbstractCondition;
 use Narsil\Cms\Models\Collections\Block;
 use Narsil\Cms\Models\Collections\Element;
 use Narsil\Cms\Models\Collections\Field;
 
-#endregionx
+#endregion
 
 /**
  * @author Jonathan Rigaux
@@ -34,7 +36,7 @@ class FieldData extends BaseFieldData
     {
         $base = $element->{Element::RELATION_BASE};
 
-        $input = Config::get('narsil.fields.' . $base->{Field::TYPE}, TextInputData::class);
+        $input = app(Narsil::class)->fields()[$base->{Field::TYPE}] ?? TextInputData::class;
 
         if ($base->{Field::TYPE} === BuilderInputData::TYPE)
         {
@@ -56,7 +58,7 @@ class FieldData extends BaseFieldData
                     value: $condition->{AbstractCondition::VALUE},
                 );
             })->toArray(),
-            input: new $input()
+            input: (new $input())
                 ->elements($base->{Field::RELATION_BLOCKS}->map(function (Block $block)
                 {
                     return FieldsetData::fromBlock($block);

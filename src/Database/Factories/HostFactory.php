@@ -1,11 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Narsil\Cms\Database\Factories;
 
 #region USE
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Config;
+use Narsil\Base\Narsil;
 use Narsil\Cms\Models\Hosts\Host;
 use Narsil\Cms\Models\Hosts\HostLocale;
 use Narsil\Cms\Models\Hosts\HostLocaleLanguage;
@@ -73,7 +76,7 @@ class HostFactory extends Factory
      */
     protected function createHostLocaleLanguages(HostLocale $hostLocale): void
     {
-        $languages = Config::get('narsil.locales', []);
+        $languages = app(Narsil::class)->getLocales();
 
         foreach ($languages as $position => $language)
         {

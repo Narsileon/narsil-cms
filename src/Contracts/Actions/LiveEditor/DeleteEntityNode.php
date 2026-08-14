@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Narsil\Cms\Contracts\Actions\LiveEditor;
 
 #region USE
@@ -12,7 +14,7 @@ use Narsil\Cms\Models\Entities\EntityNode;
 /**
  * @author Jonathan Rigaux
  *
- * @see vendor/narsil/cms/config/bindings/actions.php
+ * @see vendor/narsil/cms/src/ServiceProvider.php
  */
 interface DeleteEntityNode extends Action
 {

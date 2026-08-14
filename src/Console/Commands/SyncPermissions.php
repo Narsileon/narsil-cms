@@ -1,13 +1,15 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Narsil\Cms\Console\Commands;
 
 #region USE
 
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\Config;
 use Narsil\Base\Enums\AbilityEnum;
 use Narsil\Base\Models\Policies\Permission;
+use Narsil\Base\Narsil;
 use Narsil\Base\Services\PermissionService;
 use ReflectionClass;
 
@@ -39,7 +41,7 @@ class SyncPermissions extends Command
      */
     public function handle(): void
     {
-        $config = Config::get('narsil.models.policies', []);
+        $config = app(Narsil::class)->policies();
 
         foreach ($config as $model => $policy)
         {
@@ -69,7 +71,7 @@ class SyncPermissions extends Command
 
                 $names = [];
 
-                foreach (Config::get('narsil.locales', ['en']) as $locale)
+                foreach (app(Narsil::class)->getLocales() as $locale)
                 {
                     $names[$locale] = PermissionService::getLabel($table, $ability->value, $locale);
                 }

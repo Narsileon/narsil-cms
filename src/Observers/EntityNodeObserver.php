@@ -1,10 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Narsil\Cms\Observers;
 
 #region USE
 
-use Illuminate\Support\Facades\Config;
+use Narsil\Base\Narsil;
 use Narsil\Cms\Models\Collections\BlockElement;
 use Narsil\Cms\Models\Collections\Element;
 use Narsil\Cms\Models\Collections\Field;
@@ -66,7 +68,7 @@ class EntityNodeObserver
 
         $field = $entityNode->{EntityNode::RELATION_ELEMENT}?->{Element::RELATION_BASE};
 
-        if (in_array($field->{Field::TYPE}, Config::get('narsil.relations', [])))
+        if (in_array($field->{Field::TYPE}, app(Narsil::class)->relations()))
         {
             $entityNode->relations()->delete();
 

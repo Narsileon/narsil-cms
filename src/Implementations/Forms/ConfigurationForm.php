@@ -1,15 +1,17 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Narsil\Cms\Implementations\Forms;
 
 #region USE
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Config;
 use Narsil\Base\Http\Data\Forms\FieldData;
 use Narsil\Base\Http\Data\Forms\FormStepData;
 use Narsil\Base\Http\Data\Forms\Inputs\SelectInputData;
 use Narsil\Base\Implementations\Form;
+use Narsil\Base\Narsil;
 use Narsil\Base\Services\LocaleService;
 use Narsil\Base\Services\RouteService;
 use Narsil\Cms\Contracts\Forms\ConfigurationForm as Contract;
@@ -45,7 +47,7 @@ class ConfigurationForm extends Form implements Contract
     protected function getSteps(): array
     {
         $frontendLanguages = HostLocaleLanguage::getUniqueLanguages();
-        $backendLanguages = Config::get('narsil.locales', []);
+        $backendLanguages = app(Narsil::class)->getLocales();
 
         return [
             new FormStepData(
