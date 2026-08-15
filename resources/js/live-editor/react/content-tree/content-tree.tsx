@@ -67,7 +67,7 @@ function ContentTree() {
   if (tree.length === 0) {
     return (
       <p className="p-4 text-sm text-muted-foreground">
-        {trans("live_editor.tree.empty")}
+        {trans("live-editor.tree.empty")}
       </p>
     );
   }

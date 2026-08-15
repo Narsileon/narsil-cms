@@ -1,4 +1,4 @@
-import type { FormData } from "@narsil-ui/types";
+import type { FormData, OptionData } from "@narsil-ui/types";
 
 export type ContentTreeNodeType = "block" | "builder";
 
@@ -35,14 +35,29 @@ export type LiveEditorRoutes = {
   nodeReorder: string;
   nodeStore: string;
   nodeUpdate: string;
+  pageCreate: string;
   sitePages: string;
 };
 
+export type PageTreeNode = {
+  badge: string;
+  children: PageTreeNode[];
+  create_url: string;
+  edit_url: string;
+  id: number;
+  label: string | Record<string, string>;
+  live_editor_url: string;
+};
+
 export type LiveEditorBootstrap = {
+  country: string;
+  countries: OptionData[];
   entityUuid: string | null;
   locale: string;
+  pages: PageTreeNode[];
   previewUrl: string | null;
   routes: LiveEditorRoutes;
+  siteLabel: string | null;
   siteHostname: string | null;
   sitePageId: number;
   sitePageTitle: string | null;

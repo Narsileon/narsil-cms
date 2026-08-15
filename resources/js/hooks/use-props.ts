@@ -32,6 +32,7 @@ type AuthProps = {
 
 type SessionProps = {
   color: string;
+  languages: OptionData[];
   locale: string;
   radius: number;
   schema: string;

@@ -8,6 +8,13 @@ return [
         'empty' => 'Wählen Sie einen Block, um dessen Inhalt zu bearbeiten',
         'title' => 'Eigenschaften',
     ],
+    'language'          => 'Sprache',
+    'country'           => 'Land',
+    'pages'             => [
+        'create' => 'Seite erstellen',
+        'empty'  => 'Diese Website enthält noch keine Seiten',
+        'title'  => 'Seiten',
+    ],
     'preview'           => [
         'missing' => 'Diese Seite hat im aktuellen Workspace noch keine öffentliche URL',
         'title'   => 'Vorschau',
@@ -17,4 +24,5 @@ return [
         'empty' => 'Diese Seite hat noch keine Inhaltsblöcke',
         'title' => 'Inhalt',
     ],
+    'workspace'         => 'Arbeitsbereich',
 ];

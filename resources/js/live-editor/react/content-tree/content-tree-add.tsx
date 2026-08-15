@@ -30,15 +30,11 @@ function ContentTreeAdd({ blocks, onAdd, ...props }: ContentTreeAddProps) {
 
   return (
     <DropdownMenuRoot open={open} onOpenChange={onOpenChange}>
-      <Tooltip tooltip={trans("live_editor.tree.add")}>
+      <Tooltip tooltip={trans("live-editor.tree.add")}>
         <DropdownMenuTrigger
           {...props}
           render={
-            <Button
-              aria-label={trans("live_editor.tree.add")}
-              size="icon-sm"
-              variant="ghost"
-            >
+            <Button aria-label={trans("live-editor.tree.add")} size="icon-sm" variant="ghost">
               <Icon name="plus" />
             </Button>
           }
@@ -49,10 +45,7 @@ function ContentTreeAdd({ blocks, onAdd, ...props }: ContentTreeAddProps) {
           <DropdownMenuPopup>
             {blocks.map((block) => {
               return (
-                <DropdownMenuItem
-                  onClick={() => onAdd(block.block_id)}
-                  key={block.block_id}
-                >
+                <DropdownMenuItem onClick={() => onAdd(block.block_id)} key={block.block_id}>
                   <Icon name={(block.icon as IconName) ?? "block"} />
                   <span>{block.label}</span>
                 </DropdownMenuItem>

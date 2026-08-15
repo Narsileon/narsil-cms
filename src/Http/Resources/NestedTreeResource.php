@@ -57,6 +57,13 @@ class NestedTreeResource extends JsonResource
      */
     final public const LABEL = 'label';
 
+    /**
+     * The name of the live editor URL property.
+     *
+     * @var string
+     */
+    final public const LIVE_EDITOR_URL = 'live_editor_url';
+
     #endregion
 
     #region PROPERTIES

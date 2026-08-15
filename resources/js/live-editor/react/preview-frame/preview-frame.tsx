@@ -1,13 +1,14 @@
 import { Icon } from "@narsil-ui/components/icon";
 import { useTranslator } from "@narsil-ui/components/translator";
 import { useEffect, useRef } from "react";
-import {
-  createPreviewBridge,
-  type PreviewBridge,
-} from "../../core/preview-bridge";
+import { createPreviewBridge, type PreviewBridge } from "../../core/preview-bridge";
 import { useLiveEditor, useLiveEditorState } from "../live-editor-context";
 
-function PreviewFrame() {
+type PreviewFrameProps = {
+  previewUrl: string | null;
+};
+
+function PreviewFrame({ previewUrl }: PreviewFrameProps) {
   const { trans } = useTranslator();
 
   const editor = useLiveEditor();
@@ -15,8 +16,6 @@ function PreviewFrame() {
 
   const bridgeRef = useRef<PreviewBridge | null>(null);
   const iframeRef = useRef<HTMLIFrameElement>(null);
-
-  const { previewUrl } = editor.bootstrap;
 
   useEffect(() => {
     if (!iframeRef.current) {
@@ -53,7 +52,7 @@ function PreviewFrame() {
       <div className="flex h-full flex-col items-center justify-center gap-2 p-8 text-center">
         <Icon className="size-6 text-muted-foreground" name="file" />
         <p className="max-w-sm text-sm text-muted-foreground">
-          {trans("live_editor.preview.missing")}
+          {trans("live-editor.preview.missing")}
         </p>
       </div>
     );
@@ -66,7 +65,7 @@ function PreviewFrame() {
       ref={iframeRef}
       className="h-full w-full border-0 bg-white"
       src={previewUrl}
-      title={trans("live_editor.preview.title")}
+      title={trans("live-editor.preview.title")}
     />
   );
 }

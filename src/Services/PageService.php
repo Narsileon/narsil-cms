@@ -24,9 +24,11 @@ abstract class PageService
     /**
      * @param Request $request
      *
+     * @param string|null $locale
+     *
      * @return SitePage
      */
-    public static function resolvePage(Request $request): SitePage
+    public static function resolvePage(Request $request, ?string $locale = null): SitePage
     {
         $url = Str::lower($request->url());
 
@@ -43,6 +45,11 @@ abstract class PageService
         }
 
         App::setLocale($siteUrl->{SiteUrl::RELATION_HOST_LOCALE_LANGUAGE}->{HostLocaleLanguage::LANGUAGE});
+
+        if ($locale)
+        {
+            App::setLocale($locale);
+        }
 
         $siteUrl->loadMissing([
             SiteUrl::RELATION_PAGE . '.' . SitePage::RELATION_ENTITIES . '.' . SitePageEntity::RELATION_TARGET,

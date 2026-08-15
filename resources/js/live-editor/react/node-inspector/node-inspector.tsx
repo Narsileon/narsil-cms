@@ -1,9 +1,5 @@
 import { Button } from "@narsil-ui/components/button";
-import {
-  FormLanguage,
-  FormProvider,
-  FormTabs,
-} from "@narsil-ui/components/form";
+import { FormLanguage, FormProvider, FormTabs } from "@narsil-ui/components/form";
 import { Heading } from "@narsil-ui/components/heading";
 import { Icon } from "@narsil-ui/components/icon";
 import { Spinner } from "@narsil-ui/components/spinner";
@@ -38,9 +34,7 @@ function NodeInspector() {
 
   if (!inspector) {
     return (
-      <p className="p-4 text-sm text-muted-foreground">
-        {trans("live_editor.inspector.empty")}
-      </p>
+      <p className="p-4 text-sm text-muted-foreground">{trans("live-editor.inspector.empty")}</p>
     );
   }
 
@@ -75,10 +69,7 @@ function NodeInspector() {
               </Button>
             </div>
             {form.languages?.length > 1 ? (
-              <FormLanguage
-                value={formLanguage}
-                onValueChange={setFormLanguage}
-              />
+              <FormLanguage value={formLanguage} onValueChange={setFormLanguage} />
             ) : null}
             {/* The inspector is far narrower than a regular form page, so grid
                 items have to be allowed to shrink below their content width. */}

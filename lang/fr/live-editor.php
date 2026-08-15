@@ -8,6 +8,13 @@ return [
         'empty' => 'Sélectionnez un bloc pour modifier son contenu',
         'title' => 'Propriétés',
     ],
+    'language'          => 'Langue',
+    'country'           => 'Pays',
+    'pages'             => [
+        'create' => 'Créer une page',
+        'empty'  => 'Ce site ne contient encore aucune page',
+        'title'  => 'Pages',
+    ],
     'preview'           => [
         'missing' => 'Cette page n\'a pas encore d\'url publique dans l\'espace de travail actuel',
         'title'   => 'Aperçu',
@@ -17,4 +24,5 @@ return [
         'empty' => 'Cette page n\'a pas encore de blocs de contenu',
         'title' => 'Contenu',
     ],
+    'workspace'         => 'Espace de travail',
 ];

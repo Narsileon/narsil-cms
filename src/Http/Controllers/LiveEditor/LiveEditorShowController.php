@@ -5,6 +5,7 @@ namespace Narsil\Cms\Http\Controllers\LiveEditor;
 #region USE
 
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\App;
 use Inertia\Response;
 use Narsil\Base\Enums\AbilityEnum;
 use Narsil\Base\Http\Controllers\RenderController;
@@ -36,6 +37,8 @@ class LiveEditorShowController extends RenderController
      */
     public function __invoke(SitePage $sitePage): JsonResponse|Response
     {
+        $sitePage = $this->resolveCountryPage($sitePage);
+
         $this->authorize(AbilityEnum::UPDATE, $sitePage);
 
         $this->registerTranslations();
@@ -50,6 +53,34 @@ class LiveEditorShowController extends RenderController
 
     #endregion
 
+    #region PRIVATE METHODS
+
+    /**
+     * Resolve the equivalent page for the requested country.
+     *
+     * @param SitePage $sitePage
+     *
+     * @return SitePage
+     */
+    private function resolveCountryPage(SitePage $sitePage): SitePage
+    {
+        $country = request()->query(SitePage::COUNTRY);
+        $page = $sitePage;
+
+        if (is_string($country) && $country !== $sitePage->{SitePage::COUNTRY})
+        {
+            $slug = $sitePage->getTranslationWithoutFallback(SitePage::SLUG, App::getLocale());
+
+            $page = SitePage::query()
+                ->where(SitePage::SITE_ID, $sitePage->{SitePage::SITE_ID})
+                ->where(SitePage::COUNTRY, $country)
+                ->where(SitePage::SLUG . '->' . App::getLocale(), $slug)
+                ->first() ?? $sitePage;
+        }
+
+        return $page;
+    }
+
     #region PROTECTED METHODS
 
     /**
@@ -57,7 +88,7 @@ class LiveEditorShowController extends RenderController
      */
     protected function getDescription(): string
     {
-        return trans('narsil-cms::live_editor.description');
+        return trans('narsil-cms::live-editor.description');
     }
 
     /**
@@ -84,6 +115,9 @@ class LiveEditorShowController extends RenderController
             'nodeReorder' => route('live-editor.nodes.reorder', $page),
             'nodeStore' => route('live-editor.nodes.store', $page),
             'nodeUpdate' => route('live-editor.nodes.update', $node),
+            'pageCreate' => route('sites.pages.create', [
+                'site' => $sitePage->{SitePage::RELATION_SITE}?->getRouteKey(),
+            ]),
             'sitePages' => route('sites.edit', [
                 'site' => $sitePage->{SitePage::RELATION_SITE}?->getRouteKey(),
             ]),
@@ -95,7 +129,7 @@ class LiveEditorShowController extends RenderController
      */
     protected function getTitle(): string
     {
-        return trans('narsil-cms::live_editor.title');
+        return trans('narsil-cms::live-editor.title');
     }
 
     /**
@@ -104,14 +138,20 @@ class LiveEditorShowController extends RenderController
     protected function registerTranslations(): void
     {
         app(TranslationsBag::class)
-            ->add('narsil-cms::live_editor.inspector.empty')
-            ->add('narsil-cms::live_editor.inspector.title')
-            ->add('narsil-cms::live_editor.preview.missing')
-            ->add('narsil-cms::live_editor.preview.title')
-            ->add('narsil-cms::live_editor.title')
-            ->add('narsil-cms::live_editor.tree.add')
-            ->add('narsil-cms::live_editor.tree.empty')
-            ->add('narsil-cms::live_editor.tree.title')
+            ->add('narsil-cms::live-editor.inspector.empty')
+            ->add('narsil-cms::live-editor.inspector.title')
+            ->add('narsil-cms::live-editor.country')
+            ->add('narsil-cms::live-editor.language')
+            ->add('narsil-cms::live-editor.pages.create')
+            ->add('narsil-cms::live-editor.pages.empty')
+            ->add('narsil-cms::live-editor.pages.title')
+            ->add('narsil-cms::live-editor.preview.missing')
+            ->add('narsil-cms::live-editor.preview.title')
+            ->add('narsil-cms::live-editor.title')
+            ->add('narsil-cms::live-editor.tree.add')
+            ->add('narsil-cms::live-editor.tree.empty')
+            ->add('narsil-cms::live-editor.tree.title')
+            ->add('narsil-cms::live-editor.workspace')
             ->add('narsil::ui.cancel')
             ->add('narsil::ui.close')
             ->add('narsil::ui.confirm')

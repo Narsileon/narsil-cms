@@ -13,6 +13,8 @@ use Narsil\Base\Contracts\Resources\UserResource;
 use Narsil\Base\Helpers\Translator;
 use Narsil\Base\Http\Data\OptionData;
 use Narsil\Base\Models\Users\UserConfiguration;
+use Narsil\Base\Narsil;
+use Narsil\Base\Services\LocaleService;
 use Narsil\Base\Traits\HasSchemas;
 use Narsil\Cms\Contracts\Menus\AuthMenu;
 use Narsil\Cms\Contracts\Menus\GuestMenu;
@@ -149,9 +151,11 @@ class InertiaMiddleware extends Middleware
     protected function getSession(Request $request): array
     {
         $locale = App::getLocale();
+        $languages = LocaleService::languageOptions(app(Narsil::class)->getLocales());
         $schemas = $this->getSchemaOptions();
 
         return [
+            'languages' => $languages,
             'locale' => $locale,
             'schemas' => $schemas,
 

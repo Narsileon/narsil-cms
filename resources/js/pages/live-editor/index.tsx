@@ -9,10 +9,14 @@ import { useMemo, type ComponentProps } from "react";
 type LiveEditorPageProps = LiveEditorBootstrap;
 
 function LiveEditorPage({
+  country,
+  countries,
   entityUuid,
   locale,
+  pages,
   previewUrl,
   routes,
+  siteLabel,
   siteHostname,
   sitePageId,
   sitePageTitle,
@@ -20,20 +24,28 @@ function LiveEditorPage({
 }: LiveEditorPageProps) {
   const bootstrap = useMemo<LiveEditorBootstrap>(
     () => ({
+      country: country,
+      countries: countries,
       entityUuid: entityUuid,
       locale: locale,
+      pages: pages,
       previewUrl: previewUrl,
       routes: routes,
+      siteLabel: siteLabel,
       siteHostname: siteHostname,
       sitePageId: sitePageId,
       sitePageTitle: sitePageTitle,
       tree: tree,
     }),
     [
+      country,
+      countries,
       entityUuid,
       locale,
+      pages,
       previewUrl,
       routes,
+      siteLabel,
       siteHostname,
       sitePageId,
       sitePageTitle,

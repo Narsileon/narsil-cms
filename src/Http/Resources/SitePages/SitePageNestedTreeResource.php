@@ -57,6 +57,7 @@ class SitePageNestedTreeResource extends NestedTreeResource
             self::EDIT_URL => $this->getEditUrl(),
             self::ID => $this->{SitePage::ID},
             self::LABEL => $this->getLabel(),
+            self::LIVE_EDITOR_URL => $this->getLiveEditorUrl($request),
         ];
     }
 
@@ -136,6 +137,25 @@ class SitePageNestedTreeResource extends NestedTreeResource
     protected function getLabel(): array|string
     {
         return $this->getTranslations(SitePage::TITLE);
+    }
+
+    /**
+     * Get the live editor URL.
+     *
+     * @return string
+     */
+    protected function getLiveEditorUrl(Request $request): string
+    {
+        $parameters = [
+            'sitePage' => $this->{SitePage::ID},
+        ];
+
+        if ($request->query(SitePage::COUNTRY))
+        {
+            $parameters[SitePage::COUNTRY] = $request->query(SitePage::COUNTRY);
+        }
+
+        return route('live-editor.show', $parameters);
     }
 
     #endregion
