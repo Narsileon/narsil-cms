@@ -31,6 +31,16 @@ function LiveEditorShell({ children }: LiveEditorShellProps) {
     themeStore.applyTheme();
   }, []);
 
+  useEffect(() => {
+    const previousOverflow = document.body.style.overflow;
+
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+    };
+  }, []);
+
   return (
     <ToastPrimitive.Provider>
       <TranslatorProvider locale={session.locale} translations={translations}>

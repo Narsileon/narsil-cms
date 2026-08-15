@@ -74,7 +74,7 @@ function LiveEditorLayout() {
   }
 
   return (
-    <div className="grid h-screen grid-rows-[3.25rem_1fr] bg-background text-foreground">
+    <div className="grid h-screen min-h-0 grid-rows-[3.25rem_1fr] overflow-hidden bg-background text-foreground">
       <header className="grid grid-cols-[280px_1fr_380px] border-b">
         <div className="text-sidebar-foreground flex h-13 items-center gap-3 border-r border-b bg-sidebar px-4">
           <div className="flex items-center gap-2">

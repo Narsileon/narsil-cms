@@ -55,6 +55,8 @@ export type LiveEditorBootstrap = {
   entityUuid: string | null;
   locale: string;
   pages: PageTreeNode[];
+  pageData: Record<string, unknown>;
+  pageForm: FormData;
   previewUrl: string | null;
   routes: LiveEditorRoutes;
   siteLabel: string | null;

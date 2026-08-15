@@ -5,14 +5,17 @@ namespace Narsil\Cms\Services\LiveEditor;
 #region USE
 
 use Illuminate\Support\Facades\App;
+use Narsil\Base\Enums\RequestMethodEnum;
 use Narsil\Base\Http\Data\OptionData;
 use Narsil\Base\Services\LocaleService;
 use Narsil\Base\Traits\HasSchemas;
+use Narsil\Cms\Contracts\Forms\SitePageForm;
 use Narsil\Cms\Http\Resources\LiveEditor\EntityNodeTreeResource;
 use Narsil\Cms\Http\Resources\Sites\SiteResource;
 use Narsil\Cms\Models\Hosts\Host;
 use Narsil\Cms\Models\Sites\Site;
 use Narsil\Cms\Models\Sites\SitePage;
+use Narsil\Cms\Models\Sites\SitePageEntity;
 use Narsil\Cms\Models\Sites\SiteUrl;
 
 #endregion
@@ -42,6 +45,10 @@ class LiveEditorSessionService
         $site = $sitePage->{SitePage::RELATION_SITE};
         $country = request()->query(SitePage::COUNTRY, $sitePage->{SitePage::COUNTRY});
 
+        $sitePage->loadMissing([
+            SitePage::RELATION_ENTITIES . '.' . SitePageEntity::RELATION_TARGET,
+        ]);
+
         $site?->load([
             Site::RELATION_PAGES => function ($query) use ($sitePage)
             {
@@ -61,6 +68,8 @@ class LiveEditorSessionService
             'entityUuid' => $entity?->getKey(),
             'locale' => App::getLocale(),
             'pages' => $siteData[Site::RELATION_PAGES] ?? [],
+            'pageData' => $this->pageData($sitePage),
+            'pageForm' => $this->pageForm($sitePage, $site),
             'previewUrl' => $this->previewUrl($sitePage),
             'siteLabel' => $site?->{Site::LABEL},
             'siteHostname' => $sitePage->{SitePage::RELATION_SITE}?->{Host::HOSTNAME},
@@ -134,6 +143,60 @@ class LiveEditorSessionService
         }
 
         return $countries;
+    }
+
+    /**
+     * Get the page form data.
+     *
+     * @param SitePage $sitePage
+     *
+     * @return array
+     */
+    private function pageData(SitePage $sitePage): array
+    {
+        $data = $sitePage->toArrayWithTranslations();
+
+        $data[SitePage::RELATION_ENTITIES] = $sitePage->{SitePage::RELATION_ENTITIES}
+            ->mapWithKeys(function (SitePageEntity $entity)
+            {
+                return [
+                    $entity->{SitePageEntity::LANGUAGE} => $entity->{SitePageEntity::TARGET_TYPE} . '-' . $entity->{SitePageEntity::TARGET_ID},
+                ];
+            })
+            ->all();
+
+        return $data;
+    }
+
+    /**
+     * Build the page form.
+     *
+     * @param SitePage $sitePage
+     * @param Site|null $site
+     *
+     * @return SitePageForm
+     */
+    private function pageForm(SitePage $sitePage, ?Site $site): SitePageForm
+    {
+        $options = [
+            SitePage::RELATION_ENTITIES => $sitePage->{SitePage::RELATION_ENTITIES}
+                ->map(function (SitePageEntity $entity)
+                {
+                    return $entity->{SitePageEntity::RELATION_TARGET}->toOption();
+                })
+                ->values()
+                ->toArray(),
+        ];
+
+        return app(SitePageForm::class)
+            ->action(route('sites.pages.update', [
+                'site' => $site?->getRouteKey(),
+                'sitePage' => $sitePage->{SitePage::ID},
+            ]))
+            ->id($sitePage->{SitePage::ID})
+            ->method(RequestMethodEnum::PATCH->value)
+            ->options($options)
+            ->submitLabel(trans('narsil::ui.update'));
     }
 
     #endregion

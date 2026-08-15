@@ -1,11 +1,50 @@
 import { Button } from "@narsil-ui/components/button";
-import { FormLanguage, FormProvider, FormTabs } from "@narsil-ui/components/form";
+import {
+  FormBlock,
+  FormElement,
+  FormLanguage,
+  FormProvider,
+  FormRoot,
+  FormTabs,
+} from "@narsil-ui/components/form";
 import { Heading } from "@narsil-ui/components/heading";
 import { Icon } from "@narsil-ui/components/icon";
 import { Spinner } from "@narsil-ui/components/spinner";
 import { useTranslator } from "@narsil-ui/components/translator";
+import type { FormStepData } from "@narsil-ui/types";
 import { useEffect } from "react";
 import { useLiveEditor, useLiveEditorState } from "../live-editor-context";
+
+type FormSectionsProps = {
+  steps: FormStepData[];
+};
+
+function FormSections({ steps }: FormSectionsProps) {
+  return (
+    <div className="grid gap-6">
+      {steps.map((step, stepIndex) => {
+        return (
+          <section className="grid gap-4 border-b pb-6 last:border-b-0" key={step.id ?? stepIndex}>
+            {step.label ? <Heading level="h3">{step.label}</Heading> : null}
+            <div className="grid gap-4">
+              {step.elements.map((element, elementIndex) => {
+                return (
+                  <FormElement
+                    {...element}
+                    render={(fieldset) => {
+                      return <FormBlock baseId={element.id as string} fieldset={fieldset} />;
+                    }}
+                    key={element.id ?? elementIndex}
+                  />
+                );
+              })}
+            </div>
+          </section>
+        );
+      })}
+    </div>
+  );
+}
 
 function NodeInspector() {
   const { addTranslations, trans } = useTranslator();
@@ -33,8 +72,48 @@ function NodeInspector() {
   }
 
   if (!inspector) {
+    const { pageData, pageForm, sitePageTitle } = editor.bootstrap;
+
     return (
-      <p className="p-4 text-sm text-muted-foreground">{trans("live-editor.inspector.empty")}</p>
+      <FormProvider
+        id={`live-editor-page-${editor.bootstrap.sitePageId}`}
+        action={pageForm.action}
+        defaultLanguage={pageForm.defaultLanguage}
+        initialData={pageData}
+        languages={pageForm.languages}
+        method={pageForm.method}
+        options={pageForm.options}
+        steps={pageForm.steps}
+        render={({ formLanguage, setFormLanguage }) => {
+          return (
+            <FormRoot
+              className="h-full min-h-0 overflow-hidden"
+              id={`live-editor-page-${editor.bootstrap.sitePageId}`}
+              action={pageForm.action}
+              method={pageForm.method}
+              options={{ preserveState: true }}
+            >
+              <div className="flex h-full min-h-0 flex-col overflow-hidden">
+                <div className="flex h-13 shrink-0 items-center justify-between gap-2 border-b px-4">
+                  <Heading className="truncate" level="h2">
+                    {sitePageTitle ?? trans("live-editor.pages.title")}
+                  </Heading>
+                  <Button form={`live-editor-page-${editor.bootstrap.sitePageId}`} size="sm" type="submit">
+                    <Icon name="save" />
+                    {trans("ui.save")}
+                  </Button>
+                </div>
+                {pageForm.languages?.length > 1 ? (
+                  <FormLanguage value={formLanguage} onValueChange={setFormLanguage} />
+                ) : null}
+                <div className="min-w-0 grow overflow-x-hidden overflow-y-auto p-4">
+                  <FormSections steps={pageForm.steps} />
+                </div>
+              </div>
+            </FormRoot>
+          );
+        }}
+      />
     );
   }
 
