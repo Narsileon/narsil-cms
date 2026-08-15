@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Narsil\Cms\Models\Sites;
 
 #region USE
@@ -62,6 +64,7 @@ final class SitePage extends TreeModel implements Searchable
         ];
 
         $this->mergeCasts([
+            self::PRIORITY => 'float',
             self::SHOW_IN_MENU => 'boolean',
         ]);
 

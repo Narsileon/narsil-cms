@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Narsil\Cms\Http\Resources\SitePages;
 
 #region USE

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Narsil\Cms\Models\Entities;
 
 #region USE
