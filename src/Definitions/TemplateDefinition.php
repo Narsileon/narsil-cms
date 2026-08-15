@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Narsil\Cms\Implementations\Definitions;
+namespace Narsil\Cms\Definitions;
 
 #region USE
 
-use Narsil\Base\Resources\AbstractModelDefinition;
+use Narsil\Base\Definitions\AbstractModelDefinition;
 use Narsil\Base\Enums\ModelHookEventEnum;
 use Narsil\Cms\Contracts\Actions\Templates\ReplicateTemplate;
 use Narsil\Cms\Contracts\Forms\TemplateForm;

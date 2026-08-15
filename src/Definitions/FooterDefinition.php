@@ -2,20 +2,20 @@
 
 declare(strict_types=1);
 
-namespace Narsil\Cms\Implementations\Definitions;
+namespace Narsil\Cms\Definitions;
 
 #region USE
 
-use Narsil\Base\Enums\ModelOperationEnum as Operation;
-use Narsil\Base\Resources\AbstractModelDefinition;
+use Narsil\Base\Definitions\AbstractModelDefinition;
 use Narsil\Base\Enums\ModelHookEventEnum;
+use Narsil\Base\Enums\ModelOperationEnum;
 use Narsil\Cms\Contracts\Actions\Footers\ReplicateFooter;
 use Narsil\Cms\Contracts\Forms\FooterForm;
 use Narsil\Cms\Contracts\Requests\FooterFormRequest;
-use Narsil\Cms\Models\Globals\Footer;
-use Narsil\Cms\Implementations\Tables\FooterTable;
 use Narsil\Cms\Implementations\Hooks\Footers\SyncFooterLinksHook;
 use Narsil\Cms\Implementations\Hooks\Footers\SyncFooterSocialMediaHook;
+use Narsil\Cms\Implementations\Tables\FooterTable;
+use Narsil\Cms\Models\Globals\Footer;
 
 #endregion
 
@@ -86,14 +86,14 @@ final class FooterDefinition extends AbstractModelDefinition
     public function operations(): array
     {
         return [
-            Operation::CREATE,
-            Operation::DESTROY,
-            Operation::DESTROY_MANY,
-            Operation::EDIT,
-            Operation::INDEX,
-            Operation::REPLICATE,
-            Operation::STORE,
-            Operation::UPDATE,
+            ModelOperationEnum::CREATE,
+            ModelOperationEnum::DESTROY,
+            ModelOperationEnum::DESTROY_MANY,
+            ModelOperationEnum::EDIT,
+            ModelOperationEnum::INDEX,
+            ModelOperationEnum::REPLICATE,
+            ModelOperationEnum::STORE,
+            ModelOperationEnum::UPDATE,
         ];
     }
 

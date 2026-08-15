@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-namespace Narsil\Cms\Implementations\Definitions;
+namespace Narsil\Cms\Definitions;
 
 #region USE
 
-use Narsil\Base\Resources\AbstractModelDefinition;
-use Narsil\Base\Enums\ModelOperationEnum as Operation;
-use Narsil\Cms\Contracts\Requests\HeaderFormRequest;
-use Narsil\Cms\Contracts\Forms\HeaderForm;
-use Narsil\Cms\Models\Globals\Header;
-use Narsil\Cms\Implementations\Tables\HeaderTable;
+use Narsil\Base\Definitions\AbstractModelDefinition;
+use Narsil\Base\Enums\ModelOperationEnum;
 use Narsil\Cms\Contracts\Actions\Headers\ReplicateHeader;
+use Narsil\Cms\Contracts\Forms\HeaderForm;
+use Narsil\Cms\Contracts\Requests\HeaderFormRequest;
+use Narsil\Cms\Implementations\Tables\HeaderTable;
+use Narsil\Cms\Models\Globals\Header;
 
 #endregion
 
@@ -67,14 +67,14 @@ final class HeaderDefinition extends AbstractModelDefinition
     public function operations(): array
     {
         return [
-            Operation::CREATE,
-            Operation::DESTROY,
-            Operation::DESTROY_MANY,
-            Operation::EDIT,
-            Operation::INDEX,
-            Operation::REPLICATE,
-            Operation::STORE,
-            Operation::UPDATE,
+            ModelOperationEnum::CREATE,
+            ModelOperationEnum::DESTROY,
+            ModelOperationEnum::DESTROY_MANY,
+            ModelOperationEnum::EDIT,
+            ModelOperationEnum::INDEX,
+            ModelOperationEnum::REPLICATE,
+            ModelOperationEnum::STORE,
+            ModelOperationEnum::UPDATE,
         ];
     }
 
