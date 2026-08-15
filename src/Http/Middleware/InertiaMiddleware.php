@@ -21,6 +21,7 @@ use Narsil\Base\Traits\HasSchemas;
 use Narsil\Cms\Contracts\Menus\AuthMenu;
 use Narsil\Cms\Contracts\Menus\GuestMenu;
 use Narsil\Cms\Contracts\Menus\Sidebar;
+use Narsil\Cms\Http\Resources\InertiaResource;
 use Narsil\Cms\Services\BreadcrumbService;
 
 #endregion
@@ -84,12 +85,16 @@ class InertiaMiddleware extends Middleware
         $redirect = $this->getRedirect($request);
         $session = $this->getSession($request);
 
-        return [
-            ...parent::share($request),
+        $shared = (new InertiaResource([
             'auth' => $auth,
             'navigation' => $navigation,
             'redirect' => $redirect,
             'session' => $session,
+        ]))->toArray($request);
+
+        return [
+            ...parent::share($request),
+            ...$shared,
         ];
     }
 
