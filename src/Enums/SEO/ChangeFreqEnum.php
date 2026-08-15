@@ -8,12 +8,6 @@ use Narsil\Base\Traits\Enumerable;
 
 #endregion
 
-/**
- * Enumeration of sitemap change frequencies.
- *
- * @version 1.0.0
- * @author Jonathan Rigaux
- */
 enum ChangeFreqEnum: string
 {
     use Enumerable;

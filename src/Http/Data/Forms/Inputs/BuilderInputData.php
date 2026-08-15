@@ -16,8 +16,6 @@ use Narsil\Cms\Models\Collections\Field;
 #endregionx
 
 /**
- * @author Jonathan Rigaux
- *
  * @property array $defaultValue The value of the "default value" attribute.
  * @property FieldsetData[] $elements The value of the "elements" attribute.
  */

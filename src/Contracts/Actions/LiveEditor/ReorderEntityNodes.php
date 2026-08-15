@@ -11,11 +11,6 @@ use Narsil\Cms\Models\Entities\EntityNode;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- *
- * @see vendor/narsil/cms/src/ServiceProvider.php
- */
 interface ReorderEntityNodes extends Action
 {
     #region PUBLIC METHODS

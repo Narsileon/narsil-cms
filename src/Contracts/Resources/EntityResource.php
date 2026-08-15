@@ -10,11 +10,6 @@ use Narsil\Cms\Contracts\Resource;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- *
- * @see vendor/narsil/cms/src/ServiceProvider.php
- */
 interface EntityResource extends Resource
 {
     //

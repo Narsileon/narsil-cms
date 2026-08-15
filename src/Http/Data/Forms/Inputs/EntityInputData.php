@@ -14,8 +14,6 @@ use Narsil\Cms\Models\Collections\Template;
 #endregionx
 
 /**
- * @author Jonathan Rigaux
- *
  * @property string $defaultValue The value of the "default value" attribute.
  * @property array $collections The value of the "collections" attribute.
  * @property boolean $multiple The value of the "multiple" attribute.

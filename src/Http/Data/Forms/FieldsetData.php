@@ -16,8 +16,6 @@ use Narsil\Cms\Models\Collections\Field;
 #endregion
 
 /**
- * @author Jonathan Rigaux
- *
  * @property boolean $collapsible
  * @property boolean $virtual
  */

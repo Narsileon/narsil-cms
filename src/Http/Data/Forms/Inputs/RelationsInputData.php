@@ -11,8 +11,6 @@ use Narsil\Base\Support\TranslationsBag;
 #endregionx
 
 /**
- * @author Jonathan Rigaux
- *
  * @property array $defaultValue The value of the "default value" attribute.
  */
 class RelationsInputData extends InputData

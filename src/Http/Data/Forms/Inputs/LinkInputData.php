@@ -12,8 +12,6 @@ use Narsil\Cms\Models\Sites\SitePage;
 #endregionx
 
 /**
- * @author Jonathan Rigaux
- *
  * @property string $defaultValue The value of the "default value" attribute.
  * @property string $labelPath The value of the "label path" attribute.
  * @property string $valuePath The value of the "value path" attribute.

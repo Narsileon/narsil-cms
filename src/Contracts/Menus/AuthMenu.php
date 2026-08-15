@@ -10,11 +10,6 @@ use Narsil\Cms\Contracts\Menu;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- *
- * @see vendor/narsil/cms/src/ServiceProvider.php
- */
 interface AuthMenu extends Menu
 {
     //

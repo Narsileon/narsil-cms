@@ -8,12 +8,6 @@ use Narsil\Base\Traits\Enumerable;
 
 #endregion
 
-/**
- * Enumeration of robots meta tags.
- *
- * @version 1.0.0
- * @author Jonathan Rigaux
- */
 enum RobotsEnum: string
 {
     use Enumerable;

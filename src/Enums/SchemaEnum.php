@@ -8,12 +8,6 @@ use Narsil\Base\Traits\Enumerable;
 
 #endregion
 
-/**
- * Enumeration of database schemas.
- *
- * @version 1.0.0
- * @author Jonathan Rigaux
- */
 enum SchemaEnum: string
 {
     use Enumerable;

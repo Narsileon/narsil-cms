@@ -10,11 +10,6 @@ use Narsil\Base\Contracts\Form;
 
 #endregion
 
-/**
- * @author Jonathan Rigaux
- *
- * @see vendor/narsil/cms/src/ServiceProvider.php
- */
 interface TemplateTabElementForm extends Form
 {
     //
