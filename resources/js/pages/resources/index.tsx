@@ -4,6 +4,7 @@ import { Tooltip } from "@narsil-ui/blocks/tooltip";
 import { Button } from "@narsil-ui/components/button";
 import {
   type DataTableCollection,
+  type DataTableColumnDef,
   type DataTableData,
   DataTable,
   DataTableProvider,
@@ -15,7 +16,6 @@ import { Icon } from "@narsil-ui/components/icon";
 import { SectionContent, SectionHeader, SectionRoot } from "@narsil-ui/components/section";
 import { useTranslator } from "@narsil-ui/components/translator";
 import { useMinSm } from "@narsil-ui/hooks/use-breakpoints";
-import { type DataTableColumnDef } from "@narsil-ui/components/data-table";
 import { route } from "ziggy-js";
 
 type ResourceIndexProps = {

@@ -18,11 +18,10 @@ import { useTranslator } from "@narsil-ui/components/translator";
 import { cn } from "@narsil-ui/lib/utils";
 import type { FormData } from "@narsil-ui/types";
 import { get } from "lodash-es";
-import { type ComponentProps, type ReactNode, useState } from "react";
+import { type ComponentProps, useState } from "react";
 import { type AnonymousItem } from ".";
 
 type SortableItemFormProps = ComponentProps<typeof DialogTrigger> & {
-  children: ReactNode;
   form: FormData;
   ids: UniqueIdentifier[];
   item?: Record<string, unknown>;
@@ -31,7 +30,6 @@ type SortableItemFormProps = ComponentProps<typeof DialogTrigger> & {
 };
 
 function SortableItemForm({
-  children,
   form,
   ids,
   item = {},
@@ -42,14 +40,12 @@ function SortableItemForm({
   const { trans } = useTranslator();
 
   const [data, setData] = useState<Record<string, unknown>>(item);
-  const [error, setError] = useState<string | null>(null);
 
   const [open, setOpen] = useState<boolean>(false);
 
   function onOpenChange(open: boolean) {
     if (!open) {
       setData(item);
-      setError(null);
     }
 
     setOpen(open);
@@ -100,8 +96,6 @@ function SortableItemForm({
 
                         if (oldUniqueIdentifier !== newUniqueIdentifier) {
                           if (ids.includes(newUniqueIdentifier)) {
-                            setError(trans("validation.unique"));
-
                             return;
                           }
                         }
