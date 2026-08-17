@@ -7,7 +7,7 @@ namespace Narsil\Cms\Support\Facades;
 #region USE
 
 use Illuminate\Support\Facades\Facade;
-use Narsil\Cms\Contracts\Menus\AuthMenu as Contract;
+use Narsil\Base\Contracts\Menus\AuthMenu as Contract;
 
 #endregion
 

@@ -1,7 +1,6 @@
 import { usePage } from "@inertiajs/react";
-import type { MenuItem } from "@narsil-cms/types";
 import { type Theme } from "@narsil-ui/stores/theme-store";
-import { OptionData } from "@narsil-ui/types";
+import type { MenuItem, OptionData } from "@narsil-ui/types";
 
 export type GlobalProps = {
   auth: AuthProps;
@@ -11,7 +10,8 @@ export type GlobalProps = {
       href: string;
       label: string;
     }[];
-    sidebar: MenuItem[];
+    home: MenuItem[];
+    sidebars: Record<string, MenuItem[]>;
     userMenu: MenuItem[];
   };
   redirect: RedirectProps;

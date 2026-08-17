@@ -1,4 +1,3 @@
-import { type InertiaLinkProps } from "@inertiajs/react";
 import type { TemplateTab } from "@narsil-cms/types";
 import { type IconName } from "@narsil-ui/registries/icons";
 import { RoutesData } from "@narsil-ui/types";
@@ -28,17 +27,6 @@ export type GroupedSelectOption = {
   optionValue: string;
   routes: RoutesData;
   value: unknown;
-};
-
-export type MenuItem = {
-  group?: string;
-  icon?: IconName;
-  label: string;
-  method: InertiaLinkProps["method"];
-  modal?: boolean;
-  parameters?: Record<string, unknown>;
-  route: string;
-  target?: string;
 };
 
 export type Revision = {

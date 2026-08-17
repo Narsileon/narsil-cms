@@ -7,11 +7,11 @@ namespace Narsil\Cms\Support\Facades;
 #region USE
 
 use Illuminate\Support\Facades\Facade;
-use Narsil\Cms\Contracts\Menus\Sidebar as Contract;
+use Narsil\Cms\Contracts\Menus\CmsSidebar as Contract;
 
 #endregion
 
-class Sidebar extends Facade
+final class CmsSidebar extends Facade
 {
     #region PROTECTED METHODS
 

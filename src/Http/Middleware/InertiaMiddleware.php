@@ -11,6 +11,10 @@ use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Inertia\Middleware;
+use Narsil\Base\Contracts\Menus\AuthMenu;
+use Narsil\Base\Contracts\Menus\GuestMenu;
+use Narsil\Base\Contracts\Menus\Home;
+use Narsil\Base\Contracts\Menus\HomeSidebar;
 use Narsil\Base\Contracts\Resources\UserResource;
 use Narsil\Base\Helpers\Translator;
 use Narsil\Base\Http\Data\OptionData;
@@ -18,9 +22,7 @@ use Narsil\Base\Models\Users\UserConfiguration;
 use Narsil\Base\Narsil;
 use Narsil\Base\Services\LocaleService;
 use Narsil\Base\Traits\HasSchemas;
-use Narsil\Cms\Contracts\Menus\AuthMenu;
-use Narsil\Cms\Contracts\Menus\GuestMenu;
-use Narsil\Cms\Contracts\Menus\Sidebar;
+use Narsil\Cms\Contracts\Menus\CmsSidebar;
 use Narsil\Cms\Http\Resources\InertiaResource;
 use Narsil\Cms\Services\BreadcrumbService;
 
@@ -52,7 +54,7 @@ class InertiaMiddleware extends Middleware
      */
     protected $rootView = 'backend';
 
-    #endreion
+    #endregion
 
     #region PUBLIC METHODS
 
@@ -85,12 +87,12 @@ class InertiaMiddleware extends Middleware
         $redirect = $this->getRedirect($request);
         $session = $this->getSession($request);
 
-        $shared = (new InertiaResource([
+        $shared = new InertiaResource([
             'auth' => $auth,
             'navigation' => $navigation,
             'redirect' => $redirect,
             'session' => $session,
-        ]))->toArray($request);
+        ])->toArray($request);
 
         return [
             ...parent::share($request),
@@ -111,7 +113,11 @@ class InertiaMiddleware extends Middleware
     {
         return [
             'breadcrumb' => BreadcrumbService::getBreadcrumbs($request),
-            'sidebar' => app(Sidebar::class),
+            'home' => app(Home::class),
+            'sidebars' => [
+                'base' => app(HomeSidebar::class),
+                'cms' => app(CmsSidebar::class),
+            ],
             'userMenu' => app(Auth::check() ? AuthMenu::class : GuestMenu::class),
         ];
     }

@@ -55,7 +55,7 @@ class FieldData extends BaseFieldData
                     value: $condition->{AbstractCondition::VALUE},
                 );
             })->toArray(),
-            input: (new $input())
+            input: new $input()
                 ->elements($base->{Field::RELATION_BLOCKS}->map(function (Block $block)
                 {
                     return FieldsetData::fromBlock($block);

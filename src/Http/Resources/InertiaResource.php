@@ -30,7 +30,8 @@ final class InertiaResource extends JsonResource
             'description' => $data['description'] ?? null,
             'navigation' => $data['navigation'] ?? [
                 'breadcrumb' => [],
-                'sidebar' => [],
+                'home' => [],
+                'sidebars' => [],
                 'userMenu' => [],
             ],
             'redirect' => $data['redirect'] ?? [

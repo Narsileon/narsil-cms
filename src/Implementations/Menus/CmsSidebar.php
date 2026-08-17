@@ -7,15 +7,12 @@ namespace Narsil\Cms\Implementations\Menus;
 #region USE
 
 use Narsil\Base\Enums\AbilityEnum;
-use Narsil\Base\Models\Policies\Permission;
-use Narsil\Base\Models\Policies\Role;
-use Narsil\Base\Models\Storages\Asset;
-use Narsil\Base\Models\User;
+use Narsil\Base\Implementations\Menu;
 use Narsil\Base\Services\ModelService;
 use Narsil\Base\Services\PermissionService;
+use Narsil\Base\Support\MenuItem;
 use Narsil\Base\Support\TranslationsBag;
-use Narsil\Cms\Contracts\Menus\Sidebar as Contract;
-use Narsil\Cms\Implementations\Menu;
+use Narsil\Cms\Contracts\Menus\CmsSidebar as Contract;
 use Narsil\Cms\Models\Collections\Block;
 use Narsil\Cms\Models\Collections\Field;
 use Narsil\Cms\Models\Collections\Template;
@@ -25,11 +22,10 @@ use Narsil\Cms\Models\Globals\Footer;
 use Narsil\Cms\Models\Globals\Header;
 use Narsil\Cms\Models\Hosts\Host;
 use Narsil\Cms\Models\Sites\Site;
-use Narsil\Cms\Support\MenuItem;
 
 #endregion
 
-class Sidebar extends Menu implements Contract
+final class CmsSidebar extends Menu implements Contract
 {
     #region CONSTRUCTOR
 
@@ -66,7 +62,6 @@ class Sidebar extends Menu implements Contract
         $this->addCollectionsGroup();
         $this->addStructuresGroup();
         $this->addManagementGroup();
-        $this->addToolsGroup();
 
         app(TranslationsBag::class)
             ->add('narsil-cms::accessibility.close_sidebar')
@@ -89,17 +84,19 @@ class Sidebar extends Menu implements Contract
 
         foreach ($templates as $template)
         {
-            $this->add(new MenuItem($template->{Template::TABLE_NAME})
-                ->group($group)
-                ->icon('layers')
-                ->label($template->{Template::PLURAL})
-                ->route('collections.index')
-                ->parameters([
-                    'collection' => $template->{Template::TABLE_NAME},
-                ])
-                ->permissions([
-                    PermissionService::getName(Entity::TABLE, AbilityEnum::VIEW_ANY)
-                ]));
+            $this->add(
+                new MenuItem($template->{Template::TABLE_NAME})
+                    ->group($group)
+                    ->icon('layers')
+                    ->label($template->{Template::PLURAL})
+                    ->route('collections.index')
+                    ->parameters([
+                        'collection' => $template->{Template::TABLE_NAME},
+                    ])
+                    ->permissions([
+                        PermissionService::getName(Entity::TABLE, AbilityEnum::VIEW_ANY)
+                    ])
+            );
         }
     }
 
@@ -111,30 +108,27 @@ class Sidebar extends Menu implements Contract
         $group = trans('narsil-cms::ui.globals');
 
         $this
-            ->add(new MenuItem(Header::TABLE)
-                ->group($group)
-                ->icon('header')
-                ->label(ModelService::getTableLabel(Header::TABLE))
-                ->route('headers.index')
-                ->permissions([
-                    PermissionService::getName(Header::TABLE, AbilityEnum::VIEW_ANY)
-                ]))
-            ->add(new MenuItem(Footer::TABLE)
-                ->group($group)
-                ->icon('footer')
-                ->label(ModelService::getTableLabel(Footer::TABLE))
-                ->route('footers.index')
-                ->permissions([
-                    PermissionService::getName(Footer::TABLE, AbilityEnum::VIEW_ANY)
-                ]))
-            ->add(new MenuItem(Asset::TABLE)
-                ->group($group)
-                ->icon('cloud')
-                ->label(ModelService::getTableLabel(Asset::TABLE))
-                ->route('assets.index')
-                ->permissions([
-                    PermissionService::getName(Asset::TABLE, AbilityEnum::VIEW_ANY)
-                ]));
+            ->add(
+                new MenuItem(Header::TABLE)
+                    ->group($group)
+                    ->icon('header')
+                    ->label(ModelService::getTableLabel(Header::TABLE))
+                    ->route('headers.index')
+                    ->permissions([
+                        PermissionService::getName(Header::TABLE, AbilityEnum::VIEW_ANY)
+                    ])
+            )
+            ->add(
+                new MenuItem(Footer::TABLE)
+                    ->group($group)
+                    ->icon('footer')
+                    ->label(ModelService::getTableLabel(Footer::TABLE))
+                    ->route('footers.index')
+                    ->permissions([
+                        PermissionService::getName(Footer::TABLE, AbilityEnum::VIEW_ANY)
+                    ])
+            )
+        ;
     }
 
     /**
@@ -142,7 +136,7 @@ class Sidebar extends Menu implements Contract
      */
     protected function addManagementGroup(): void
     {
-        $group = trans('narsil-cms::ui.management');
+        $group = trans('narsil::ui.management');
 
         $this
             ->add(
@@ -153,36 +147,6 @@ class Sidebar extends Menu implements Contract
                     ->route('hosts.index')
                     ->permissions([
                         PermissionService::getName(Host::TABLE, AbilityEnum::VIEW_ANY)
-                    ])
-            )
-            ->add(
-                new MenuItem(User::TABLE)
-                    ->group($group)
-                    ->icon('user')
-                    ->label(ModelService::getTableLabel(User::TABLE))
-                    ->route('users.index')
-                    ->permissions([
-                        PermissionService::getName(User::TABLE, AbilityEnum::VIEW_ANY)
-                    ])
-            )
-            ->add(
-                new MenuItem(Role::TABLE)
-                    ->group($group)
-                    ->icon('role')
-                    ->label(ModelService::getTableLabel(Role::TABLE))
-                    ->route('roles.index')
-                    ->permissions([
-                        PermissionService::getName(Role::TABLE, AbilityEnum::VIEW_ANY)
-                    ])
-            )
-            ->add(
-                new MenuItem(Permission::TABLE)
-                    ->group($group)
-                    ->icon('permission')
-                    ->label(ModelService::getTableLabel(Permission::TABLE))
-                    ->route('permissions.index')
-                    ->permissions([
-                        PermissionService::getName(Permission::TABLE, AbilityEnum::VIEW_ANY)
                     ])
             )
             ->add(
@@ -264,24 +228,6 @@ class Sidebar extends Menu implements Contract
                     ->permissions([
                         PermissionService::getName(Field::TABLE, AbilityEnum::VIEW_ANY)
                     ])
-            );
-    }
-
-    /**
-     * @return void
-     */
-    protected function addToolsGroup(): void
-    {
-        $group = trans('narsil-cms::ui.tools');
-
-        $this
-            ->add(
-                new MenuItem('horizon')
-                    ->group($group)
-                    ->icon('horizon')
-                    ->label('Horizon')
-                    ->route('horizon.index')
-                    ->target('_blank')
             );
     }
 

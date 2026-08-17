@@ -6,11 +6,11 @@ namespace Narsil\Cms\Contracts\Menus;
 
 #region USE
 
-use Narsil\Cms\Contracts\Menu;
+use Narsil\Base\Contracts\Menu;
 
 #endregion
 
-interface AuthMenu extends Menu
+interface CmsSidebar extends Menu
 {
     //
 }

@@ -8,7 +8,6 @@ namespace Narsil\Cms;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\App;
-use Illuminate\Support\Facades\Route;
 use Narsil\Base\Narsil;
 use Narsil\Base\Providers\ActionServiceProvider;
 use Narsil\Base\Providers\FormRequestServiceProvider;
@@ -40,16 +39,6 @@ class ServiceProvider extends NarsilServiceProvider
         $this->loadTranslationsFrom(__DIR__ . '/../lang', 'narsil-cms');
 
         $this->bootNarsilRoutes(base_path('/vendor/narsil/base/routes/users.php'));
-
-        Route::middleware([
-            'web',
-            'narsil',
-        ])
-            ->prefix('narsil')
-            ->group(function ()
-            {
-                Route::redirect('/', '/narsil/cms');
-            });
 
         $this->bootApiRoutes(__DIR__ . '/../routes/api.php');
         $this->bootCmsRoutes(__DIR__ . '/../routes/cms.php');
@@ -133,9 +122,10 @@ class ServiceProvider extends NarsilServiceProvider
             ->form(\Narsil\Cms\Contracts\Forms\TemplateForm::class, \Narsil\Cms\Implementations\Forms\TemplateForm::class)
             ->form(\Narsil\Cms\Contracts\Forms\TemplateTabElementForm::class, \Narsil\Cms\Implementations\Forms\TemplateTabElementForm::class)
             ->form(\Narsil\Cms\Contracts\Forms\TemplateTabForm::class, \Narsil\Cms\Implementations\Forms\TemplateTabForm::class)
-            ->menu(\Narsil\Cms\Contracts\Menus\AuthMenu::class, \Narsil\Cms\Implementations\Menus\AuthMenu::class)
-            ->menu(\Narsil\Cms\Contracts\Menus\GuestMenu::class, \Narsil\Cms\Implementations\Menus\GuestMenu::class)
-            ->menu(\Narsil\Cms\Contracts\Menus\Sidebar::class, \Narsil\Cms\Implementations\Menus\Sidebar::class)
+            ->menu(\Narsil\Base\Contracts\Menus\AuthMenu::class, \Narsil\Cms\Implementations\Menus\AuthMenu::class)
+            ->menu(\Narsil\Base\Contracts\Menus\GuestMenu::class, \Narsil\Cms\Implementations\Menus\GuestMenu::class)
+            ->menu(\Narsil\Base\Contracts\Menus\Home::class, \Narsil\Cms\Implementations\Menus\Home::class)
+            ->menu(\Narsil\Cms\Contracts\Menus\CmsSidebar::class, \Narsil\Cms\Implementations\Menus\CmsSidebar::class)
             ->request(\Narsil\Cms\Contracts\Requests\BlockFormRequest::class, \Narsil\Cms\Implementations\Requests\BlockFormRequest::class)
             ->request(\Narsil\Cms\Contracts\Requests\ConfigurationFormRequest::class, \Narsil\Cms\Implementations\Requests\ConfigurationFormRequest::class)
             ->request(\Narsil\Cms\Contracts\Requests\EntityFormRequest::class, \Narsil\Cms\Implementations\Requests\EntityFormRequest::class)

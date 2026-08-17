@@ -9,9 +9,9 @@ namespace Narsil\Cms\Implementations\Menus;
 use Narsil\Base\Models\Users\UserConfiguration;
 use Narsil\Base\Services\ModelService;
 use Narsil\Base\Support\TranslationsBag;
-use Narsil\Cms\Contracts\Menus\GuestMenu as Contract;
-use Narsil\Cms\Implementations\Menu;
-use Narsil\Cms\Support\MenuItem;
+use Narsil\Base\Contracts\Menus\GuestMenu as Contract;
+use Narsil\Base\Implementations\Menu;
+use Narsil\Base\Support\MenuItem;
 
 #endregion
 

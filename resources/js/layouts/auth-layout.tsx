@@ -1,12 +1,11 @@
 import { Link, router } from "@inertiajs/react";
-import { Sidebar } from "@narsil-cms/blocks/sidebar";
-import { SidebarInset, SidebarProvider, SidebarTrigger } from "@narsil-cms/components/sidebar";
 import { GlobalProps } from "@narsil-cms/hooks/use-props";
 import { AlertDialogProvider } from "@narsil-ui/blocks/alert-dialog";
 import { Bookmarks } from "@narsil-ui/blocks/bookmarks";
 import { Breadcrumb } from "@narsil-ui/blocks/breadcrumb";
 import { ModalRenderer } from "@narsil-ui/blocks/modal";
 import { Select } from "@narsil-ui/blocks/select";
+import { Sidebar } from "@narsil-ui/blocks/sidebar";
 import { Themes } from "@narsil-ui/blocks/themes";
 import { Tooltip } from "@narsil-ui/blocks/tooltip";
 import { AvatarFallback, AvatarImage, AvatarRoot } from "@narsil-ui/components/avatar";
@@ -23,6 +22,7 @@ import {
 import { Icon } from "@narsil-ui/components/icon";
 import { ModalLink } from "@narsil-ui/components/modal";
 import { Separator } from "@narsil-ui/components/separator";
+import { SidebarInset, SidebarProvider, SidebarTrigger } from "@narsil-ui/components/sidebar";
 import { useTranslator } from "@narsil-ui/components/translator";
 import { useMaxLg } from "@narsil-ui/hooks/use-breakpoints";
 import { groupBy } from "lodash-es";
@@ -44,6 +44,7 @@ function AuthLayout({ children }: AuthLayoutProps) {
   const { auth, navigation, session } = children?.props;
 
   const groupedMenu = groupBy(navigation?.userMenu, (item) => item.group ?? "default");
+  const sidebarName = window.location.pathname.startsWith("/narsil/cms") ? "cms" : "base";
 
   function onSchemaChange(schema: string) {
     router.post(
@@ -59,7 +60,7 @@ function AuthLayout({ children }: AuthLayoutProps) {
   return (
     <AlertDialogProvider>
       <SidebarProvider isMobile={isMobile}>
-        <Sidebar />
+        <Sidebar name={sidebarName} />
         <SidebarInset>
           <header className="sticky top-0 z-10 flex h-13 items-center gap-2 border-b bg-background pr-4 pl-2 text-foreground xl:pl-4">
             {isMobile ? (

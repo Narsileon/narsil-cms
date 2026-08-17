@@ -33,7 +33,6 @@ return [
     'links'              => 'Links',
     'localization'       => 'Localization',
     'main'               => 'Main',
-    'management'         => 'Management',
     'meta_navigation'    => 'Meta navigation',
     'module'             => 'Module',
     'modules'            => 'Modules',
@@ -55,7 +54,5 @@ return [
     'structures'         => 'Structures',
     'system'             => 'System',
     'table'              => 'Table',
-    'tool'               => 'Tool',
-    'tools'              => 'Tools',
     'validation'         => 'Validation',
 ];

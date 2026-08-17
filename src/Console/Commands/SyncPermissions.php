@@ -52,7 +52,8 @@ class SyncPermissions extends Command
                 continue;
             }
 
-            $attributes = (new ReflectionClass($model))->getAttributes(UsePolicy::class);
+            $attributes = new ReflectionClass($model)
+                ->getAttributes(UsePolicy::class);
 
             if ($attributes === [])
             {

@@ -20,6 +20,7 @@ import { Heading } from "@narsil-ui/components/heading";
 import { Icon } from "@narsil-ui/components/icon";
 import { ModalLink } from "@narsil-ui/components/modal";
 import { useTranslator } from "@narsil-ui/components/translator";
+import { NarsilSwitcher } from "@narsil-ui/components/narsil-switcher";
 import { groupBy } from "lodash-es";
 import { Fragment, useMemo, useState } from "react";
 import { route } from "ziggy-js";
@@ -76,13 +77,8 @@ function LiveEditorLayout() {
   return (
     <div className="grid h-screen min-h-0 grid-rows-[3.25rem_1fr] overflow-hidden bg-background text-foreground">
       <header className="grid grid-cols-[280px_1fr_380px] border-b">
-        <div className="text-sidebar-foreground flex h-13 items-center gap-3 border-r border-b bg-sidebar px-4">
-          <div className="flex items-center gap-2">
-            <Icon className="size-5 shrink-0" name="narsil" />
-            <Heading className="truncate" level="h1">
-              {trans("live-editor.title")}
-            </Heading>
-          </div>
+        <div className="text-sidebar-foreground flex h-13 items-center gap-3 border-r border-b bg-sidebar px-2">
+          <NarsilSwitcher />
         </div>
         <div className="flex min-w-0 items-center gap-2 border-b bg-background px-4">
           {siteLabel ? <span className="truncate text-sm font-medium">{siteLabel}</span> : null}
