@@ -24,8 +24,9 @@ abstract class PageService
     #region PUBLIC METHODS
 
     /**
-     * @param Request $request
+     * Resolve the page associated with the current URL.
      *
+     * @param Request $request
      * @param string|null $locale
      *
      * @return SitePage

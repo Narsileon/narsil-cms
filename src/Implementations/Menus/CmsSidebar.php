@@ -21,6 +21,7 @@ use Narsil\Cms\Models\Entities\Entity;
 use Narsil\Cms\Models\Globals\Footer;
 use Narsil\Cms\Models\Globals\Header;
 use Narsil\Cms\Models\Hosts\Host;
+use Narsil\Cms\Models\Redirect;
 use Narsil\Cms\Models\Sites\Site;
 
 #endregion
@@ -147,6 +148,16 @@ final class CmsSidebar extends Menu implements Contract
                     ->route('hosts.index')
                     ->permissions([
                         PermissionService::getName(Host::TABLE, AbilityEnum::VIEW_ANY)
+                    ])
+            )
+            ->add(
+                new MenuItem(Redirect::TABLE)
+                    ->group($group)
+                    ->icon('redo')
+                    ->label(ModelService::getTableLabel(Redirect::TABLE))
+                    ->route('redirects.index')
+                    ->permissions([
+                        PermissionService::getName(Redirect::TABLE, AbilityEnum::VIEW_ANY)
                     ])
             )
             ->add(

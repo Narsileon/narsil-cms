@@ -184,13 +184,13 @@ class Sitemap
      * Append a priority to the url.
      *
      * @param DOMElement $url
-     * @param string $value
+     * @param float $value
      *
      * @return DOMElement
      */
-    protected function appendPriority(DOMElement $url, string $value): DOMElement
+    protected function appendPriority(DOMElement $url, float $value): DOMElement
     {
-        $priority = $this->document->createElement('priority', $value);
+        $priority = $this->document->createElement('priority', (string)$value);
 
         $url->appendChild($priority);
 

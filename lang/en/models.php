@@ -18,6 +18,7 @@ use Narsil\Cms\Models\Hosts\HostLocaleLanguage;
 use Narsil\Cms\Models\Sites\Site;
 use Narsil\Cms\Models\Sites\SitePage;
 use Narsil\Cms\Models\ValidationRule;
+use Narsil\Cms\Models\Redirect;
 
 #endregion
 
@@ -33,6 +34,7 @@ return [
     Host::TABLE => 'host|hosts',
     HostLocale::TABLE => 'locale|locales',
     HostLocaleLanguage::TABLE => 'language|languages',
+    Redirect::TABLE => 'redirect|redirects',
     Site::VIRTUAL_TABLE => 'website|websites',
     SitePage::TABLE => 'page|pages',
     Template::TABLE => 'template|templates',
