@@ -9,7 +9,7 @@ namespace Narsil\Cms\Http\Controllers\Entities;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
-use Inertia\Response;
+use Illuminate\View\View;
 use Narsil\Base\Enums\AbilityEnum;
 use Narsil\Base\Http\Controllers\RenderController;
 use Narsil\Cms\Http\Collections\DataTableCollection;
@@ -29,9 +29,9 @@ class EntityIndexController extends RenderController
      * @param Request $request
      * @param integer|string $collection
      *
-     * @return JsonResponse|Response
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\View\View
      */
-    public function __invoke(Request $request, int|string $collection): JsonResponse|Response
+    public function __invoke(Request $request, int|string $collection): JsonResponse|View
     {
         $this->authorize(AbilityEnum::VIEW_ANY, $this->entityClass);
 
@@ -47,11 +47,9 @@ class EntityIndexController extends RenderController
             ->where(Entity::REVISION, '>', 0);
 
         $collection = new DataTableCollection($query, $this->template->{Template::TABLE_NAME})
-            ->setRevisionable(true)
-            ->toResponse($request)
-            ->getData(true);
+            ->setRevisionable(true);
 
-        return $this->render('narsil/cms::resources/index', [
+        return $this->renderBlade('narsil::pages.resources.index', [
             'collection' => $collection,
         ]);
     }
