@@ -14,6 +14,16 @@ enum OpenGraphTypeEnum: string
 {
     use Enumerable;
 
+    #region CASES
+
+    /**
+     * @var string
+     */
     case ARTICLE = 'article';
+    /**
+     * @var string
+     */
     case WEBSITE = 'website';
+
+    #endregion
 }

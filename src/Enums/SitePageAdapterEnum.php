@@ -14,6 +14,16 @@ enum SitePageAdapterEnum: string
 {
     use Enumerable;
 
+    #region CASES
+
+    /**
+     * @var string
+     */
     case ENTITY = 'entity';
+    /**
+     * @var string
+     */
     case COLLECTION = 'collection';
+
+    #endregion
 }

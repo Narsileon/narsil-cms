@@ -14,8 +14,24 @@ enum RobotsEnum: string
 {
     use Enumerable;
 
+    #region CASES
+
+    /**
+     * @var string
+     */
     case ALL = 'index, follow';
+    /**
+     * @var string
+     */
     case NOINDEX = 'noindex, follow';
+    /**
+     * @var string
+     */
     case NOFOLLOW = 'index, nofollow';
+    /**
+     * @var string
+     */
     case NONE = 'noindex, nofollow';
+
+    #endregion
 }
