@@ -11,7 +11,7 @@ use Narsil\Base\Http\Data\Forms\InputData;
 use Narsil\Base\Http\Data\OptionData;
 use Narsil\Cms\Models\Sites\SitePage;
 
-#endregionx
+#endregion
 
 /**
  * @property string $defaultValue The value of the "default value" attribute.

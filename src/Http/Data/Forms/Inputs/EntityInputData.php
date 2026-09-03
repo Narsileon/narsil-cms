@@ -13,7 +13,7 @@ use Narsil\Base\Http\Data\Forms\Inputs\SwitchInputData;
 use Narsil\Base\Services\FormService;
 use Narsil\Cms\Models\Collections\Template;
 
-#endregionx
+#endregion
 
 /**
  * @property string $defaultValue The value of the "default value" attribute.

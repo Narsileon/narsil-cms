@@ -9,7 +9,7 @@ namespace Narsil\Cms\Http\Data\Forms\Inputs;
 use Narsil\Base\Http\Data\Forms\InputData;
 use Narsil\Base\Support\TranslationsBag;
 
-#endregionx
+#endregion
 
 /**
  * @property array $defaultValue The value of the "default value" attribute.

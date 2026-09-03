@@ -37,6 +37,7 @@ class ServiceProvider extends NarsilServiceProvider
     public function boot(): void
     {
         $this->loadTranslationsFrom(__DIR__ . '/../lang', 'narsil-cms');
+        $this->loadViewsFrom(__DIR__ . '/../resources/views', 'narsil-cms');
 
         $this->bootNarsilRoutes(base_path('/vendor/narsil/base/routes/users.php'));
 

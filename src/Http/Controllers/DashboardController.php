@@ -6,8 +6,9 @@ namespace Narsil\Cms\Http\Controllers;
 
 #region USE
 
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Inertia\Response;
+use Illuminate\View\View;
 use Narsil\Base\Http\Controllers\RenderController;
 
 #endregion
@@ -19,11 +20,11 @@ class DashboardController extends RenderController
     /**
      * @param Request $request
      *
-     * @return Response
+     * @return JsonResponse|View
      */
-    public function __invoke(Request $request): Response
+    public function __invoke(Request $request): JsonResponse|View
     {
-        return $this->render('narsil/cms::index');
+        return $this->renderBlade('narsil-cms::index');
     }
 
     #endregion

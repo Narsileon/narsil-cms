@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 #region USE
 
 use Illuminate\Database\Migrations\Migration;

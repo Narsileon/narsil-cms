@@ -15,7 +15,7 @@ use Narsil\Base\Support\TranslationsBag;
 use Narsil\Cms\Models\Collections\Block;
 use Narsil\Cms\Models\Collections\Field;
 
-#endregionx
+#endregion
 
 /**
  * @property array $defaultValue The value of the "default value" attribute.
