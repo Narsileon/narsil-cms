@@ -84,8 +84,6 @@ class TemplateTabElement extends Element
      */
     final public const OWNER_UUID = 'owner_uuid';
 
-
-
     #endregion
 
     #region • RELATIONS

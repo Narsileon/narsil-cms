@@ -78,51 +78,6 @@ class EntityNodeTreeService
     #region PRIVATE METHODS
 
     /**
-     * @param string|null $parentUuid
-     *
-     * @return array
-     */
-    private function processNodes(?string $parentUuid = null): array
-    {
-        $nodes = $this->nodes->get($parentUuid, collect())->sortBy(EntityNode::POSITION);
-
-        $tree = [];
-
-        foreach ($nodes as $node)
-        {
-            if ($node->{EntityNode::BLOCK_ID})
-            {
-                $tree[] = $this->blockNode($node);
-
-                continue;
-            }
-
-            $element = $node->{EntityNode::RELATION_ELEMENT};
-
-            if (!$element)
-            {
-                continue;
-            }
-
-            if ($element->{Element::BASE_TYPE} !== Field::TABLE)
-            {
-                $tree = array_merge($tree, $this->processNodes($node->{EntityNode::UUID}));
-
-                continue;
-            }
-
-            $field = $element->{Element::RELATION_BASE};
-
-            if ($field->{Field::TYPE} === self::TYPE_BUILDER)
-            {
-                $tree[] = $this->builderNode($node, $element, $field);
-            }
-        }
-
-        return $tree;
-    }
-
-    /**
      * @param EntityNode $node
      *
      * @return array
@@ -184,6 +139,51 @@ class EntityNodeTreeService
             'position' => $node->{EntityNode::POSITION},
             'type' => self::TYPE_BUILDER,
         ];
+    }
+
+    /**
+     * @param string|null $parentUuid
+     *
+     * @return array
+     */
+    private function processNodes(?string $parentUuid = null): array
+    {
+        $nodes = $this->nodes->get($parentUuid, collect())->sortBy(EntityNode::POSITION);
+
+        $tree = [];
+
+        foreach ($nodes as $node)
+        {
+            if ($node->{EntityNode::BLOCK_ID})
+            {
+                $tree[] = $this->blockNode($node);
+
+                continue;
+            }
+
+            $element = $node->{EntityNode::RELATION_ELEMENT};
+
+            if (!$element)
+            {
+                continue;
+            }
+
+            if ($element->{Element::BASE_TYPE} !== Field::TABLE)
+            {
+                $tree = array_merge($tree, $this->processNodes($node->{EntityNode::UUID}));
+
+                continue;
+            }
+
+            $field = $element->{Element::RELATION_BASE};
+
+            if ($field->{Field::TYPE} === self::TYPE_BUILDER)
+            {
+                $tree[] = $this->builderNode($node, $element, $field);
+            }
+        }
+
+        return $tree;
     }
 
     #endregion

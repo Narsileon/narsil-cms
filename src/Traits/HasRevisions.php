@@ -310,6 +310,12 @@ trait HasRevisions
      * @return void
      */
     #[Scope]
+    /**
+     * @param Builder $query
+     * @param integer $id
+     *
+     * @return void
+     */
     protected function revisionOptions(Builder $query, int $id): void
     {
         $query

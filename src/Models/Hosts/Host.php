@@ -104,6 +104,8 @@ class Host extends Model
      */
     final public const COUNT_LOCALES = 'locales_count';
 
+    #endregion
+
     #region • RELATIONS
 
     /**

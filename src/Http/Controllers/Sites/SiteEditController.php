@@ -113,7 +113,7 @@ class SiteEditController extends RenderController
     /**
      * Get the associated data.
      *
-     * @param Request $request
+     * @param Site $site
      *
      * @return array<string,mixed>
      */

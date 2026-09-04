@@ -49,6 +49,18 @@ class RelationsInputData extends InputData
     #region PUBLIC METHODS
 
     /**
+     * {@inheritdoc}
+     */
+    public static function registerTranslations(): void
+    {
+        app(TranslationsBag::class)
+            ->add('narsil::ui.add')
+            ->add('narsil::ui.create')
+            ->add('narsil::ui.move_down')
+            ->add('narsil::ui.move_up');
+    }
+
+    /**
      * {@inheritDoc}
      */
     final public function addOption(
@@ -92,18 +104,6 @@ class RelationsInputData extends InputData
         ]);
 
         return $this;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public static function registerTranslations(): void
-    {
-        app(TranslationsBag::class)
-            ->add('narsil::ui.add')
-            ->add('narsil::ui.create')
-            ->add('narsil::ui.move_down')
-            ->add('narsil::ui.move_up');
     }
 
     #endregion

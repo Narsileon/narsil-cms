@@ -49,7 +49,6 @@ abstract class TreeModel extends Model
      */
     final public const RIGHT_ID = 'right_id';
 
-
     #endregion
 
     #region • ATTRIBUTES
@@ -210,7 +209,7 @@ abstract class TreeModel extends Model
     #region PROTECTED METHODS
 
     /**
-     * @param Collection<integer,TreeModel> $nodes
+     * @param Collection<integer,TreeModel> $collection
      * @param array $data
      * @param TreeModel|null $parent
      *

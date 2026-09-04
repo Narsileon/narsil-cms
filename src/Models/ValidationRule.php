@@ -116,4 +116,6 @@ class ValidationRule extends Model implements Searchable
     }
 
     #endregion
+
+    #endregion
 }

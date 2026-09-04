@@ -66,6 +66,18 @@ class TemplateMigration extends Migration
     #region PUBLIC METHODS
 
     /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down(): void
+    {
+        Schema::dropIfExists($this->entityNodeRelationTable);
+        Schema::dropIfExists($this->entityNodeTable);
+        Schema::dropIfExists($this->entityTable);
+    }
+
+    /**
      * Run the migrations.
      *
      * @return void
@@ -84,18 +96,6 @@ class TemplateMigration extends Migration
         {
             $this->createEntityNodeRelationTable();
         }
-    }
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down(): void
-    {
-        Schema::dropIfExists($this->entityNodeRelationTable);
-        Schema::dropIfExists($this->entityNodeTable);
-        Schema::dropIfExists($this->entityTable);
     }
 
     #endregion

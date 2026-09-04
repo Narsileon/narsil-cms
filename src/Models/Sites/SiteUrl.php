@@ -119,7 +119,6 @@ class SiteUrl extends Model
             );
     }
 
-
     #endregion
 
     #endregion

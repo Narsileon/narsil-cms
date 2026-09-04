@@ -39,6 +39,9 @@ final class TemplateDefinition extends AbstractModelDefinition
         return TemplateForm::class;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function hooks(): array
     {
         return [
@@ -93,6 +96,9 @@ final class TemplateDefinition extends AbstractModelDefinition
         return 'templates';
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function table(): ?string
     {
         return TemplateTable::class;

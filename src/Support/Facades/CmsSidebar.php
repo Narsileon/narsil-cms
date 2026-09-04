@@ -15,6 +15,9 @@ final class CmsSidebar extends Facade
 {
     #region PROTECTED METHODS
 
+    /**
+     * @return string
+     */
     protected static function getFacadeAccessor(): string
     {
         return Contract::class;

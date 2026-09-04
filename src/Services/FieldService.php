@@ -17,6 +17,8 @@ abstract class FieldService
     /**
      * Get the icon of the field.
      *
+     * @param string $type
+     *
      * @return string
      */
     public static function getIcon(string $type): string

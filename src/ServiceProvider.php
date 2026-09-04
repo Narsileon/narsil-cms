@@ -68,6 +68,18 @@ class ServiceProvider extends NarsilServiceProvider
     #region PROTECTED METHODS
 
     /**
+     * Boot the publishes.
+     *
+     * @return void
+     */
+    protected function bootPublishes(): void
+    {
+        $this->publishes([
+            __DIR__ . '/../lang' => lang_path('vendor/narsil-cms'),
+        ], 'narsil-cms-lang');
+    }
+
+    /**
      * Register the package defaults.
      *
      * @return void
@@ -171,19 +183,11 @@ class ServiceProvider extends NarsilServiceProvider
             ->relation(\Narsil\Cms\Http\Data\Forms\Inputs\LinkInputData::TYPE);
     }
 
-
     /**
-     * Boot the publishes.
+     * Register the package service providers.
      *
      * @return void
      */
-    protected function bootPublishes(): void
-    {
-        $this->publishes([
-            __DIR__ . '/../lang' => lang_path('vendor/narsil-cms'),
-        ], 'narsil-cms-lang');
-    }
-
     protected function registerProviders(): void
     {
         $this->app->register(ActionServiceProvider::class);

@@ -46,33 +46,6 @@ final class CmsSidebar extends Menu implements Contract
     #region PROTECTED METHODS
 
     /**
-     * {@inheritDoc}
-     */
-    protected function content(): array
-    {
-        $this
-            ->add(
-                new MenuItem('dashboard')
-                    ->icon('chart-pie')
-                    ->label(trans('narsil-cms::ui.dashboard'))
-                    ->route('dashboard')
-            );
-
-        $this->addSiteGroup();
-        $this->addGlobalsGroup();
-        $this->addCollectionsGroup();
-        $this->addStructuresGroup();
-        $this->addManagementGroup();
-
-        app(TranslationsBag::class)
-            ->add('narsil-cms::accessibility.close_sidebar')
-            ->add('narsil-cms::accessibility.open_sidebar')
-            ->add('narsil-cms::accessibility.toggle_sidebar');
-
-        return parent::content();
-    }
-
-    /**
      * @return void
      */
     protected function addCollectionsGroup(): void
@@ -240,6 +213,33 @@ final class CmsSidebar extends Menu implements Contract
                         PermissionService::getName(Field::TABLE, AbilityEnum::VIEW_ANY)
                     ])
             );
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    protected function content(): array
+    {
+        $this
+            ->add(
+                new MenuItem('dashboard')
+                    ->icon('chart-pie')
+                    ->label(trans('narsil-cms::ui.dashboard'))
+                    ->route('dashboard')
+            );
+
+        $this->addSiteGroup();
+        $this->addGlobalsGroup();
+        $this->addCollectionsGroup();
+        $this->addStructuresGroup();
+        $this->addManagementGroup();
+
+        app(TranslationsBag::class)
+            ->add('narsil-cms::accessibility.close_sidebar')
+            ->add('narsil-cms::accessibility.open_sidebar')
+            ->add('narsil-cms::accessibility.toggle_sidebar');
+
+        return parent::content();
     }
 
     #endregion

@@ -40,6 +40,9 @@ final class HostDefinition extends AbstractModelDefinition
         return HostForm::class;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function hooks(): array
     {
         return [
@@ -71,6 +74,9 @@ final class HostDefinition extends AbstractModelDefinition
         return Host::class;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function morph(): ?string
     {
         return Host::TABLE;
@@ -100,6 +106,9 @@ final class HostDefinition extends AbstractModelDefinition
         return 'hosts';
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function table(): ?string
     {
         return HostTable::class;

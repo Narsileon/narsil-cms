@@ -144,6 +144,8 @@ class SitePageNestedTreeResource extends NestedTreeResource
     /**
      * Get the live editor URL.
      *
+     * @param Request $request
+     *
      * @return string
      */
     protected function getLiveEditorUrl(Request $request): string

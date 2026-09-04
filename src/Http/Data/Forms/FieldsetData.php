@@ -89,6 +89,5 @@ class FieldsetData extends BaseFieldsetData
         );
     }
 
-
     #endregion
 }

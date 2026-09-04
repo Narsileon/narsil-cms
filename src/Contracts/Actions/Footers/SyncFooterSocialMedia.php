@@ -17,7 +17,7 @@ interface SyncFooterSocialMedia extends Action
 
     /**
      * @param Footer $footer
-     * @param array $footerLinks
+     * @param array $socialMedia
      *
      * @return Footer
      */

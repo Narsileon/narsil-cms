@@ -100,6 +100,30 @@ class EntityNodeInspectorService
     #region PRIVATE METHODS
 
     /**
+     * @param string|null $parentUuid
+     *
+     * @return Collection<string,EntityNode>
+     */
+    private function childNodesByHandle(?string $parentUuid): Collection
+    {
+        if (!$parentUuid)
+        {
+            return collect();
+        }
+
+        return $this->nodes
+            ->get($parentUuid, collect())
+            ->filter(function (EntityNode $node)
+            {
+                return $node->{EntityNode::RELATION_ELEMENT} !== null;
+            })
+            ->keyBy(function (EntityNode $node)
+            {
+                return $node->{EntityNode::RELATION_ELEMENT}->{Element::HANDLE};
+            });
+    }
+
+    /**
      * @param Collection $elements
      * @param string|null $parentUuid
      * @param string|null $path
@@ -156,30 +180,6 @@ class EntityNodeInspectorService
         }
 
         return $fields;
-    }
-
-    /**
-     * @param string|null $parentUuid
-     *
-     * @return Collection<string,EntityNode>
-     */
-    private function childNodesByHandle(?string $parentUuid): Collection
-    {
-        if (!$parentUuid)
-        {
-            return collect();
-        }
-
-        return $this->nodes
-            ->get($parentUuid, collect())
-            ->filter(function (EntityNode $node)
-            {
-                return $node->{EntityNode::RELATION_ELEMENT} !== null;
-            })
-            ->keyBy(function (EntityNode $node)
-            {
-                return $node->{EntityNode::RELATION_ELEMENT}->{Element::HANDLE};
-            });
     }
 
     /**

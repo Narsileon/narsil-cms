@@ -179,15 +179,15 @@ class Template extends Model
     }
 
     /**
-     * Get the table of the entity model.
+     * Get the table of the entity node relation model.
      *
      * @return string
      */
-    public function entityTable(): string
+    public function entityNodeRelationTable(): string
     {
-        $table = Str::snake(Str::plural($this->{self::TABLE_NAME}));
+        $table = Str::snake(Str::singular($this->{self::TABLE_NAME}));
 
-        return $table;
+        return $table . '_node_relation';
     }
 
     /**
@@ -203,15 +203,15 @@ class Template extends Model
     }
 
     /**
-     * Get the table of the entity node relation model.
+     * Get the table of the entity model.
      *
      * @return string
      */
-    public function entityNodeRelationTable(): string
+    public function entityTable(): string
     {
-        $table = Str::snake(Str::singular($this->{self::TABLE_NAME}));
+        $table = Str::snake(Str::plural($this->{self::TABLE_NAME}));
 
-        return $table . '_node_relation';
+        return $table;
     }
 
     /**

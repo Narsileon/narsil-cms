@@ -48,6 +48,7 @@ class SitePageStoreController extends RedirectController
 
     /**
      * @param SitePageFormRequest $request
+     * @param string $site
      *
      * @return RedirectResponse
      */

@@ -61,7 +61,7 @@ class TemplateObserver
     #region PROTECTED METHODS
 
     /**
-     * @param Template $template
+     * @param Template $model
      *
      * @return void
      */

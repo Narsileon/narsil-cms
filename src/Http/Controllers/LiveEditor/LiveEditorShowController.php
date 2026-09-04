@@ -55,34 +55,6 @@ class LiveEditorShowController extends RenderController
 
     #endregion
 
-    #region PRIVATE METHODS
-
-    /**
-     * Resolve the equivalent page for the requested country.
-     *
-     * @param SitePage $sitePage
-     *
-     * @return SitePage
-     */
-    private function resolveCountryPage(SitePage $sitePage): SitePage
-    {
-        $country = request()->query(SitePage::COUNTRY);
-        $page = $sitePage;
-
-        if (is_string($country) && $country !== $sitePage->{SitePage::COUNTRY})
-        {
-            $slug = $sitePage->getTranslationWithoutFallback(SitePage::SLUG, App::getLocale());
-
-            $page = SitePage::query()
-                ->where(SitePage::SITE_ID, $sitePage->{SitePage::SITE_ID})
-                ->where(SitePage::COUNTRY, $country)
-                ->where(SitePage::SLUG . '->' . App::getLocale(), $slug)
-                ->first() ?? $sitePage;
-        }
-
-        return $page;
-    }
-
     #region PROTECTED METHODS
 
     /**
@@ -162,6 +134,36 @@ class LiveEditorShowController extends RenderController
             ->add('narsil::ui.move')
             ->add('narsil::ui.save')
             ->add('narsil::ui.translations');
+    }
+
+    #endregion
+
+    #region PRIVATE METHODS
+
+    /**
+     * Resolve the equivalent page for the requested country.
+     *
+     * @param SitePage $sitePage
+     *
+     * @return SitePage
+     */
+    private function resolveCountryPage(SitePage $sitePage): SitePage
+    {
+        $country = request()->query(SitePage::COUNTRY);
+        $page = $sitePage;
+
+        if (is_string($country) && $country !== $sitePage->{SitePage::COUNTRY})
+        {
+            $slug = $sitePage->getTranslationWithoutFallback(SitePage::SLUG, App::getLocale());
+
+            $page = SitePage::query()
+                ->where(SitePage::SITE_ID, $sitePage->{SitePage::SITE_ID})
+                ->where(SitePage::COUNTRY, $country)
+                ->where(SitePage::SLUG . '->' . App::getLocale(), $slug)
+                ->first() ?? $sitePage;
+        }
+
+        return $page;
     }
 
     #endregion

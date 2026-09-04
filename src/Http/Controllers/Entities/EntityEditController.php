@@ -150,7 +150,7 @@ class EntityEditController extends RenderController
     /**
      * Get the associated form.
      *
-     * @param Template $template
+     * @param Entity $entity
      *
      * @return BlockForm
      */

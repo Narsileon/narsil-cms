@@ -45,6 +45,33 @@ class FieldForm extends Form implements Contract
     #region PROTECTED METHODS
 
     /**
+     * Get the type options.
+     *
+     * @return array<OptionData>
+     */
+    protected static function getTypeOptions(): array
+    {
+        $options = [];
+
+        foreach (app(Narsil::class)->fields() as $type => $input)
+        {
+            $label = Translator::trans("inputs.$type");
+
+            $options[] = new OptionData(
+                value: $type,
+                label: $label,
+            );
+        }
+
+        usort($options, function (OptionData $a, OptionData $b)
+        {
+            return strcmp($a->label, $b->label);
+        });
+
+        return $options;
+    }
+
+    /**
      * {@inheritDoc}
      */
     protected function getSteps(): array
@@ -119,33 +146,6 @@ class FieldForm extends Form implements Contract
                 ],
             ),
         ];
-    }
-
-    /**
-     * Get the type options.
-     *
-     * @return array<OptionData>
-     */
-    protected static function getTypeOptions(): array
-    {
-        $options = [];
-
-        foreach (app(Narsil::class)->fields() as $type => $input)
-        {
-            $label = Translator::trans("inputs.$type");
-
-            $options[] = new OptionData(
-                value: $type,
-                label: $label,
-            );
-        }
-
-        usort($options, function (OptionData $a, OptionData $b)
-        {
-            return strcmp($a->label, $b->label);
-        });
-
-        return $options;
     }
 
     #endregion

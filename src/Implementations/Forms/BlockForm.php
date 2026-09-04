@@ -43,6 +43,57 @@ class BlockForm extends Form implements Contract
     #region PROTECTED METHODS
 
     /**
+     * Get the block options.
+     *
+     * @return OptionData[]
+     */
+    protected static function getBlockOptions(): array
+    {
+        return Block::query()
+            ->orderBy(Block::LABEL)
+            ->get()
+            ->map(function (Block $block)
+            {
+                $option = new OptionData(
+                    label: $block->getTranslations(Block::LABEL),
+                    value: $block->{Block::HANDLE},
+                )
+                    ->icon($block->{Block::ATTRIBUTE_ICON})
+                    ->id($block->{Block::ID})
+                    ->identifier($block->{Block::ATTRIBUTE_IDENTIFIER});
+
+                return $option;
+            })
+            ->toArray();
+    }
+
+    /**
+     * Get the field options.
+     *
+     * @return OptionData[]
+     */
+    protected static function getFieldOptions(): array
+    {
+        return Field::query()
+            ->orderBy(Field::LABEL)
+            ->get()
+            ->map(function (Field $field)
+            {
+
+                $option = new OptionData(
+                    label: $field->getTranslations(Field::LABEL),
+                    value: $field->{Field::HANDLE},
+                )
+                    ->icon($field->{Field::ATTRIBUTE_ICON})
+                    ->id($field->{Field::ID})
+                    ->identifier($field->{Field::ATTRIBUTE_IDENTIFIER});
+
+                return $option;
+            })
+            ->toArray();
+    }
+
+    /**
      * {@inheritDoc}
      */
     protected function getSteps(): array
@@ -100,57 +151,6 @@ class BlockForm extends Form implements Contract
                 ],
             ),
         ];
-    }
-
-    /**
-     * Get the block options.
-     *
-     * @return OptionData[]
-     */
-    protected static function getBlockOptions(): array
-    {
-        return Block::query()
-            ->orderBy(Block::LABEL)
-            ->get()
-            ->map(function (Block $block)
-            {
-                $option = new OptionData(
-                    label: $block->getTranslations(Block::LABEL),
-                    value: $block->{Block::HANDLE},
-                )
-                    ->icon($block->{Block::ATTRIBUTE_ICON})
-                    ->id($block->{Block::ID})
-                    ->identifier($block->{Block::ATTRIBUTE_IDENTIFIER});
-
-                return $option;
-            })
-            ->toArray();
-    }
-
-    /**
-     * Get the field options.
-     *
-     * @return OptionData[]
-     */
-    protected static function getFieldOptions(): array
-    {
-        return Field::query()
-            ->orderBy(Field::LABEL)
-            ->get()
-            ->map(function (Field $field)
-            {
-
-                $option = new OptionData(
-                    label: $field->getTranslations(Field::LABEL),
-                    value: $field->{Field::HANDLE},
-                )
-                    ->icon($field->{Field::ATTRIBUTE_ICON})
-                    ->id($field->{Field::ID})
-                    ->identifier($field->{Field::ATTRIBUTE_IDENTIFIER});
-
-                return $option;
-            })
-            ->toArray();
     }
 
     #endregion

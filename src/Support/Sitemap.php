@@ -296,6 +296,7 @@ class Sitemap
      * Get the location.
      *
      * @param string $language
+     * @param string $slug
      *
      * @return string
      */

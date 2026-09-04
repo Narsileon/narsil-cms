@@ -21,6 +21,7 @@ class SitemapJob extends Job
 
     /**
      * @param Host $host
+     * @param string $schema
      *
      * @return void
      */

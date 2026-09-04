@@ -56,6 +56,9 @@ final class HeaderDefinition extends AbstractModelDefinition
         return Header::class;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function morph(): ?string
     {
         return Header::TABLE;
@@ -102,6 +105,9 @@ final class HeaderDefinition extends AbstractModelDefinition
         return 'headers';
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function table(): ?string
     {
         return HeaderTable::class;

@@ -38,6 +38,8 @@ trait HasValidationRules
 
     #endregion
 
+    #region PUBLIC METHODS
+
     #region • RELATIONSHIPS
 
     /**

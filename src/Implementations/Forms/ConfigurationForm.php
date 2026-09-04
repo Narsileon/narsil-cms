@@ -75,4 +75,6 @@ class ConfigurationForm extends Form implements Contract
             ),
         ];
     }
+
+    #endregion
 }

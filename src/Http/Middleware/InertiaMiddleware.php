@@ -34,6 +34,9 @@ class InertiaMiddleware extends Middleware
 
     #region CONSTRUCTOR
 
+    /**
+     * @return void
+     */
     public function __construct()
     {
         $this->withoutSsr = [
@@ -59,19 +62,11 @@ class InertiaMiddleware extends Middleware
     #region PUBLIC METHODS
 
     /**
-     * Determine the current asset version.
-     *
-     * @see https://inertiajs.com/asset-versioning
-     */
-    public function version(Request $request): ?string
-    {
-        return parent::version($request);
-    }
-
-    /**
      * Define the props that are shared by default.
      *
      * @see https://inertiajs.com/shared-data
+     *
+     * @param Request $request
      *
      * @return array<string,mixed>
      */
@@ -98,6 +93,20 @@ class InertiaMiddleware extends Middleware
             ...parent::share($request),
             ...$shared,
         ];
+    }
+
+    /**
+     * Determine the current asset version.
+     *
+     * @see https://inertiajs.com/asset-versioning
+     *
+     * @param Request $request
+     *
+     * @return ?string
+     */
+    public function version(Request $request): ?string
+    {
+        return parent::version($request);
     }
 
     #endregion

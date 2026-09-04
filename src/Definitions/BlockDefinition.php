@@ -23,16 +23,25 @@ final class BlockDefinition extends AbstractModelDefinition
 {
     #region PUBLIC METHODS
 
+    /**
+     * {@inheritDoc}
+     */
     public function editWith(): array
     {
         return [Block::RELATION_ELEMENTS];
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function form(): ?string
     {
         return BlockForm::class;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function hooks(): array
     {
         $hook = function (ModelHookContext $context): void
@@ -53,36 +62,57 @@ final class BlockDefinition extends AbstractModelDefinition
         ];
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function indexWith(): array
     {
         return [Block::RELATION_ELEMENTS];
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function model(): string
     {
         return Block::class;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function morph(): ?string
     {
         return Block::TABLE;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function replicateAction(): ?string
     {
         return ReplicateBlock::class;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function request(): ?string
     {
         return BlockFormRequest::class;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function route(): string
     {
         return 'blocks';
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function table(): ?string
     {
         return BlockTable::class;

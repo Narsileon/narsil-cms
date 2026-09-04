@@ -52,6 +52,19 @@ class SitePageForm extends Form implements Contract
     #region PROTECTED METHODS
 
     /**
+     * @return array
+     */
+    protected function getCollections(): array
+    {
+        return Template::query()
+            ->without([
+                Template::RELATION_TABS,
+            ])
+            ->pluck(Template::ID)
+            ->toArray();
+    }
+
+    /**
      * {@inheritDoc}
      */
     protected function getSteps(): array
@@ -208,19 +221,6 @@ class SitePageForm extends Form implements Contract
                 ],
             ),
         ];
-    }
-
-    /**
-     * @return array
-     */
-    protected function getCollections(): array
-    {
-        return Template::query()
-            ->without([
-                Template::RELATION_TABS,
-            ])
-            ->pluck(Template::ID)
-            ->toArray();
     }
 
     #endregion

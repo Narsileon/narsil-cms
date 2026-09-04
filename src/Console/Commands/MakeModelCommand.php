@@ -17,7 +17,7 @@ abstract class MakeModelCommand extends GeneratorCommand
     #region PROPERTIES
 
     /**
-     * @param Template $template
+     * @var Template $template
      */
     protected Template $template;
 

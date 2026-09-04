@@ -20,6 +20,8 @@ class SitemapIndex
     #region CONSTRUCTOR
 
     /**
+     * @param Host $host
+     *
      * @return void
      */
     public function __construct(Host $host)
@@ -32,7 +34,6 @@ class SitemapIndex
     #endregion
 
     #region PROPERTIES
-
 
     /**
      * The associated host.

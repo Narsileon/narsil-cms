@@ -25,6 +25,7 @@ class SitePageEditController extends RenderController
 
     /**
      * @param Request $request
+     * @param string $site
      * @param SitePage $sitePage
      *
      * @return JsonResponse|Response

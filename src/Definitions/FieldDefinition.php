@@ -26,16 +26,25 @@ final class FieldDefinition extends AbstractModelDefinition
 {
     #region PUBLIC METHODS
 
+    /**
+     * {@inheritDoc}
+     */
     public function editWith(): array
     {
         return [Field::RELATION_BLOCKS, Field::RELATION_OPTIONS, Field::RELATION_VALIDATION_RULES];
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function form(): ?string
     {
         return FieldForm::class;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function hooks(): array
     {
         $hook = function (ModelHookContext $context): void
@@ -58,36 +67,57 @@ final class FieldDefinition extends AbstractModelDefinition
         ];
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function indexWith(): array
     {
         return [Field::RELATION_BLOCKS, Field::RELATION_OPTIONS, Field::RELATION_VALIDATION_RULES];
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function model(): string
     {
         return Field::class;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function morph(): ?string
     {
         return Field::TABLE;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function replicateAction(): ?string
     {
         return ReplicateField::class;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function request(): ?string
     {
         return FieldFormRequest::class;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function route(): string
     {
         return 'fields';
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function table(): ?string
     {
         return FieldTable::class;

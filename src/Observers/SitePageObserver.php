@@ -56,6 +56,11 @@ class SitePageObserver
 
     #region PROTECTED METHODS
 
+    /**
+     * @param SitePage $model
+     *
+     * @return void
+     */
     protected function dispatchSitemapJob(SitePage $model): void
     {
         $model->loadMissing([

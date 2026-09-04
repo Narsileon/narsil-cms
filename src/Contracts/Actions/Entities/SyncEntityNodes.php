@@ -16,7 +16,7 @@ interface SyncEntityNodes extends Action
     #region PUBLIC METHODS
 
     /**
-     * @param Entity $entity
+     * @param Entity $hostLocale
      * @param array $attributes
      *
      * @return Entity

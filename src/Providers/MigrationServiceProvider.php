@@ -83,10 +83,6 @@ final class MigrationServiceProvider extends ServiceProvider
         ]);
     }
 
-    #endregion
-
-    #region PROTECTED METHODS
-
     /**
      * @return void
      */

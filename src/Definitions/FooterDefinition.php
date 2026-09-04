@@ -31,6 +31,9 @@ final class FooterDefinition extends AbstractModelDefinition
         return FooterForm::class;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function hooks(): array
     {
         return [
@@ -75,6 +78,9 @@ final class FooterDefinition extends AbstractModelDefinition
         return Footer::class;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function morph(): ?string
     {
         return Footer::TABLE;
@@ -121,6 +127,9 @@ final class FooterDefinition extends AbstractModelDefinition
         return 'footers';
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function table(): ?string
     {
         return FooterTable::class;

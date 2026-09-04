@@ -170,27 +170,6 @@ class EntityNodeRelation extends Pivot
     #region PROTECTED METHODS
 
     /**
-     * Get the class of the entity.
-     *
-     * @return string
-     */
-    protected static function entityClass(): string
-    {
-        return preg_replace('/NodeRelation$/', '', static::class);
-    }
-
-
-    /**
-     * Get the class of the entity node.
-     *
-     * @return string
-     */
-    protected static function entityNodeClass(): string
-    {
-        return preg_replace('/Relation$/', '', static::class);
-    }
-
-    /**
      * {@inheritDoc}
      */
     protected static function booted(): void
@@ -230,7 +209,25 @@ class EntityNodeRelation extends Pivot
         });
     }
 
-    #endregion
+    /**
+     * Get the class of the entity.
+     *
+     * @return string
+     */
+    protected static function entityClass(): string
+    {
+        return preg_replace('/NodeRelation$/', '', static::class);
+    }
+
+    /**
+     * Get the class of the entity node.
+     *
+     * @return string
+     */
+    protected static function entityNodeClass(): string
+    {
+        return preg_replace('/Relation$/', '', static::class);
+    }
 
     #endregion
 }

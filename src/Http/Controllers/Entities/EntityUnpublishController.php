@@ -38,7 +38,6 @@ class EntityUnpublishController extends RedirectController
                 Entity::PUBLISHED => false,
             ]);
 
-
         return back();
     }
 

@@ -48,6 +48,5 @@ class MakeEntityCommand extends MakeModelCommand
         return $this->template->entityTable();
     }
 
-
     #endregion
 }
