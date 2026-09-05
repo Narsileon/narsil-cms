@@ -67,6 +67,16 @@ final class TemplateDefinition extends AbstractModelDefinition
     /**
      * {@inheritDoc}
      */
+    public function indexWithCount(): array
+    {
+        return [
+            Template::RELATION_TABS
+        ];
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function model(): string
     {
         return Template::class;

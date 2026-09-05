@@ -72,7 +72,21 @@ final class FieldDefinition extends AbstractModelDefinition
      */
     public function indexWith(): array
     {
-        return [Field::RELATION_BLOCKS, Field::RELATION_OPTIONS, Field::RELATION_VALIDATION_RULES];
+        return [
+            Field::RELATION_BLOCKS,
+            Field::RELATION_OPTIONS,
+            Field::RELATION_VALIDATION_RULES
+        ];
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function indexWithCount(): array
+    {
+        return [
+            Field::RELATION_VALIDATION_RULES
+        ];
     }
 
     /**

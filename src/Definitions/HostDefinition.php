@@ -69,6 +69,17 @@ final class HostDefinition extends AbstractModelDefinition
     /**
      * {@inheritDoc}
      */
+    public function indexWithCount(): array
+    {
+        return [
+            Host::RELATION_LANGUAGES,
+            Host::RELATION_LOCALES,
+        ];
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function model(): string
     {
         return Host::class;

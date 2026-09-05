@@ -28,7 +28,11 @@ final class BlockDefinition extends AbstractModelDefinition
      */
     public function editWith(): array
     {
-        return [Block::RELATION_ELEMENTS];
+        return [
+            Block::RELATION_BLOCKS,
+            Block::RELATION_ELEMENTS,
+            Block::RELATION_FIELDS
+        ];
     }
 
     /**
@@ -67,7 +71,15 @@ final class BlockDefinition extends AbstractModelDefinition
      */
     public function indexWith(): array
     {
-        return [Block::RELATION_ELEMENTS];
+        return [Block::RELATION_BLOCKS, Block::RELATION_ELEMENTS, Block::RELATION_FIELDS];
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function indexWithCount(): array
+    {
+        return [Block::RELATION_BLOCKS, Block::RELATION_FIELDS];
     }
 
     /**
