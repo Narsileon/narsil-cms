@@ -58,10 +58,16 @@ final class BlockDefinition extends AbstractModelDefinition
 
         return [
             ModelHookEventEnum::AFTER_STORE->value => [
-                ['hook' => $hook, 'priority' => 0],
+                [
+                    'hook' => $hook,
+                    'priority' => 0
+                ],
             ],
             ModelHookEventEnum::AFTER_UPDATE->value => [
-                ['hook' => $hook, 'priority' => 0],
+                [
+                    'hook' => $hook,
+                    'priority' => 0
+                ],
             ],
         ];
     }
@@ -71,7 +77,11 @@ final class BlockDefinition extends AbstractModelDefinition
      */
     public function indexWith(): array
     {
-        return [Block::RELATION_BLOCKS, Block::RELATION_ELEMENTS, Block::RELATION_FIELDS];
+        return [
+            Block::RELATION_BLOCKS,
+            Block::RELATION_ELEMENTS,
+            Block::RELATION_FIELDS
+        ];
     }
 
     /**
@@ -79,7 +89,10 @@ final class BlockDefinition extends AbstractModelDefinition
      */
     public function indexWithCount(): array
     {
-        return [Block::RELATION_BLOCKS, Block::RELATION_FIELDS];
+        return [
+            Block::RELATION_BLOCKS,
+            Block::RELATION_FIELDS
+        ];
     }
 
     /**

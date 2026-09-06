@@ -38,12 +38,24 @@ final class FooterDefinition extends AbstractModelDefinition
     {
         return [
             ModelHookEventEnum::AFTER_STORE->value => [
-                ['hook' => SyncFooterLinksHook::class, 'priority' => 0],
-                ['hook' => SyncFooterSocialMediaHook::class, 'priority' => 0],
+                [
+                    'hook' => SyncFooterLinksHook::class,
+                    'priority' => 0
+                ],
+                [
+                    'hook' => SyncFooterSocialMediaHook::class,
+                    'priority' => 0
+                ],
             ],
             ModelHookEventEnum::AFTER_UPDATE->value => [
-                ['hook' => SyncFooterLinksHook::class, 'priority' => 0],
-                ['hook' => SyncFooterSocialMediaHook::class, 'priority' => 0],
+                [
+                    'hook' => SyncFooterLinksHook::class,
+                    'priority' => 0
+                ],
+                [
+                    'hook' => SyncFooterSocialMediaHook::class,
+                    'priority' => 0
+                ],
             ],
         ];
     }

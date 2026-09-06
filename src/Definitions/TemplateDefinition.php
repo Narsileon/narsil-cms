@@ -46,10 +46,16 @@ final class TemplateDefinition extends AbstractModelDefinition
     {
         return [
             ModelHookEventEnum::AFTER_STORE->value => [
-                ['hook' => SyncTemplateTabsHook::class, 'priority' => 0],
+                [
+                    'hook' => SyncTemplateTabsHook::class,
+                    'priority' => 0
+                ],
             ],
             ModelHookEventEnum::AFTER_UPDATE->value => [
-                ['hook' => SyncTemplateTabsHook::class, 'priority' => 0],
+                [
+                    'hook' => SyncTemplateTabsHook::class,
+                    'priority' => 0
+                ],
             ],
         ];
     }

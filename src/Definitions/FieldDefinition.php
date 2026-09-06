@@ -31,7 +31,11 @@ final class FieldDefinition extends AbstractModelDefinition
      */
     public function editWith(): array
     {
-        return [Field::RELATION_BLOCKS, Field::RELATION_OPTIONS, Field::RELATION_VALIDATION_RULES];
+        return [
+            Field::RELATION_BLOCKS,
+            Field::RELATION_OPTIONS,
+            Field::RELATION_VALIDATION_RULES
+        ];
     }
 
     /**
@@ -59,10 +63,16 @@ final class FieldDefinition extends AbstractModelDefinition
 
         return [
             ModelHookEventEnum::AFTER_STORE->value => [
-                ['hook' => $hook, 'priority' => 0],
+                [
+                    'hook' => $hook,
+                    'priority' => 0
+                ],
             ],
             ModelHookEventEnum::AFTER_UPDATE->value => [
-                ['hook' => $hook, 'priority' => 0],
+                [
+                    'hook' => $hook,
+                    'priority' => 0
+                ],
             ],
         ];
     }

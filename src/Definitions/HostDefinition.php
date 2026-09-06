@@ -47,11 +47,20 @@ final class HostDefinition extends AbstractModelDefinition
     {
         return [
             ModelHookEventEnum::AFTER_STORE->value => [
-                ['hook' => SyncHostLocalesHook::class, 'priority' => 0],
+                [
+                    'hook' => SyncHostLocalesHook::class,
+                    'priority' => 0
+                ],
             ],
             ModelHookEventEnum::AFTER_UPDATE->value => [
-                ['hook' => DispatchHostSitemapHook::class, 'priority' => 0],
-                ['hook' => SyncHostLocalesHook::class, 'priority' => 0],
+                [
+                    'hook' => DispatchHostSitemapHook::class,
+                    'priority' => 0
+                ],
+                [
+                    'hook' => SyncHostLocalesHook::class,
+                    'priority' => 0
+                ],
             ],
         ];
     }
