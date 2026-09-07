@@ -12,6 +12,7 @@ use Narsil\Cms\Contracts\Actions\Hosts\ReplicateHost;
 use Narsil\Cms\Contracts\Forms\HostForm;
 use Narsil\Cms\Contracts\Requests\HostFormRequest;
 use Narsil\Cms\Models\Hosts\Host;
+use Narsil\Cms\Models\Hosts\HostLocale;
 use Narsil\Cms\Implementations\Tables\HostTable;
 use Narsil\Cms\Implementations\Hooks\Hosts\DispatchHostSitemapHook;
 use Narsil\Cms\Implementations\Hooks\Hosts\SyncHostLocalesHook;
@@ -28,7 +29,8 @@ final class HostDefinition extends AbstractModelDefinition
     public function editWith(): array
     {
         return [
-            Host::RELATION_LOCALES,
+            Host::RELATION_DEFAULT_LOCALE . '.' . HostLocale::RELATION_LANGUAGES,
+            Host::RELATION_OTHER_LOCALES . '.' . HostLocale::RELATION_LANGUAGES,
         ];
     }
 

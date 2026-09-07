@@ -6,8 +6,9 @@ namespace Narsil\Cms\Http\Controllers\Configurations;
 
 #region USE
 
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Inertia\Response;
+use Illuminate\View\View;
 use Narsil\Base\Casts\DiffForHumansCast;
 use Narsil\Base\Enums\RequestMethodEnum;
 use Narsil\Base\Http\Controllers\RenderController;
@@ -24,16 +25,16 @@ class ConfigurationEditController extends RenderController
     /**
      * @param Request $request
      *
-     * @return Response
+     * @return JsonResponse|View
      */
-    public function __invoke(Request $request): Response
+    public function __invoke(Request $request): JsonResponse|View
     {
         $configuration = Configuration::firstOrCreate();
 
         $data = $this->getData($configuration);
         $form = $this->getForm($configuration);
 
-        return $this->render('narsil/cms::resources/form', [
+        return $this->renderBlade('narsil::pages.resources.form', [
             'data' => $data,
             'form' => $form,
         ]);
