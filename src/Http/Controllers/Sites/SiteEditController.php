@@ -10,7 +10,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Session;
-use Inertia\Response;
+use Illuminate\View\View;
 use Locale;
 use Narsil\Base\Casts\DiffForHumansCast;
 use Narsil\Base\Enums\AbilityEnum;
@@ -36,9 +36,9 @@ class SiteEditController extends RenderController
      * @param Request $request
      * @param string $site
      *
-     * @return JsonResponse|Response
+     * @return JsonResponse|View
      */
-    public function __invoke(Request $request, string $site): JsonResponse|Response
+    public function __invoke(Request $request, string $site): JsonResponse|View
     {
         $site = Site::query()
             ->with([
@@ -70,7 +70,7 @@ class SiteEditController extends RenderController
         app(TranslationsBag::class)
             ->add('narsil-cms::ui.countries');
 
-        return $this->render('narsil/cms::resources/form', [
+        return $this->renderBlade('narsil::pages.resources.form', [
             'countries' => $countries,
             'data' => $data,
             'form' => $form,

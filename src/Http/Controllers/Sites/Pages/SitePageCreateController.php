@@ -8,7 +8,7 @@ namespace Narsil\Cms\Http\Controllers\Sites\Pages;
 
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Inertia\Response;
+use Illuminate\View\View;
 use Narsil\Base\Enums\AbilityEnum;
 use Narsil\Base\Enums\RequestMethodEnum;
 use Narsil\Base\Http\Controllers\RenderController;
@@ -26,16 +26,16 @@ class SitePageCreateController extends RenderController
      * @param Request $request
      * @param string $site
      *
-     * @return JsonResponse|Response
+     * @return JsonResponse|View
      */
-    public function __invoke(Request $request, string $site): JsonResponse|Response
+    public function __invoke(Request $request, string $site): JsonResponse|View
     {
         $this->authorize(AbilityEnum::CREATE, SitePage::class);
 
         $data = $request->query();
         $form = $this->getForm($site);
 
-        return $this->render('narsil/cms::resources/form', [
+        return $this->renderBlade('narsil::pages.resources.form', [
             'data' => $data,
             'form' => $form,
         ]);

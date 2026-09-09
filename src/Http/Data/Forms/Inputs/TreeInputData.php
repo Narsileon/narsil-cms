@@ -13,6 +13,7 @@ use Narsil\Base\Support\TranslationsBag;
 
 /**
  * @property array $defaultValue The value of the "default value" attribute.
+ * @property boolean $rootExclusive Whether the tree has one exclusive root item.
  */
 class TreeInputData extends InputData
 {
@@ -20,14 +21,17 @@ class TreeInputData extends InputData
 
     /**
      * @param array $defaultValue The value of the "default value" attribute.
+     * @param boolean $rootExclusive Whether the tree has one exclusive root item.
      *
      * @return void
      */
     public function __construct(
         array $defaultValue = [],
+        bool $rootExclusive = false,
     )
     {
         $this->set(self::DEFAULT_VALUE, $defaultValue);
+        $this->set(self::ROOT_EXCLUSIVE, $rootExclusive);
 
         parent::__construct(static::TYPE);
     }
@@ -35,6 +39,13 @@ class TreeInputData extends InputData
     #endregion
 
     #region CONSTANTS
+
+    /**
+     * The name of the "root exclusive" attribute.
+     *
+     * @var string
+     */
+    final public const ROOT_EXCLUSIVE = 'rootExclusive';
 
     /**
      * The name of the "type" attribute.

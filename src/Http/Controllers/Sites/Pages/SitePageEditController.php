@@ -8,7 +8,7 @@ namespace Narsil\Cms\Http\Controllers\Sites\Pages;
 
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Inertia\Response;
+use Illuminate\View\View;
 use Narsil\Base\Enums\AbilityEnum;
 use Narsil\Base\Enums\RequestMethodEnum;
 use Narsil\Base\Http\Controllers\RenderController;
@@ -28,9 +28,9 @@ class SitePageEditController extends RenderController
      * @param string $site
      * @param SitePage $sitePage
      *
-     * @return JsonResponse|Response
+     * @return JsonResponse|View
      */
-    public function __invoke(Request $request, string $site, SitePage $sitePage): JsonResponse|Response
+    public function __invoke(Request $request, string $site, SitePage $sitePage): JsonResponse|View
     {
         $this->authorize(AbilityEnum::UPDATE, $sitePage);
 
@@ -40,7 +40,7 @@ class SitePageEditController extends RenderController
 
         $data = $this->getData($sitePage);
 
-        return $this->render('narsil/cms::resources/form', [
+        return $this->renderBlade('narsil::pages.resources.form', [
             'data' => $data,
             'form' => $form,
         ]);

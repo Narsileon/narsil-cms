@@ -51,7 +51,9 @@ class SiteForm extends Form implements Contract
                     new FieldData(
                         id: Site::RELATION_PAGES,
                         label: trans('narsil-cms::ui.navigation'),
-                        input: new TreeInputData(),
+                        input: new TreeInputData(
+                            rootExclusive: true,
+                        ),
                     ),
                 ],
             ),
