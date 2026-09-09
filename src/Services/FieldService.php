@@ -4,12 +4,6 @@ declare(strict_types=1);
 
 namespace Narsil\Cms\Services;
 
-#region USE
-
-use Illuminate\Support\Str;
-
-#endregion
-
 abstract class FieldService
 {
     #region PUBLIC METHODS
@@ -23,11 +17,29 @@ abstract class FieldService
      */
     public static function getIcon(string $type): string
     {
-        $baseName = class_basename($type);
-
-        $fieldName  = Str::beforeLast($baseName, 'Field');
-
-        return Str::kebab($fieldName);
+        return match ($type)
+        {
+            'asset', 'file' => 'fa-regular-file-lines',
+            'builder' => 'fa-solid-cubes-stacked',
+            'checkbox' => 'fa-regular-square-check',
+            'color', 'icon' => 'fa-solid-palette',
+            'date', 'datetime-local', 'month', 'week' => 'fa-regular-calendar',
+            'email' => 'fa-regular-envelope',
+            'entity', 'relations' => 'fa-solid-sitemap',
+            'form' => 'fa-solid-clipboard-list',
+            'link' => 'fa-solid-link',
+            'number' => 'fa-solid-hashtag',
+            'password' => 'fa-solid-key',
+            'radio' => 'fa-regular-circle-dot',
+            'range' => 'fa-solid-sliders',
+            'rich-text' => 'fa-solid-spell-check',
+            'select', 'combobox' => 'fa-solid-list',
+            'switch' => 'fa-solid-toggle-on',
+            'table' => 'fa-solid-table-columns',
+            'text', 'textarea' => 'fa-solid-font',
+            'time' => 'fa-regular-clock',
+            default => 'fa-solid-circle-question',
+        };
     }
 
     #endregion

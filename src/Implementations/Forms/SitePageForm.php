@@ -185,7 +185,7 @@ class SitePageForm extends Form implements Contract
                             ),
                             new FieldData(
                                 id: SitePage::OPEN_GRAPH_IMAGE,
-                                icon: 'image',
+                                icon: 'fa-regular-image',
                                 label: Translator::trans('validation.attributes.image'),
                                 translatable: true,
                                 input: new FileInputData(

@@ -61,7 +61,7 @@ class FooterForm extends Form implements Contract
                         input: new TextInputData(),
                     ),
                     new FieldData(
-                        icon: 'image',
+                        icon: 'fa-regular-image',
                         id: Footer::LOGO,
                         input: new FileInputData(
                             accept: 'image/*',

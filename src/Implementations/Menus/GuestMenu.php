@@ -43,14 +43,14 @@ class GuestMenu extends Menu implements Contract
         $this
             ->add(
                 new MenuItem('settings')
-                    ->icon('settings')
+                    ->icon('fa-regular-gear')
                     ->label(ModelService::getTableLabel(UserConfiguration::TABLE))
                     ->route('user-configurations.edit')
                     ->modal(true),
             )
             ->add(
                 new MenuItem('login')
-                    ->icon('log-in')
+                    ->icon('fa-regular-right-to-bracket')
                     ->label(trans('narsil::ui.log_in'))
                     ->route('login'),
             );

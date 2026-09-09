@@ -21,27 +21,27 @@ class FooterFactory extends Factory
      */
     protected const SOCIAL_MEDIA = [
         [
-            FooterSocialMedium::ICON => 'facebook',
+            FooterSocialMedium::ICON => 'fa-brands-facebook',
             FooterSocialMedium::LABEL => 'Facebook',
             FooterSocialMedium::URL => 'https://www.facebook.com'
         ],
         [
-            FooterSocialMedium::ICON => 'instagram',
+            FooterSocialMedium::ICON => 'fa-brands-instagram',
             FooterSocialMedium::LABEL => 'Instagram',
             FooterSocialMedium::URL => 'https://instagram.com'
         ],
         [
-            FooterSocialMedium::ICON => 'linkedin',
+            FooterSocialMedium::ICON => 'fa-brands-linkedin',
             FooterSocialMedium::LABEL => 'LinkedIn',
             FooterSocialMedium::URL => 'https://linkedin.com'
         ],
         [
-            FooterSocialMedium::ICON => 'tiktok',
+            FooterSocialMedium::ICON => 'fa-brands-tiktok',
             FooterSocialMedium::LABEL => 'TikTok',
             FooterSocialMedium::URL => 'https://www.tiktok.com'
         ],
         [
-            FooterSocialMedium::ICON => 'youtube',
+            FooterSocialMedium::ICON => 'fa-brands-youtube',
             FooterSocialMedium::LABEL => 'Youtube',
             FooterSocialMedium::URL => 'https://www.youtube.com'
         ],

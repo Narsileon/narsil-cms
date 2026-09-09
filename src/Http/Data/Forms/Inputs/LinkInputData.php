@@ -15,6 +15,7 @@ use Narsil\Cms\Models\Sites\SitePage;
 
 /**
  * @property string $defaultValue The value of the "default value" attribute.
+ * @property string $fetchRoute The value of the "fetch route" attribute.
  * @property string $labelPath The value of the "label path" attribute.
  * @property string $valuePath The value of the "value path" attribute.
  * @property integer[] $values The value of the "options" attribute.
@@ -41,6 +42,7 @@ class LinkInputData extends InputData
         $initialOptions = $this->getOptions($values);
 
         $this->set(self::DEFAULT_VALUE, $defaultValue);
+        $this->set(self::FETCH_ROUTE, 'site-pages.search');
         $this->set(self::INITIAL_OPTIONS, $initialOptions->toArray());
         $this->set(self::LABEL_PATH, $labelPath);
         $this->set(self::VALUE_PATH, $valuePath);
@@ -51,6 +53,13 @@ class LinkInputData extends InputData
     #endregion
 
     #region CONSTANTS
+
+    /**
+     * The name of the "fetch route" attribute.
+     *
+     * @var string
+     */
+    final public const FETCH_ROUTE = 'fetchRoute';
 
     /**
      * The name of the "initial options" attribute.

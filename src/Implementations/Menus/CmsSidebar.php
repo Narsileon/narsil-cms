@@ -61,7 +61,7 @@ final class CmsSidebar extends Menu implements Contract
             $this->add(
                 new MenuItem($template->{Template::TABLE_NAME})
                     ->group($group)
-                    ->icon('layers')
+                    ->icon('fa-solid-layer-group')
                     ->label($template->{Template::PLURAL})
                     ->route('collections.index')
                     ->parameters([
@@ -85,7 +85,7 @@ final class CmsSidebar extends Menu implements Contract
             ->add(
                 new MenuItem(Header::TABLE)
                     ->group($group)
-                    ->icon('header')
+                    ->icon('fa-solid-header')
                     ->label(ModelService::getTableLabel(Header::TABLE))
                     ->route('headers.index')
                     ->permissions([
@@ -95,7 +95,7 @@ final class CmsSidebar extends Menu implements Contract
             ->add(
                 new MenuItem(Footer::TABLE)
                     ->group($group)
-                    ->icon('footer')
+                    ->icon('fa-solid-window-maximize')
                     ->label(ModelService::getTableLabel(Footer::TABLE))
                     ->route('footers.index')
                     ->permissions([
@@ -116,7 +116,7 @@ final class CmsSidebar extends Menu implements Contract
             ->add(
                 new MenuItem(Host::TABLE)
                     ->group($group)
-                    ->icon('server')
+                    ->icon('fa-solid-server')
                     ->label(ModelService::getTableLabel(Host::TABLE))
                     ->route('hosts.index')
                     ->permissions([
@@ -126,7 +126,7 @@ final class CmsSidebar extends Menu implements Contract
             ->add(
                 new MenuItem(Redirect::TABLE)
                     ->group($group)
-                    ->icon('redo')
+                    ->icon('fa-solid-redo')
                     ->label(ModelService::getTableLabel(Redirect::TABLE))
                     ->route('redirects.index')
                     ->permissions([
@@ -136,7 +136,7 @@ final class CmsSidebar extends Menu implements Contract
             ->add(
                 new MenuItem(Configuration::TABLE)
                     ->group($group)
-                    ->icon('settings')
+                    ->icon('fa-regular-gear')
                     ->label(ModelService::getTableLabel(Configuration::TABLE))
                     ->route('settings.edit')
                     ->permissions([
@@ -161,7 +161,7 @@ final class CmsSidebar extends Menu implements Contract
             $this->add(
                 new MenuItem($site->{Site::HOSTNAME})
                     ->group($group)
-                    ->icon('globe')
+                    ->icon('fa-solid-globe')
                     ->label($site->{Site::LABEL}, false)
                     ->route('sites.edit')
                     ->parameters([
@@ -186,7 +186,7 @@ final class CmsSidebar extends Menu implements Contract
             ->add(
                 new MenuItem(Template::TABLE)
                     ->group($group)
-                    ->icon('template')
+                    ->icon('fa-solid-window-restore')
                     ->label(ModelService::getTableLabel(Template::TABLE))
                     ->route('templates.index')
                     ->permissions([
@@ -196,7 +196,7 @@ final class CmsSidebar extends Menu implements Contract
             ->add(
                 new MenuItem(Block::TABLE)
                     ->group($group)
-                    ->icon('block')
+                    ->icon('fa-solid-cubes-stacked')
                     ->label(ModelService::getTableLabel(Block::TABLE))
                     ->route('blocks.index')
                     ->permissions([
@@ -206,7 +206,7 @@ final class CmsSidebar extends Menu implements Contract
             ->add(
                 new MenuItem(Field::TABLE)
                     ->group($group)
-                    ->icon('field')
+                    ->icon('fa-solid-list')
                     ->label(ModelService::getTableLabel(Field::TABLE))
                     ->route('fields.index')
                     ->permissions([
@@ -223,7 +223,7 @@ final class CmsSidebar extends Menu implements Contract
         $this
             ->add(
                 new MenuItem('dashboard')
-                    ->icon('chart-pie')
+                    ->icon('fa-solid-chart-pie')
                     ->label(trans('narsil-cms::ui.dashboard'))
                     ->route('dashboard')
             );

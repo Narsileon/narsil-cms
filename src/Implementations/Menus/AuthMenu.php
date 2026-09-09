@@ -45,14 +45,14 @@ class AuthMenu extends Menu implements Contract
         $this
             ->add(
                 new MenuItem('settings')
-                    ->icon('settings')
+                    ->icon('fa-regular-gear')
                     ->label(ModelService::getTableLabel(UserConfiguration::TABLE))
                     ->route('user-configurations.edit')
                     ->modal(true),
             )
             ->add(
                 new MenuItem('logout')
-                    ->icon('log-out')
+                    ->icon('fa-regular-right-from-bracket')
                     ->label(trans('narsil::ui.log_out'))
                     ->route('logout')
                     ->method(RequestMethodEnum::POST->value),

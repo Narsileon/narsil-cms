@@ -53,7 +53,7 @@ class HeaderForm extends Form implements Contract
                     ),
                     new FieldData(
                         id: Header::LOGO,
-                        icon: 'image',
+                        icon: 'fa-regular-image',
                         input: new FileInputData(
                             accept: 'image/*',
                         ),

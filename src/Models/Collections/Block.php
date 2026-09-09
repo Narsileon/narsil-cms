@@ -208,7 +208,7 @@ class Block extends BaseElement
         return Attribute::make(
             get: function ()
             {
-                return 'block';
+                return 'fa-solid-cubes-stacked';
             },
         );
     }

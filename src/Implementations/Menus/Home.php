@@ -27,7 +27,7 @@ final class Home extends BaseHome implements Contract
 
         $this
             ->add(
-                new MenuItem('cms')->icon('chart-pie')
+                new MenuItem('cms')->icon('fa-solid-chart-pie')
                     ->label('CMS')
                     ->route('dashboard')
             );
@@ -48,7 +48,7 @@ final class Home extends BaseHome implements Contract
             if ($sitePage)
             {
                 $this->add(
-                    new MenuItem('live-editor')->icon('edit')
+                    new MenuItem('live-editor')->icon('fa-regular-edit')
                         ->label(trans('narsil-cms::live-editor.title'))
                         ->route('live-editor.show')
                         ->parameters([
