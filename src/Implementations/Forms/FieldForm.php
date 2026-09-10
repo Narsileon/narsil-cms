@@ -128,7 +128,7 @@ class FieldForm extends Form implements Contract
                             id: Field::SETTINGS,
                             label: trans('narsil-cms::ui.settings'),
                             elements: $settings,
-                        ),
+                        )->virtual(true),
                     ] : []),
                 ],
             ),
