@@ -80,7 +80,9 @@ class FieldForm extends Form implements Contract
 
         $settings = [];
 
-        $type = request()->input(Field::TYPE);
+        $type = request()->header('X-Narsil-Form-Reload') === 'true'
+            ? request()->input(Field::TYPE)
+            : data_get($this->model, Field::TYPE);
 
         if ($type)
         {
