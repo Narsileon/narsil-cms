@@ -137,8 +137,6 @@ abstract class Element extends MorphPivot
     #region • RELATIONSHIPS
 
     /**
-     * Get the associated base.
-     *
      * @return MorphTo
      */
     final public function base(): MorphTo
@@ -151,15 +149,11 @@ abstract class Element extends MorphPivot
     }
 
     /**
-     * Get the associated conditions.
-     *
      * @return HasMany
      */
     abstract public function conditions(): HasMany;
 
     /**
-     * Get the associated owner.
-     *
      * @return BelongsTo
      */
     abstract public function owner(): BelongsTo;
@@ -173,8 +167,6 @@ abstract class Element extends MorphPivot
     #region • ACCESSORS
 
     /**
-     * Get the "icon" attribute.
-     *
      * @return string
      */
     final protected function icon(): Attribute
@@ -188,8 +180,6 @@ abstract class Element extends MorphPivot
     }
 
     /**
-     * Get the "identifier" attribute.
-     *
      * @return string
      */
     final protected function identifier(): Attribute

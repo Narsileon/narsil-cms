@@ -112,8 +112,6 @@ abstract class TreeModel extends Model
     #region • RELATIONSHIPS
 
     /**
-     * Get the associated children.
-     *
      * @return HasMany
      */
     final public function children(): HasMany
@@ -128,8 +126,6 @@ abstract class TreeModel extends Model
     }
 
     /**
-     * Get the node on the left.
-     *
      * @return HasOne
      */
     final public function left(): HasOne
@@ -143,8 +139,6 @@ abstract class TreeModel extends Model
     }
 
     /**
-     * Get the associated parent.
-     *
      * @return BelongsTo
      */
     final public function parent(): BelongsTo
@@ -158,8 +152,6 @@ abstract class TreeModel extends Model
     }
 
     /**
-     * Get the node on the right.
-     *
      * @return HasOne
      */
     final public function right(): HasOne

@@ -84,8 +84,6 @@ class FieldBlock extends Pivot
     #region • RELATIONSHIPS
 
     /**
-     * Get the associated block.
-     *
      * @return BelongsTo
      */
     final public function block(): BelongsTo
@@ -99,8 +97,6 @@ class FieldBlock extends Pivot
     }
 
     /**
-     * Get the associated field.
-     *
      * @return BelongsTo
      */
     final public function field(): BelongsTo

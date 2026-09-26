@@ -17,8 +17,6 @@ interface Resource
     #region PUBLIC METHODS
 
     /**
-     * Transform the resource into an array.
-     *
      * @param Request $request
      *
      * @return array|Arrayable|JsonSerializable

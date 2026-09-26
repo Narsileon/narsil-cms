@@ -19,8 +19,6 @@ final class CommandServiceProvider extends ServiceProvider
     #region PUBLIC METHODS
 
     /**
-     * Boot any application services.
-     *
      * @return void
      */
     public function boot(): void
@@ -33,8 +31,6 @@ final class CommandServiceProvider extends ServiceProvider
     #region PROTECTED METHODS
 
     /**
-     * Boot the commands.
-     *
      * @return void
      */
     protected function bootCommands(): void

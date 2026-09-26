@@ -126,8 +126,6 @@ class TemplateTab extends Model
     #region • RELATIONSHIPS
 
     /**
-     * Get the associated blocks.
-     *
      * @return MorphToMany
      */
     final public function blocks(): MorphToMany
@@ -144,8 +142,6 @@ class TemplateTab extends Model
     }
 
     /**
-     * Get the associated elements.
-     *
      * @return HasMany
      */
     final public function elements(): HasMany
@@ -160,8 +156,6 @@ class TemplateTab extends Model
     }
 
     /**
-     * Get the associated fields.
-     *
      * @return MorphToMany
      */
     final public function fields(): MorphToMany
@@ -178,8 +172,6 @@ class TemplateTab extends Model
     }
 
     /**
-     * Get the associated template.
-     *
      * @return BelongsTo
      */
     final public function template(): BelongsTo

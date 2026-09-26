@@ -20,8 +20,6 @@ class EntityNodeResolver
     #region PUBLIC METHODS
 
     /**
-     * Get the entity linked to a site page for a given language.
-     *
      * @param SitePage $sitePage
      * @param string|null $language
      *
@@ -43,8 +41,6 @@ class EntityNodeResolver
     }
 
     /**
-     * Get a node of an entity by its uuid.
-     *
      * @param Entity $entity
      * @param string $nodeUuid
      *
@@ -57,8 +53,6 @@ class EntityNodeResolver
     }
 
     /**
-     * Get the class of the nodes of an entity.
-     *
      * @param Entity $entity
      *
      * @return string

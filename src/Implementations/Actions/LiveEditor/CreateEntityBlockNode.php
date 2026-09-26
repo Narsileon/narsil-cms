@@ -60,8 +60,6 @@ class CreateEntityBlockNode extends Action implements Contract
     #region PROTECTED METHODS
 
     /**
-     * Create the value nodes mirroring the elements of a block.
-     *
      * @param EntityNode $parent
      * @param Collection $elements
      *

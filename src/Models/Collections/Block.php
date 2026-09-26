@@ -139,8 +139,6 @@ class Block extends BaseElement
     #region • RELATIONSHIPS
 
     /**
-     * Get the associated blocks.
-     *
      * @return MorphToMany
      */
     final public function blocks(): MorphToMany
@@ -157,8 +155,6 @@ class Block extends BaseElement
     }
 
     /**
-     * Get the associated elements.
-     *
      * @return HasMany
      */
     final public function elements(): HasMany
@@ -173,8 +169,6 @@ class Block extends BaseElement
     }
 
     /**
-     * Get the associated fields.
-     *
      * @return MorphToMany
      */
     final public function fields(): MorphToMany
@@ -199,8 +193,6 @@ class Block extends BaseElement
     #region • ACCESSORS
 
     /**
-     * Get the "icon" attribute.
-     *
      * @return string
      */
     protected function icon(): Attribute

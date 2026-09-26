@@ -95,8 +95,6 @@ class HostLocaleLanguage extends Model
     #region PUBLIC METHODS
 
     /**
-     * Get the first language configured for a default country.
-     *
      * @return string
      */
     final public static function getDefaultLanguage(): string
@@ -125,8 +123,6 @@ class HostLocaleLanguage extends Model
     }
 
     /**
-     * Get unique languages.
-     *
      * @return string[]
      */
     final public static function getUniqueLanguages(): array
@@ -142,8 +138,6 @@ class HostLocaleLanguage extends Model
     #region • RELATIONSHIPS
 
     /**
-     * Get the associated locale.
-     *
      * @return BelongsTo
      */
     final public function locale(): BelongsTo
@@ -165,8 +159,6 @@ class HostLocaleLanguage extends Model
     #region • ACCESSORS
 
     /**
-     * Get the "display language" attribute.
-     *
      * @return string
      */
     protected function displayLanguage(): Attribute

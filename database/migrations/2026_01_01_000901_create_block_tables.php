@@ -22,8 +22,6 @@ return new class() extends Migration
     #region PUBLIC METHODS
 
     /**
-     * Run the migrations.
-     *
      * @return void
      */
     public function up(): void
@@ -48,8 +46,6 @@ return new class() extends Migration
     }
 
     /**
-     * Reverse the migrations.
-     *
      * @return void
      */
     public function down(): void
@@ -66,8 +62,6 @@ return new class() extends Migration
     #region PRIVATE METHODS
 
     /**
-     * Create the block element conditions table.
-     *
      * @return void
      */
     private function createBlockElementConditionsTable(): void
@@ -96,8 +90,6 @@ return new class() extends Migration
     }
 
     /**
-     * Create the block elements table.
-     *
      * @return void
      */
     private function createBlockElementTable(): void
@@ -147,8 +139,6 @@ return new class() extends Migration
     }
 
     /**
-     * Create the blocks table.
-     *
      * @return void
      */
     private function createBlocksTable(): void
@@ -187,8 +177,6 @@ return new class() extends Migration
     }
 
     /**
-     * Create the block set table.
-     *
      * @return void
      */
     private function createFieldBlockTable(): void

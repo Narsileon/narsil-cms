@@ -68,8 +68,6 @@ class SitePageNestedTreeResource extends NestedTreeResource
     #region PROTECTED METHODS
 
     /**
-     * Get the badge.
-     *
      * @return string
      */
     protected function getBadge(): string
@@ -91,8 +89,6 @@ class SitePageNestedTreeResource extends NestedTreeResource
     }
 
     /**
-     * Get the create url.
-     *
      * @return string
      */
     protected function getCreateUrl(): string
@@ -106,8 +102,6 @@ class SitePageNestedTreeResource extends NestedTreeResource
     }
 
     /**
-     * Get the destroy url.
-     *
      * @return string
      */
     protected function getDestroyUrl(): string
@@ -119,8 +113,6 @@ class SitePageNestedTreeResource extends NestedTreeResource
     }
 
     /**
-     * Get the edit url.
-     *
      * @return string
      */
     protected function getEditUrl(): string
@@ -132,8 +124,6 @@ class SitePageNestedTreeResource extends NestedTreeResource
     }
 
     /**
-     * Get the label.
-     *
      * @return array|string
      */
     protected function getLabel(): array|string
@@ -142,8 +132,6 @@ class SitePageNestedTreeResource extends NestedTreeResource
     }
 
     /**
-     * Get the live editor URL.
-     *
      * @param Request $request
      *
      * @return string

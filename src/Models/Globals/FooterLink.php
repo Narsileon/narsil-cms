@@ -100,8 +100,6 @@ class FooterLink extends Pivot
     #region • RELATIONSHIPS
 
     /**
-     * Get the associated footer.
-     *
      * @return BelongsTo
      */
     final public function footer(): BelongsTo
@@ -115,8 +113,6 @@ class FooterLink extends Pivot
     }
 
     /**
-     * Get the associated site page.
-     *
      * @return BelongsTo
      */
     final public function site_page(): BelongsTo

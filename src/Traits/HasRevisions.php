@@ -152,8 +152,6 @@ trait HasRevisions
     #region • RELATIONSHIPS
 
     /**
-     * Get the associated draft.
-     *
      * @return HasOne
      */
     final public function draft(): HasOne
@@ -168,8 +166,6 @@ trait HasRevisions
     }
 
     /**
-     * Get the published revision.
-     *
      * @return HasOne
      */
     final public function published_revision(): HasOne
@@ -186,8 +182,6 @@ trait HasRevisions
     }
 
     /**
-     * Get the associated revisions.
-     *
      * @return HasMany
      */
     final public function revisions(): HasMany
@@ -210,8 +204,6 @@ trait HasRevisions
     #region PROTECTED METHODS
 
     /**
-     * Boot the trait.
-     *
      * @return void
      */
     protected static function bootHasRevisions(): void
@@ -245,8 +237,6 @@ trait HasRevisions
     #region • ATTRIBUTES
 
     /**
-     * Get the "has draft" attribute.
-     *
      * @return Attribute
      */
     final protected function hasDraft(): Attribute
@@ -260,8 +250,6 @@ trait HasRevisions
     }
 
     /**
-     * Get the "has new revision" attribute.
-     *
      * @return Attribute
      */
     final protected function hasNewRevision(): Attribute
@@ -285,8 +273,6 @@ trait HasRevisions
     }
 
     /**
-     * Get the "has published revision" attribute.
-     *
      * @return Attribute
      */
     final protected function hasPublishedRevision(): Attribute

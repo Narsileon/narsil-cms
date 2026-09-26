@@ -126,8 +126,6 @@ class HostLocale extends Model
     #region • RELATIONSHIPS
 
     /**
-     * Get the associated languages.
-     *
      * @return HasMany
      */
     final public function languages(): HasMany
@@ -142,8 +140,6 @@ class HostLocale extends Model
     }
 
     /**
-     * Get the associated host.
-     *
      * @return BelongsTo
      */
     final public function host(): BelongsTo

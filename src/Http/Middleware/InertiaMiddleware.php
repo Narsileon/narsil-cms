@@ -57,8 +57,6 @@ class InertiaMiddleware extends Middleware
     #region PUBLIC METHODS
 
     /**
-     * Define the props that are shared by default.
-     *
      * @see https://inertiajs.com/shared-data
      *
      * @param Request $request
@@ -91,8 +89,6 @@ class InertiaMiddleware extends Middleware
     }
 
     /**
-     * Determine the current asset version.
-     *
      * @see https://inertiajs.com/asset-versioning
      *
      * @param Request $request

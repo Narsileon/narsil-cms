@@ -95,8 +95,6 @@ class FieldOption extends Model
     #region • RELATIONSHIPS
 
     /**
-     * Get the associated field.
-     *
      * @return BelongsTo
      */
     final public function field(): BelongsTo

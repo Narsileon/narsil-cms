@@ -51,8 +51,6 @@ class SitePageEditController extends RenderController
     #region PROTECTED METHODS
 
     /**
-     * Get the associated data.
-     *
      * @param SitePage $sitePage
      *
      * @return array<string,mixed>
@@ -73,8 +71,6 @@ class SitePageEditController extends RenderController
     }
 
     /**
-     * Get the associated form.
-     *
      * @param string $site
      * @param SitePage $sitePage
      *
@@ -118,8 +114,6 @@ class SitePageEditController extends RenderController
     }
 
     /**
-     * Transform the entities for the form.
-     *
      * @param SitePage $sitePage
      *
      * @return void

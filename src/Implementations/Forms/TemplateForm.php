@@ -45,8 +45,6 @@ class TemplateForm extends Form implements Contract
     #region PROTECTED METHODS
 
     /**
-     * Get the block options.
-     *
      * @return OptionData[]
      */
     protected static function getBlockOptions(): array
@@ -70,8 +68,6 @@ class TemplateForm extends Form implements Contract
     }
 
     /**
-     * Get the field options.
-     *
      * @return OptionData[]
      */
     protected static function getFieldOptions(): array

@@ -41,8 +41,6 @@ class Tree
     #region PUBLIC METHODS
 
     /**
-     * Get the flat tree.
-     *
      * @return Collection<TreeModel>
      */
     public function getFlatTree(): Collection
@@ -55,8 +53,6 @@ class Tree
     }
 
     /**
-     * Get the nested tree.
-     *
      * @return Collection<TreeModel>
      */
     public function getNestedTree(): Collection
@@ -73,8 +69,6 @@ class Tree
     #region PROTECTED METHODS
 
     /**
-     * Build a flat tree.
-     *
      * @param Collection<TreeModel> $collection
      * @param int $depth
      *
@@ -102,8 +96,6 @@ class Tree
     }
 
     /**
-     * Build a nested tree.
-     *
      * @param Collection<TreeModel> $collection
      *
      * @return Collection
@@ -127,8 +119,6 @@ class Tree
     }
 
     /**
-     * Sort by neighbors.
-     *
      * @param Collection<TreeModel> $collection
      *
      * @return Collection

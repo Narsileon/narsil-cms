@@ -113,8 +113,6 @@ class BuilderInputData extends InputData
     #region PROTECTED METHODS
 
     /**
-     * Get the block options.
-     *
      * @return OptionData[]
      */
     protected static function getBlockOptions(): array

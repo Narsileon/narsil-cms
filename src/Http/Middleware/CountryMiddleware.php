@@ -18,8 +18,6 @@ class CountryMiddleware
     #region PUBLIC METHODS
 
     /**
-     * Handle an incoming request.
-     *
      * @param Request $request
      * @param Closure $next
      *

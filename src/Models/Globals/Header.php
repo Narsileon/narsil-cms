@@ -131,8 +131,6 @@ class Header extends Model implements Searchable
     #region • RELATIONSHIPS
 
     /**
-     * Get the associated websites.
-     *
      * @return HasMany
      */
     final public function websites(): HasMany

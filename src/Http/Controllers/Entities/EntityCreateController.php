@@ -60,8 +60,6 @@ class EntityCreateController extends RenderController
     }
 
     /**
-     * Get the associated form.
-     *
      * @return BlockForm
      */
     protected function getForm(): EntityForm

@@ -55,8 +55,6 @@ class ReorderEntityNodes extends Action implements Contract
     #region PROTECTED METHODS
 
     /**
-     * Move a block node to a position and realign the paths of its subtree.
-     *
      * @param EntityNode $node
      * @param string|null $parentPath
      * @param integer $position

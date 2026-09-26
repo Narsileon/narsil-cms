@@ -6,6 +6,7 @@ declare(strict_types=1);
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
+use Narsil\Base\Services\DatabaseService;
 use Narsil\Base\Services\ModelRouteRegistrar;
 use Narsil\Cms\Http\Controllers\Collections\CollectionSummaryController;
 use Narsil\Cms\Http\Controllers\DashboardController;

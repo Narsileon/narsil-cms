@@ -305,8 +305,6 @@ final class SitePage extends TreeModel implements Searchable
     #region • RELATIONSHIPS
 
     /**
-     * Get the associated entities.
-     *
      * @return HasMany
      */
     final public function entities(): HasMany
@@ -320,8 +318,6 @@ final class SitePage extends TreeModel implements Searchable
     }
 
     /**
-     * Get the associated override.
-     *
      * @return HasOne
      */
     final public function override(): HasOne
@@ -336,8 +332,6 @@ final class SitePage extends TreeModel implements Searchable
     }
 
     /**
-     * Get the associated overrides.
-     *
      * @return HasMany
      */
     final public function overrides(): HasMany
@@ -351,8 +345,6 @@ final class SitePage extends TreeModel implements Searchable
     }
 
     /**
-     * Get the associated site.
-     *
      * @return BelongsTo
      */
     final public function site(): BelongsTo
@@ -366,8 +358,6 @@ final class SitePage extends TreeModel implements Searchable
     }
 
     /**
-     * Get the associated url.
-     *
      * @return HasOne
      */
     final public function url(): HasOne
@@ -387,8 +377,6 @@ final class SitePage extends TreeModel implements Searchable
     }
 
     /**
-     * Get the associated urls.
-     *
      * @return HasMany
      */
     final public function urls(): HasMany
@@ -480,8 +468,6 @@ final class SitePage extends TreeModel implements Searchable
     #region • ACCESSORS
 
     /**
-     * Get the left id by applying the override if it exists.
-     *
      * @return Attribute
      */
     protected function leftId(): Attribute
@@ -495,8 +481,6 @@ final class SitePage extends TreeModel implements Searchable
     }
 
     /**
-     * Get the parent id by applying the override if it exists.
-     *
      * @return Attribute
      */
     protected function parentId(): Attribute
@@ -510,8 +494,6 @@ final class SitePage extends TreeModel implements Searchable
     }
 
     /**
-     * Get the right id by applying the override if it exists.
-     *
      * @return Attribute
      */
     protected function rightId(): Attribute

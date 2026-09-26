@@ -28,8 +28,6 @@ final class MenuServiceProvider extends ServiceProvider
     #region PROTECTED METHODS
 
     /**
-     * Register the configured menus as singletons.
-     *
      * @return void
      */
     protected function registerMenus(): void

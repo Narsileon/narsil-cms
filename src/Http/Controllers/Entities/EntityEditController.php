@@ -66,8 +66,6 @@ class EntityEditController extends RenderController
     #region PROTECTED METHODS
 
     /**
-     * Get the associated data.
-     *
      * @param Entity $entity
      *
      * @return array<string,mixed>
@@ -103,8 +101,6 @@ class EntityEditController extends RenderController
     }
 
     /**
-     * Get the associated entity.
-     *
      * @param Request $request
      * @param integer $id
      *
@@ -147,8 +143,6 @@ class EntityEditController extends RenderController
     }
 
     /**
-     * Get the associated form.
-     *
      * @param Entity $entity
      *
      * @return BlockForm

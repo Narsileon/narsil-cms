@@ -81,8 +81,6 @@ class Site extends Host
     #region • RELATIONSHIPS
 
     /**
-     * Get the associated footer.
-     *
      * @return BelongsTo
      */
     final public function footer(): BelongsTo
@@ -96,8 +94,6 @@ class Site extends Host
     }
 
     /**
-     * Get the associated header.
-     *
      * @return BelongsTo
      */
     final public function header(): BelongsTo
@@ -111,8 +107,6 @@ class Site extends Host
     }
 
     /**
-     * Get the associated pages.
-     *
      * @return HasMany
      */
     final public function pages(): HasMany

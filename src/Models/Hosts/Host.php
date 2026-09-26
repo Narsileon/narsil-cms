@@ -145,8 +145,6 @@ class Host extends Model
     #region • RELATIONSHIPS
 
     /**
-     * Get the default associated locale.
-     *
      * @return HasOne
      */
     final public function default_locale(): HasOne
@@ -161,8 +159,6 @@ class Host extends Model
     }
 
     /**
-     * Get the other associated locales.
-     *
      * @return HasMany
      */
     final public function other_locales(): HasMany
@@ -178,8 +174,6 @@ class Host extends Model
     }
 
     /**
-     * Get the associated languages.
-     *
      * @return HasManyThrough
      */
     final public function languages(): HasManyThrough
@@ -195,8 +189,6 @@ class Host extends Model
     }
 
     /**
-     * Get the associated locales.
-     *
      * @return HasMany
      */
     final public function locales(): HasMany

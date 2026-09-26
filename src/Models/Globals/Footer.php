@@ -241,8 +241,6 @@ class Footer extends Model
     #region • RELATIONSHIPS
 
     /**
-     * Get the associated links.
-     *
      * @return HasMany
      */
     final public function links(): HasMany
@@ -257,8 +255,6 @@ class Footer extends Model
     }
 
     /**
-     * Get the associated site pages.
-     *
      * @return HasMany
      */
     final public function site_pages(): BelongsToMany
@@ -275,8 +271,6 @@ class Footer extends Model
     }
 
     /**
-     * Get the associated social media.
-     *
      * @return HasMany
      */
     final public function social_media(): HasMany
@@ -291,8 +285,6 @@ class Footer extends Model
     }
 
     /**
-     * Get the associated websites.
-     *
      * @return HasMany
      */
     final public function websites(): HasMany

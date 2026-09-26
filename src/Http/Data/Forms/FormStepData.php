@@ -18,8 +18,6 @@ class FormStepData extends BaseFormStepData
     #region PUBLIC METHODS
 
     /**
-     * Get the form step data of a template tab.
-     *
      * @param TemplateTab $templateTab
      *
      * @return FormStepData

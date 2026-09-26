@@ -103,8 +103,6 @@ class SitePageEntity extends Pivot
     #region • RELATIONSHIPS
 
     /**
-     * Get the associated target.
-     *
      * @return MorphTo
      */
     final public function target(): MorphTo
@@ -120,8 +118,6 @@ class SitePageEntity extends Pivot
     }
 
     /**
-     * Get the associated site page.
-     *
      * @return BelongsTo
      */
     final public function site_page(): BelongsTo

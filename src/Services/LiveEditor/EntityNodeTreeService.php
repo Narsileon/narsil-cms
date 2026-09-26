@@ -50,11 +50,6 @@ class EntityNodeTreeService
     #region PUBLIC METHODS
 
     /**
-     * Build the content tree of an entity.
-     *
-     * The tree only contains builder containers and the block instances they
-     * hold. Value nodes are edited through the inspector instead.
-     *
      * @param Entity $entity
      *
      * @return array

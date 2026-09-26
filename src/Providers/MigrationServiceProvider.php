@@ -21,8 +21,6 @@ final class MigrationServiceProvider extends ServiceProvider
     #region PUBLIC METHODS
 
     /**
-     * Boot any application services.
-     *
      * @return void
      */
     public function boot(): void
@@ -36,8 +34,6 @@ final class MigrationServiceProvider extends ServiceProvider
     #region PROTECTED METHODS
 
     /**
-     * Boot the events.
-     *
      * @return void
      */
     protected function bootEvent(): void
@@ -57,8 +53,6 @@ final class MigrationServiceProvider extends ServiceProvider
     }
 
     /**
-     * Boot the migrations.
-     *
      * @return void
      */
     protected function bootMigrations(): void

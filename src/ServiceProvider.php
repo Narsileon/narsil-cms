@@ -126,8 +126,6 @@ class ServiceProvider extends NarsilServiceProvider
     #region PUBLIC METHODS
 
     /**
-     * Boot any application services.
-     *
      * @return void
      */
     public function boot(): void
@@ -164,8 +162,6 @@ class ServiceProvider extends NarsilServiceProvider
     #region PROTECTED METHODS
 
     /**
-     * Boot the publishes.
-     *
      * @return void
      */
     protected function bootPublishes(): void
@@ -176,8 +172,6 @@ class ServiceProvider extends NarsilServiceProvider
     }
 
     /**
-     * Register the package defaults.
-     *
      * @return void
      */
     protected function registerDefaults(): void
@@ -278,8 +272,6 @@ class ServiceProvider extends NarsilServiceProvider
     }
 
     /**
-     * Register the package service providers.
-     *
      * @return void
      */
     protected function registerProviders(): void

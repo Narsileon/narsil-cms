@@ -54,8 +54,6 @@ class SitemapIndex
     #region PUBLIC METHODS
 
     /**
-     * Generate the sitemap index.
-     *
      * @return void
      */
     public function generate(): void
@@ -81,8 +79,6 @@ class SitemapIndex
     #region PROTECTED METHODS
 
     /**
-     * Append a loc to the sitemap.
-     *
      * @param DOMElement $sitemap
      * @param string $location
      *
@@ -98,8 +94,6 @@ class SitemapIndex
     }
 
     /**
-     * Append a sitemap to the sitemap index.
-     *
      * @param DOMElement $sitemapindex
      *
      * @return DOMElement
@@ -114,8 +108,6 @@ class SitemapIndex
     }
 
     /**
-     * Append a sitemap index to the document.
-     *
      * @return DOMElement
      */
     protected function appendSitemapIndex(): DOMElement
@@ -128,8 +120,6 @@ class SitemapIndex
     }
 
     /**
-     * Create the document.
-     *
      * @return DOMDocument
      */
     protected function createDocument(): DOMDocument
@@ -142,8 +132,6 @@ class SitemapIndex
     }
 
     /**
-     * Get the location of a sitemap.
-     *
      * @param HostLocale $hostLocale
      *
      * @return string
@@ -158,8 +146,6 @@ class SitemapIndex
     }
 
     /**
-     * Save the document.
-     *
      * @param string $path
      *
      * @return void

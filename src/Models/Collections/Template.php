@@ -132,8 +132,6 @@ class Template extends Model
     #region PUBLIC METHODS
 
     /**
-     * Get the class of the entity model.
-     *
      * @return string
      */
     public function entityClass(): string
@@ -146,8 +144,6 @@ class Template extends Model
     }
 
     /**
-     * Get the namespace of the entity models.
-     *
      * @return string
      */
     public function entityNamespace(): string
@@ -158,8 +154,6 @@ class Template extends Model
     }
 
     /**
-     * Get the class of the entity node model.
-     *
      * @return string
      */
     public function entityNodeClass(): string
@@ -168,8 +162,6 @@ class Template extends Model
     }
 
     /**
-     * Get the class of the entity node relation model.
-     *
      * @return string
      */
     public function entityNodeRelationClass(): string
@@ -178,8 +170,6 @@ class Template extends Model
     }
 
     /**
-     * Get the table of the entity node relation model.
-     *
      * @return string
      */
     public function entityNodeRelationTable(): string
@@ -190,8 +180,6 @@ class Template extends Model
     }
 
     /**
-     * Get the table of the entity node model.
-     *
      * @return string
      */
     public function entityNodeTable(): string
@@ -202,8 +190,6 @@ class Template extends Model
     }
 
     /**
-     * Get the table of the entity model.
-     *
      * @return string
      */
     public function entityTable(): string
@@ -227,8 +213,6 @@ class Template extends Model
     #region • RELATIONSHIPS
 
     /**
-     * Get the associated tabs.
-     *
      * @return HasMany
      */
     final public function tabs(): HasMany

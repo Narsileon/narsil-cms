@@ -66,8 +66,6 @@ class LiveEditorShowController extends RenderController
     }
 
     /**
-     * Get the endpoints the editor talks to.
-     *
      * @param SitePage $sitePage
      *
      * @return array
@@ -140,8 +138,6 @@ class LiveEditorShowController extends RenderController
     #region PRIVATE METHODS
 
     /**
-     * Resolve the equivalent page for the requested country.
-     *
      * @param SitePage $sitePage
      *
      * @return SitePage

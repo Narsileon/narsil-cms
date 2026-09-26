@@ -43,8 +43,6 @@ trait HasValidationRules
     #region • RELATIONSHIPS
 
     /**
-     * Get the associated validation rules.
-     *
      * @return BelongsToMany
      */
     abstract public function validation_rules(): BelongsToMany;

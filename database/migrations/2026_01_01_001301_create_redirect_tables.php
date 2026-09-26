@@ -16,8 +16,6 @@ return new class() extends Migration
     #region PUBLIC METHODS
 
     /**
-     * Reverse the migrations.
-     *
      * @return void
      */
     public function down(): void
@@ -26,8 +24,6 @@ return new class() extends Migration
     }
 
     /**
-     * Run the migrations.
-     *
      * @return void
      */
     public function up(): void
@@ -43,8 +39,6 @@ return new class() extends Migration
     #region PRIVATE METHODS
 
     /**
-     * Create the redirects table.
-     *
      * @return void
      */
     private function createRedirectsTable(): void

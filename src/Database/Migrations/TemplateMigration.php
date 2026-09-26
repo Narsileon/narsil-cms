@@ -66,8 +66,6 @@ class TemplateMigration extends Migration
     #region PUBLIC METHODS
 
     /**
-     * Reverse the migrations.
-     *
      * @return void
      */
     public function down(): void
@@ -78,8 +76,6 @@ class TemplateMigration extends Migration
     }
 
     /**
-     * Run the migrations.
-     *
      * @return void
      */
     public function up(): void
@@ -103,8 +99,6 @@ class TemplateMigration extends Migration
     #region PROTECTED METHODS
 
     /**
-     * Create the entities table.
-     *
      * @return void
      */
     protected function createEntitiesTable(): void
@@ -164,8 +158,6 @@ class TemplateMigration extends Migration
     }
 
     /**
-     * Create the entity node relation table.
-     *
      * @return void
      */
     protected function createEntityNodeRelationTable(): void
@@ -191,8 +183,6 @@ class TemplateMigration extends Migration
     }
 
     /**
-     * Create the entity nodes table.
-     *
      * @return void
      */
     protected function createEntityNodesTable(): void

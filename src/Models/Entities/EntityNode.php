@@ -201,8 +201,6 @@ abstract class EntityNode extends Model
     #region • RELATIONSHIPS
 
     /**
-     * Get the associated block.
-     *
      * @return BelongsTo
      */
     final public function block(): BelongsTo
@@ -216,8 +214,6 @@ abstract class EntityNode extends Model
     }
 
     /**
-     * Get the associated block element.
-     *
      * @return BelongsTo
      */
     final public function block_element(): BelongsTo
@@ -231,8 +227,6 @@ abstract class EntityNode extends Model
     }
 
     /**
-     * Get the associated children.
-     *
      * @return HasMany
      */
     final public function children(): HasMany
@@ -246,8 +240,6 @@ abstract class EntityNode extends Model
     }
 
     /**
-     * Get the associated element.
-     *
      * @return MorphTo
      */
     final public function element(): MorphTo
@@ -261,8 +253,6 @@ abstract class EntityNode extends Model
     }
 
     /**
-     * Get the associated owner.
-     *
      * @return BelongsTo
      */
     final public function owner(): BelongsTo
@@ -276,8 +266,6 @@ abstract class EntityNode extends Model
     }
 
     /**
-     * Get the associated parent.
-     *
      * @return BelongsTo
      */
     final public function parent(): BelongsTo
@@ -291,8 +279,6 @@ abstract class EntityNode extends Model
     }
 
     /**
-     * Get the associated relations.
-     *
      * @return HasMany
      */
     final public function relations(): HasMany
@@ -306,8 +292,6 @@ abstract class EntityNode extends Model
     }
 
     /**
-     * Get the associated template tab element.
-     *
      * @return BelongsTo
      */
     final public function template_tab_element(): BelongsTo
@@ -327,8 +311,6 @@ abstract class EntityNode extends Model
     #region PROTECTED METHODS
 
     /**
-     * Get the class of the entity.
-     *
      * @return string
      */
     protected static function entityClass(): string
@@ -337,8 +319,6 @@ abstract class EntityNode extends Model
     }
 
     /**
-     * Get the class of the entity node relation.
-     *
      * @return string
      */
     protected static function entityNodeRelationClass(): string

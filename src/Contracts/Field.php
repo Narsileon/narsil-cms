@@ -23,8 +23,6 @@ interface Field
     #region • FLUENT
 
     /**
-     * Set the append attribute.
-     *
      * @param string $append
      *
      * @return static
@@ -32,8 +30,6 @@ interface Field
     public function append(string $append): static;
 
     /**
-     * Set the read only attribute.
-     *
      * @param boolean $readOnly
      *
      * @return static

@@ -25,8 +25,6 @@ final class MiddlewareServiceProvider extends ServiceProvider
     #region PUBLIC METHODS
 
     /**
-     * Boot any application services.
-     *
      * @return void
      */
     public function boot(): void
@@ -39,8 +37,6 @@ final class MiddlewareServiceProvider extends ServiceProvider
     #region PROTECTED METHODS
 
     /**
-     * Boot the middleware.
-     *
      * @return void
      */
     protected function bootNarsilWebMiddleware(): void

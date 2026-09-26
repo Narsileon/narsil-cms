@@ -65,8 +65,6 @@ class TemplateTabElementCondition extends AbstractCondition
     #region • RELATIONSHIPS
 
     /**
-     * Get the associated template tab element.
-     *
      * @return BelongsTo
      */
     final public function template_tab_element(): BelongsTo

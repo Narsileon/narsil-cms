@@ -23,8 +23,6 @@ return new class() extends Migration
     #region PUBLIC METHODS
 
     /**
-     * Run the migrations.
-     *
      * @return void
      */
     public function up(): void
@@ -48,8 +46,6 @@ return new class() extends Migration
     }
 
     /**
-     * Reverse the migrations.
-     *
      * @return void
      */
     public function down(): void
@@ -65,8 +61,6 @@ return new class() extends Migration
     #region PRIVATE METHODS
 
     /**
-     * Create the template tab element conditions table.
-     *
      * @return void
      */
     private function createTemplateTabElementConditionsTable(): void
@@ -95,8 +89,6 @@ return new class() extends Migration
     }
 
     /**
-     * Create the template tab elements table.
-     *
      * @return void
      */
     private function createTemplateTabElementTable(): void
@@ -146,8 +138,6 @@ return new class() extends Migration
     }
 
     /**
-     * Create the template tabs table.
-     *
      * @return void
      */
     private function createTemplateTabsTable(): void
@@ -175,8 +165,6 @@ return new class() extends Migration
     }
 
     /**
-     * Create the templates table.
-     *
      * @return void
      */
     private function createTemplatesTable(): void

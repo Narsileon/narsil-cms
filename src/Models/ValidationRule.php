@@ -101,8 +101,6 @@ class ValidationRule extends Model implements Searchable
     #region • ACCESSORS
 
     /**
-     * Get the name.
-     *
      * @return Attribute
      */
     protected function name(): Attribute

@@ -65,8 +65,6 @@ class BlockElementCondition extends AbstractCondition
     #region • RELATIONSHIPS
 
     /**
-     * Get the associated block element.
-     *
      * @return BelongsTo
      */
     final public function block_element(): BelongsTo

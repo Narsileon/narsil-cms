@@ -91,8 +91,6 @@ class Sitemap
     #region PUBLIC METHODS
 
     /**
-     * Generate the sitemap.
-     *
      * @return void
      */
     public function generate(): void
@@ -147,8 +145,6 @@ class Sitemap
     #region PROTECTED METHODS
 
     /**
-     * Append a change frequency to the url.
-     *
      * @param DOMElement $url
      * @param string $value
      *
@@ -164,8 +160,6 @@ class Sitemap
     }
 
     /**
-     * Append a loc to the url.
-     *
      * @param DOMElement $url
      * @param string $location
      *
@@ -181,8 +175,6 @@ class Sitemap
     }
 
     /**
-     * Append a priority to the url.
-     *
      * @param DOMElement $url
      * @param float $value
      *
@@ -198,8 +190,6 @@ class Sitemap
     }
 
     /**
-     * Append a url to the url set.
-     *
      * @param DOMElement $urlSet
      *
      * @return DOMElement
@@ -214,8 +204,6 @@ class Sitemap
     }
 
     /**
-     * Append a url set to the document.
-     *
      * @return DOMElement
      */
     protected function appendUrlSet(): DOMElement
@@ -230,8 +218,6 @@ class Sitemap
     }
 
     /**
-     * Create the document.
-     *
      * @return DOMDocument
      */
     protected function createDocument(): DOMDocument
@@ -244,8 +230,6 @@ class Sitemap
     }
 
     /**
-     * Get the base URLs.
-     *
      * @return array<string,string>
      */
     protected function getBaseUrls(): array
@@ -271,8 +255,6 @@ class Sitemap
     }
 
     /**
-     * Get the href lang.
-     *
      * @param string $country
      * @param string $language
      *
@@ -293,8 +275,6 @@ class Sitemap
     }
 
     /**
-     * Get the location.
-     *
      * @param string $language
      * @param string $slug
      *
@@ -308,8 +288,6 @@ class Sitemap
     }
 
     /**
-     * Save the document.
-     *
      * @param string $path
      *
      * @return void

@@ -83,8 +83,6 @@ class SitemapUrls
     #region PUBLIC METHODS
 
     /**
-     * Generate the URLs.
-     *
      * @return Collection<SitePage>
      */
     public function generate(): Collection
@@ -113,8 +111,6 @@ class SitemapUrls
     #region PROTECTED METHODS
 
     /**
-     * Build a flat tree.
-     *
      * @param Collection<SitePage> $collection
      * @param SitePage|null $parent
      *
@@ -168,8 +164,6 @@ class SitemapUrls
     }
 
     /**
-     * Get the pages grouped by parent id.
-     *
      * @return Collection<integer,SitePage>
      */
     protected function getPages(): Collection

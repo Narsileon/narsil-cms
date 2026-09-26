@@ -118,8 +118,6 @@ abstract class Entity extends Model implements Searchable
     #region • RELATIONSHIPS
 
     /**
-     * Get the associated nodes.
-     *
      * @return HasMany
      */
     final public function nodes(): HasMany
@@ -134,8 +132,6 @@ abstract class Entity extends Model implements Searchable
     }
 
     /**
-     * Get the associated template.
-     *
      * @return BelongsTo
      */
     final public function template(): BelongsTo
@@ -155,8 +151,6 @@ abstract class Entity extends Model implements Searchable
     #region PROTECTED METHODS
 
     /**
-     * Get the class of the entity node.
-     *
      * @return string
      */
     protected static function entityNodeClass(): string
@@ -175,8 +169,6 @@ abstract class Entity extends Model implements Searchable
     #region • ACCESSORS
 
     /**
-     * Get the "identifier" attribute.
-     *
      * @return string
      */
     protected function identifier(): Attribute

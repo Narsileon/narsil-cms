@@ -20,8 +20,6 @@ trait IsLiveEditorController
     #region PROTECTED METHODS
 
     /**
-     * Get the entity holding the content of a page.
-     *
      * @param SitePage $sitePage
      *
      * @return Entity
@@ -45,8 +43,6 @@ trait IsLiveEditorController
     }
 
     /**
-     * Get a node of the entity holding the content of a page.
-     *
      * @param Entity $entity
      * @param string $nodeUuid
      *
@@ -65,8 +61,6 @@ trait IsLiveEditorController
     }
 
     /**
-     * Get the content tree of a page, read back from the database.
-     *
      * @param SitePage $sitePage
      *
      * @return EntityNodeTreeResource

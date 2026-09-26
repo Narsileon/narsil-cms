@@ -25,8 +25,6 @@ return new class() extends Migration
     #region PUBLIC METHODS
 
     /**
-     * Run the migrations.
-     *
      * @return void
      */
     public function up(): void
@@ -50,8 +48,6 @@ return new class() extends Migration
     }
 
     /**
-     * Reverse the migrations.
-     *
      * @return void
      */
     public function down(): void
@@ -67,8 +63,6 @@ return new class() extends Migration
     #region PRIVATE METHODS
 
     /**
-     * Create the site page entity table.
-     *
      * @return void
      */
     private function createSitePageEntityTable(): void
@@ -90,8 +84,6 @@ return new class() extends Migration
     }
 
     /**
-     * Create the site page overrides table.
-     *
      * @return void
      */
     private function createSitePageOverridesTable(): void
@@ -129,8 +121,6 @@ return new class() extends Migration
     }
 
     /**
-     * Create the site pages table.
-     *
      * @return void
      */
     private function createSitePagesTable(): void
@@ -217,8 +207,6 @@ return new class() extends Migration
     }
 
     /**
-     * Create the site urls table.
-     *
      * @return void
      */
     private function createSiteUrlsTable(): void

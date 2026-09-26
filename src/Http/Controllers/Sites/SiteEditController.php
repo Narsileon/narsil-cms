@@ -82,8 +82,6 @@ class SiteEditController extends RenderController
     #region PROTECTED METHODS
 
     /**
-     * Get the country options.
-     *
      * @param Site $site
      *
      * @return array<OptionData>
@@ -111,8 +109,6 @@ class SiteEditController extends RenderController
     }
 
     /**
-     * Get the associated data.
-     *
      * @param Site $site
      *
      * @return array<string,mixed>
@@ -140,8 +136,6 @@ class SiteEditController extends RenderController
     }
 
     /**
-     * Get the associated form.
-     *
      * @param Site $site
      *
      * @return SiteForm

@@ -52,8 +52,6 @@ class SiteResource extends JsonResource
     #region PROTECTED METHODS
 
     /**
-     * Get the pages.
-     *
      * @param Request $request
      *
      * @return array

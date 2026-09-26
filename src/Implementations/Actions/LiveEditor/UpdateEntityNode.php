@@ -27,10 +27,6 @@ class UpdateEntityNode extends Action implements Contract
 
     /**
      * {@inheritDoc}
-     *
-     * Only the value nodes belonging to the block are touched, which is why
-     * this does not go through SyncEntityNodes: that rebuilds the whole tree
-     * from the template and would drop the sibling blocks.
      */
     public function run(EntityNode $node, array $attributes): EntityNode
     {

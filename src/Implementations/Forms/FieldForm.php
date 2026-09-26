@@ -45,8 +45,6 @@ class FieldForm extends Form implements Contract
     #region PROTECTED METHODS
 
     /**
-     * Get the type options.
-     *
      * @return array<OptionData>
      */
     protected static function getTypeOptions(): array

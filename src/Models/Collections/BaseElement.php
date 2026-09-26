@@ -95,8 +95,6 @@ abstract class BaseElement extends Model
     #region • RELATIONSHIPS
 
     /**
-     * Get the associated block elements.
-     *
      * @return MorphMany
      */
     final public function block_elements(): MorphMany
@@ -111,8 +109,6 @@ abstract class BaseElement extends Model
     }
 
     /**
-     * Get the associated template tab elements.
-     *
      * @return MorphMany
      */
     final public function template_tab_elements(): MorphMany
@@ -135,8 +131,6 @@ abstract class BaseElement extends Model
     #region • ACCESSORS
 
     /**
-     * Get the "icon" attribute.
-     *
      * @return string
      */
     abstract protected function icon(): Attribute;

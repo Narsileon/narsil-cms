@@ -9,8 +9,6 @@ abstract class FieldService
     #region PUBLIC METHODS
 
     /**
-     * Get the icon of the field.
-     *
      * @param string $type
      *
      * @return string

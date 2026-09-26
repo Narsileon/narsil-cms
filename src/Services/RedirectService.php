@@ -19,8 +19,6 @@ final class RedirectService
     #region PUBLIC METHODS
 
     /**
-     * Resolve a configured redirect for the current URL.
-     *
      * @param Request $request
      *
      * @return RedirectResponse|null
@@ -61,8 +59,6 @@ final class RedirectService
     #region PRIVATE METHODS
 
     /**
-     * Get all configured redirects.
-     *
      * @return array<string,array<string,integer|string>>
      */
     private function getRedirects(): array

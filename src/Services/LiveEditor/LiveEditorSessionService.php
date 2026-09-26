@@ -26,8 +26,6 @@ class LiveEditorSessionService
     #region PUBLIC METHODS
 
     /**
-     * Build the payload the editor needs to boot.
-     *
      * @param SitePage $sitePage
      *
      * @return array
@@ -79,8 +77,6 @@ class LiveEditorSessionService
     }
 
     /**
-     * Get the public url of a page, flagged so the frontend loads the bridge.
-     *
      * @param SitePage $sitePage
      *
      * @return string|null
@@ -107,8 +103,6 @@ class LiveEditorSessionService
     #region PRIVATE METHODS
 
     /**
-     * Get the countries available for the site.
-     *
      * @param Site|null $site
      *
      * @return array<OptionData>
@@ -141,8 +135,6 @@ class LiveEditorSessionService
     }
 
     /**
-     * Get the page form data.
-     *
      * @param SitePage $sitePage
      *
      * @return array
@@ -164,8 +156,6 @@ class LiveEditorSessionService
     }
 
     /**
-     * Build the page form.
-     *
      * @param SitePage $sitePage
      * @param Site|null $site
      *

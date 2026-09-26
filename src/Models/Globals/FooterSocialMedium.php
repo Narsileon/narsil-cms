@@ -99,8 +99,6 @@ class FooterSocialMedium extends Model
     #region • RELATIONSHIPS
 
     /**
-     * Get the associated footer.
-     *
      * @return BelongsTo
      */
     final public function footer(): BelongsTo

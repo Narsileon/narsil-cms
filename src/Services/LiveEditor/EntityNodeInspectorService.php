@@ -50,11 +50,6 @@ class EntityNodeInspectorService
     #region PUBLIC METHODS
 
     /**
-     * Build the inspector schema and values of a block node.
-     *
-     * Builder fields are left out since the blocks they hold are managed
-     * through the content tree instead.
-     *
      * @param Entity $entity
      * @param EntityNode $node
      *

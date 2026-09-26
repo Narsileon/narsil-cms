@@ -90,8 +90,6 @@ class SiteUrl extends Model
     #region • RELATIONSHIPS
 
     /**
-     * Get the associated host locale language.
-     *
      * @return BelongsTo
      */
     final public function host_locale_language(): BelongsTo
@@ -105,8 +103,6 @@ class SiteUrl extends Model
     }
 
     /**
-     * Get the associated page.
-     *
      * @return BelongsTo
      */
     final public function page(): BelongsTo

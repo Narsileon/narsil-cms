@@ -6,9 +6,9 @@ namespace Narsil\Cms\Implementations\Menus;
 
 #region USE
 
-use Illuminate\Support\Str;
 use Narsil\Base\Enums\AbilityEnum;
 use Narsil\Base\Implementations\Menu;
+use Narsil\Base\Services\DatabaseService;
 use Narsil\Base\Services\ModelService;
 use Narsil\Base\Services\PermissionService;
 use Narsil\Base\Support\MenuItem;
@@ -84,7 +84,7 @@ final class CmsSidebar extends Menu implements Contract
 
         $this
             ->add(
-                new MenuItem(Str::afterLast(Header::TABLE, '.'))
+                new MenuItem(DatabaseService::getUnqualifiedTableName(Header::TABLE))
                     ->group($group)
                     ->icon('fa-solid-header')
                     ->label(ModelService::getTableLabel(Header::TABLE))
@@ -94,7 +94,7 @@ final class CmsSidebar extends Menu implements Contract
                     ])
             )
             ->add(
-                new MenuItem(Str::afterLast(Footer::TABLE, '.'))
+                new MenuItem(DatabaseService::getUnqualifiedTableName(Footer::TABLE))
                     ->group($group)
                     ->icon('fa-solid-window-maximize')
                     ->label(ModelService::getTableLabel(Footer::TABLE))
@@ -114,7 +114,7 @@ final class CmsSidebar extends Menu implements Contract
 
         $this
             ->add(
-                new MenuItem(Str::afterLast(Host::TABLE, '.'))
+                new MenuItem(DatabaseService::getUnqualifiedTableName(Host::TABLE))
                     ->group($group)
                     ->icon('fa-solid-server')
                     ->label(ModelService::getTableLabel(Host::TABLE))
@@ -124,7 +124,7 @@ final class CmsSidebar extends Menu implements Contract
                     ])
             )
             ->add(
-                new MenuItem(Str::afterLast(Redirect::TABLE, '.'))
+                new MenuItem(DatabaseService::getUnqualifiedTableName(Redirect::TABLE))
                     ->group($group)
                     ->icon('fa-solid-redo')
                     ->label(ModelService::getTableLabel(Redirect::TABLE))
@@ -174,7 +174,7 @@ final class CmsSidebar extends Menu implements Contract
 
         $this
             ->add(
-                new MenuItem(Str::afterLast(Template::TABLE, '.'))
+                new MenuItem(DatabaseService::getUnqualifiedTableName(Template::TABLE))
                     ->group($group)
                     ->icon('fa-solid-window-restore')
                     ->label(ModelService::getTableLabel(Template::TABLE))
@@ -184,7 +184,7 @@ final class CmsSidebar extends Menu implements Contract
                     ])
             )
             ->add(
-                new MenuItem(Str::afterLast(Block::TABLE, '.'))
+                new MenuItem(DatabaseService::getUnqualifiedTableName(Block::TABLE))
                     ->group($group)
                     ->icon('fa-solid-cubes-stacked')
                     ->label(ModelService::getTableLabel(Block::TABLE))
@@ -194,7 +194,7 @@ final class CmsSidebar extends Menu implements Contract
                     ])
             )
             ->add(
-                new MenuItem(Str::afterLast(Field::TABLE, '.'))
+                new MenuItem(DatabaseService::getUnqualifiedTableName(Field::TABLE))
                     ->group($group)
                     ->icon('fa-solid-list')
                     ->label(ModelService::getTableLabel(Field::TABLE))

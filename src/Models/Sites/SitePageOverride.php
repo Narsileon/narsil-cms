@@ -103,8 +103,6 @@ class SitePageOverride extends Model
     #region • RELATIONSHIPS
 
     /**
-     * Get the associated site page.
-     *
      * @return BelongsTo
      */
     final public function site_page(): BelongsTo
@@ -118,8 +116,6 @@ class SitePageOverride extends Model
     }
 
     /**
-     * Get the associated parent.
-     *
      * @return BelongsTo
      */
     final public function parent(): BelongsTo

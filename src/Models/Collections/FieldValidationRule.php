@@ -85,8 +85,6 @@ class FieldValidationRule extends Pivot
     #region • RELATIONSHIPS
 
     /**
-     * Get the associated field.
-     *
      * @return BelongsTo
      */
     final public function field(): BelongsTo
@@ -100,8 +98,6 @@ class FieldValidationRule extends Pivot
     }
 
     /**
-     * Get the associated validation rule.
-     *
      * @return BelongsTo
      */
     final public function validation_rule(): BelongsTo

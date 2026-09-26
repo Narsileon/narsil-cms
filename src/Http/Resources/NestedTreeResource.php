@@ -99,8 +99,6 @@ class NestedTreeResource extends JsonResource
     #region PROTECTED METHODS
 
     /**
-     * Get the children.
-     *
      * @param Request $request
      * @param Collection<TreeModel> $children
      *

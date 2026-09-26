@@ -96,8 +96,6 @@ class SitePageStoreController extends RedirectController
     #region PROTECTED METHODS
 
     /**
-     * Get the last child of the parent.
-     *
      * @param array $attributes
      *
      * @return ?SitePage

@@ -54,8 +54,6 @@ class SitePageCreateController extends RenderController
     }
 
     /**
-     * Get the associated form.
-     *
      * @param string $site
      *
      * @return SitePageForm

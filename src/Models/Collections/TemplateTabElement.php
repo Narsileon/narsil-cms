@@ -111,8 +111,6 @@ class TemplateTabElement extends Element
     #region • RELATIONSHIPS
 
     /**
-     * Get the associated block.
-     *
      * @return BelongsTo
      */
     final public function block(): BelongsTo
@@ -140,8 +138,6 @@ class TemplateTabElement extends Element
     }
 
     /**
-     * Get the associated field.
-     *
      * @return BelongsTo
      */
     final public function field(): BelongsTo

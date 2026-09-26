@@ -16,8 +16,6 @@ return new class() extends Migration
     #region PUBLIC METHODS
 
     /**
-     * Run the migrations.
-     *
      * @return void
      */
     public function up(): void
@@ -29,8 +27,6 @@ return new class() extends Migration
     }
 
     /**
-     * Reverse the migrations.
-     *
      * @return void
      */
     public function down(): void
@@ -43,8 +39,6 @@ return new class() extends Migration
     #region PRIVATE METHODS
 
     /**
-     * Create the validation rules table.
-     *
      * @return void
      */
     private function createValidationRulesTable(): void

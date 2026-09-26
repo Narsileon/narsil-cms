@@ -118,8 +118,6 @@ class EntityNodeRelation extends Pivot
     #region • RELATIONSHIPS
 
     /**
-     * Get the associated owner.
-     *
      * @return BelongsTo
      */
     final public function owner(): BelongsTo
@@ -133,8 +131,6 @@ class EntityNodeRelation extends Pivot
     }
 
     /**
-     * Get the associated owner node.
-     *
      * @return BelongsTo
      */
     final public function owner_node(): BelongsTo
@@ -148,8 +144,6 @@ class EntityNodeRelation extends Pivot
     }
 
     /**
-     * Get the associated target.
-     *
      * @return MorphTo
      */
     final public function target(): MorphTo
@@ -184,7 +178,8 @@ class EntityNodeRelation extends Pivot
             }
 
             $table = $model->{self::TARGET_TYPE};
-            $column = Str::snake(Str::singular($table)) . '_id';
+            $targetTable = Str::afterLast($table, '.');
+            $column = Str::snake(Str::singular($targetTable)) . '_id';
 
             $model->{$column} = $model->{self::TARGET_ID};
 
@@ -210,8 +205,6 @@ class EntityNodeRelation extends Pivot
     }
 
     /**
-     * Get the class of the entity.
-     *
      * @return string
      */
     protected static function entityClass(): string
@@ -220,8 +213,6 @@ class EntityNodeRelation extends Pivot
     }
 
     /**
-     * Get the class of the entity node.
-     *
      * @return string
      */
     protected static function entityNodeClass(): string

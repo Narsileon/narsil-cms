@@ -16,8 +16,6 @@ abstract class NarsilServiceProvider extends ServiceProvider
     #region PROTECTED METHODS
 
     /**
-     * Boot the API routes.
-     *
      * @param string $path
      *
      * @return void
@@ -34,8 +32,6 @@ abstract class NarsilServiceProvider extends ServiceProvider
     }
 
     /**
-     * Boot the CMS routes.
-     *
      * @param string $path
      *
      * @return void
@@ -51,8 +47,6 @@ abstract class NarsilServiceProvider extends ServiceProvider
     }
 
     /**
-     * Boot the Narsil admin routes.
-     *
      * @param string $path
      *
      * @return void
@@ -68,8 +62,6 @@ abstract class NarsilServiceProvider extends ServiceProvider
     }
 
     /**
-     * Boot the web routes.
-     *
      * @param string $path
      *
      * @return void
