@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 return [
     'close_dialog' => 'Fermer la boîte de dialogue',
     'close_sheet' => 'Fermer le panneau',

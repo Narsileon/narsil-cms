@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 return [
     'description' => 'Edit the content of the page next to a live preview',
     'title' => 'Live Editor',

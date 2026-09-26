@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 return [
     'close_dialog' => 'Close dialog',
     'close_sheet' => 'Close sheet',

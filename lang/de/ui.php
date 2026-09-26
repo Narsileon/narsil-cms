@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 return [
     'active_columns' => 'Aktive Spalten',
     'add_group' => 'Gruppe hinzufügen',

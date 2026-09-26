@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 return [
     'description' => 'Modifier le contenu de la page à côté d\'un aperçu en direct',
     'title' => 'Éditeur en direct',

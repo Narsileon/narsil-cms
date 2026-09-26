@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 return [
     'close_dialog' => 'Dialog schließen',
     'close_sheet' => 'Seitenpanel schließen',

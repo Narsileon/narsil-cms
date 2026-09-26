@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 return [
     'draft' => 'This entity has unsaved changes.',
     'published' => 'This entity has a published revision.',

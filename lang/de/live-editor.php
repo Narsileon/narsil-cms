@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 return [
     'description' => 'Den Inhalt der Seite neben einer Live-Vorschau bearbeiten',
     'title' => 'Live-Editor',
