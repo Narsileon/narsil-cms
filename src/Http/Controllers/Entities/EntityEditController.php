@@ -145,7 +145,7 @@ class EntityEditController extends RenderController
     /**
      * @param Entity $entity
      *
-     * @return BlockForm
+     * @return EntityForm
      */
     protected function getForm(Entity $entity): EntityForm
     {
