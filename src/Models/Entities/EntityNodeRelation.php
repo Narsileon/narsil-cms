@@ -14,6 +14,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Str;
+use Narsil\Base\Services\DatabaseService;
 use Narsil\Base\Traits\HasUuidPrimaryKey;
 
 #endregion
@@ -178,7 +179,7 @@ class EntityNodeRelation extends Pivot
             }
 
             $table = $model->{self::TARGET_TYPE};
-            $targetTable = Str::afterLast($table, '.');
+            $targetTable = DatabaseService::getUnqualifiedTableName($table);
             $column = Str::snake(Str::singular($targetTable)) . '_id';
 
             $model->{$column} = $model->{self::TARGET_ID};

@@ -49,8 +49,8 @@ Route::middleware([
 ])->group(
     function ()
     {
-        $entityTable = Str::slug(Str::afterLast(Entity::TABLE, '.'));
-        $sitePageTable = Str::slug(Str::afterLast(SitePage::TABLE, '.'));
+        $entityTable = Str::slug(DatabaseService::getUnqualifiedTableName(Entity::TABLE));
+        $sitePageTable = Str::slug(DatabaseService::getUnqualifiedTableName(SitePage::TABLE));
 
         Route::get('/', DashboardController::class)
             ->name('dashboard');
