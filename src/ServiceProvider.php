@@ -8,6 +8,7 @@ namespace Narsil\Cms;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Blade;
 use Narsil\Base\Contracts\Menus\AuthMenu;
 use Narsil\Base\Contracts\Menus\GuestMenu;
 use Narsil\Base\Contracts\Menus\Home;
@@ -118,6 +119,10 @@ use Narsil\Cms\Providers\MigrationServiceProvider;
 use Narsil\Cms\Providers\MorphServiceProvider;
 use Narsil\Cms\Providers\NarsilServiceProvider;
 use Narsil\Cms\Providers\TranslationServiceProvider;
+use Narsil\Cms\View\Components\Blocks\Input\InputBuilder;
+use Narsil\Cms\View\Components\Blocks\Input\InputBuilderAdd;
+use Narsil\Cms\View\Components\Blocks\Input\InputBuilderFieldset;
+use Narsil\Cms\View\Components\Blocks\Input\InputBuilderItem;
 
 #endregion
 
@@ -132,6 +137,10 @@ class ServiceProvider extends NarsilServiceProvider
     {
         $this->loadTranslationsFrom(__DIR__ . '/../lang', 'narsil-cms');
         $this->loadViewsFrom(__DIR__ . '/../resources/views', 'narsil-cms');
+        Blade::component(InputBuilder::class, 'narsil-cms::blocks.input.input-builder');
+        Blade::component(InputBuilderAdd::class, 'narsil-cms::blocks.input.input-builder-add');
+        Blade::component(InputBuilderFieldset::class, 'narsil-cms::blocks.input.input-builder-fieldset');
+        Blade::component(InputBuilderItem::class, 'narsil-cms::blocks.input.input-builder-item');
 
         $this->bootNarsilRoutes(base_path('/vendor/narsil/base/routes/users.php'));
 
@@ -258,6 +267,7 @@ class ServiceProvider extends NarsilServiceProvider
             ->field(TextInputData::TYPE, TextInputData::class)
             ->field(TimeInputData::TYPE, TimeInputData::class)
             ->field(BuilderInputData::TYPE, BuilderInputData::class)
+            ->fieldComponent(BuilderInputData::TYPE, 'narsil-cms::blocks.input.input-builder')
             ->field(EntityInputData::TYPE, EntityInputData::class)
             ->field(LinkInputData::TYPE, LinkInputData::class)
             ->morph(BlockElement::class, BlockElement::TABLE)

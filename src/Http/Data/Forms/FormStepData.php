@@ -37,7 +37,7 @@ class FormStepData extends BaseFormStepData
                 {
                     return FieldsetData::fromElement($element);
                 }
-            })->toArray(),
+            })->all(),
         );
     }
 

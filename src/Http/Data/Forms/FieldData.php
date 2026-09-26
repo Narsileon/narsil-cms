@@ -9,12 +9,14 @@ namespace Narsil\Cms\Http\Data\Forms;
 use Narsil\Base\Http\Data\Forms\ConditionData;
 use Narsil\Base\Http\Data\Forms\FieldData as BaseFieldData;
 use Narsil\Base\Http\Data\Forms\Inputs\TextInputData;
+use Narsil\Base\Http\Data\OptionData;
 use Narsil\Base\Narsil;
 use Narsil\Cms\Http\Data\Forms\Inputs\BuilderInputData;
 use Narsil\Cms\Models\AbstractCondition;
 use Narsil\Cms\Models\Collections\Block;
 use Narsil\Cms\Models\Collections\Element;
 use Narsil\Cms\Models\Collections\Field;
+use Narsil\Cms\Models\Collections\FieldOption;
 
 #endregion
 
@@ -57,8 +59,14 @@ class FieldData extends BaseFieldData
                 ->elements($base->{Field::RELATION_BLOCKS}->map(function (Block $block)
                 {
                     return FieldsetData::fromBlock($block);
-                })->toArray())
-                ->options($base->{Field::RELATION_OPTIONS}),
+                })->all())
+                ->options($base->{Field::RELATION_OPTIONS}->map(function (FieldOption $option)
+                {
+                    return new OptionData(
+                        label: $option->getTranslations(FieldOption::LABEL),
+                        value: $option->{FieldOption::VALUE},
+                    );
+                })->all()),
         );
     }
 

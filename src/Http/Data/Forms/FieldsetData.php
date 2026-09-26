@@ -45,7 +45,7 @@ class FieldsetData extends BaseFieldsetData
                 {
                     return FieldsetData::fromElement($element);
                 }
-            })->toArray(),
+            })->all(),
         )->block_id($block->{Block::ID});
     }
 
@@ -80,7 +80,7 @@ class FieldsetData extends BaseFieldsetData
                 {
                     return FieldsetData::fromElement($element);
                 }
-            })->toArray(),
+            })->all(),
         );
     }
 

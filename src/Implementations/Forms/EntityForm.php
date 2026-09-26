@@ -59,7 +59,7 @@ class EntityForm extends Form implements Contract
         $steps = $this->template->{Template::RELATION_TABS}->map(function ($templateTab)
         {
             return FormStepData::fromElement($templateTab);
-        })->toArray();
+        })->all();
 
         $steps[] = new FormStepData(
             id: 'sidebar',
