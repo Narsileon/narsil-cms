@@ -8,7 +8,6 @@ use Narsil\Cms\Models\Collections\Block;
 use Narsil\Cms\Models\Collections\Field;
 use Narsil\Cms\Models\Collections\Template;
 use Narsil\Cms\Models\Collections\TemplateTab;
-use Narsil\Cms\Models\Configuration;
 use Narsil\Cms\Models\Entities\Entity;
 use Narsil\Cms\Models\Globals\Footer;
 use Narsil\Cms\Models\Globals\FooterLink;
@@ -26,7 +25,6 @@ use Narsil\Cms\Models\ValidationRule;
 
 return [
     Block::TABLE => 'Block|Blocks',
-    Configuration::TABLE => 'Einstellungen',
     Entity::TABLE => 'Entität|Entitäten',
     Field::TABLE => 'Feld|Felder',
     Footer::TABLE => 'Fußzeile|Fußzeilen',

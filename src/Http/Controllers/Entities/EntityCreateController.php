@@ -9,14 +9,13 @@ namespace Narsil\Cms\Http\Controllers\Entities;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
-use Inertia\Response;
+use Illuminate\View\View;
 use Narsil\Base\Enums\AbilityEnum;
 use Narsil\Base\Enums\RequestMethodEnum;
 use Narsil\Base\Http\Controllers\RenderController;
 use Narsil\Cms\Contracts\Forms\EntityForm;
 use Narsil\Cms\Contracts\Forms\PublishForm;
 use Narsil\Cms\Models\Collections\Template;
-use Narsil\Cms\Models\Configuration;
 use Narsil\Cms\Models\Hosts\HostLocaleLanguage;
 use Narsil\Cms\Traits\IsCollectionController;
 
@@ -32,9 +31,9 @@ class EntityCreateController extends RenderController
      * @param Request $request
      * @param integer|string $collection
      *
-     * @return JsonResponse|Response
+     * @return JsonResponse|View
      */
-    public function __invoke(Request $request, int|string $collection): JsonResponse|Response
+    public function __invoke(Request $request, int|string $collection): JsonResponse|View
     {
         $this->authorize(AbilityEnum::CREATE, $this->entityClass);
 
@@ -42,7 +41,7 @@ class EntityCreateController extends RenderController
 
         $publish = app(PublishForm::class);
 
-        return $this->render('narsil/cms::resources/form', [
+        return $this->renderBlade('narsil::pages.resources.form', [
             'form' => $form,
             'publish' => $publish,
         ]);
@@ -67,16 +66,14 @@ class EntityCreateController extends RenderController
      */
     protected function getForm(): EntityForm
     {
-        $configuration = Configuration::firstOrCreate();
-
         $form = app()
             ->make(EntityForm::class, [
-                'template' => $this->template
+                'template' => $this->template,
             ])
             ->action(route('collections.store', [
-                'collection' => $this->template->{Template::TABLE_NAME}
+                'collection' => $this->template->{Template::TABLE_NAME},
             ]))
-            ->defaultLanguage($configuration->{Configuration::DEFAULT_LANGUAGE} ?? 'en')
+            ->defaultLanguage(HostLocaleLanguage::getDefaultLanguage())
             ->languageOptions(HostLocaleLanguage::getUniqueLanguages())
             ->method(RequestMethodEnum::POST->value)
             ->submitLabel(trans('narsil::ui.save'));

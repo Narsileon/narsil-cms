@@ -64,7 +64,7 @@ final class ButtonBlockSeeder extends Seeder
                 $LinkBlockSeeder,
                 [
                     BlockElement::HANDLE => self::LINK,
-                    BlockElement::LABEL  => 'Link',
+                    BlockElement::LABEL => 'Link',
                     BlockElement::POSITION => 1,
                 ],
                 Block::RELATION_BLOCKS

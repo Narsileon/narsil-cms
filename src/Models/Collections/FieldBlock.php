@@ -39,7 +39,7 @@ class FieldBlock extends Pivot
      *
      * @var string
      */
-    final public const TABLE = 'field_block';
+    final public const TABLE = 'cms.field_block';
 
     #region • COLUMNS
 

@@ -60,7 +60,7 @@ class TemplateTab extends Model
      *
      * @var string
      */
-    final public const TABLE = 'template_tabs';
+    final public const TABLE = 'cms.template_tabs';
 
     #region • COLUMNS
 

@@ -46,7 +46,6 @@ final class InertiaResource extends JsonResource
                 'languages' => [],
                 'locale' => app()->getLocale(),
                 'radius' => null,
-                'schema' => null,
                 'theme' => null,
             ],
             'title' => $data['title'] ?? null,

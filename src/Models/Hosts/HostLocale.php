@@ -13,7 +13,6 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Narsil\Base\Traits\AuditLoggable;
 use Narsil\Base\Traits\HasUuidPrimaryKey;
 use Narsil\Base\Traits\Orderable;
-use Narsil\Cms\Models\Hosts\Host;
 use Narsil\Cms\Observers\HostLocaleObserver;
 
 #endregion
@@ -50,7 +49,7 @@ class HostLocale extends Model
      *
      * @var string
      */
-    final public const TABLE = 'host_locales';
+    final public const TABLE = 'cms.host_locales';
 
     #region • COLUMNS
 
@@ -60,6 +59,13 @@ class HostLocale extends Model
      * @var string
      */
     final public const COUNTRY = 'country';
+
+    /**
+     * The default country locale value.
+     *
+     * @var string
+     */
+    final public const COUNTRY_DEFAULT = 'default';
 
     /**
      * The name of the "host id" column.

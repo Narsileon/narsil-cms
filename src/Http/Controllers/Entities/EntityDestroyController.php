@@ -34,7 +34,7 @@ class EntityDestroyController extends RedirectController
     {
         $entity = $this->entityClass::query()
             ->firstWhere([
-                Entity::ID => $id
+                Entity::ID => $id,
             ]);
 
         $this->authorize(AbilityEnum::DELETE, $entity);

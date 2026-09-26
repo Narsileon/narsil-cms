@@ -11,7 +11,6 @@ use Narsil\Base\Enums\RequestMethodEnum;
 use Narsil\Base\Implementations\Resource;
 use Narsil\Base\Support\TranslationsBag;
 use Narsil\Cms\Contracts\Forms\LiveEditor\EntityNodeInspectorForm;
-use Narsil\Cms\Models\Configuration;
 use Narsil\Cms\Models\Entities\Entity;
 use Narsil\Cms\Models\Entities\EntityNode;
 use Narsil\Cms\Models\Hosts\HostLocaleLanguage;
@@ -67,8 +66,6 @@ class EntityNodeInspectorResource extends Resource
     {
         $inspector = app(EntityNodeInspectorService::class)->build($this->entity, $this->resource);
 
-        $configuration = Configuration::firstOrCreate();
-
         $form = app()
             ->make(EntityNodeInspectorForm::class, [
                 'elements' => $inspector['elements'],
@@ -76,7 +73,7 @@ class EntityNodeInspectorResource extends Resource
             ->action($this->updateUrl)
             ->autoSave(false)
             ->id($inspector['nodeUuid'])
-            ->defaultLanguage($configuration->{Configuration::DEFAULT_LANGUAGE} ?? 'en')
+            ->defaultLanguage(HostLocaleLanguage::getDefaultLanguage())
             ->languages(HostLocaleLanguage::getUniqueLanguages())
             ->method(RequestMethodEnum::PATCH->value)
             ->options($inspector['options'])

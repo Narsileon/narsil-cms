@@ -9,7 +9,6 @@ namespace Narsil\Cms\Http\Controllers\Entities;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\App;
 use Narsil\Base\Http\Controllers\RedirectController;
-use Narsil\Base\Http\Data\OptionData;
 use Narsil\Base\Http\Requests\SearchRequest;
 use Narsil\Cms\Models\Collections\Template;
 use Narsil\Cms\Models\Entities\Entity;

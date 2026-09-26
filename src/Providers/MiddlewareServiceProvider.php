@@ -17,7 +17,6 @@ use Illuminate\View\Middleware\ShareErrorsFromSession;
 use Narsil\Base\Http\Middleware\LocaleMiddleware;
 use Narsil\Base\Http\Middleware\UserConfigurationMiddleware;
 use Narsil\Cms\Http\Middleware\InertiaMiddleware;
-use Narsil\Cms\Http\Middleware\SchemaMiddleware;
 
 #endregion
 
@@ -52,7 +51,6 @@ final class MiddlewareServiceProvider extends ServiceProvider
             EncryptCookies::class,
             AddQueuedCookiesToResponse::class,
             StartSession::class,
-            SchemaMiddleware::class,
             ShareErrorsFromSession::class,
             ValidateCsrfToken::class,
             SubstituteBindings::class,

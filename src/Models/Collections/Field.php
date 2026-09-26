@@ -14,8 +14,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Narsil\Base\Casts\JsonCast;
 use Narsil\Cms\Database\Factories\FieldFactory;
-use Narsil\Cms\Policies\FieldPolicy;
 use Narsil\Cms\Models\ValidationRule;
+use Narsil\Cms\Policies\FieldPolicy;
 use Narsil\Cms\Services\FieldService;
 use Narsil\Cms\Traits\HasValidationRules;
 
@@ -74,7 +74,7 @@ class Field extends BaseElement
      *
      * @var string
      */
-    final public const TABLE = 'fields';
+    final public const TABLE = 'cms.fields';
 
     #region • COLUMNS
 

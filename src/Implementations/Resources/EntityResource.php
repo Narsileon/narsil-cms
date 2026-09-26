@@ -130,7 +130,7 @@ class EntityResource extends Resource implements Contract
 
                         if (empty($value))
                         {
-                            $value = (object)[];
+                            $value = (object) [];
                         }
                     }
                     else

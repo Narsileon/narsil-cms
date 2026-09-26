@@ -9,7 +9,6 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 use Narsil\Base\Enums\OperatorEnum;
 use Narsil\Base\Models\User;
-use Narsil\Base\Traits\HasSchemas;
 use Narsil\Cms\Models\Collections\Block;
 use Narsil\Cms\Models\Collections\Field;
 use Narsil\Cms\Models\Collections\Template;
@@ -19,10 +18,8 @@ use Narsil\Cms\Models\Collections\TemplateTabElementCondition;
 
 #endregion
 
-return new class extends Migration
+return new class() extends Migration
 {
-    use HasSchemas;
-
     #region PUBLIC METHODS
 
     /**
@@ -32,25 +29,22 @@ return new class extends Migration
      */
     public function up(): void
     {
-        foreach ($this->getSchemas() as $schema)
+        if (!Schema::hasTable(Template::TABLE))
         {
-            if (!Schema::hasTable("$schema." . Template::TABLE))
-            {
-                $this->createTemplatesTable($schema);
-            }
-            if (!Schema::hasTable("$schema." . TemplateTab::TABLE))
-            {
-                $this->createTemplateTabsTable($schema);
-            }
-            if (!Schema::hasTable("$schema." . TemplateTabElement::TABLE))
-            {
-                $this->createTemplateTabElementTable($schema);
-            }
-            if (!Schema::hasTable("$schema." . TemplateTabElementCondition::TABLE))
-            {
-                $this->createTemplateTabElementConditionsTable($schema);
-            }
-        };
+            $this->createTemplatesTable();
+        }
+        if (!Schema::hasTable(TemplateTab::TABLE))
+        {
+            $this->createTemplateTabsTable();
+        }
+        if (!Schema::hasTable(TemplateTabElement::TABLE))
+        {
+            $this->createTemplateTabElementTable();
+        }
+        if (!Schema::hasTable(TemplateTabElementCondition::TABLE))
+        {
+            $this->createTemplateTabElementConditionsTable();
+        }
     }
 
     /**
@@ -60,13 +54,10 @@ return new class extends Migration
      */
     public function down(): void
     {
-        foreach ($this->getSchemas() as $schema)
-        {
-            Schema::dropIfExists("$schema." . TemplateTabElementCondition::TABLE);
-            Schema::dropIfExists("$schema." . TemplateTabElement::TABLE);
-            Schema::dropIfExists("$schema." . TemplateTab::TABLE);
-            Schema::dropIfExists("$schema." . Template::TABLE);
-        };
+        Schema::dropIfExists(TemplateTabElementCondition::TABLE);
+        Schema::dropIfExists(TemplateTabElement::TABLE);
+        Schema::dropIfExists(TemplateTab::TABLE);
+        Schema::dropIfExists(Template::TABLE);
     }
 
     #endregion
@@ -76,20 +67,18 @@ return new class extends Migration
     /**
      * Create the template tab element conditions table.
      *
-     * @param string $schema
-     *
      * @return void
      */
-    private function createTemplateTabElementConditionsTable(string $schema): void
+    private function createTemplateTabElementConditionsTable(): void
     {
-        Schema::create("$schema." . TemplateTabElementCondition::TABLE, function (Blueprint $blueprint) use ($schema)
+        Schema::create(TemplateTabElementCondition::TABLE, function (Blueprint $blueprint)
         {
             $blueprint
                 ->uuid(TemplateTabElementCondition::UUID)
                 ->primary();
             $blueprint
                 ->foreignUuid(TemplateTabElementCondition::TEMPLATE_TAB_ELEMENT_UUID)
-                ->constrained("$schema." . TemplateTabElement::TABLE, TemplateTabElement::UUID)
+                ->constrained(TemplateTabElement::TABLE, TemplateTabElement::UUID)
                 ->cascadeOnDelete();
             $blueprint
                 ->integer(TemplateTabElementCondition::POSITION)
@@ -108,32 +97,30 @@ return new class extends Migration
     /**
      * Create the template tab elements table.
      *
-     * @param string $schema
-     *
      * @return void
      */
-    private function createTemplateTabElementTable(string $schema): void
+    private function createTemplateTabElementTable(): void
     {
-        Schema::create("$schema." . TemplateTabElement::TABLE, function (Blueprint $blueprint) use ($schema)
+        Schema::create(TemplateTabElement::TABLE, function (Blueprint $blueprint)
         {
             $blueprint
                 ->uuid(TemplateTabElement::UUID)
                 ->primary();
             $blueprint
                 ->foreignUuid(TemplateTabElement::OWNER_UUID)
-                ->constrained("$schema." . TemplateTab::TABLE, TemplateTab::UUID)
+                ->constrained(TemplateTab::TABLE, TemplateTab::UUID)
                 ->cascadeOnDelete();
             $blueprint
                 ->morphs(TemplateTabElement::RELATION_BASE);
             $blueprint
                 ->foreignId(TemplateTabElement::BLOCK_ID)
                 ->nullable()
-                ->constrained("$schema." . Block::TABLE, Block::ID)
+                ->constrained(Block::TABLE, Block::ID)
                 ->cascadeOnDelete();
             $blueprint
                 ->foreignId(TemplateTabElement::FIELD_ID)
                 ->nullable()
-                ->constrained("$schema." . Field::TABLE, Field::ID)
+                ->constrained(Field::TABLE, Field::ID)
                 ->cascadeOnDelete();
             $blueprint
                 ->string(TemplateTabElement::HANDLE);
@@ -161,20 +148,18 @@ return new class extends Migration
     /**
      * Create the template tabs table.
      *
-     * @param string $schema
-     *
      * @return void
      */
-    private function createTemplateTabsTable(string $schema): void
+    private function createTemplateTabsTable(): void
     {
-        Schema::create("$schema." . TemplateTab::TABLE, function (Blueprint $blueprint) use ($schema)
+        Schema::create(TemplateTab::TABLE, function (Blueprint $blueprint)
         {
             $blueprint
                 ->uuid(TemplateTab::UUID)
                 ->primary();
             $blueprint
                 ->foreignId(TemplateTab::TEMPLATE_ID)
-                ->constrained("$schema." . Template::TABLE, Template::ID)
+                ->constrained(Template::TABLE, Template::ID)
                 ->cascadeOnDelete();
             $blueprint
                 ->string(TemplateTab::HANDLE);
@@ -192,13 +177,11 @@ return new class extends Migration
     /**
      * Create the templates table.
      *
-     * @param string $schema
-     *
      * @return void
      */
-    private function createTemplatesTable(string $schema): void
+    private function createTemplatesTable(): void
     {
-        Schema::create("$schema." . Template::TABLE, function (Blueprint $blueprint)
+        Schema::create(Template::TABLE, function (Blueprint $blueprint)
         {
             $blueprint
                 ->id(Template::ID);

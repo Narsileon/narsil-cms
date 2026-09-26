@@ -47,7 +47,7 @@ class ValidationRule extends Model implements Searchable
      *
      * @var string
      */
-    final public const TABLE = 'validation_rules';
+    final public const TABLE = 'cms.validation_rules';
 
     #region • COLUMNS
 

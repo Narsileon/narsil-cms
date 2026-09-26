@@ -21,8 +21,8 @@ use Narsil\Base\Traits\HasDatetimes;
 use Narsil\Base\Traits\HasIdentifier;
 use Narsil\Base\Traits\HasTranslations;
 use Narsil\Cms\Database\Factories\HeaderFactory;
-use Narsil\Cms\Policies\HeaderPolicy;
 use Narsil\Cms\Models\Sites\Site;
+use Narsil\Cms\Policies\HeaderPolicy;
 
 #endregion
 
@@ -31,8 +31,8 @@ use Narsil\Cms\Models\Sites\Site;
 #[UsePolicy(HeaderPolicy::class)]
 class Header extends Model implements Searchable
 {
-    use Blameable;
     use AuditLoggable;
+    use Blameable;
     use HasDatetimes;
     use HasFactory;
     use HasIdentifier;
@@ -63,7 +63,7 @@ class Header extends Model implements Searchable
      *
      * @var string
      */
-    final public const TABLE = 'headers';
+    final public const TABLE = 'cms.headers';
 
     #region • COLUMNS
 

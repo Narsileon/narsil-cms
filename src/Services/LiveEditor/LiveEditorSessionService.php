@@ -10,7 +10,6 @@ use Illuminate\Support\Facades\App;
 use Narsil\Base\Enums\RequestMethodEnum;
 use Narsil\Base\Http\Data\OptionData;
 use Narsil\Base\Services\LocaleService;
-use Narsil\Base\Traits\HasSchemas;
 use Narsil\Cms\Contracts\Forms\SitePageForm;
 use Narsil\Cms\Http\Resources\LiveEditor\EntityNodeTreeResource;
 use Narsil\Cms\Http\Resources\Sites\SiteResource;
@@ -24,8 +23,6 @@ use Narsil\Cms\Models\Sites\SiteUrl;
 
 class LiveEditorSessionService
 {
-    use HasSchemas;
-
     #region PUBLIC METHODS
 
     /**
@@ -84,9 +81,6 @@ class LiveEditorSessionService
     /**
      * Get the public url of a page, flagged so the frontend loads the bridge.
      *
-     * The active schema is forwarded so the preview shows the workspace being
-     * edited instead of the default one.
-     *
      * @param SitePage $sitePage
      *
      * @return string|null
@@ -103,7 +97,6 @@ class LiveEditorSessionService
         $query = http_build_query([
             '_country' => $sitePage->{SitePage::COUNTRY},
             '_editor' => 1,
-            '_schema' => $this->getCurrentSchema(),
         ]);
 
         return $siteUrl->{SiteUrl::URL} . '?' . $query;
@@ -124,7 +117,7 @@ class LiveEditorSessionService
     {
         $countries = [
             new OptionData(
-                label: trans('narsil-cms::ui.default'),
+                label: trans('narsil::ui.default'),
                 value: 'default'
             ),
         ];

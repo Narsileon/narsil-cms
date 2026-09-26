@@ -44,7 +44,7 @@ class SitePageEntity extends Pivot
      *
      * @var string
      */
-    final public const TABLE = 'site_page_entity';
+    final public const TABLE = 'cms.site_page_entity';
 
     #region • COLUMNS
 

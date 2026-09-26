@@ -29,7 +29,7 @@ class EntityIndexController extends RenderController
      * @param Request $request
      * @param integer|string $collection
      *
-     * @return \Illuminate\Http\JsonResponse|\Illuminate\View\View
+     * @return JsonResponse|View
      */
     public function __invoke(Request $request, int|string $collection): JsonResponse|View
     {

@@ -76,7 +76,7 @@ class EntityNodeObserver
                 $entityNode->relations()->create([
                     EntityNodeRelation::LANGUAGE => $language,
                     EntityNodeRelation::OWNER_UUID => $entityNode->{EntityNode::OWNER_UUID},
-                    EntityNodeRelation::TARGET_ID  => $id,
+                    EntityNodeRelation::TARGET_ID => $id,
                     EntityNodeRelation::TARGET_TYPE => $table,
                 ]);
             }

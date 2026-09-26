@@ -52,10 +52,10 @@ final class PaddingBlockSeeder extends Seeder
                 $PaddingFieldSeeder,
                 [
                     BlockElement::HANDLE => self::TOP,
-                    BlockElement::LABEL  => 'Top',
+                    BlockElement::LABEL => 'Top',
                     BlockElement::POSITION => 0,
                     BlockElement::REQUIRED => true,
-                    BlockElement::WIDTH => 50
+                    BlockElement::WIDTH => 50,
                 ],
                 Block::RELATION_FIELDS
             )
@@ -66,7 +66,7 @@ final class PaddingBlockSeeder extends Seeder
                     BlockElement::LABEL => 'Bottom',
                     BlockElement::POSITION => 1,
                     BlockElement::REQUIRED => true,
-                    BlockElement::WIDTH => 50
+                    BlockElement::WIDTH => 50,
                 ],
                 Block::RELATION_FIELDS
             )

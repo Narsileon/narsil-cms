@@ -6,6 +6,7 @@ namespace Narsil\Cms\Implementations\Menus;
 
 #region USE
 
+use Illuminate\Support\Str;
 use Narsil\Base\Enums\AbilityEnum;
 use Narsil\Base\Implementations\Menu;
 use Narsil\Base\Services\ModelService;
@@ -16,11 +17,11 @@ use Narsil\Cms\Contracts\Menus\CmsSidebar as Contract;
 use Narsil\Cms\Models\Collections\Block;
 use Narsil\Cms\Models\Collections\Field;
 use Narsil\Cms\Models\Collections\Template;
-use Narsil\Cms\Models\Configuration;
 use Narsil\Cms\Models\Entities\Entity;
 use Narsil\Cms\Models\Globals\Footer;
 use Narsil\Cms\Models\Globals\Header;
 use Narsil\Cms\Models\Hosts\Host;
+use Narsil\Cms\Models\Hosts\HostLocale;
 use Narsil\Cms\Models\Redirect;
 use Narsil\Cms\Models\Sites\Site;
 
@@ -36,9 +37,9 @@ final class CmsSidebar extends Menu implements Contract
     public function __construct()
     {
         app(TranslationsBag::class)
-            ->add('narsil-cms::accessibility.close_sidebar')
+            ->add('narsil::accessibility.close_sidebar')
             ->add('narsil-cms::accessibility.open_sidebar')
-            ->add('narsil-cms::accessibility.toggle_sidebar');
+            ->add('narsil::accessibility.toggle_sidebar');
     }
 
     #endregion
@@ -68,7 +69,7 @@ final class CmsSidebar extends Menu implements Contract
                         'collection' => $template->{Template::TABLE_NAME},
                     ])
                     ->permissions([
-                        PermissionService::getName(Entity::TABLE, AbilityEnum::VIEW_ANY)
+                        PermissionService::getName(Entity::TABLE, AbilityEnum::VIEW_ANY),
                     ])
             );
         }
@@ -83,26 +84,25 @@ final class CmsSidebar extends Menu implements Contract
 
         $this
             ->add(
-                new MenuItem(Header::TABLE)
+                new MenuItem(Str::afterLast(Header::TABLE, '.'))
                     ->group($group)
                     ->icon('fa-solid-header')
                     ->label(ModelService::getTableLabel(Header::TABLE))
                     ->route('headers.index')
                     ->permissions([
-                        PermissionService::getName(Header::TABLE, AbilityEnum::VIEW_ANY)
+                        PermissionService::getName(Header::TABLE, AbilityEnum::VIEW_ANY),
                     ])
             )
             ->add(
-                new MenuItem(Footer::TABLE)
+                new MenuItem(Str::afterLast(Footer::TABLE, '.'))
                     ->group($group)
                     ->icon('fa-solid-window-maximize')
                     ->label(ModelService::getTableLabel(Footer::TABLE))
                     ->route('footers.index')
                     ->permissions([
-                        PermissionService::getName(Footer::TABLE, AbilityEnum::VIEW_ANY)
+                        PermissionService::getName(Footer::TABLE, AbilityEnum::VIEW_ANY),
                     ])
-            )
-        ;
+            );
     }
 
     /**
@@ -114,33 +114,23 @@ final class CmsSidebar extends Menu implements Contract
 
         $this
             ->add(
-                new MenuItem(Host::TABLE)
+                new MenuItem(Str::afterLast(Host::TABLE, '.'))
                     ->group($group)
                     ->icon('fa-solid-server')
                     ->label(ModelService::getTableLabel(Host::TABLE))
                     ->route('hosts.index')
                     ->permissions([
-                        PermissionService::getName(Host::TABLE, AbilityEnum::VIEW_ANY)
+                        PermissionService::getName(Host::TABLE, AbilityEnum::VIEW_ANY),
                     ])
             )
             ->add(
-                new MenuItem(Redirect::TABLE)
+                new MenuItem(Str::afterLast(Redirect::TABLE, '.'))
                     ->group($group)
                     ->icon('fa-solid-redo')
                     ->label(ModelService::getTableLabel(Redirect::TABLE))
                     ->route('redirects.index')
                     ->permissions([
-                        PermissionService::getName(Redirect::TABLE, AbilityEnum::VIEW_ANY)
-                    ])
-            )
-            ->add(
-                new MenuItem(Configuration::TABLE)
-                    ->group($group)
-                    ->icon('fa-regular-gear')
-                    ->label(ModelService::getTableLabel(Configuration::TABLE))
-                    ->route('settings.edit')
-                    ->permissions([
-                        PermissionService::getName(Configuration::TABLE, AbilityEnum::UPDATE)
+                        PermissionService::getName(Redirect::TABLE, AbilityEnum::VIEW_ANY),
                     ])
             );
     }
@@ -165,11 +155,11 @@ final class CmsSidebar extends Menu implements Contract
                     ->label($site->{Site::LABEL}, false)
                     ->route('sites.edit')
                     ->parameters([
-                        'country' => 'default',
+                        'country' => HostLocale::COUNTRY_DEFAULT,
                         'site' => $site->{Site::HOSTNAME},
                     ])
                     ->permissions([
-                        PermissionService::getName(Site::TABLE, AbilityEnum::VIEW_ANY)
+                        PermissionService::getName(Site::TABLE, AbilityEnum::VIEW_ANY),
                     ])
             );
         }
@@ -184,33 +174,33 @@ final class CmsSidebar extends Menu implements Contract
 
         $this
             ->add(
-                new MenuItem(Template::TABLE)
+                new MenuItem(Str::afterLast(Template::TABLE, '.'))
                     ->group($group)
                     ->icon('fa-solid-window-restore')
                     ->label(ModelService::getTableLabel(Template::TABLE))
                     ->route('templates.index')
                     ->permissions([
-                        PermissionService::getName(Template::TABLE, AbilityEnum::VIEW_ANY)
+                        PermissionService::getName(Template::TABLE, AbilityEnum::VIEW_ANY),
                     ])
             )
             ->add(
-                new MenuItem(Block::TABLE)
+                new MenuItem(Str::afterLast(Block::TABLE, '.'))
                     ->group($group)
                     ->icon('fa-solid-cubes-stacked')
                     ->label(ModelService::getTableLabel(Block::TABLE))
                     ->route('blocks.index')
                     ->permissions([
-                        PermissionService::getName(Block::TABLE, AbilityEnum::VIEW_ANY)
+                        PermissionService::getName(Block::TABLE, AbilityEnum::VIEW_ANY),
                     ])
             )
             ->add(
-                new MenuItem(Field::TABLE)
+                new MenuItem(Str::afterLast(Field::TABLE, '.'))
                     ->group($group)
                     ->icon('fa-solid-list')
                     ->label(ModelService::getTableLabel(Field::TABLE))
                     ->route('fields.index')
                     ->permissions([
-                        PermissionService::getName(Field::TABLE, AbilityEnum::VIEW_ANY)
+                        PermissionService::getName(Field::TABLE, AbilityEnum::VIEW_ANY),
                     ])
             );
     }
@@ -235,9 +225,9 @@ final class CmsSidebar extends Menu implements Contract
         $this->addManagementGroup();
 
         app(TranslationsBag::class)
-            ->add('narsil-cms::accessibility.close_sidebar')
+            ->add('narsil::accessibility.close_sidebar')
             ->add('narsil-cms::accessibility.open_sidebar')
-            ->add('narsil-cms::accessibility.toggle_sidebar');
+            ->add('narsil::accessibility.toggle_sidebar');
 
         return parent::content();
     }

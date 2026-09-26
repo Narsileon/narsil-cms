@@ -211,7 +211,7 @@ class EntityNodeInspectorService
 
             if (empty($value))
             {
-                $value = (object)[];
+                $value = (object) [];
             }
         }
         else

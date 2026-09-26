@@ -19,8 +19,8 @@ use Narsil\Base\Traits\HasTranslations;
 
 abstract class BaseElement extends Model
 {
-    use Blameable;
     use AuditLoggable;
+    use Blameable;
     use HasDatetimes;
     use HasIdentifier;
     use HasTranslations;

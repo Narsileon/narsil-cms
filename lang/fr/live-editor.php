@@ -1,28 +1,27 @@
 <?php
 
 return [
-    'description'       => 'Modifier le contenu de la page à côté d\'un aperçu en direct',
-    'title'             => 'Éditeur en direct',
+    'description' => 'Modifier le contenu de la page à côté d\'un aperçu en direct',
+    'title' => 'Éditeur en direct',
 
-    'inspector'         => [
+    'inspector' => [
         'empty' => 'Sélectionnez un bloc pour modifier son contenu',
         'title' => 'Propriétés',
     ],
-    'language'          => 'Langue',
-    'country'           => 'Pays',
-    'pages'             => [
+    'language' => 'Langue',
+    'country' => 'Pays',
+    'pages' => [
         'create' => 'Créer une page',
-        'empty'  => 'Ce site ne contient encore aucune page',
-        'title'  => 'Pages',
+        'empty' => 'Ce site ne contient encore aucune page',
+        'title' => 'Pages',
     ],
-    'preview'           => [
+    'preview' => [
         'missing' => 'Cette page n\'a pas encore d\'url publique dans l\'espace de travail actuel',
-        'title'   => 'Aperçu',
+        'title' => 'Aperçu',
     ],
-    'tree'              => [
-        'add'   => 'Ajouter un bloc',
+    'tree' => [
+        'add' => 'Ajouter un bloc',
         'empty' => 'Cette page n\'a pas encore de blocs de contenu',
         'title' => 'Contenu',
     ],
-    'workspace'         => 'Espace de travail',
 ];

@@ -37,7 +37,7 @@ class MakeEntityNodeRelationCommand extends MakeModelCommand
      */
     protected function getStub(): string
     {
-        return __dir__ . '/stubs/model.entity-node-relation.stub';
+        return __DIR__ . '/stubs/model.entity-node-relation.stub';
     }
 
     /**

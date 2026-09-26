@@ -9,7 +9,7 @@ namespace Narsil\Cms\Http\Controllers\Entities;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
-use Inertia\Response;
+use Illuminate\View\View;
 use Narsil\Base\Casts\DiffForHumansCast;
 use Narsil\Base\Enums\AbilityEnum;
 use Narsil\Base\Enums\RequestMethodEnum;
@@ -18,7 +18,6 @@ use Narsil\Cms\Contracts\Forms\EntityForm;
 use Narsil\Cms\Contracts\Forms\PublishForm;
 use Narsil\Cms\Contracts\Resources\EntityResource;
 use Narsil\Cms\Models\Collections\Template;
-use Narsil\Cms\Models\Configuration;
 use Narsil\Cms\Models\Entities\Entity;
 use Narsil\Cms\Models\Entities\EntityNode;
 use Narsil\Cms\Models\Entities\EntityNodeRelation;
@@ -38,9 +37,9 @@ class EntityEditController extends RenderController
      * @param integer|string $collection
      * @param integer $id
      *
-     * @return JsonResponse|Response
+     * @return JsonResponse|View
      */
-    public function __invoke(Request $request, int|string $collection, int $id): JsonResponse|Response
+    public function __invoke(Request $request, int|string $collection, int $id): JsonResponse|View
     {
         $entity = $this->getEntity($request, $id);
 
@@ -54,7 +53,7 @@ class EntityEditController extends RenderController
         $form = $this->getForm($entity);
         $publish = app(PublishForm::class);
 
-        return $this->render('narsil/cms::resources/form', [
+        return $this->renderBlade('narsil::pages.resources.form', [
             'data' => $data,
             'form' => $form,
             'publish' => $publish,
@@ -89,7 +88,7 @@ class EntityEditController extends RenderController
         ]);
 
         $data = app(EntityResource::class, [
-            'resource' => $entity
+            'resource' => $entity,
         ])->toArray(request());
 
         return $data;
@@ -120,7 +119,7 @@ class EntityEditController extends RenderController
                     Entity::RELATION_NODES,
                 ])
                 ->firstWhere([
-                    Entity::UUID => $revision
+                    Entity::UUID => $revision,
                 ]);
         }
         else
@@ -130,7 +129,7 @@ class EntityEditController extends RenderController
                     Entity::RELATION_DRAFT,
                 ])
                 ->firstWhere([
-                    Entity::ID => $id
+                    Entity::ID => $id,
                 ]);
 
             if ($draft = $entity->{Entity::RELATION_DRAFT})
@@ -175,8 +174,6 @@ class EntityEditController extends RenderController
             })
             ->toArray();
 
-        $configuration = Configuration::firstOrCreate();
-
         $form = app()
             ->make(EntityForm::class, [
                 'template' => $this->template,
@@ -187,7 +184,7 @@ class EntityEditController extends RenderController
             ]))
             ->autoSave(false)
             ->id($entity->{Entity::UUID})
-            ->defaultLanguage($configuration->{Configuration::DEFAULT_LANGUAGE} ?? 'en')
+            ->defaultLanguage(HostLocaleLanguage::getDefaultLanguage())
             ->languageOptions(HostLocaleLanguage::getUniqueLanguages())
             ->method(RequestMethodEnum::PATCH->value)
             ->options($options)

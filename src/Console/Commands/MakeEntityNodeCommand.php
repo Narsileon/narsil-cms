@@ -31,12 +31,13 @@ class MakeEntityNodeCommand extends MakeModelCommand
     {
         return class_basename($this->template->entityNodeClass());
     }
+
     /**
      * {@inheritDoc}
      */
     protected function getStub(): string
     {
-        return __dir__ . '/stubs/model.entity-node.stub';
+        return __DIR__ . '/stubs/model.entity-node.stub';
     }
 
     /**

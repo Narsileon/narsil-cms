@@ -10,15 +10,12 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Str;
-use Narsil\Base\Traits\HasSchemas;
 use Narsil\Cms\Models\Redirect;
 
 #endregion
 
 final class RedirectService
 {
-    use HasSchemas;
-
     #region PUBLIC METHODS
 
     /**
@@ -64,15 +61,13 @@ final class RedirectService
     #region PRIVATE METHODS
 
     /**
-     * Get all configured redirects for the current schema.
+     * Get all configured redirects.
      *
      * @return array<string,array<string,integer|string>>
      */
     private function getRedirects(): array
     {
-        $schema = $this->getCurrentSchema();
-
-        return Cache::tags(Redirect::TABLE)->rememberForever("redirects:$schema", function (): array
+        return Cache::tags(Redirect::TABLE)->rememberForever('redirects', function (): array
         {
             return Redirect::query()
                 ->get([

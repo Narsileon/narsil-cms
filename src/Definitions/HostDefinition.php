@@ -11,11 +11,11 @@ use Narsil\Base\Enums\ModelHookEventEnum;
 use Narsil\Cms\Contracts\Actions\Hosts\ReplicateHost;
 use Narsil\Cms\Contracts\Forms\HostForm;
 use Narsil\Cms\Contracts\Requests\HostFormRequest;
-use Narsil\Cms\Models\Hosts\Host;
-use Narsil\Cms\Models\Hosts\HostLocale;
-use Narsil\Cms\Implementations\Tables\HostTable;
 use Narsil\Cms\Implementations\Hooks\Hosts\DispatchHostSitemapHook;
 use Narsil\Cms\Implementations\Hooks\Hosts\SyncHostLocalesHook;
+use Narsil\Cms\Implementations\Tables\HostTable;
+use Narsil\Cms\Models\Hosts\Host;
+use Narsil\Cms\Models\Hosts\HostLocale;
 
 #endregion
 
@@ -51,17 +51,17 @@ final class HostDefinition extends AbstractModelDefinition
             ModelHookEventEnum::AFTER_STORE->value => [
                 [
                     'hook' => SyncHostLocalesHook::class,
-                    'priority' => 0
+                    'priority' => 0,
                 ],
             ],
             ModelHookEventEnum::AFTER_UPDATE->value => [
                 [
                     'hook' => DispatchHostSitemapHook::class,
-                    'priority' => 0
+                    'priority' => 0,
                 ],
                 [
                     'hook' => SyncHostLocalesHook::class,
-                    'priority' => 0
+                    'priority' => 0,
                 ],
             ],
         ];

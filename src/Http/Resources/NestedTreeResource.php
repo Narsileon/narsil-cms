@@ -6,9 +6,9 @@ namespace Narsil\Cms\Http\Resources;
 
 #region USE
 
-use Illuminate\Support\Collection;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Collection;
 use Narsil\Cms\Models\TreeModel;
 
 #endregion

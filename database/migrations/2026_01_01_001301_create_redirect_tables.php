@@ -7,15 +7,12 @@ declare(strict_types=1);
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use Narsil\Base\Traits\HasSchemas;
 use Narsil\Cms\Models\Redirect;
 
 #endregion
 
-return new class extends Migration
+return new class() extends Migration
 {
-    use HasSchemas;
-
     #region PUBLIC METHODS
 
     /**
@@ -25,10 +22,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        foreach ($this->getSchemas() as $schema)
-        {
-            Schema::dropIfExists("$schema." . Redirect::TABLE);
-        }
+        Schema::dropIfExists(Redirect::TABLE);
     }
 
     /**
@@ -38,12 +32,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        foreach ($this->getSchemas() as $schema)
+        if (!Schema::hasTable(Redirect::TABLE))
         {
-            if (!Schema::hasTable("$schema." . Redirect::TABLE))
-            {
-                $this->createRedirectsTable($schema);
-            }
+            $this->createRedirectsTable();
         }
     }
 
@@ -54,13 +45,11 @@ return new class extends Migration
     /**
      * Create the redirects table.
      *
-     * @param string $schema
-     *
      * @return void
      */
-    private function createRedirectsTable(string $schema): void
+    private function createRedirectsTable(): void
     {
-        Schema::create("$schema." . Redirect::TABLE, function (Blueprint $blueprint)
+        Schema::create(Redirect::TABLE, function (Blueprint $blueprint)
         {
             $blueprint
                 ->id(Redirect::ID);

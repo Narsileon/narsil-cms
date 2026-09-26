@@ -70,7 +70,7 @@ final class CallToActionBlockSeeder extends Seeder
                 $TitleFieldSeeder,
                 [
                     BlockElement::HANDLE => self::LABEL,
-                    BlockElement::LABEL  => 'Label',
+                    BlockElement::LABEL => 'Label',
                     BlockElement::POSITION => 1,
                     BlockElement::REQUIRED => true,
                     BlockElement::TRANSLATABLE => true,
@@ -81,7 +81,7 @@ final class CallToActionBlockSeeder extends Seeder
                 $LinkBlockSeeder,
                 [
                     BlockElement::HANDLE => self::LINK,
-                    BlockElement::LABEL  => 'Link',
+                    BlockElement::LABEL => 'Link',
                     BlockElement::POSITION => 2,
                 ],
                 Block::RELATION_BLOCKS

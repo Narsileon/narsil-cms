@@ -99,7 +99,7 @@ final class ContentTemplateSeeder extends Seeder
                     $fieldFactory,
                     [
                         TemplateTabElement::HANDLE => self::CONTENT,
-                        TemplateTabElement::LABEL  => 'Content',
+                        TemplateTabElement::LABEL => 'Content',
                         TemplateTabElement::POSITION => 1,
                     ],
                     TemplateTab::RELATION_FIELDS

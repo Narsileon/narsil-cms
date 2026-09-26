@@ -120,7 +120,7 @@ class EntityFormRequest extends FormRequest implements Contract
                 {
                     $attributes[$key] = $handle;
                 }
-                else if ($field->{Field::TYPE} === 'builder')
+                elseif ($field->{Field::TYPE} === 'builder')
                 {
                     $attributes["$key.*"] = $handle;
 
@@ -164,7 +164,7 @@ class EntityFormRequest extends FormRequest implements Contract
             {
                 $field = $element->{Element::RELATION_BASE};
 
-                $fieldValidationRules =  $field->{Field::RELATION_VALIDATION_RULES}->pluck(ValidationRule::HANDLE)->toArray();
+                $fieldValidationRules = $field->{Field::RELATION_VALIDATION_RULES}->pluck(ValidationRule::HANDLE)->toArray();
 
                 $fieldRules = [];
 
@@ -190,7 +190,7 @@ class EntityFormRequest extends FormRequest implements Contract
 
                     $rules["$key.*"] = $fieldValidationRules;
                 }
-                else if ($field->{Field::TYPE} === 'builder')
+                elseif ($field->{Field::TYPE} === 'builder')
                 {
                     $rules["$key.*"] = $fieldRules;
 

@@ -63,7 +63,7 @@ final class LinkBlockSeeder extends Seeder
                 Field::factory()->state([
                     Field::HANDLE => 'link_type',
                     Field::LABEL => 'Link Type',
-                    FIeld::TYPE => SelectInputData::TYPE,
+                    Field::TYPE => SelectInputData::TYPE,
                 ])->has(
                     FieldOption::factory()
                         ->count(2)
@@ -98,10 +98,10 @@ final class LinkBlockSeeder extends Seeder
                 ]),
                 [
                     BlockElement::HANDLE => self::PAGE,
-                    BlockElement::LABEL  => 'Page',
+                    BlockElement::LABEL => 'Page',
                     BlockElement::POSITION => 1,
                     BlockElement::REQUIRED => true,
-                    BlockElement::WIDTH => 75
+                    BlockElement::WIDTH => 75,
                 ],
                 Block::RELATION_FIELDS
             )
@@ -113,10 +113,10 @@ final class LinkBlockSeeder extends Seeder
                 ]),
                 [
                     BlockElement::HANDLE => self::URL,
-                    BlockElement::LABEL  => 'URL',
+                    BlockElement::LABEL => 'URL',
                     BlockElement::POSITION => 2,
                     BlockElement::REQUIRED => true,
-                    BlockElement::WIDTH => 75
+                    BlockElement::WIDTH => 75,
                 ],
                 Block::RELATION_FIELDS
             )

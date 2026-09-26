@@ -1,10 +1,9 @@
-import { Link, router } from "@inertiajs/react";
+import { Link } from "@inertiajs/react";
 import { GlobalProps } from "@narsil-cms/hooks/use-props";
 import { AlertDialogProvider } from "@narsil-ui/blocks/alert-dialog";
 import { Bookmarks } from "@narsil-ui/blocks/bookmarks";
 import { Breadcrumb } from "@narsil-ui/blocks/breadcrumb";
 import { ModalRenderer } from "@narsil-ui/blocks/modal";
-import { Select } from "@narsil-ui/blocks/select";
 import { Sidebar } from "@narsil-ui/blocks/sidebar";
 import { Themes } from "@narsil-ui/blocks/themes";
 import { Tooltip } from "@narsil-ui/blocks/tooltip";
@@ -41,22 +40,11 @@ function AuthLayout({ children }: AuthLayoutProps) {
   const isMobile = useMaxLg();
   const mainRef = useRef<HTMLDivElement>(null);
 
-  const { auth, navigation, session } = children?.props;
+  const { auth, navigation } = children?.props;
 
   const groupedMenu = groupBy(navigation?.userMenu, (item) => item.group ?? "default");
   const sidebarName = window.location.pathname.startsWith("/narsil/cms") ? "cms" : "base";
 
-  function onSchemaChange(schema: string) {
-    router.post(
-      route("user-configurations.update"),
-      {
-        schema: schema,
-      },
-      {
-        preserveState: false,
-      },
-    );
-  }
   return (
     <AlertDialogProvider>
       <SidebarProvider isMobile={isMobile}>
@@ -70,14 +58,6 @@ function AuthLayout({ children }: AuthLayoutProps) {
               </>
             ) : null}
             <Breadcrumb breadcrumb={navigation.breadcrumb} className="grow" />
-            {session.schemas.length > 1 ? (
-              <Select
-                className="min-w-24"
-                value={session.schema}
-                onValueChange={(value) => onSchemaChange(value as string)}
-                options={session.schemas}
-              />
-            ) : null}
             <Bookmarks breadcrumb={navigation.breadcrumb} />
             <DropdownMenuRoot>
               <Tooltip tooltip={trans("accessibility.user_menu")}>

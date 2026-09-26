@@ -47,7 +47,7 @@ class FooterSocialMedium extends Model
      *
      * @var string
      */
-    final public const TABLE = 'footer_social_media';
+    final public const TABLE = 'cms.footer_social_media';
 
     #region • COLUMNS
 

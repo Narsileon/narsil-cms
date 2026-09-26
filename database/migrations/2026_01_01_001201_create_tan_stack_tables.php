@@ -6,14 +6,11 @@ declare(strict_types=1);
 
 use Illuminate\Database\Migrations\Migration;
 use Narsil\Base\Database\Migrations\TanStackTableMigration;
-use Narsil\Base\Traits\HasSchemas;
 
 #endregion
 
-return new class extends Migration
+return new class() extends Migration
 {
-    use HasSchemas;
-
     #region PUBLIC METHODS‚
 
     /**
@@ -23,10 +20,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        foreach ($this->getSchemas() as $schema)
-        {
-            new TanStackTableMigration($schema)->up();
-        };
+        new TanStackTableMigration()->up();
     }
 
     /**
@@ -36,10 +30,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        foreach ($this->getSchemas() as $schema)
-        {
-            new TanStackTableMigration($schema)->down();
-        };
+        new TanStackTableMigration()->down();
     }
 
     #endregion

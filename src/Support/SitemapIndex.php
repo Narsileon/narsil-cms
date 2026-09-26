@@ -45,9 +45,9 @@ class SitemapIndex
     /**
      * The associated document.
      *
-     * @var DomDocument
+     * @var DOMDocument
      */
-    protected readonly DomDocument $document;
+    protected readonly DOMDocument $document;
 
     #endregion
 

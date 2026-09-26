@@ -186,8 +186,7 @@ abstract class TreeModel extends Model
     public function scopeRebuildTree(
         Builder $query,
         array $tree = [],
-    ): bool|string
-    {
+    ): bool|string {
         $collection = $query
             ->with([
                 self::RELATION_LEFT,

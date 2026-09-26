@@ -43,7 +43,7 @@ class CollectionSummaryController extends RenderController
         $items = $templates->map(function ($template)
         {
             return new SummaryData(
-                href: route("collections.index", $template->{Template::TABLE_NAME}),
+                href: route('collections.index', $template->{Template::TABLE_NAME}),
                 name: Str::ucfirst($template->{Template::PLURAL}),
             );
         });

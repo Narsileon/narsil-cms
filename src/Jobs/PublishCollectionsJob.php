@@ -42,7 +42,7 @@ class PublishCollectionsJob extends Job
             })
             ->catch(function (Throwable $error)
             {
-                Log::error("Publishing jobs have failed: " . $error->getMessage());
+                Log::error('Publishing jobs have failed: ' . $error->getMessage());
             })
             ->dispatch();
     }

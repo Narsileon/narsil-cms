@@ -6,19 +6,19 @@ namespace Narsil\Cms\Definitions;
 
 #region USE
 
+use Illuminate\Support\Arr;
 use Narsil\Base\Definitions\AbstractModelDefinition;
 use Narsil\Base\Enums\ModelHookEventEnum;
 use Narsil\Base\Http\Data\ModelHookContext;
-use Illuminate\Support\Arr;
+use Narsil\Cms\Contracts\Actions\Fields\ReplicateField;
 use Narsil\Cms\Contracts\Actions\Fields\SyncFieldBlocks;
 use Narsil\Cms\Contracts\Actions\Fields\SyncFieldOptions;
 use Narsil\Cms\Contracts\Actions\Fields\SyncFieldValidationRules;
-use Narsil\Cms\Contracts\Actions\Fields\ReplicateField;
 use Narsil\Cms\Contracts\Forms\FieldForm;
 use Narsil\Cms\Contracts\Requests\FieldFormRequest;
-use Narsil\Cms\Models\Collections\Field;
-use Narsil\Cms\Models\Collections\Block;
 use Narsil\Cms\Implementations\Tables\FieldTable;
+use Narsil\Cms\Models\Collections\Block;
+use Narsil\Cms\Models\Collections\Field;
 
 #endregion
 
@@ -34,7 +34,7 @@ final class FieldDefinition extends AbstractModelDefinition
         return [
             Field::RELATION_BLOCKS,
             Field::RELATION_OPTIONS,
-            Field::RELATION_VALIDATION_RULES
+            Field::RELATION_VALIDATION_RULES,
         ];
     }
 
@@ -65,13 +65,13 @@ final class FieldDefinition extends AbstractModelDefinition
             ModelHookEventEnum::AFTER_STORE->value => [
                 [
                     'hook' => $hook,
-                    'priority' => 0
+                    'priority' => 0,
                 ],
             ],
             ModelHookEventEnum::AFTER_UPDATE->value => [
                 [
                     'hook' => $hook,
-                    'priority' => 0
+                    'priority' => 0,
                 ],
             ],
         ];
@@ -85,7 +85,7 @@ final class FieldDefinition extends AbstractModelDefinition
         return [
             Field::RELATION_BLOCKS,
             Field::RELATION_OPTIONS,
-            Field::RELATION_VALIDATION_RULES
+            Field::RELATION_VALIDATION_RULES,
         ];
     }
 
@@ -95,7 +95,7 @@ final class FieldDefinition extends AbstractModelDefinition
     public function indexWithCount(): array
     {
         return [
-            Field::RELATION_VALIDATION_RULES
+            Field::RELATION_VALIDATION_RULES,
         ];
     }
 

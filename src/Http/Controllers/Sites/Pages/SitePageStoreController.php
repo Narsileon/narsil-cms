@@ -113,7 +113,7 @@ class SitePageStoreController extends RedirectController
             ->where(SitePage::RIGHT_ID, null)
             ->whereIn(SitePage::COUNTRY, [
                 $this->country,
-                'default'
+                'default',
             ])
             ->get();
 

@@ -59,7 +59,7 @@ class BlockElement extends Element
      *
      * @var string
      */
-    final public const TABLE = 'block_element';
+    final public const TABLE = 'cms.block_element';
 
     #region • COLUMNS
 

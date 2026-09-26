@@ -8,8 +8,6 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
 use Narsil\Base\Services\ModelRouteRegistrar;
 use Narsil\Cms\Http\Controllers\Collections\CollectionSummaryController;
-use Narsil\Cms\Http\Controllers\Configurations\ConfigurationEditController;
-use Narsil\Cms\Http\Controllers\Configurations\ConfigurationUpdateController;
 use Narsil\Cms\Http\Controllers\DashboardController;
 use Narsil\Cms\Http\Controllers\Entities\EntityCreateController;
 use Narsil\Cms\Http\Controllers\Entities\EntityDestroyController;
@@ -50,6 +48,9 @@ Route::middleware([
 ])->group(
     function ()
     {
+        $entityTable = Str::slug(Str::afterLast(Entity::TABLE, '.'));
+        $sitePageTable = Str::slug(Str::afterLast(SitePage::TABLE, '.'));
+
         Route::get('/', DashboardController::class)
             ->name('dashboard');
 
@@ -57,7 +58,7 @@ Route::middleware([
 
         app(ModelRouteRegistrar::class)->register('Narsil\\Cms\\');
 
-        Route::prefix(Str::slug(Entity::TABLE))->name(Str::slug(Entity::TABLE) . '.')->group(function ()
+        Route::prefix($entityTable)->name($entityTable . '.')->group(function ()
         {
             Route::get('/search', EntitySearchController::class)
                 ->name('search');
@@ -88,7 +89,7 @@ Route::middleware([
             });
         });
 
-        Route::prefix(Str::slug(SitePage::TABLE))->name(Str::slug(SitePage::TABLE) . '.')->group(function ()
+        Route::prefix($sitePageTable)->name($sitePageTable . '.')->group(function ()
         {
             Route::get('/search', SitePageSearchController::class)
                 ->name('search');
@@ -138,14 +139,6 @@ Route::middleware([
                 Route::delete('/{nodeUuid}', LiveEditorNodeDestroyController::class)
                     ->name('destroy');
             });
-        });
-
-        Route::prefix('settings')->name('settings.')->group(function ()
-        {
-            Route::get('/', ConfigurationEditController::class)
-                ->name('edit');
-            Route::patch('/', ConfigurationUpdateController::class)
-                ->name('update');
         });
 
         #endregion

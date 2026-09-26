@@ -6,16 +6,16 @@ namespace Narsil\Cms\Definitions;
 
 #region USE
 
+use Illuminate\Support\Arr;
 use Narsil\Base\Definitions\AbstractModelDefinition;
 use Narsil\Base\Enums\ModelHookEventEnum;
 use Narsil\Base\Http\Data\ModelHookContext;
-use Illuminate\Support\Arr;
-use Narsil\Cms\Contracts\Actions\Blocks\SyncBlockElements;
 use Narsil\Cms\Contracts\Actions\Blocks\ReplicateBlock;
+use Narsil\Cms\Contracts\Actions\Blocks\SyncBlockElements;
 use Narsil\Cms\Contracts\Forms\BlockForm;
 use Narsil\Cms\Contracts\Requests\BlockFormRequest;
-use Narsil\Cms\Models\Collections\Block;
 use Narsil\Cms\Implementations\Tables\BlockTable;
+use Narsil\Cms\Models\Collections\Block;
 
 #endregion
 
@@ -31,7 +31,7 @@ final class BlockDefinition extends AbstractModelDefinition
         return [
             Block::RELATION_BLOCKS,
             Block::RELATION_ELEMENTS,
-            Block::RELATION_FIELDS
+            Block::RELATION_FIELDS,
         ];
     }
 
@@ -60,13 +60,13 @@ final class BlockDefinition extends AbstractModelDefinition
             ModelHookEventEnum::AFTER_STORE->value => [
                 [
                     'hook' => $hook,
-                    'priority' => 0
+                    'priority' => 0,
                 ],
             ],
             ModelHookEventEnum::AFTER_UPDATE->value => [
                 [
                     'hook' => $hook,
-                    'priority' => 0
+                    'priority' => 0,
                 ],
             ],
         ];
@@ -80,7 +80,7 @@ final class BlockDefinition extends AbstractModelDefinition
         return [
             Block::RELATION_BLOCKS,
             Block::RELATION_ELEMENTS,
-            Block::RELATION_FIELDS
+            Block::RELATION_FIELDS,
         ];
     }
 
@@ -91,7 +91,7 @@ final class BlockDefinition extends AbstractModelDefinition
     {
         return [
             Block::RELATION_BLOCKS,
-            Block::RELATION_FIELDS
+            Block::RELATION_FIELDS,
         ];
     }
 

@@ -23,27 +23,27 @@ class FooterFactory extends Factory
         [
             FooterSocialMedium::ICON => 'fa-brands-facebook',
             FooterSocialMedium::LABEL => 'Facebook',
-            FooterSocialMedium::URL => 'https://www.facebook.com'
+            FooterSocialMedium::URL => 'https://www.facebook.com',
         ],
         [
             FooterSocialMedium::ICON => 'fa-brands-instagram',
             FooterSocialMedium::LABEL => 'Instagram',
-            FooterSocialMedium::URL => 'https://instagram.com'
+            FooterSocialMedium::URL => 'https://instagram.com',
         ],
         [
             FooterSocialMedium::ICON => 'fa-brands-linkedin',
             FooterSocialMedium::LABEL => 'LinkedIn',
-            FooterSocialMedium::URL => 'https://linkedin.com'
+            FooterSocialMedium::URL => 'https://linkedin.com',
         ],
         [
             FooterSocialMedium::ICON => 'fa-brands-tiktok',
             FooterSocialMedium::LABEL => 'TikTok',
-            FooterSocialMedium::URL => 'https://www.tiktok.com'
+            FooterSocialMedium::URL => 'https://www.tiktok.com',
         ],
         [
             FooterSocialMedium::ICON => 'fa-brands-youtube',
             FooterSocialMedium::LABEL => 'Youtube',
-            FooterSocialMedium::URL => 'https://www.youtube.com'
+            FooterSocialMedium::URL => 'https://www.youtube.com',
         ],
     ];
 
@@ -106,7 +106,7 @@ class FooterFactory extends Factory
                 FooterSocialMedium::FOOTER_ID => $footer->{Footer::ID},
                 FooterSocialMedium::ICON => $socialMedium[FooterSocialMedium::ICON],
                 FooterSocialMedium::LABEL => $socialMedium[FooterSocialMedium::LABEL],
-                FooterSocialMedium::POSITION  => $position,
+                FooterSocialMedium::POSITION => $position,
                 FooterSocialMedium::URL => $socialMedium[FooterSocialMedium::URL],
             ]);
         }

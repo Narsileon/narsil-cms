@@ -47,9 +47,9 @@ class Sitemap
     /**
      * The associated document.
      *
-     * @var DomDocument
+     * @var DOMDocument
      */
-    protected readonly DomDocument $document;
+    protected readonly DOMDocument $document;
 
     /**
      * The associated host.
@@ -190,7 +190,7 @@ class Sitemap
      */
     protected function appendPriority(DOMElement $url, float $value): DOMElement
     {
-        $priority = $this->document->createElement('priority', (string)$value);
+        $priority = $this->document->createElement('priority', (string) $value);
 
         $url->appendChild($priority);
 

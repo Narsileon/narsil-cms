@@ -21,9 +21,9 @@ use Narsil\Base\Traits\HasDatetimes;
 use Narsil\Base\Traits\HasIdentifier;
 use Narsil\Base\Traits\HasTranslations;
 use Narsil\Cms\Database\Factories\FooterFactory;
-use Narsil\Cms\Policies\FooterPolicy;
 use Narsil\Cms\Models\Sites\Site;
 use Narsil\Cms\Models\Sites\SitePage;
+use Narsil\Cms\Policies\FooterPolicy;
 
 #endregion
 
@@ -32,8 +32,8 @@ use Narsil\Cms\Models\Sites\SitePage;
 #[UsePolicy(FooterPolicy::class)]
 class Footer extends Model
 {
-    use Blameable;
     use AuditLoggable;
+    use Blameable;
     use HasDatetimes;
     use HasFactory;
     use HasIdentifier;
@@ -75,7 +75,7 @@ class Footer extends Model
      *
      * @var string
      */
-    final public const TABLE = 'footers';
+    final public const TABLE = 'cms.footers';
 
     #region • COLUMNS
 

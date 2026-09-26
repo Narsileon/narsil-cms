@@ -8,15 +8,12 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 use Narsil\Base\Models\User;
-use Narsil\Base\Traits\HasSchemas;
 use Narsil\Cms\Models\Globals\Header;
 
 #endregion
 
-return new class extends Migration
+return new class() extends Migration
 {
-    use HasSchemas;
-
     #region PUBLIC METHODS
 
     /**
@@ -26,13 +23,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        foreach ($this->getSchemas() as $schema)
+        if (!Schema::hasTable(Header::TABLE))
         {
-            if (!Schema::hasTable("$schema." . Header::TABLE))
-            {
-                $this->createHeadersTable($schema);
-            }
-        };
+            $this->createHeadersTable();
+        }
     }
 
     /**
@@ -42,10 +36,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        foreach ($this->getSchemas() as $schema)
-        {
-            Schema::dropIfExists("$schema." . Header::TABLE);
-        };
+        Schema::dropIfExists(Header::TABLE);
     }
 
     #endregion
@@ -55,13 +46,11 @@ return new class extends Migration
     /**
      * Create the headers table.
      *
-     * @param string $schema
-     *
      * @return void
      */
-    private function createHeadersTable(string $schema): void
+    private function createHeadersTable(): void
     {
-        Schema::create("$schema." . Header::TABLE, function (Blueprint $blueprint)
+        Schema::create(Header::TABLE, function (Blueprint $blueprint)
         {
             $blueprint
                 ->id(Header::ID);

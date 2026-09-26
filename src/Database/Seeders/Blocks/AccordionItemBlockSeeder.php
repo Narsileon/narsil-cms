@@ -65,7 +65,7 @@ final class AccordionItemBlockSeeder extends Seeder
                 $RichTextFieldSeeder,
                 [
                     BlockElement::HANDLE => self::CONTENT,
-                    BlockElement::LABEL  => 'Content',
+                    BlockElement::LABEL => 'Content',
                     BlockElement::POSITION => 1,
                     BlockElement::REQUIRED => true,
                     BlockElement::TRANSLATABLE => true,

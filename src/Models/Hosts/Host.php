@@ -26,8 +26,8 @@ use Narsil\Cms\Policies\HostPolicy;
 #[UsePolicy(HostPolicy::class)]
 class Host extends Model
 {
-    use Blameable;
     use AuditLoggable;
+    use Blameable;
     use HasDatetimes;
     use HasFactory;
     use HasTranslations;
@@ -61,7 +61,7 @@ class Host extends Model
      *
      * @var string
      */
-    final public const TABLE = 'hosts';
+    final public const TABLE = 'cms.hosts';
 
     #region • COLUMNS
 
@@ -157,7 +157,7 @@ class Host extends Model
                 HostLocale::HOST_ID,
                 self::ID,
             )
-            ->where(HostLocale::COUNTRY, '=', 'default');
+            ->where(HostLocale::COUNTRY, '=', HostLocale::COUNTRY_DEFAULT);
     }
 
     /**
@@ -173,7 +173,7 @@ class Host extends Model
                 HostLocale::HOST_ID,
                 self::ID,
             )
-            ->where(HostLocale::COUNTRY, '!=', 'default')
+            ->where(HostLocale::COUNTRY, '!=', HostLocale::COUNTRY_DEFAULT)
             ->orderBy(HostLocale::POSITION);
     }
 

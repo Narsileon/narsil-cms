@@ -23,8 +23,7 @@ class SummaryData extends Fluent
     public function __construct(
         string $href,
         string $name,
-    )
-    {
+    ) {
         $this->set('href', $href);
         $this->set('name', $name);
     }

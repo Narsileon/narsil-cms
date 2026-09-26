@@ -58,7 +58,7 @@ abstract class EntityNode extends Model
      *
      * @var string
      */
-    public const TABLE = 'entity_nodes';
+    public const TABLE = 'cms.entity_nodes';
 
     #region • COLUMNS
 

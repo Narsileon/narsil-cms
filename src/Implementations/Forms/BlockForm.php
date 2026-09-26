@@ -103,6 +103,7 @@ class BlockForm extends Form implements Contract
 
         return [
             new FormStepData(
+                label: trans('narsil::ui.definition'),
                 elements: [
                     new FieldData(
                         id: Block::HANDLE,

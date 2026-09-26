@@ -62,18 +62,6 @@ function LiveEditorLayout() {
     router.get(window.location.pathname, { country: value }, { preserveState: false });
   }
 
-  function onSchemaChange(value: string): void {
-    router.post(
-      route("user-configurations.update"),
-      {
-        schema: value,
-      },
-      {
-        preserveState: false,
-      },
-    );
-  }
-
   return (
     <div className="grid h-screen min-h-0 grid-rows-[3.25rem_1fr] overflow-hidden bg-background text-foreground">
       <header className="grid grid-cols-[280px_1fr_380px] border-b">
@@ -108,17 +96,6 @@ function LiveEditorLayout() {
           </div>
         </div>
         <div className="flex h-13 items-center justify-end gap-2 border-b border-l bg-background px-4">
-          {session.schemas.length > 1 ? (
-            <div className="flex items-center gap-1">
-              <Select
-                aria-label={trans("live-editor.workspace")}
-                className="min-w-24"
-                options={session.schemas}
-                value={session.schema}
-                onValueChange={(value) => onSchemaChange(value as string)}
-              />
-            </div>
-          ) : null}
           <Bookmarks breadcrumb={navigation.breadcrumb} />
           <DropdownMenuRoot>
             <Tooltip tooltip={trans("accessibility.user_menu")}>

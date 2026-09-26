@@ -12,7 +12,6 @@ use Illuminate\Database\Eloquent\Attributes\UsePolicy;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Str;
 use Narsil\Base\Http\Data\OptionData;
 use Narsil\Base\Observers\ModelObserver;
@@ -32,8 +31,8 @@ use Narsil\Cms\Policies\TemplatePolicy;
 #[UsePolicy(TemplatePolicy::class)]
 class Template extends Model
 {
-    use Blameable;
     use AuditLoggable;
+    use Blameable;
     use HasDatetimes;
     use HasFactory;
     use HasTranslations;
@@ -72,7 +71,7 @@ class Template extends Model
      *
      * @var string
      */
-    final public const TABLE = 'templates';
+    final public const TABLE = 'cms.templates';
 
     #region • COLUMNS
 

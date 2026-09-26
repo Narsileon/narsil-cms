@@ -89,7 +89,7 @@ final class HeroHeaderBlockSeeder extends Seeder
                 $RichTextFieldSeeder,
                 [
                     BlockElement::HANDLE => self::EXCERPT,
-                    BlockElement::LABEL  => 'Excerpt',
+                    BlockElement::LABEL => 'Excerpt',
                     BlockElement::POSITION => 2,
                     BlockElement::REQUIRED => true,
                     BlockElement::TRANSLATABLE => true,
@@ -108,7 +108,7 @@ final class HeroHeaderBlockSeeder extends Seeder
                 ),
                 [
                     BlockElement::HANDLE => 'buttons',
-                    BlockElement::LABEL  => 'Buttons',
+                    BlockElement::LABEL => 'Buttons',
                     BlockElement::POSITION => 3,
                 ],
                 Block::RELATION_FIELDS

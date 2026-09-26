@@ -31,7 +31,7 @@ class SyncBlockElements extends Action implements Contract
         {
             $identifier = Arr::get($element, BlockElement::ATTRIBUTE_IDENTIFIER);
 
-            if (!$identifier || ! Str::contains($identifier, '-'))
+            if (!$identifier || !Str::contains($identifier, '-'))
             {
                 continue;
             }

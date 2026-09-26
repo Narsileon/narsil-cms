@@ -71,7 +71,7 @@ final class AccordionBlockSeeder extends Seeder
                 ),
                 [
                     BlockElement::HANDLE => self::ITEMS,
-                    BlockElement::LABEL  => 'Items',
+                    BlockElement::LABEL => 'Items',
                     BlockElement::POSITION => 1,
                 ],
                 Block::RELATION_FIELDS

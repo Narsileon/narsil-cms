@@ -40,7 +40,7 @@ class FieldValidationRule extends Pivot
      *
      * @var string
      */
-    final public const TABLE = 'field_validation_rule';
+    final public const TABLE = 'cms.field_validation_rule';
 
     #region • COLUMNS
 

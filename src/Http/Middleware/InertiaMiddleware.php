@@ -16,12 +16,9 @@ use Narsil\Base\Contracts\Menus\GuestMenu;
 use Narsil\Base\Contracts\Menus\Home;
 use Narsil\Base\Contracts\Menus\HomeSidebar;
 use Narsil\Base\Contracts\Resources\UserResource;
-use Narsil\Base\Helpers\Translator;
-use Narsil\Base\Http\Data\OptionData;
 use Narsil\Base\Models\Users\UserConfiguration;
 use Narsil\Base\Narsil;
 use Narsil\Base\Services\LocaleService;
-use Narsil\Base\Traits\HasSchemas;
 use Narsil\Cms\Contracts\Menus\CmsSidebar;
 use Narsil\Cms\Http\Resources\InertiaResource;
 use Narsil\Cms\Services\BreadcrumbService;
@@ -30,8 +27,6 @@ use Narsil\Cms\Services\BreadcrumbService;
 
 class InertiaMiddleware extends Middleware
 {
-    use HasSchemas;
-
     #region CONSTRUCTOR
 
     /**
@@ -75,7 +70,7 @@ class InertiaMiddleware extends Middleware
         $user = Auth::user();
 
         $auth = $user ? app(UserResource::class, [
-            'resource' => $user
+            'resource' => $user,
         ]) : null;
 
         $navigation = $this->getNavigation($request);
@@ -148,24 +143,6 @@ class InertiaMiddleware extends Middleware
     }
 
     /**
-     * @return array
-     */
-    protected function getSchemaOptions(): array
-    {
-        $options = [];
-
-        foreach ($this->getSchemas() as $schema)
-        {
-            $options[] = new OptionData(
-                label: Translator::trans("schemas.$schema"),
-                value: $schema
-            );
-        }
-
-        return $options;
-    }
-
-    /**
      * @param Request $request
      *
      * @return array
@@ -174,16 +151,13 @@ class InertiaMiddleware extends Middleware
     {
         $locale = App::getLocale();
         $languages = LocaleService::languageOptions(app(Narsil::class)->getLocales());
-        $schemas = $this->getSchemaOptions();
 
         return [
             'languages' => $languages,
             'locale' => $locale,
-            'schemas' => $schemas,
 
             UserConfiguration::COLOR => Session::get(UserConfiguration::COLOR),
             UserConfiguration::RADIUS => Session::get(UserConfiguration::RADIUS),
-            UserConfiguration::SCHEMA => Session::get(UserConfiguration::SCHEMA),
             UserConfiguration::THEME => Session::get(UserConfiguration::THEME),
         ];
     }

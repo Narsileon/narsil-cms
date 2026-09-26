@@ -277,7 +277,7 @@ trait HasRevisions
                 if ($maxRevision && $maxRevision->{self::PUBLISHED})
                 {
                     return false;
-                };
+                }
 
                 return true;
             },

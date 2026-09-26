@@ -77,7 +77,7 @@ class SyncEntityNodes extends Action implements Contract
                     $fieldEntityNode = $entityNodeModel::create([
                         EntityNode::ELEMENT_ID => $element->getKey(),
                         EntityNode::ELEMENT_TYPE => $element->getTable(),
-                        EntityNode::OWNER_UUID  => $entity->{Entity::UUID},
+                        EntityNode::OWNER_UUID => $entity->{Entity::UUID},
                         EntityNode::PARENT_UUID => $parent ? $parent->getKey() : null,
                         EntityNode::PATH => $key,
                     ]);
@@ -114,7 +114,7 @@ class SyncEntityNodes extends Action implements Contract
                     $entityNodeModel::create([
                         EntityNode::ELEMENT_ID => $element->getKey(),
                         EntityNode::ELEMENT_TYPE => $element->getTable(),
-                        EntityNode::OWNER_UUID  => $entity->{Entity::UUID},
+                        EntityNode::OWNER_UUID => $entity->{Entity::UUID},
                         EntityNode::PARENT_UUID => $parent ? $parent->getKey() : null,
                         EntityNode::PATH => $key,
                         EntityNode::POSITION => $position,
@@ -138,7 +138,7 @@ class SyncEntityNodes extends Action implements Contract
                 $blockEntityNode = $entityNodeModel::create([
                     EntityNode::ELEMENT_ID => $element->getKey(),
                     EntityNode::ELEMENT_TYPE => $element->getTable(),
-                    EntityNode::OWNER_UUID  => $entity->{Entity::UUID},
+                    EntityNode::OWNER_UUID => $entity->{Entity::UUID},
                     EntityNode::PARENT_UUID => $parent ? $parent->getKey() : null,
                     EntityNode::PATH => $nextPath,
                     EntityNode::POSITION => $position,

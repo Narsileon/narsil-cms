@@ -8,7 +8,6 @@ namespace Narsil\Cms\Models\Collections;
 
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Narsil\Cms\Models\AbstractCondition;
-use Narsil\Cms\Models\Collections\TemplateTabElement;
 
 #endregion
 
@@ -35,7 +34,7 @@ class TemplateTabElementCondition extends AbstractCondition
      *
      * @var string
      */
-    final public const TABLE = 'template_tab_element_conditions';
+    final public const TABLE = 'cms.template_tab_element_conditions';
 
     #region • COLUMNS
 

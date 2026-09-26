@@ -6,8 +6,8 @@ namespace Narsil\Cms\Models\Sites;
 
 #region USE
 
-use Illuminate\Database\Eloquent\Attributes\UseFactory;
 use Illuminate\Database\Eloquent\Attributes\ObservedBy;
+use Illuminate\Database\Eloquent\Attributes\UseFactory;
 use Illuminate\Database\Eloquent\Attributes\UsePolicy;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Collection;
@@ -25,8 +25,8 @@ use Narsil\Base\Traits\HasTranslations;
 use Narsil\Cms\Database\Factories\SitePageFactory;
 use Narsil\Cms\Models\Hosts\HostLocaleLanguage;
 use Narsil\Cms\Models\TreeModel;
-use Narsil\Cms\Policies\SitePagePolicy;
 use Narsil\Cms\Observers\SitePageObserver;
+use Narsil\Cms\Policies\SitePagePolicy;
 
 #endregion
 
@@ -84,7 +84,7 @@ final class SitePage extends TreeModel implements Searchable
      *
      * @var string
      */
-    final public const TABLE = 'site_pages';
+    final public const TABLE = 'cms.site_pages';
 
     #region • COLUMNS
 
@@ -284,7 +284,7 @@ final class SitePage extends TreeModel implements Searchable
                 ], $overrides);
             }
         }
-        else if ($override)
+        elseif ($override)
         {
             $override->delete();
         }

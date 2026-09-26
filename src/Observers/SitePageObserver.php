@@ -6,7 +6,6 @@ namespace Narsil\Cms\Observers;
 
 #region USE
 
-use Narsil\Base\Traits\HasSchemas;
 use Narsil\Cms\Jobs\SitemapJob;
 use Narsil\Cms\Models\Sites\SitePage;
 use Narsil\Cms\Models\Sites\SitePageEntity;
@@ -15,8 +14,6 @@ use Narsil\Cms\Models\Sites\SitePageEntity;
 
 class SitePageObserver
 {
-    use HasSchemas;
-
     #region PUBLIC METHODS
 
     /**
@@ -67,7 +64,7 @@ class SitePageObserver
             SitePage::RELATION_SITE,
         ]);
 
-        SitemapJob::dispatch($model->{SitePage::RELATION_SITE}, $this->getCurrentSchema());
+        SitemapJob::dispatch($model->{SitePage::RELATION_SITE});
     }
 
     /**

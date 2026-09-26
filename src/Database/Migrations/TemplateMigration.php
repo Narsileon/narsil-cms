@@ -252,4 +252,4 @@ class TemplateMigration extends Migration
     }
 
     #endregion
-};
+}

@@ -37,7 +37,7 @@ class MakeEntityCommand extends MakeModelCommand
      */
     protected function getStub(): string
     {
-        return __dir__ . '/stubs/model.entity.stub';
+        return __DIR__ . '/stubs/model.entity.stub';
     }
 
     /**

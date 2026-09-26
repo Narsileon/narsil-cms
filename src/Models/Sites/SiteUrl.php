@@ -38,7 +38,7 @@ class SiteUrl extends Model
      *
      * @var string
      */
-    final public const TABLE = 'site_urls';
+    final public const TABLE = 'cms.site_urls';
 
     #region • COLUMNS
 

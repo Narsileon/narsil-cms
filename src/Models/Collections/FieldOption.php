@@ -50,7 +50,7 @@ class FieldOption extends Model
      *
      * @var string
      */
-    final public const TABLE = 'field_options';
+    final public const TABLE = 'cms.field_options';
 
     #region • COLUMNS
 

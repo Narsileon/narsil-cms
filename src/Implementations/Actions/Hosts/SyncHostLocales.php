@@ -33,8 +33,8 @@ class SyncHostLocales extends Action implements Contract
             $uuid = Arr::get($locale, HostLocale::UUID);
 
             $attributes = [
-                HostLocale::COUNTRY  => Arr::get($locale, HostLocale::COUNTRY, 'default'),
-                HostLocale::PATTERN  => Arr::get($locale, HostLocale::PATTERN),
+                HostLocale::COUNTRY => Arr::get($locale, HostLocale::COUNTRY, 'default'),
+                HostLocale::PATTERN => Arr::get($locale, HostLocale::PATTERN),
                 HostLocale::POSITION => $position,
             ];
 

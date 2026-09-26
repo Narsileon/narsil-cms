@@ -8,7 +8,6 @@ namespace Narsil\Cms\Http\Data\Forms;
 
 use Narsil\Base\Http\Data\Forms\ConditionData;
 use Narsil\Base\Http\Data\Forms\FieldsetData as BaseFieldsetData;
-use Narsil\Cms\Http\Data\Forms\FieldData;
 use Narsil\Cms\Models\AbstractCondition;
 use Narsil\Cms\Models\Collections\Block;
 use Narsil\Cms\Models\Collections\BlockElement;

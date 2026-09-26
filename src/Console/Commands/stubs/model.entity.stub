@@ -22,7 +22,7 @@ class {{ class }} extends Entity
      *
      * @var string
      */
-    public const TABLE = '{{ table }}';
+    public const TABLE = 'cms.{{ table }}';
 
     #endregion
 }

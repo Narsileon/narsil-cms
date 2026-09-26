@@ -37,7 +37,7 @@ class EntityReplicateController extends RedirectController
 
         $entity = $this->entityClass::query()
             ->firstWhere([
-                Entity::ID => $id
+                Entity::ID => $id,
             ]);
 
         app(ReplicateEntity::class)

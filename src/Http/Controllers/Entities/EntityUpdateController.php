@@ -57,14 +57,14 @@ class EntityUpdateController extends RedirectController
 
                 return $this
                     ->redirect(route('collections.index', [
-                        'collection' => $collection
+                        'collection' => $collection,
                     ]));
             }
-            else if (!$draftEntity)
+            elseif (!$draftEntity)
             {
                 return $this
                     ->redirect(route('collections.index', [
-                        'collection' => $collection
+                        'collection' => $collection,
                     ]));
             }
         }
@@ -74,7 +74,7 @@ class EntityUpdateController extends RedirectController
         $data = $request->all();
 
         $rules = app(EntityFormRequest::class, [
-            'template' => $this->template
+            'template' => $this->template,
         ])->rules();
 
         $attributes = Validator::make($data, $rules)
@@ -135,7 +135,7 @@ class EntityUpdateController extends RedirectController
 
             return $this
                 ->redirect(route('collections.index', [
-                    'collection' => $collection
+                    'collection' => $collection,
                 ]), $entity)
                 ->with('success', trans('narsil::toasts.success.' . ModelEventEnum::UPDATED->value, [
                     'model' => $this->template->{Template::SINGULAR},

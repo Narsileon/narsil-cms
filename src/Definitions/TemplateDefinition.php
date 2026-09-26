@@ -11,9 +11,9 @@ use Narsil\Base\Enums\ModelHookEventEnum;
 use Narsil\Cms\Contracts\Actions\Templates\ReplicateTemplate;
 use Narsil\Cms\Contracts\Forms\TemplateForm;
 use Narsil\Cms\Contracts\Requests\TemplateFormRequest;
-use Narsil\Cms\Models\Collections\Template;
-use Narsil\Cms\Implementations\Tables\TemplateTable;
 use Narsil\Cms\Implementations\Hooks\Templates\SyncTemplateTabsHook;
+use Narsil\Cms\Implementations\Tables\TemplateTable;
+use Narsil\Cms\Models\Collections\Template;
 
 #endregion
 
@@ -48,13 +48,13 @@ final class TemplateDefinition extends AbstractModelDefinition
             ModelHookEventEnum::AFTER_STORE->value => [
                 [
                     'hook' => SyncTemplateTabsHook::class,
-                    'priority' => 0
+                    'priority' => 0,
                 ],
             ],
             ModelHookEventEnum::AFTER_UPDATE->value => [
                 [
                     'hook' => SyncTemplateTabsHook::class,
-                    'priority' => 0
+                    'priority' => 0,
                 ],
             ],
         ];
@@ -76,7 +76,7 @@ final class TemplateDefinition extends AbstractModelDefinition
     public function indexWithCount(): array
     {
         return [
-            Template::RELATION_TABS
+            Template::RELATION_TABS,
         ];
     }
 

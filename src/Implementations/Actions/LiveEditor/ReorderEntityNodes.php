@@ -66,7 +66,7 @@ class ReorderEntityNodes extends Action implements Contract
     protected static function moveBlockNode(EntityNode $node, ?string $parentPath, int $position): void
     {
         $node->{EntityNode::POSITION} = $position;
-        $node->{EntityNode::PATH} = $parentPath ? "$parentPath.$position" : (string)$position;
+        $node->{EntityNode::PATH} = $parentPath ? "$parentPath.$position" : (string) $position;
 
         $node->save();
 

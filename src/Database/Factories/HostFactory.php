@@ -37,7 +37,7 @@ class HostFactory extends Factory
     {
         $baseUrl = parse_url(Config::get('app.url'), PHP_URL_HOST);
 
-        $hostname = $this->faker->domainWord() . '.' .  $baseUrl;
+        $hostname = $this->faker->domainWord() . '.' . $baseUrl;
 
         return [
             Host::HOSTNAME => $hostname,
@@ -57,9 +57,9 @@ class HostFactory extends Factory
     protected function createHostLocale(Host $host): void
     {
         $hostLocale = HostLocale::create([
-            HostLocale::HOST_ID  => $host->{Host::ID},
-            HostLocale::COUNTRY  => 'default',
-            HostLocale::PATTERN  => "https://{host}/{language}",
+            HostLocale::HOST_ID => $host->{Host::ID},
+            HostLocale::COUNTRY => 'default',
+            HostLocale::PATTERN => 'https://{host}/{language}',
             HostLocale::POSITION => 0,
         ]);
 
@@ -79,8 +79,8 @@ class HostFactory extends Factory
         {
             HostLocaleLanguage::create([
                 HostLocaleLanguage::LOCALE_UUID => $hostLocale->{HostLocale::UUID},
-                HostLocaleLanguage::LANGUAGE    => $language,
-                HostLocaleLanguage::POSITION    => $position,
+                HostLocaleLanguage::LANGUAGE => $language,
+                HostLocaleLanguage::POSITION => $position,
             ]);
         }
     }

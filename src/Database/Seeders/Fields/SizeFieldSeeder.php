@@ -35,15 +35,15 @@ final class SizeFieldSeeder extends Seeder
                     ->sequence(
                         [
                             FieldOption::LABEL => 'Small',
-                            FieldOption::VALUE => 'sm'
+                            FieldOption::VALUE => 'sm',
                         ],
                         [
                             FieldOption::LABEL => 'Medium',
-                            FieldOption::VALUE => 'md'
+                            FieldOption::VALUE => 'md',
                         ],
                         [
                             FieldOption::LABEL => 'Large',
-                            FieldOption::VALUE => 'lg'
+                            FieldOption::VALUE => 'lg',
                         ],
                     )
                     ->state(new Sequence(function (Sequence $sequence)

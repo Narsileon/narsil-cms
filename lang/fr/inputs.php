@@ -12,6 +12,6 @@ use Narsil\Cms\Http\Data\Forms\Inputs\LinkInputData;
 
 return [
     BuilderInputData::TYPE => 'Builder',
-    EntityInputData::TYPE  => 'Entité',
-    LinkInputData::TYPE    => 'Lien',
+    EntityInputData::TYPE => 'Entité',
+    LinkInputData::TYPE => 'Lien',
 ];

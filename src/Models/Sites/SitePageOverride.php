@@ -37,7 +37,7 @@ class SitePageOverride extends Model
      *
      * @var string
      */
-    final public const TABLE = 'site_page_overrides';
+    final public const TABLE = 'cms.site_page_overrides';
 
     #region • COLUMNS
 

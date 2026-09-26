@@ -9,15 +9,12 @@ namespace Narsil\Cms\Providers;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Support\Facades\Cache;
 use Narsil\Base\Providers\MorphServiceProvider as BaseMorphServiceProvider;
-use Narsil\Base\Traits\HasSchemas;
 use Narsil\Cms\Models\Collections\Template;
 
 #endregion
 
 final class MorphServiceProvider extends BaseMorphServiceProvider
 {
-    use HasSchemas;
-
     #region PROTECTED METHODS
 
     /**
@@ -27,11 +24,7 @@ final class MorphServiceProvider extends BaseMorphServiceProvider
     {
         parent::bootMorphMap();
 
-        $schema = $this->getCurrentSchema();
-
-        $this->setSearchPath($schema);
-
-        $map = Cache::tags([Template::TABLE, $schema])->rememberForever('morph_map', function ()
+        $map = Cache::tags(Template::TABLE)->rememberForever('morph_map', function ()
         {
             $templates = Template::query()
                 ->without([Template::RELATION_TABS])

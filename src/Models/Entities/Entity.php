@@ -61,7 +61,7 @@ abstract class Entity extends Model implements Searchable
      *
      * @var string
      */
-    public const TABLE = 'entities';
+    public const TABLE = 'cms.entities';
 
     #region • COLUMNS
 

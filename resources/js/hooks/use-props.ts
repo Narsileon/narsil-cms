@@ -35,8 +35,6 @@ type SessionProps = {
   languages: OptionData[];
   locale: string;
   radius: number;
-  schema: string;
-  schemas: OptionData[];
   theme: Theme;
 };
 

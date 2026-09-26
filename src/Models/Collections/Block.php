@@ -62,7 +62,7 @@ class Block extends BaseElement
      *
      * @var string
      */
-    final public const TABLE = 'blocks';
+    final public const TABLE = 'cms.blocks';
 
     #region • COLUMNS
 

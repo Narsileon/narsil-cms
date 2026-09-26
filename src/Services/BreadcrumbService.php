@@ -42,13 +42,13 @@ abstract class BreadcrumbService
             {
                 $breadcrumbs[] = [
                     'label' => $segment,
-                    'href'  => null,
+                    'href' => null,
                 ];
             }
             else
             {
 
-                $key = Str::replace('-', '_', (string)$segment);
+                $key = Str::replace('-', '_', (string) $segment);
 
                 $label = ModelService::getTableLabel($key);
 
@@ -59,12 +59,17 @@ abstract class BreadcrumbService
 
                 if (Str::contains($label, '::'))
                 {
+                    $label = trans('narsil::ui.' . $key);
+                }
+
+                if (Str::contains($label, '::'))
+                {
                     $label = $key;
                 }
 
                 $breadcrumbs[] = [
                     'label' => $label,
-                    'href'  => $path,
+                    'href' => $path,
                 ];
             }
         }

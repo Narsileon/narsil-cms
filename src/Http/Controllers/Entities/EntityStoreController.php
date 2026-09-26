@@ -40,7 +40,7 @@ class EntityStoreController extends RedirectController
         $data = $request->all();
 
         $rules = app(EntityFormRequest::class, [
-            'template' => $this->template
+            'template' => $this->template,
         ])->rules();
 
         $attributes = Validator::make($data, $rules)

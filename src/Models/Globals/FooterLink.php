@@ -48,7 +48,7 @@ class FooterLink extends Pivot
      *
      * @var string
      */
-    final public const TABLE = 'footer_links';
+    final public const TABLE = 'cms.footer_links';
 
     #region • COLUMNS
 

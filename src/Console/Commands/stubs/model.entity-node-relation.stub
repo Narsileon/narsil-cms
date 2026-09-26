@@ -19,7 +19,7 @@ class {{ class }} extends EntityNodeRelation
      *
      * @var string
      */
-    public const TABLE = '{{ table }}';
+    public const TABLE = 'cms.{{ table }}';
 
     #endregion
 }

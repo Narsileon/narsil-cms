@@ -72,10 +72,10 @@ final class HeadlineBlockSeeder extends Seeder
                 $HeadlineFieldSeeder,
                 [
                     BlockElement::HANDLE => self::LEVEL,
-                    BlockElement::LABEL  => 'Level',
+                    BlockElement::LABEL => 'Level',
                     BlockElement::POSITION => 1,
                     BlockElement::REQUIRED => true,
-                    BlockElement::WIDTH => 50
+                    BlockElement::WIDTH => 50,
                 ],
                 Block::RELATION_FIELDS
             )
@@ -86,7 +86,7 @@ final class HeadlineBlockSeeder extends Seeder
                     BlockElement::LABEL => 'Style',
                     BlockElement::POSITION => 2,
                     BlockElement::REQUIRED => true,
-                    BlockElement::WIDTH => 50
+                    BlockElement::WIDTH => 50,
                 ],
                 Block::RELATION_FIELDS
             )

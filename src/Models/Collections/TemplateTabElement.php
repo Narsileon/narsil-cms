@@ -59,7 +59,7 @@ class TemplateTabElement extends Element
      *
      * @var string
      */
-    final public const TABLE = 'template_tab_element';
+    final public const TABLE = 'cms.template_tab_element';
 
     #region • COLUMNS
 

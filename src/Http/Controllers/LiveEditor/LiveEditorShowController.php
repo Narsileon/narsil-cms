@@ -125,7 +125,6 @@ class LiveEditorShowController extends RenderController
             ->add('narsil-cms::live-editor.tree.add')
             ->add('narsil-cms::live-editor.tree.empty')
             ->add('narsil-cms::live-editor.tree.title')
-            ->add('narsil-cms::live-editor.workspace')
             ->add('narsil::ui.cancel')
             ->add('narsil::ui.close')
             ->add('narsil::ui.confirm')

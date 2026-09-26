@@ -35,27 +35,27 @@ final class PaddingFieldSeeder extends Seeder
                     ->sequence(
                         [
                             FieldOption::LABEL => 'None',
-                            FieldOption::VALUE => 'none'
+                            FieldOption::VALUE => 'none',
                         ],
                         [
                             FieldOption::LABEL => 'Extra Small',
-                            FieldOption::VALUE => 'xs'
+                            FieldOption::VALUE => 'xs',
                         ],
                         [
                             FieldOption::LABEL => 'Small',
-                            FieldOption::VALUE => 'sm'
+                            FieldOption::VALUE => 'sm',
                         ],
                         [
                             FieldOption::LABEL => 'Medium',
-                            FieldOption::VALUE => 'md'
+                            FieldOption::VALUE => 'md',
                         ],
                         [
                             FieldOption::LABEL => 'Large',
-                            FieldOption::VALUE => 'lg'
+                            FieldOption::VALUE => 'lg',
                         ],
                         [
                             FieldOption::LABEL => 'Extra Large',
-                            FieldOption::VALUE => 'xl'
+                            FieldOption::VALUE => 'xl',
                         ],
                     )
                     ->state(new Sequence(function (Sequence $sequence)

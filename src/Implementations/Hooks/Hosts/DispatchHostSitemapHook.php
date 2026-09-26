@@ -8,7 +8,6 @@ namespace Narsil\Cms\Implementations\Hooks\Hosts;
 
 use Narsil\Base\Contracts\ModelHook;
 use Narsil\Base\Http\Data\ModelHookContext;
-use Narsil\Base\Traits\HasSchemas;
 use Narsil\Cms\Jobs\SitemapJob;
 use Narsil\Cms\Models\Hosts\Host;
 
@@ -16,8 +15,6 @@ use Narsil\Cms\Models\Hosts\Host;
 
 final class DispatchHostSitemapHook implements ModelHook
 {
-    use HasSchemas;
-
     #region PUBLIC METHODS
 
     /**
@@ -27,7 +24,7 @@ final class DispatchHostSitemapHook implements ModelHook
     {
         if ($context->model instanceof Host)
         {
-            SitemapJob::dispatch($context->model, $this->getCurrentSchema());
+            SitemapJob::dispatch($context->model);
         }
     }
 

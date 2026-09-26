@@ -53,7 +53,7 @@ class HostForm extends Form implements Contract
         return [
             new FormStepData(
                 id: 'definition',
-                label: trans('narsil-cms::ui.definition'),
+                label: trans('narsil::ui.definition'),
                 elements: [
                     new FieldData(
                         id: Host::HOSTNAME,
@@ -77,7 +77,7 @@ class HostForm extends Form implements Contract
                     new FieldData(
                         id: HostLocale::PATTERN,
                         description: ModelService::getAttributeDescription(HostLocale::TABLE, HostLocale::PATTERN, [
-                            'example' => 'https://{host}/{language}'
+                            'example' => 'https://{host}/{language}',
                         ]),
                         prefix: Host::RELATION_DEFAULT_LOCALE,
                         required: true,
@@ -116,7 +116,7 @@ class HostForm extends Form implements Contract
                                 new FieldData(
                                     id: HostLocale::PATTERN,
                                     description: ModelService::getAttributeDescription(HostLocale::TABLE, HostLocale::PATTERN, [
-                                        'example' => 'https://{host}/{language}-{country}'
+                                        'example' => 'https://{host}/{language}-{country}',
                                     ]),
                                     required: true,
                                     input: new TextInputData(

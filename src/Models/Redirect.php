@@ -43,7 +43,7 @@ class Redirect extends Model
      *
      * @var string
      */
-    final public const TABLE = 'redirects';
+    final public const TABLE = 'cms.redirects';
 
     #region • COLUMNS
 

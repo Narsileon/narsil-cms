@@ -48,7 +48,7 @@ class HostLocaleLanguage extends Model
      *
      * @var string
      */
-    final public const TABLE = 'host_locale_languages';
+    final public const TABLE = 'cms.host_locale_languages';
 
     #region • COLUMNS
 
@@ -93,6 +93,36 @@ class HostLocaleLanguage extends Model
     #endregion
 
     #region PUBLIC METHODS
+
+    /**
+     * Get the first language configured for a default country.
+     *
+     * @return string
+     */
+    final public static function getDefaultLanguage(): string
+    {
+        $language = self::query()
+            ->join(
+                HostLocale::TABLE,
+                HostLocale::TABLE . '.' . HostLocale::UUID,
+                '=',
+                self::TABLE . '.' . self::LOCALE_UUID,
+            )
+            ->where(
+                HostLocale::TABLE . '.' . HostLocale::COUNTRY,
+                HostLocale::COUNTRY_DEFAULT,
+            )
+            ->orderBy(HostLocale::TABLE . '.' . HostLocale::HOST_ID)
+            ->orderBy(self::TABLE . '.' . self::POSITION)
+            ->value(self::TABLE . '.' . self::LANGUAGE);
+
+        if ($language === null)
+        {
+            $language = 'en';
+        }
+
+        return $language;
+    }
 
     /**
      * Get unique languages.

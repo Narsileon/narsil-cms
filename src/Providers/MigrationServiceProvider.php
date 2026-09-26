@@ -7,14 +7,10 @@ namespace Narsil\Cms\Providers;
 #region USE
 
 use Illuminate\Database\Events\MigrationsEnded;
-use Illuminate\Support\Facades\Artisan;
-use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
-use Narsil\Base\Models\Policies\Permission;
-use Narsil\Base\Traits\HasSchemas;
 use Narsil\Cms\Database\Seeders\ValidationRuleSeeder;
 use Narsil\Cms\Models\ValidationRule;
 
@@ -22,8 +18,6 @@ use Narsil\Cms\Models\ValidationRule;
 
 final class MigrationServiceProvider extends ServiceProvider
 {
-    use HasSchemas;
-
     #region PUBLIC METHODS
 
     /**
@@ -50,20 +44,11 @@ final class MigrationServiceProvider extends ServiceProvider
     {
         if (app()->runningInConsole() && request()->server('argv')[1] === 'migrate:fresh')
         {
-            foreach ($this->getSchemas() as $schema)
-            {
-                DB::statement("DROP SCHEMA IF EXISTS {$schema} CASCADE");
-            }
+            DB::statement('DROP SCHEMA IF EXISTS cms CASCADE');
         }
 
         Event::listen(MigrationsEnded::class, function ()
         {
-            Cache::flush();
-
-            if (Schema::hasTable(Permission::TABLE))
-            {
-                $this->syncPermissions();
-            }
             if (Schema::hasTable(ValidationRule::TABLE))
             {
                 new ValidationRuleSeeder()->run();
@@ -81,14 +66,6 @@ final class MigrationServiceProvider extends ServiceProvider
         $this->loadMigrationsFrom([
             __DIR__ . '/../../database/migrations',
         ]);
-    }
-
-    /**
-     * @return void
-     */
-    protected function syncPermissions(): void
-    {
-        Artisan::call('narsil:sync-permissions');
     }
 
     #endregion

@@ -50,7 +50,7 @@ class SiteEditController extends RenderController
                             Session::get(SitePage::COUNTRY),
                             'default',
                         ]);
-                }
+                },
             ])
             ->where(Site::HOSTNAME, $site)
             ->first();
@@ -92,7 +92,7 @@ class SiteEditController extends RenderController
     {
         $options = [
             new OptionData(
-                label: trans('narsil-cms::ui.default'),
+                label: trans('narsil::ui.default'),
                 value: 'default'
             ),
         ];

@@ -17,7 +17,7 @@ abstract class MakeModelCommand extends GeneratorCommand
     #region PROPERTIES
 
     /**
-     * @var Template $template
+     * @var Template
      */
     protected Template $template;
 
@@ -33,7 +33,7 @@ abstract class MakeModelCommand extends GeneratorCommand
     /**
      * {@inheritDoc}
      */
-    public function handle(): bool|null
+    public function handle(): ?bool
     {
         $this->template = Template::find($this->argument('template'));
 

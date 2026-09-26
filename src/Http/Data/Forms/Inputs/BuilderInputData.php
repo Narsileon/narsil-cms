@@ -34,8 +34,7 @@ class BuilderInputData extends InputData
     public function __construct(
         array $defaultValue = [],
         array $elements = [],
-    )
-    {
+    ) {
         $this->set(self::DEFAULT_VALUE, $defaultValue);
         $this->set(self::ELEMENTS, $elements);
 

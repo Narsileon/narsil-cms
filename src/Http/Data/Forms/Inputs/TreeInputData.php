@@ -28,8 +28,7 @@ class TreeInputData extends InputData
     public function __construct(
         array $defaultValue = [],
         bool $rootExclusive = false,
-    )
-    {
+    ) {
         $this->set(self::DEFAULT_VALUE, $defaultValue);
         $this->set(self::ROOT_EXCLUSIVE, $rootExclusive);
 

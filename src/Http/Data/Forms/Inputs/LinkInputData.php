@@ -37,8 +37,7 @@ class LinkInputData extends InputData
         string $labelPath = 'label',
         string $valuePath = 'identifier',
         array $values = []
-    )
-    {
+    ) {
         $initialOptions = $this->getOptions($values);
 
         $this->set(self::DEFAULT_VALUE, $defaultValue);

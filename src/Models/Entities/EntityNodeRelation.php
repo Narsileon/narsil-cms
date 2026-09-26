@@ -45,7 +45,7 @@ class EntityNodeRelation extends Pivot
      *
      * @var string
      */
-    public const TABLE = 'entity_node_relation';
+    public const TABLE = 'cms.entity_node_relation';
 
     #region • COLUMNS
 

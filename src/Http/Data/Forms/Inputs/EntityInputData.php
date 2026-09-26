@@ -35,8 +35,7 @@ class EntityInputData extends InputData
         string $defaultValue = '',
         array $collections = [],
         bool $multiple = false,
-    )
-    {
+    ) {
         $this->set(self::COLLECTIONS, $collections);
         $this->set(self::DEFAULT_VALUE, $defaultValue);
         $this->set(self::MULTIPLE, $multiple);

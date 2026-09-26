@@ -26,8 +26,7 @@ class RelationsInputData extends InputData
      */
     public function __construct(
         array $defaultValue = [],
-    )
-    {
+    ) {
         $this->set(self::DEFAULT_VALUE, $defaultValue);
 
         parent::__construct(static::TYPE);
@@ -70,8 +69,7 @@ class RelationsInputData extends InputData
         string $optionValue,
         array $options = [],
         array $routes = [],
-    ): static
-    {
+    ): static {
         $option = [
             'identifier' => $identifier,
             'label' => $label,
@@ -94,8 +92,7 @@ class RelationsInputData extends InputData
         string $label,
         string $optionLabel,
         string $optionValue,
-    ): static
-    {
+    ): static {
         $this->set('intermediate', [
             'label' => $label,
             'optionLabel' => $optionLabel,

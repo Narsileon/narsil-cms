@@ -45,7 +45,7 @@ class RedirectForm extends Form implements Contract
         return [
             new FormStepData(
                 id: 'definition',
-                label: trans('narsil-cms::ui.definition'),
+                label: trans('narsil::ui.definition'),
                 elements: [
                     new FieldData(
                         id: Redirect::URL_SOURCE,

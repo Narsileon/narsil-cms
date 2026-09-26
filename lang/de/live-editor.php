@@ -1,28 +1,27 @@
 <?php
 
 return [
-    'description'       => 'Den Inhalt der Seite neben einer Live-Vorschau bearbeiten',
-    'title'             => 'Live-Editor',
+    'description' => 'Den Inhalt der Seite neben einer Live-Vorschau bearbeiten',
+    'title' => 'Live-Editor',
 
-    'inspector'         => [
+    'inspector' => [
         'empty' => 'Wählen Sie einen Block, um dessen Inhalt zu bearbeiten',
         'title' => 'Eigenschaften',
     ],
-    'language'          => 'Sprache',
-    'country'           => 'Land',
-    'pages'             => [
+    'language' => 'Sprache',
+    'country' => 'Land',
+    'pages' => [
         'create' => 'Seite erstellen',
-        'empty'  => 'Diese Website enthält noch keine Seiten',
-        'title'  => 'Seiten',
+        'empty' => 'Diese Website enthält noch keine Seiten',
+        'title' => 'Seiten',
     ],
-    'preview'           => [
+    'preview' => [
         'missing' => 'Diese Seite hat im aktuellen Workspace noch keine öffentliche URL',
-        'title'   => 'Vorschau',
+        'title' => 'Vorschau',
     ],
-    'tree'              => [
-        'add'   => 'Block hinzufügen',
+    'tree' => [
+        'add' => 'Block hinzufügen',
         'empty' => 'Diese Seite hat noch keine Inhaltsblöcke',
         'title' => 'Inhalt',
     ],
-    'workspace'         => 'Arbeitsbereich',
 ];
