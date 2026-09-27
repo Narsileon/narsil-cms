@@ -16,6 +16,16 @@ final class InputBuilder extends Component
 {
     #region CONSTRUCTOR
 
+    /**
+     * @param mixed $element
+     * @param mixed $id
+     * @param mixed $input
+     * @param mixed $languages
+     * @param mixed $name
+     * @param mixed $value
+     *
+     * @return void
+     */
     public function __construct(
         mixed $element,
         mixed $id,
@@ -99,6 +109,9 @@ final class InputBuilder extends Component
 
     #region PUBLIC METHODS
 
+    /**
+     * @return View
+     */
     public function render(): View
     {
         return view('narsil-cms::components.blocks.input.input-builder');
@@ -108,6 +121,11 @@ final class InputBuilder extends Component
 
     #region PRIVATE METHODS
 
+    /**
+     * @param mixed $input
+     *
+     * @return array<string,mixed>
+     */
     private function resolveBlocks(mixed $input): array
     {
         $blocks = [];
@@ -127,6 +145,11 @@ final class InputBuilder extends Component
         return $blocks;
     }
 
+    /**
+     * @param mixed $value
+     *
+     * @return array<int,mixed>
+     */
     private function resolveItems(mixed $value): array
     {
         if (!is_array($value) && !is_object($value))
@@ -137,6 +160,11 @@ final class InputBuilder extends Component
         return array_values((array) $value);
     }
 
+    /**
+     * @param mixed $languages
+     *
+     * @return array<int,array{label:mixed,value:string}>
+     */
     private function resolveLanguages(mixed $languages): array
     {
         $resolvedLanguages = [];

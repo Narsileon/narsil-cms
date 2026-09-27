@@ -15,6 +15,15 @@ final class InputBuilderAdd extends Component
 {
     #region CONSTRUCTOR
 
+    /**
+     * @param string $builderId
+     * @param array<int|string,mixed> $blocks
+     * @param string|null $placeholder
+     * @param boolean $tail
+     * @param boolean $connectAbove
+     *
+     * @return void
+     */
     public function __construct(
         string $builderId,
         array $blocks,
@@ -62,6 +71,9 @@ final class InputBuilderAdd extends Component
 
     #region PUBLIC METHODS
 
+    /**
+     * @return View
+     */
     public function render(): View
     {
         return view('narsil-cms::components.blocks.input.input-builder-add');

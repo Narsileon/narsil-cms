@@ -15,6 +15,14 @@ final class InputBuilderFieldset extends Component
 {
     #region CONSTRUCTOR
 
+    /**
+     * @param mixed $fieldset
+     * @param mixed $id
+     * @param mixed $languages
+     * @param mixed $value
+     *
+     * @return void
+     */
     public function __construct(
         mixed $fieldset,
         mixed $id,
@@ -55,6 +63,9 @@ final class InputBuilderFieldset extends Component
 
     #region PUBLIC METHODS
 
+    /**
+     * @return View
+     */
     public function render(): View
     {
         return view('narsil-cms::components.blocks.input.input-builder-fieldset');

@@ -15,6 +15,17 @@ final class InputBuilderItem extends Component
 {
     #region CONSTRUCTOR
 
+    /**
+     * @param string $builderId
+     * @param string $builderName
+     * @param integer|string $itemIndex
+     * @param string $itemUuid
+     * @param mixed $item
+     * @param mixed $block
+     * @param array<int,mixed> $languages
+     *
+     * @return void
+     */
     public function __construct(
         string $builderId,
         string $builderName,
@@ -88,6 +99,9 @@ final class InputBuilderItem extends Component
 
     #region PUBLIC METHODS
 
+    /**
+     * @return View
+     */
     public function render(): View
     {
         return view('narsil-cms::components.blocks.input.input-builder-item');
