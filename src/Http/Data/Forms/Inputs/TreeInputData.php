@@ -7,13 +7,12 @@ namespace Narsil\Cms\Http\Data\Forms\Inputs;
 #region USE
 
 use Narsil\Base\Http\Data\Forms\InputData;
-use Narsil\Base\Support\TranslationsBag;
 
 #endregion
 
 /**
  * @property array $defaultValue The value of the "default value" attribute.
- * @property boolean $rootExclusive Whether the tree has one exclusive root item.
+ * @property bool $rootExclusive Whether the tree has one exclusive root item.
  */
 class TreeInputData extends InputData
 {
@@ -21,7 +20,7 @@ class TreeInputData extends InputData
 
     /**
      * @param array $defaultValue The value of the "default value" attribute.
-     * @param boolean $rootExclusive Whether the tree has one exclusive root item.
+     * @param bool $rootExclusive Whether the tree has one exclusive root item.
      *
      * @return void
      */
@@ -52,24 +51,6 @@ class TreeInputData extends InputData
      * @var string
      */
     final public const TYPE = 'tree';
-
-    #endregion
-
-    #region PUBLIC METHODS
-
-    /**
-     * {@inheritdoc}
-     */
-    public static function registerTranslations(): void
-    {
-        app(TranslationsBag::class)
-            ->add('narsil::ui.add_child')
-            ->add('narsil::ui.delete')
-            ->add('narsil::ui.edit')
-            ->add('narsil::ui.menu')
-            ->add('narsil::ui.move_down')
-            ->add('narsil::ui.move_up');
-    }
 
     #endregion
 }

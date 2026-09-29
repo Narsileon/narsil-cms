@@ -6,7 +6,6 @@ namespace Narsil\Cms\Http\Controllers\Entities;
 
 #region USE
 
-use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\View\View;
@@ -41,7 +40,7 @@ class EntityCreateController extends RenderController
 
         $publish = app(PublishForm::class);
 
-        return $this->renderBlade('narsil::pages.resources.form', [
+        return $this->renderBlade('narsil-cms::pages.resources.form', [
             'form' => $form,
             'publish' => $publish,
         ]);

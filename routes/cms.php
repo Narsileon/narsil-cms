@@ -21,11 +21,6 @@ use Narsil\Cms\Http\Controllers\Entities\EntitySearchController;
 use Narsil\Cms\Http\Controllers\Entities\EntityStoreController;
 use Narsil\Cms\Http\Controllers\Entities\EntityUnpublishController;
 use Narsil\Cms\Http\Controllers\Entities\EntityUpdateController;
-use Narsil\Cms\Http\Controllers\LiveEditor\LiveEditorNodeDestroyController;
-use Narsil\Cms\Http\Controllers\LiveEditor\LiveEditorNodeFormController;
-use Narsil\Cms\Http\Controllers\LiveEditor\LiveEditorNodeReorderController;
-use Narsil\Cms\Http\Controllers\LiveEditor\LiveEditorNodeStoreController;
-use Narsil\Cms\Http\Controllers\LiveEditor\LiveEditorNodeUpdateController;
 use Narsil\Cms\Http\Controllers\LiveEditor\LiveEditorShowController;
 use Narsil\Cms\Http\Controllers\Sites\Pages\SitePageCreateController;
 use Narsil\Cms\Http\Controllers\Sites\Pages\SitePageDestroyController;
@@ -125,21 +120,8 @@ Route::middleware([
         Route::prefix('live-editor')->name('live-editor.')->group(function ()
         {
             Route::get('/{sitePage}', LiveEditorShowController::class)
+                ->middleware(CountryMiddleware::class)
                 ->name('show');
-
-            Route::prefix('/{sitePage}/nodes')->name('nodes.')->group(function ()
-            {
-                Route::post('/', LiveEditorNodeStoreController::class)
-                    ->name('store');
-                Route::patch('/reorder', LiveEditorNodeReorderController::class)
-                    ->name('reorder');
-                Route::get('/{nodeUuid}/form', LiveEditorNodeFormController::class)
-                    ->name('form');
-                Route::patch('/{nodeUuid}', LiveEditorNodeUpdateController::class)
-                    ->name('update');
-                Route::delete('/{nodeUuid}', LiveEditorNodeDestroyController::class)
-                    ->name('destroy');
-            });
         });
 
         #endregion

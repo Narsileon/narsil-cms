@@ -58,12 +58,12 @@ class HostFormRequest extends FormRequest implements Contract
                 FormRule::REQUIRED,
             ],
             Host::RELATION_DEFAULT_LOCALE . '.' . HostLocale::RELATION_LANGUAGES => [
-                FormRule::ARRAY,
+                FormRule::LIST,
                 FormRule::REQUIRED,
             ],
 
             Host::RELATION_OTHER_LOCALES => [
-                FormRule::ARRAY,
+                FormRule::LIST,
                 FormRule::NULLABLE,
             ],
             Host::RELATION_OTHER_LOCALES . '.*.' . HostLocale::COUNTRY => [
@@ -79,7 +79,7 @@ class HostFormRequest extends FormRequest implements Contract
                 FormRule::REQUIRED,
             ],
             Host::RELATION_OTHER_LOCALES . '.*.' . HostLocale::RELATION_LANGUAGES => [
-                FormRule::ARRAY,
+                FormRule::LIST,
                 FormRule::REQUIRED,
             ],
             Host::RELATION_OTHER_LOCALES . '.*.' . HostLocale::RELATION_LANGUAGES . '.*.' . HostLocaleLanguage::UUID => [

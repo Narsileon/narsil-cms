@@ -12,29 +12,11 @@ use Narsil\Base\Implementations\Menu;
 use Narsil\Base\Models\Users\UserConfiguration;
 use Narsil\Base\Services\ModelService;
 use Narsil\Base\Support\MenuItem;
-use Narsil\Base\Support\TranslationsBag;
 
 #endregion
 
 class AuthMenu extends Menu implements Contract
 {
-    #region CONSTRUCTOR
-
-    /**
-     * @return void
-     */
-    public function __construct()
-    {
-        app(TranslationsBag::class)
-            ->add('narsil::bookmarks.menu')
-            ->add('narsil::themes.dark')
-            ->add('narsil::themes.light')
-            ->add('narsil::themes.system')
-            ->add('narsil-cms::accessibility.user_menu');
-    }
-
-    #endregion
-
     #region PROTECTED METHODS
 
     /**

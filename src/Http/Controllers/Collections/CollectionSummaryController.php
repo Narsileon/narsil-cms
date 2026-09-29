@@ -6,11 +6,10 @@ namespace Narsil\Cms\Http\Controllers\Collections;
 
 #region USE
 
-use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Str;
-use Inertia\Response;
+use Illuminate\View\View;
 use Narsil\Base\Enums\AbilityEnum;
 use Narsil\Base\Http\Controllers\RenderController;
 use Narsil\Cms\Http\Data\SummaryData;
@@ -25,11 +24,10 @@ class CollectionSummaryController extends RenderController
 
     /**
      * @param Request $request
-     * @param string $collection
      *
-     * @return JsonResponse|Response
+     * @return View
      */
-    public function __invoke(Request $request): JsonResponse|Response
+    public function __invoke(Request $request): View
     {
         $this->authorize(AbilityEnum::VIEW_ANY, Entity::class);
 
@@ -48,7 +46,7 @@ class CollectionSummaryController extends RenderController
             );
         });
 
-        return $this->render('narsil/cms::summary/index', [
+        return $this->renderBlade('narsil-cms::pages.summary.index', [
             'items' => $items,
         ]);
     }

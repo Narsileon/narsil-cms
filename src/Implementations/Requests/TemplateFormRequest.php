@@ -50,16 +50,16 @@ class TemplateFormRequest extends FormRequest implements Contract
                 )->ignore($this->template?->{Template::ID}),
             ],
             Template::PLURAL => [
-                FormRule::ARRAY,
+                FormRule::LIST,
                 FormRule::REQUIRED,
             ],
             Template::SINGULAR => [
-                FormRule::ARRAY,
+                FormRule::LIST,
                 FormRule::REQUIRED,
             ],
 
             Template::RELATION_TABS => [
-                FormRule::ARRAY,
+                FormRule::LIST,
                 FormRule::SOMETIMES,
                 FormRule::NULLABLE,
             ],

@@ -27,10 +27,11 @@ class LiveEditorSessionService
 
     /**
      * @param SitePage $sitePage
+     * @param string|null $country
      *
      * @return array
      */
-    public function bootstrap(SitePage $sitePage): array
+    public function bootstrap(SitePage $sitePage, ?string $country = null): array
     {
         $entity = app(EntityNodeResolver::class)->resolveEntity($sitePage);
 
@@ -40,17 +41,17 @@ class LiveEditorSessionService
         ]);
 
         $site = $sitePage->{SitePage::RELATION_SITE};
-        $country = request()->query(SitePage::COUNTRY, $sitePage->{SitePage::COUNTRY});
+        $country = $country ?? request()->query(SitePage::COUNTRY, $sitePage->{SitePage::COUNTRY});
 
         $sitePage->loadMissing([
             SitePage::RELATION_ENTITIES . '.' . SitePageEntity::RELATION_TARGET,
         ]);
 
         $site?->load([
-            Site::RELATION_PAGES => function ($query) use ($sitePage)
+            Site::RELATION_PAGES => function ($query) use ($country)
             {
                 $query->whereIn(SitePage::COUNTRY, [
-                    request()->query(SitePage::COUNTRY, $sitePage->{SitePage::COUNTRY}),
+                    $country,
                     'default',
                 ]);
             },

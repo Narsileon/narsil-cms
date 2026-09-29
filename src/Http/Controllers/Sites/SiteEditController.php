@@ -6,7 +6,6 @@ namespace Narsil\Cms\Http\Controllers\Sites;
 
 #region USE
 
-use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Session;
@@ -18,7 +17,6 @@ use Narsil\Base\Enums\RequestMethodEnum;
 use Narsil\Base\Http\Controllers\RenderController;
 use Narsil\Base\Http\Data\OptionData;
 use Narsil\Base\Services\ModelService;
-use Narsil\Base\Support\TranslationsBag;
 use Narsil\Cms\Contracts\Forms\SiteForm;
 use Narsil\Cms\Http\Resources\Sites\SiteResource;
 use Narsil\Cms\Models\Hosts\HostLocale;
@@ -36,9 +34,9 @@ class SiteEditController extends RenderController
      * @param Request $request
      * @param string $site
      *
-     * @return JsonResponse|View
+     * @return View
      */
-    public function __invoke(Request $request, string $site): JsonResponse|View
+    public function __invoke(Request $request, string $site): View
     {
         $site = Site::query()
             ->with([
@@ -67,10 +65,7 @@ class SiteEditController extends RenderController
 
         $countries = $this->getCountryOptions($site);
 
-        app(TranslationsBag::class)
-            ->add('narsil-cms::ui.countries');
-
-        return $this->renderBlade('narsil::pages.resources.form', [
+        return $this->renderBlade('narsil-cms::pages.resources.form', [
             'countries' => $countries,
             'data' => $data,
             'form' => $form,

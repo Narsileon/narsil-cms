@@ -61,7 +61,7 @@ class BlockFormRequest extends FormRequest implements Contract
             ],
 
             Block::RELATION_ELEMENTS => [
-                FormRule::ARRAY,
+                FormRule::LIST,
                 FormRule::NULLABLE,
                 FormRule::SOMETIMES,
             ],

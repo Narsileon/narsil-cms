@@ -2,14 +2,13 @@
   "$schema": "https://getcomposer.org/schema.json",
   "name": "narsil/cms",
   "type": "library",
-  "description": "Headless CMS based on Laravel and React",
+  "description": "Headless CMS based on Laravel, Blade, and Livewire",
   "keywords": [
     "base-ui",
     "cms",
-    "inertia",
     "laravel",
     "narsil",
-    "react",
+    "livewire",
     "tailwind",
     "vite"
   ],

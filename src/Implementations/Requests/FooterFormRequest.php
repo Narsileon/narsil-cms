@@ -40,11 +40,11 @@ class FooterFormRequest extends FormRequest implements Contract
     {
         return [
             Footer::CITY => [
-                FormRule::ARRAY,
+                FormRule::LIST,
                 FormRule::NULLABLE,
             ],
             Footer::COPYRIGHT => [
-                FormRule::ARRAY,
+                FormRule::LIST,
                 FormRule::NULLABLE,
             ],
             Footer::COUNTRY => [
@@ -52,7 +52,7 @@ class FooterFormRequest extends FormRequest implements Contract
                 FormRule::NULLABLE,
             ],
             Footer::EMAIL => [
-                FormRule::ARRAY,
+                FormRule::LIST,
                 FormRule::NULLABLE,
             ],
             Footer::ORGANIZATION => [
@@ -96,11 +96,11 @@ class FooterFormRequest extends FormRequest implements Contract
             ],
 
             Footer::RELATION_LINKS => [
-                FormRule::ARRAY,
+                FormRule::LIST,
                 FormRule::NULLABLE,
             ],
             Footer::RELATION_SOCIAL_MEDIA => [
-                FormRule::ARRAY,
+                FormRule::LIST,
                 FormRule::NULLABLE,
             ],
         ];

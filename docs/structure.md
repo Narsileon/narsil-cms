@@ -19,26 +19,9 @@ CMS provides content-management models and backend features.
 │   └── fr/  # French translations
 ├── resources/  # Resources
 │   ├── css/  # Stylesheets
-│   ├── js/  # Frontend code
-│   │   ├── blocks/  # Frontend blocks
-│   │   ├── components/  # Frontend components
-│   │   ├── hooks/  # Lifecycle hooks
-│   │   ├── layouts/  # Frontend layouts
-│   │   ├── lib/  # Frontend utilities
-│   │   ├── live-editor/  # Live Editor code
-│   │   │   ├── core/  # Live Editor core logic
-│   │   │   └── react/  # React components
-│   │   │       ├── content-tree/  # Content tree components
-│   │   │       ├── node-inspector/  # Node inspector components
-│   │   │       ├── page-tree/  # Page tree components
-│   │   │       └── preview-frame/  # Preview frame components
-│   │   ├── pages/  # Frontend pages
-│   │   │   ├── live-editor/  # Live editor pages
-│   │   │   ├── resources/  # Resource pages
-│   │   │   └── summary/  # Summary pages
-│   │   ├── plugin/  # Frontend plugin
-│   │   └── types/  # Frontend types
-│   └── views/  # Blade views
+│   ├── js/  # Alpine and Livewire browser integrations
+│   │   └── live-editor/  # Live Editor preview bridge and Alpine adapter
+│   └── views/  # Blade pages and components
 ├── routes/  # HTTP routes
 └── src/  # PHP source
     ├── Console/  # Console commands

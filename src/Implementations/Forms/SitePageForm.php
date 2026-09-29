@@ -128,7 +128,6 @@ class SitePageForm extends Form implements Contract
                     ),
                     new FieldData(
                         id: SitePage::SHOW_IN_MENU,
-                        translatable: true,
                         input: new SwitchInputData(
                             defaultValue: true,
                         ),

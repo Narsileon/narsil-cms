@@ -12,7 +12,6 @@ use Narsil\Base\Services\DatabaseService;
 use Narsil\Base\Services\ModelService;
 use Narsil\Base\Services\PermissionService;
 use Narsil\Base\Support\MenuItem;
-use Narsil\Base\Support\TranslationsBag;
 use Narsil\Cms\Contracts\Menus\CmsSidebar as Contract;
 use Narsil\Cms\Models\Collections\Block;
 use Narsil\Cms\Models\Collections\Field;
@@ -29,21 +28,6 @@ use Narsil\Cms\Models\Sites\Site;
 
 final class CmsSidebar extends Menu implements Contract
 {
-    #region CONSTRUCTOR
-
-    /**
-     * @return void
-     */
-    public function __construct()
-    {
-        app(TranslationsBag::class)
-            ->add('narsil::accessibility.close_sidebar')
-            ->add('narsil-cms::accessibility.open_sidebar')
-            ->add('narsil::accessibility.toggle_sidebar');
-    }
-
-    #endregion
-
     #region PROTECTED METHODS
 
     /**
@@ -223,11 +207,6 @@ final class CmsSidebar extends Menu implements Contract
         $this->addCollectionsGroup();
         $this->addStructuresGroup();
         $this->addManagementGroup();
-
-        app(TranslationsBag::class)
-            ->add('narsil::accessibility.close_sidebar')
-            ->add('narsil-cms::accessibility.open_sidebar')
-            ->add('narsil::accessibility.toggle_sidebar');
 
         return parent::content();
     }

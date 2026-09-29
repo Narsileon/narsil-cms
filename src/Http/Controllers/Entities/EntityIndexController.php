@@ -6,7 +6,6 @@ namespace Narsil\Cms\Http\Controllers\Entities;
 
 #region USE
 
-use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\View\View;
@@ -29,9 +28,9 @@ class EntityIndexController extends RenderController
      * @param Request $request
      * @param integer|string $collection
      *
-     * @return JsonResponse|View
+     * @return View
      */
-    public function __invoke(Request $request, int|string $collection): JsonResponse|View
+    public function __invoke(Request $request, int|string $collection): View
     {
         $this->authorize(AbilityEnum::VIEW_ANY, $this->entityClass);
 

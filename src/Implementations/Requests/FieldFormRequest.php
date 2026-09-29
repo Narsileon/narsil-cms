@@ -39,7 +39,7 @@ class FieldFormRequest extends FormRequest implements Contract
     {
         return [
             Field::DESCRIPTION => [
-                FormRule::ARRAY,
+                FormRule::LIST,
                 FormRule::NULLABLE,
             ],
             Field::HANDLE => [
@@ -54,19 +54,19 @@ class FieldFormRequest extends FormRequest implements Contract
                 )->ignore($this->field?->{Field::ID}),
             ],
             Field::LABEL => [
-                FormRule::ARRAY,
+                FormRule::LIST,
                 FormRule::REQUIRED,
             ],
             Field::DESCRIPTION => [
-                FormRule::ARRAY,
+                FormRule::LIST,
                 FormRule::NULLABLE,
             ],
             Field::PLACEHOLDER => [
-                FormRule::ARRAY,
+                FormRule::LIST,
                 FormRule::NULLABLE,
             ],
             Field::SETTINGS => [
-                FormRule::ARRAY,
+                FormRule::LIST,
                 FormRule::NULLABLE,
                 FormRule::SOMETIMES,
             ],
@@ -76,17 +76,17 @@ class FieldFormRequest extends FormRequest implements Contract
             ],
 
             Field::RELATION_BLOCKS => [
-                FormRule::ARRAY,
+                FormRule::LIST,
                 FormRule::NULLABLE,
                 FormRule::SOMETIMES,
             ],
             Field::RELATION_OPTIONS => [
-                FormRule::ARRAY,
+                FormRule::LIST,
                 FormRule::NULLABLE,
                 FormRule::SOMETIMES,
             ],
             Field::RELATION_VALIDATION_RULES => [
-                FormRule::ARRAY,
+                FormRule::LIST,
                 FormRule::NULLABLE,
                 FormRule::SOMETIMES,
             ],

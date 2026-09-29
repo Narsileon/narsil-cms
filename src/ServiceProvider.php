@@ -9,6 +9,7 @@ namespace Narsil\Cms;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Blade;
+use Livewire\Livewire;
 use Narsil\Base\Contracts\Menus\AuthMenu;
 use Narsil\Base\Contracts\Menus\GuestMenu;
 use Narsil\Base\Contracts\Menus\Home;
@@ -98,6 +99,7 @@ use Narsil\Cms\Http\Data\Forms\Inputs\BuilderInputData;
 use Narsil\Cms\Http\Data\Forms\Inputs\EntityInputData;
 use Narsil\Cms\Http\Data\Forms\Inputs\LinkInputData;
 use Narsil\Cms\Implementations\Tables\EntityTable;
+use Narsil\Cms\Livewire\LiveEditor;
 use Narsil\Cms\Models\Collections\Block;
 use Narsil\Cms\Models\Collections\BlockElement;
 use Narsil\Cms\Models\Collections\Field;
@@ -118,11 +120,13 @@ use Narsil\Cms\Providers\MiddlewareServiceProvider;
 use Narsil\Cms\Providers\MigrationServiceProvider;
 use Narsil\Cms\Providers\MorphServiceProvider;
 use Narsil\Cms\Providers\NarsilServiceProvider;
-use Narsil\Cms\Providers\TranslationServiceProvider;
 use Narsil\Cms\View\Components\Blocks\Input\InputBuilder;
 use Narsil\Cms\View\Components\Blocks\Input\InputBuilderAdd;
 use Narsil\Cms\View\Components\Blocks\Input\InputBuilderFieldset;
 use Narsil\Cms\View\Components\Blocks\Input\InputBuilderItem;
+use Narsil\Cms\View\Components\Blocks\LiveEditor\ContentTreeNode;
+use Narsil\Cms\View\Components\Blocks\LiveEditor\PageTreeItem;
+use Narsil\Cms\View\Components\Blocks\Status\StatusCell;
 
 #endregion
 
@@ -137,10 +141,14 @@ class ServiceProvider extends NarsilServiceProvider
     {
         $this->loadTranslationsFrom(__DIR__ . '/../lang', 'narsil-cms');
         $this->loadViewsFrom(__DIR__ . '/../resources/views', 'narsil-cms');
+        Livewire::component('narsil-cms-live-editor', LiveEditor::class);
         Blade::component(InputBuilder::class, 'narsil-cms::blocks.input.input-builder');
         Blade::component(InputBuilderAdd::class, 'narsil-cms::blocks.input.input-builder-add');
         Blade::component(InputBuilderFieldset::class, 'narsil-cms::blocks.input.input-builder-fieldset');
         Blade::component(InputBuilderItem::class, 'narsil-cms::blocks.input.input-builder-item');
+        Blade::component(ContentTreeNode::class, 'narsil-cms::blocks.live-editor.content-tree-node');
+        Blade::component(PageTreeItem::class, 'narsil-cms::blocks.live-editor.page-tree-item');
+        Blade::component(StatusCell::class, 'narsil-cms::blocks.status.status-cell');
 
         $this->bootNarsilRoutes(base_path('/vendor/narsil/base/routes/users.php'));
 
@@ -269,6 +277,7 @@ class ServiceProvider extends NarsilServiceProvider
             ->field(BuilderInputData::TYPE, BuilderInputData::class)
             ->fieldComponent(BuilderInputData::TYPE, 'narsil-cms::blocks.input.input-builder')
             ->field(EntityInputData::TYPE, EntityInputData::class)
+            ->fieldComponent(EntityInputData::TYPE, 'narsil-cms::blocks.input.input-entity')
             ->field(LinkInputData::TYPE, LinkInputData::class)
             ->morph(BlockElement::class, BlockElement::TABLE)
             ->morph(TemplateTab::class, TemplateTab::TABLE)
@@ -297,7 +306,6 @@ class ServiceProvider extends NarsilServiceProvider
         $this->app->register(MigrationServiceProvider::class);
         $this->app->register(MorphServiceProvider::class);
         $this->app->register(ResourceServiceProvider::class);
-        $this->app->register(TranslationServiceProvider::class);
     }
 
     #endregion

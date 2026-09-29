@@ -6,7 +6,6 @@ namespace Narsil\Cms\Http\Controllers\Sites\Pages;
 
 #region USE
 
-use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 use Narsil\Base\Enums\AbilityEnum;
@@ -21,16 +20,14 @@ use Narsil\Cms\Models\Sites\SitePageEntity;
 
 class SitePageEditController extends RenderController
 {
-    #region PUBLIC METHODS
-
     /**
      * @param Request $request
      * @param string $site
      * @param SitePage $sitePage
      *
-     * @return JsonResponse|View
+     * @return View
      */
-    public function __invoke(Request $request, string $site, SitePage $sitePage): JsonResponse|View
+    public function __invoke(Request $request, string $site, SitePage $sitePage): View
     {
         $this->authorize(AbilityEnum::UPDATE, $sitePage);
 
@@ -45,10 +42,6 @@ class SitePageEditController extends RenderController
             'form' => $form,
         ]);
     }
-
-    #endregion
-
-    #region PROTECTED METHODS
 
     /**
      * @param SitePage $sitePage
@@ -130,6 +123,4 @@ class SitePageEditController extends RenderController
 
         $sitePage->setRelation(SitePage::RELATION_ENTITIES, $entities);
     }
-
-    #endregion
 }

@@ -6,7 +6,6 @@ namespace Narsil\Cms\Http\Controllers\Sites\Pages;
 
 #region USE
 
-use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 use Narsil\Base\Enums\AbilityEnum;
@@ -26,9 +25,9 @@ class SitePageCreateController extends RenderController
      * @param Request $request
      * @param string $site
      *
-     * @return JsonResponse|View
+     * @return View
      */
-    public function __invoke(Request $request, string $site): JsonResponse|View
+    public function __invoke(Request $request, string $site): View
     {
         $this->authorize(AbilityEnum::CREATE, SitePage::class);
 

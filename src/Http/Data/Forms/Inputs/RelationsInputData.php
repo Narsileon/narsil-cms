@@ -8,7 +8,6 @@ namespace Narsil\Cms\Http\Data\Forms\Inputs;
 
 use Narsil\Base\Http\Data\Forms\FieldData;
 use Narsil\Base\Http\Data\Forms\InputData;
-use Narsil\Base\Support\TranslationsBag;
 
 #endregion
 
@@ -46,18 +45,6 @@ class RelationsInputData extends InputData
     #endregion
 
     #region PUBLIC METHODS
-
-    /**
-     * {@inheritdoc}
-     */
-    public static function registerTranslations(): void
-    {
-        app(TranslationsBag::class)
-            ->add('narsil::ui.add')
-            ->add('narsil::ui.create')
-            ->add('narsil::ui.move_down')
-            ->add('narsil::ui.move_up');
-    }
 
     /**
      * {@inheritDoc}

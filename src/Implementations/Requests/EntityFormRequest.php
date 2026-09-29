@@ -80,7 +80,7 @@ class EntityFormRequest extends FormRequest implements Contract
                 FormRule::NULLABLE,
             ],
             Entity::SLUG => [
-                FormRule::ARRAY,
+                FormRule::LIST,
                 FormRule::REQUIRED,
             ],
         ];
@@ -186,7 +186,7 @@ class EntityFormRequest extends FormRequest implements Contract
 
                 if ($element->{Element::TRANSLATABLE})
                 {
-                    $rules[$key] = array_merge([FormRule::ARRAY], $fieldRules);
+                    $rules[$key] = array_merge([FormRule::LIST], $fieldRules);
 
                     $rules["$key.*"] = $fieldValidationRules;
                 }

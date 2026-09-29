@@ -7,13 +7,12 @@ namespace Narsil\Cms\Http\Controllers\Sites\Pages;
 #region USE
 
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Support\Arr;
 use Narsil\Base\Enums\ModelEventEnum;
 use Narsil\Base\Http\Controllers\RedirectController;
 use Narsil\Base\Services\ModelService;
-use Narsil\Cms\Contracts\Actions\Sites\SyncSitePageEntities;
 use Narsil\Cms\Contracts\Requests\SitePageFormRequest;
 use Narsil\Cms\Models\Sites\SitePage;
+use Narsil\Cms\Services\Sites\SitePageUpdateService;
 
 #endregion
 
@@ -32,10 +31,7 @@ class SitePageUpdateController extends RedirectController
     {
         $attributes = $request->validated();
 
-        $sitePage->update($attributes);
-
-        app(SyncSitePageEntities::class)
-            ->run($sitePage, Arr::get($attributes, SitePage::RELATION_ENTITIES, []));
+        app(SitePageUpdateService::class)->update($sitePage, $attributes);
 
         return redirect(route('sites.edit', $site))
             ->with('success', ModelService::getSuccessMessage(SitePage::TABLE, ModelEventEnum::UPDATED));

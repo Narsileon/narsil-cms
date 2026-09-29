@@ -47,7 +47,7 @@ class SiteFormRequest extends FormRequest implements Contract
                 FormRule::NULLABLE,
             ],
             Site::RELATION_PAGES => [
-                FormRule::ARRAY,
+                FormRule::LIST,
             ],
         ];
     }

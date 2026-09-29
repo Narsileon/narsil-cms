@@ -11,7 +11,6 @@ use Narsil\Base\Http\Data\Forms\InputData;
 use Narsil\Base\Http\Data\OptionData;
 use Narsil\Base\Services\ModelService;
 use Narsil\Base\Services\RouteService;
-use Narsil\Base\Support\TranslationsBag;
 use Narsil\Cms\Models\Collections\Block;
 use Narsil\Cms\Models\Collections\Field;
 
@@ -86,26 +85,6 @@ class BuilderInputData extends InputData
                     ),
             ),
         ];
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public static function registerTranslations(): void
-    {
-        app(TranslationsBag::class)
-            ->add('narsil-cms::dialogs.buttons.all_languages')
-            ->add('narsil-cms::dialogs.buttons.this_language')
-            ->add('narsil-cms::dialogs.descriptions.activation')
-            ->add('narsil-cms::dialogs.descriptions.deactivation')
-            ->add('narsil-cms::dialogs.titles.activation')
-            ->add('narsil-cms::dialogs.titles.deactivation')
-            ->add('narsil::ui.add')
-            ->add('narsil::ui.collapse')
-            ->add('narsil::ui.delete')
-            ->add('narsil::ui.expand')
-            ->add('narsil::ui.move_down')
-            ->add('narsil::ui.move_up');
     }
 
     #endregion
