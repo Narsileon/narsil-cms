@@ -41,7 +41,7 @@
 		@if ($publish ?? false)
 			<x-slot:publish>
 				<div
-					class="grid gap-2 border-b px-4 pt-2 pb-4"
+					class="grid gap-2 border-b px-4 pb-4 pt-2"
 				>
 					@foreach (data_get($publish, 'steps', []) as $step)
 						@foreach (data_get($step, 'elements', []) as $element)
@@ -62,7 +62,9 @@
 				>
 					<x-narsil::blocks.select.select-root
 						:id="'revision'"
-						:options="collect($revisions)->map(fn ($revision) => ['label' => 'Revision ' . $revision->revision, 'value' => $revision->uuid])->all()"
+						:options="collect($revisions)
+						    ->map(fn($revision) => ['label' => 'Revision ' . $revision->revision, 'value' => $revision->uuid])
+						    ->all()"
 						:value="request('revision', data_get($revisions, '0.uuid'))"
 						trigger-class="w-full"
 						x-on:select-change.window="if ($event.detail.id === 'revision') { const params = new URLSearchParams(window.location.search); params.set('revision', $event.detail.value); window.location.search = params.toString(); }"
@@ -100,12 +102,12 @@
 							@endphp
 							<a
 								aria-current="{{ $selectedCountry ? 'true' : 'false' }}"
-								class="hover:bg-accent flex min-h-9 items-center rounded-md px-2.5 text-sm transition-colors {{ $selectedCountry ? 'bg-accent' : '' }}"
+								class="hover:bg-accent {{ $selectedCountry ? 'bg-accent' : '' }} flex min-h-9 items-center rounded-md px-2.5 transition-colors"
 								href="{{ request()->fullUrlWithQuery(['country' => $countryValue]) }}"
 								wire:navigate
 							>
 								<span
-									class="relative pl-5 font-normal before:absolute before:top-1/2 before:left-0 before:size-1.5 before:-translate-y-1/2 before:rounded-full {{ $selectedCountry ? 'before:animate-pulse before:bg-constructive' : 'before:bg-foreground' }}"
+									class="{{ $selectedCountry ? 'before:animate-pulse before:bg-constructive' : 'before:bg-foreground' }} relative pl-5 font-normal before:absolute before:left-0 before:top-1/2 before:size-1.5 before:-translate-y-1/2 before:rounded-full"
 								>
 									{{ data_get($country, 'label') }}
 								</span>

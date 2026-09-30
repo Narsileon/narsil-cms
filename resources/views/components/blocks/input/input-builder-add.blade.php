@@ -1,24 +1,20 @@
 @php
 	$classes = twMerge(
-		'relative z-10 flex justify-center',
-		"before:absolute before:bottom-full before:left-1/2 before:h-2 before:border-l before:border-dashed before:border-gray-500 before:content-['']",
-		"after:absolute after:top-full after:left-1/2 after:h-2 after:border-l after:border-dashed after:border-gray-500 after:content-['']",
-		'data-[builder-connect-above=false]:before:hidden data-[builder-connect-below=false]:after:hidden',
+	    'relative z-10 flex justify-center',
+	    "before:absolute before:bottom-full before:left-1/2 before:h-2 before:border-l before:border-dashed before:border-gray-500 before:content-['']",
+	    "after:absolute after:top-full after:left-1/2 after:h-2 after:border-l after:border-dashed after:border-gray-500 after:content-['']",
+	    'data-[builder-connect-above=false]:before:hidden data-[builder-connect-below=false]:after:hidden',
 	);
 @endphp
 
 <div
-	data-builder-id="{{ $builderId }}"
+	{{ $attributes->twMerge($classes) }}
+	@if ($tail) data-builder-tail @endif
+	@if ($placeholder !== null) data-builder-placeholder="{{ $placeholder }}" @endif
+	data-builder-add
 	data-builder-connect-above="{{ $connectAbove ? 'true' : 'false' }}"
 	data-builder-connect-below="{{ $placeholder !== null ? 'true' : 'false' }}"
-	@if ($placeholder !== null)
-		data-builder-placeholder="{{ $placeholder }}"
-	@endif
-	@if ($tail)
-		data-builder-tail
-	@endif
-	data-builder-add
-	{{ $attributes->twMerge($classes) }}
+	data-builder-id="{{ $builderId }}"
 >
 	<x-narsil::blocks.tooltip.tooltip-root
 		:tooltip="trans('narsil::ui.add')"
@@ -43,9 +39,9 @@
 					<x-narsil::ui.dropdown-menu.dropdown-menu-popup>
 						@foreach ($blocks as $block)
 							<x-narsil::ui.dropdown-menu.dropdown-menu-item
-								data-builder-id="{{ $builderId }}"
-								data-builder-block-id="{{ data_get($block, 'block_id') }}"
 								:data-builder-placeholder-id="$placeholder ?? null"
+								data-builder-block-id="{{ data_get($block, 'block_id') }}"
+								data-builder-id="{{ $builderId }}"
 								x-on:click="$dispatch('narsil-builder-add', { builderId: $el.dataset.builderId, blockId: $el.dataset.builderBlockId, placeholderId: $el.dataset.builderPlaceholderId }); $dispatch('dropdown-menu-close')"
 							>
 								@if (data_get($block, 'icon'))

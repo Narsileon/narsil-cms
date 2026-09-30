@@ -4,5 +4,7 @@
 @endsection
 
 @section('body')
-	<livewire:narsil-cms-live-editor :site-page="$sitePage" />
+	<livewire:narsil-cms-live-editor
+		:site-page="$sitePage"
+	/>
 @endsection

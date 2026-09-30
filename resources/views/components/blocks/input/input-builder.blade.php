@@ -1,5 +1,5 @@
 <div
-	class="relative col-span-full flex flex-col items-center justify-center rounded px-4 py-2"
+	{{ $attributes->twMerge('relative col-span-full flex flex-col items-center justify-center rounded px-4 py-2') }}
 	data-builder-id="{{ $builderKey }}"
 	data-builder-name="{{ $name }}"
 	data-builder-path="{{ $id }}"
@@ -13,9 +13,9 @@
     idPrefix: {{ Illuminate\Support\Js::from($id) }},
     keepEmptyContainer: true,
 })"
+	x-on:narsil-builder-add.window="if ($event.detail.builderId === $el.dataset.builderId) add($event.detail.blockId, $event.detail.placeholderId)"
 	x-on:sortable-list-move.window="moveById($event.detail.id, $event.detail.direction)"
 	x-on:sortable-list-remove.window="removeById($event.detail.id)"
-	x-on:narsil-builder-add.window="if ($event.detail.builderId === $el.dataset.builderId) add($event.detail.blockId, $event.detail.placeholderId)"
 >
 	<input
 		name="{{ $name }}"
@@ -36,17 +36,17 @@
 			<x-narsil-cms::blocks.input.input-builder-add
 				:blocks="$blocks"
 				:builder-id="$builderKey"
+				:class="$index === 0 ? 'mb-2' : 'mt-2 mb-2'"
 				:connect-above="$index > 0"
 				:placeholder="$itemUuid"
-				:class="$index === 0 ? 'mb-2' : 'mt-2 mb-2'"
 			/>
 			<x-narsil-cms::blocks.input.input-builder-item
 				:block="$block"
 				:builder-id="$id"
 				:builder-name="$name"
-				:item="$item"
 				:item-index="$index"
 				:item-uuid="$itemUuid"
+				:item="$item"
 				:languages="$languages"
 			/>
 		@endforeach
@@ -54,9 +54,9 @@
 			<x-narsil-cms::blocks.input.input-builder-add
 				:blocks="$blocks"
 				:builder-id="$builderKey"
+				:class="$items === [] ? '' : 'not-first:mt-2'"
 				:connect-above="$items !== []"
 				:tail="true"
-				:class="$items === [] ? '' : 'not-first:mt-2'"
 			/>
 		@endif
 	</div>
@@ -68,24 +68,26 @@
 				:block="$block"
 				:builder-id="$id"
 				:builder-name="$name"
-				:item="[]"
 				:item-index="$indexToken"
 				:item-uuid="$uuidToken"
+				:item="[]"
 				:languages="$languages"
 			/>
 		</template>
 	@endforeach
-	<div class="absolute top-0 -z-10 size-full">
+	<div
+		class="absolute top-0 -z-10 size-full"
+	>
 		<svg
 			class="bg-sidebar pointer-events-none absolute inset-0 size-full"
 			data-slot="background-grid"
 		>
 			<defs>
 				<pattern
-					id="{{ $name }}"
-					width="16"
 					height="16"
+					id="{{ $name }}"
 					patternUnits="userSpaceOnUse"
+					width="16"
 				>
 					<path
 						class="stroke-border"
@@ -96,10 +98,10 @@
 				</pattern>
 			</defs>
 			<rect
-				width="100%"
-				height="100%"
 				fill="url(#{{ $name }})"
+				height="100%"
 				mask="url(#fade-mask)"
+				width="100%"
 			/>
 		</svg>
 	</div>

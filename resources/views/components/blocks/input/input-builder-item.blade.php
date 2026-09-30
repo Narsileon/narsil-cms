@@ -1,26 +1,26 @@
 <x-narsil::ui.collapsible.collapsible-root
 	:open="true"
-	class="w-full"
+	{{ $attributes->twMerge('w-full') }}
 	data-builder-item
 	data-sortable-item="{{ $itemUuid }}"
 	x-sort:item="{{ $itemUuid }}"
 >
 	<x-narsil::ui.card.card-root
 		x-data="{
-            activationDialogOpen: false,
-            pendingLanguage: '',
-            pendingValue: false,
-            setActiveLanguages(all) {
-                this.$root.querySelectorAll('[data-builder-language]').forEach((element) => {
-                    if (all || element.dataset.builderLanguage === this.pendingLanguage) {
-                        const input = element.querySelector('input[type=checkbox]');
-                        input.checked = this.pendingValue;
-                        input.dispatchEvent(new Event('change', { bubbles: true }));
-                    }
-                });
-                this.activationDialogOpen = false;
-            },
-        }"
+    activationDialogOpen: false,
+    pendingLanguage: '',
+    pendingValue: false,
+    setActiveLanguages(all) {
+        this.$root.querySelectorAll('[data-builder-language]').forEach((element) => {
+            if (all || element.dataset.builderLanguage === this.pendingLanguage) {
+                const input = element.querySelector('input[type=checkbox]');
+                input.checked = this.pendingValue;
+                input.dispatchEvent(new Event('change', { bubbles: true }));
+            }
+        });
+        this.activationDialogOpen = false;
+    },
+}"
 	>
 		<input
 			name="{{ $builderName }}[{{ $itemIndex }}][uuid]"
@@ -66,12 +66,12 @@
 						class="flex items-center"
 						x-show="formLanguage === {{ Illuminate\Support\Js::from($languageValue) }}"
 					>
-					<x-narsil::blocks.switch.switch-root
-						:checked="(bool) data_get($activeValues, $languageValue, $languageValue === app()->getLocale())"
-						:name="$builderName . '[' . $itemIndex . '][active][' . $languageValue . ']'"
-						:value="1"
-						data-builder-language="{{ $languageValue }}"
-						x-on:click.capture.prevent.stop="activationDialogOpen = true; pendingLanguage = {{ Illuminate\Support\Js::from($languageValue) }}; pendingValue = !checked"
+						<x-narsil::blocks.switch.switch-root
+							:checked="(bool) data_get($activeValues, $languageValue, $languageValue === app()->getLocale())"
+							:name="$builderName . '[' . $itemIndex . '][active][' . $languageValue . ']'"
+							:value="1"
+							data-builder-language="{{ $languageValue }}"
+							x-on:click.capture.prevent.stop="activationDialogOpen = true; pendingLanguage = {{ Illuminate\Support\Js::from($languageValue) }}; pendingValue = !checked"
 						>
 							<span
 								class="sr-only"
@@ -150,7 +150,7 @@
 		></div>
 		<section
 			aria-modal="true"
-			class="bg-background text-foreground ring-foreground/10 fixed top-1/2 left-1/2 z-50 grid w-full max-w-xs -translate-x-1/2 -translate-y-1/2 gap-4 rounded-xl p-4 shadow-lg outline-none ring-1 sm:max-w-sm"
+			class="bg-background text-foreground ring-foreground/10 fixed left-1/2 top-1/2 z-50 grid w-full max-w-xs -translate-x-1/2 -translate-y-1/2 gap-4 rounded-xl p-4 shadow-lg outline-none ring-1 sm:max-w-sm"
 			role="alertdialog"
 			x-cloak
 			x-on:keydown.escape.window="activationDialogOpen = false"
@@ -158,12 +158,28 @@
 		>
 			<x-narsil::ui.alert-dialog.alert-dialog-header>
 				<x-narsil::ui.alert-dialog.alert-dialog-title>
-					<span x-show="pendingValue">{{ trans('narsil-cms::dialogs.titles.activation') }}</span>
-					<span x-show="!pendingValue">{{ trans('narsil-cms::dialogs.titles.deactivation') }}</span>
+					<span
+						x-show="pendingValue"
+					>
+						{{ trans('narsil-cms::dialogs.titles.activation') }}
+					</span>
+					<span
+						x-show="!pendingValue"
+					>
+						{{ trans('narsil-cms::dialogs.titles.deactivation') }}
+					</span>
 				</x-narsil::ui.alert-dialog.alert-dialog-title>
 				<x-narsil::ui.alert-dialog.alert-dialog-description>
-					<span x-show="pendingValue">{{ trans('narsil-cms::dialogs.descriptions.activation') }}</span>
-					<span x-show="!pendingValue">{{ trans('narsil-cms::dialogs.descriptions.deactivation') }}</span>
+					<span
+						x-show="pendingValue"
+					>
+						{{ trans('narsil-cms::dialogs.descriptions.activation') }}
+					</span>
+					<span
+						x-show="!pendingValue"
+					>
+						{{ trans('narsil-cms::dialogs.descriptions.deactivation') }}
+					</span>
 				</x-narsil::ui.alert-dialog.alert-dialog-description>
 			</x-narsil::ui.alert-dialog.alert-dialog-header>
 			<x-narsil::ui.alert-dialog.alert-dialog-footer>

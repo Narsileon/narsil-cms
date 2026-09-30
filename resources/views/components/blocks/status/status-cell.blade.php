@@ -1,5 +1,5 @@
 <div
-	class="flex items-center gap-1"
+	{{ $attributes->twMerge('flex items-center gap-1') }}
 >
 	@if ($published)
 		<span

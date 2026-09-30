@@ -1,24 +1,41 @@
 <div
-	class="fixed inset-0 z-50 grid h-dvh min-h-0 grid-rows-[3.25rem_1fr] overflow-hidden bg-background text-foreground"
+	{{ $attributes->twMerge('bg-background text-foreground fixed inset-0 z-50 grid h-dvh min-h-0 grid-rows-[3.25rem_1fr] overflow-hidden') }}
 	data-selected-node-id="{{ $selectedNodeId ?? '' }}"
 	x-data="narsilLiveEditor"
 	x-on:live-editor-add-block.window="addBlock($event.detail.parentUuid, $event.detail.blockId)"
 >
-	<header class="grid grid-cols-[280px_1fr_380px] border-b">
-		<x-narsil::blocks.sidebar.sidebar-header class="border-r bg-sidebar px-2 text-sidebar-foreground">
+	<header
+		class="grid grid-cols-[280px_1fr_380px] border-b"
+	>
+		<x-narsil::blocks.sidebar.sidebar-header
+			class="bg-sidebar text-sidebar-foreground border-r px-2"
+		>
 			<x-narsil::blocks.sidebar.sidebar-switcher
 				:items="$home"
 				:label="trans('narsil-cms::live-editor.title')"
 				name="live-editor"
 			/>
 		</x-narsil::blocks.sidebar.sidebar-header>
-		<div class="flex min-w-0 items-center gap-2 border-b bg-background px-4">
+		<div
+			class="bg-background flex min-w-0 items-center gap-2 border-b px-4"
+		>
 			@if ($bootstrap['siteLabel'])
-				<span class="truncate text-sm font-medium">{{ $bootstrap['siteLabel'] }}</span>
+				<span
+					class="truncate font-medium"
+				>
+					{{ $bootstrap['siteLabel'] }}
+				</span>
 			@endif
-			<div class="ml-auto flex items-center gap-2">
+			<div
+				class="ml-auto flex items-center gap-2"
+			>
 				@if ($bootstrap['countries'])
-					<label class="sr-only" for="live-editor-country">{{ trans('narsil-cms::live-editor.country') }}</label>
+					<label
+						class="sr-only"
+						for="live-editor-country"
+					>
+						{{ trans('narsil-cms::live-editor.country') }}
+					</label>
 					<x-narsil::blocks.select.select-root
 						:id="'live-editor-country'"
 						:options="$bootstrap['countries']"
@@ -29,7 +46,12 @@
 					/>
 				@endif
 				@if (count($bootstrap['pageForm']->languages) > 1)
-					<label class="sr-only" for="live-editor-language">{{ trans('narsil-cms::live-editor.language') }}</label>
+					<label
+						class="sr-only"
+						for="live-editor-language"
+					>
+						{{ trans('narsil-cms::live-editor.language') }}
+					</label>
 					<x-narsil::blocks.select.select-root
 						:id="'live-editor-language'"
 						:options="$bootstrap['pageForm']->languages"
@@ -41,7 +63,9 @@
 				@endif
 			</div>
 		</div>
-		<div class="flex h-13 items-center justify-end gap-2 border-b border-l bg-background px-4">
+		<div
+			class="h-13 bg-background flex items-center justify-end gap-2 border-b border-l px-4"
+		>
 			<x-narsil::blocks.bookmarks.bookmarks-root
 				:breadcrumb="$breadcrumb"
 				:current-url="$currentUrl"
@@ -59,44 +83,71 @@
 							/>
 						@endif
 						<x-narsil::ui.avatar.avatar-fallback>
-							<x-narsil::ui.icon.icon-root name="fa-solid-user" />
+							<x-narsil::ui.icon.icon-root
+								name="fa-solid-user"
+							/>
 						</x-narsil::ui.avatar.avatar-fallback>
 					</x-narsil::ui.avatar.avatar-root>
 				</x-narsil::ui.dropdown-menu.dropdown-menu-trigger>
 				<x-narsil::ui.dropdown-menu.dropdown-menu-portal>
-					<x-narsil::ui.dropdown-menu.dropdown-menu-positioner align="end">
-						<x-narsil::ui.dropdown-menu.dropdown-menu-popup class="border">
+					<x-narsil::ui.dropdown-menu.dropdown-menu-positioner
+						align="end"
+					>
+						<x-narsil::ui.dropdown-menu.dropdown-menu-popup
+							class="border"
+						>
 							@foreach ($menu as $item)
 								@if (($item['id'] ?? null) === 'settings')
 									<x-narsil::ui.dropdown-menu.dropdown-menu-item
 										x-on:click="$dispatch('open-user-settings'); $dispatch('dialog-open')"
 									>
-										<x-narsil::ui.icon.icon-root :name="$item['icon'] ?? ''" class="text-primary size-5" />
+										<x-narsil::ui.icon.icon-root
+											:name="$item['icon'] ?? ''"
+											class="text-primary size-5"
+										/>
 										{{ $item['label'] }}
 									</x-narsil::ui.dropdown-menu.dropdown-menu-item>
-								@elseif (($item['method'] ?? \Narsil\Base\Enums\RequestMethodEnum::GET->value) === \Narsil\Base\Enums\RequestMethodEnum::GET->value)
+								@elseif (
+									($item['method'] ?? \Narsil\Base\Enums\RequestMethodEnum::GET->value) ===
+										\Narsil\Base\Enums\RequestMethodEnum::GET->value)
 									<x-narsil::ui.dropdown-menu.dropdown-menu-item
 										:href="route($item['route'], $item['parameters'] ?? [])"
 										wire:navigate
 									>
-										<x-narsil::ui.icon.icon-root :name="$item['icon'] ?? ''" class="text-primary size-5" />
+										<x-narsil::ui.icon.icon-root
+											:name="$item['icon'] ?? ''"
+											class="text-primary size-5"
+										/>
 										{{ $item['label'] }}
 									</x-narsil::ui.dropdown-menu.dropdown-menu-item>
 								@else
-									<form action="{{ route($item['route'], $item['parameters'] ?? []) }}" method="POST">
+									<form
+										action="{{ route($item['route'], $item['parameters'] ?? []) }}"
+										method="POST"
+									>
 										@csrf
-										@if (($item['method'] ?? \Narsil\Base\Enums\RequestMethodEnum::GET->value) !== \Narsil\Base\Enums\RequestMethodEnum::POST->value)
+										@if (
+											($item['method'] ?? \Narsil\Base\Enums\RequestMethodEnum::GET->value) !==
+												\Narsil\Base\Enums\RequestMethodEnum::POST->value)
 											@method($item['method'])
 										@endif
-										<x-narsil::ui.dropdown-menu.dropdown-menu-item class="w-full" type="submit">
-											<x-narsil::ui.icon.icon-root :name="$item['icon'] ?? ''" class="text-primary size-5" />
+										<x-narsil::ui.dropdown-menu.dropdown-menu-item
+											class="w-full"
+											type="submit"
+										>
+											<x-narsil::ui.icon.icon-root
+												:name="$item['icon'] ?? ''"
+												class="text-primary size-5"
+											/>
 											{{ $item['label'] }}
 										</x-narsil::ui.dropdown-menu.dropdown-menu-item>
 									</form>
 								@endif
 							@endforeach
 							<x-narsil::ui.dropdown-menu.dropdown-menu-separator />
-							<div class="px-1 py-1">
+							<div
+								class="px-1 py-1"
+							>
 								<livewire:narsil-theme />
 							</div>
 						</x-narsil::ui.dropdown-menu.dropdown-menu-popup>
@@ -106,28 +157,49 @@
 		</div>
 	</header>
 
-	<div class="grid min-h-0 grid-cols-[280px_minmax(0,1fr)_380px]">
-		<aside class="flex min-h-0 flex-col overflow-hidden border-r bg-sidebar text-sidebar-foreground">
-			<div class="flex min-h-0 basis-2/5 flex-col border-b">
-				<div class="flex h-13 shrink-0 items-center justify-between gap-2 border-b px-4">
-					<x-narsil::ui.heading.heading-root level="h2" variant="h6">
+	<div
+		class="grid min-h-0 grid-cols-[280px_minmax(0,1fr)_380px]"
+	>
+		<aside
+			class="bg-sidebar text-sidebar-foreground flex min-h-0 flex-col overflow-hidden border-r"
+		>
+			<div
+				class="flex min-h-0 basis-2/5 flex-col border-b"
+			>
+				<div
+					class="h-13 flex shrink-0 items-center justify-between gap-2 border-b px-4"
+				>
+					<x-narsil::ui.heading.heading-root
+						level="h2"
+						variant="h6"
+					>
 						{{ trans('narsil-cms::live-editor.pages.title') }}
 					</x-narsil::ui.heading.heading-root>
 					@if ($bootstrap['siteHostname'])
 						<x-narsil::ui.button.button-root
-							aria-label="{{ trans('narsil-cms::live-editor.pages.create') }}"
 							:as-child="true"
-							:href="route('sites.pages.create', ['site' => $bootstrap['siteHostname'], \Narsil\Cms\Models\Sites\SitePage::COUNTRY => $previewCountry])"
+							:href="route('sites.pages.create', [
+							    'site' => $bootstrap['siteHostname'],
+							    \Narsil\Cms\Models\Sites\SitePage::COUNTRY => $previewCountry,
+							])"
+							aria-label="{{ trans('narsil-cms::live-editor.pages.create') }}"
 							size="icon-sm"
 							variant="ghost"
 						>
-							<x-narsil::ui.icon.icon-root class="size-4" name="fa-regular-plus" />
+							<x-narsil::ui.icon.icon-root
+								class="size-4"
+								name="fa-regular-plus"
+							/>
 						</x-narsil::ui.button.button-root>
 					@endif
 				</div>
-				<div class="min-h-0 grow overflow-y-auto p-3">
+				<div
+					class="min-h-0 grow overflow-y-auto p-3"
+				>
 					@if ($bootstrap['pages'])
-						<ul class="grid gap-1">
+						<ul
+							class="grid gap-1"
+						>
 							@foreach ($bootstrap['pages'] as $page)
 								<x-narsil-cms::blocks.live-editor.page-tree-item
 									:current-site-page-id="$bootstrap['sitePageId']"
@@ -136,19 +208,34 @@
 							@endforeach
 						</ul>
 					@else
-						<p class="text-sm text-muted-foreground">{{ trans('narsil-cms::live-editor.pages.empty') }}</p>
+						<p
+							class="text-muted-foreground"
+						>
+							{{ trans('narsil-cms::live-editor.pages.empty') }}
+						</p>
 					@endif
 				</div>
 			</div>
-			<div class="flex min-h-0 grow flex-col">
-				<div class="flex h-13 shrink-0 items-center border-b px-4">
-					<x-narsil::ui.heading.heading-root level="h2" variant="h6">
+			<div
+				class="flex min-h-0 grow flex-col"
+			>
+				<div
+					class="h-13 flex shrink-0 items-center border-b px-4"
+				>
+					<x-narsil::ui.heading.heading-root
+						level="h2"
+						variant="h6"
+					>
 						{{ trans('narsil-cms::live-editor.tree.title') }}
 					</x-narsil::ui.heading.heading-root>
 				</div>
-				<div class="min-h-0 grow overflow-y-auto">
+				<div
+					class="min-h-0 grow overflow-y-auto"
+				>
 					@if ($bootstrap['tree'])
-						<div class="grid gap-3 p-3">
+						<div
+							class="grid gap-3 p-3"
+						>
 							@foreach ($bootstrap['tree'] as $node)
 								@if (data_get($node, 'type') === 'builder')
 									<x-narsil-cms::blocks.live-editor.content-tree-node
@@ -156,7 +243,9 @@
 										:selected-node-id="$selectedNodeId"
 									/>
 								@else
-									<ul class="grid gap-1">
+									<ul
+										class="grid gap-1"
+									>
 										<x-narsil-cms::blocks.live-editor.content-tree-node
 											:node="$node"
 											:selected-node-id="$selectedNodeId"
@@ -166,13 +255,19 @@
 							@endforeach
 						</div>
 					@else
-						<p class="p-4 text-sm text-muted-foreground">{{ trans('narsil-cms::live-editor.tree.empty') }}</p>
+						<p
+							class="text-muted-foreground p-4"
+						>
+							{{ trans('narsil-cms::live-editor.tree.empty') }}
+						</p>
 					@endif
 				</div>
 			</div>
 		</aside>
 
-		<main class="min-h-0 overflow-hidden bg-muted">
+		<main
+			class="bg-muted min-h-0 overflow-hidden"
+		>
 			@if ($bootstrap['previewUrl'])
 				<iframe
 					class="h-full w-full border-0 bg-white"
@@ -183,14 +278,25 @@
 					wire:key="live-editor-preview-{{ $previewVersion }}"
 				></iframe>
 			@else
-				<div class="flex h-full flex-col items-center justify-center gap-2 p-8 text-center">
-					<x-narsil::ui.icon.icon-root class="size-6 text-muted-foreground" name="fa-regular-file" />
-					<p class="max-w-sm text-sm text-muted-foreground">{{ trans('narsil-cms::live-editor.preview.missing') }}</p>
+				<div
+					class="flex h-full flex-col items-center justify-center gap-2 p-8 text-center"
+				>
+					<x-narsil::ui.icon.icon-root
+						class="text-muted-foreground size-6"
+						name="fa-regular-file"
+					/>
+					<p
+						class="text-muted-foreground max-w-sm"
+					>
+						{{ trans('narsil-cms::live-editor.preview.missing') }}
+					</p>
 				</div>
 			@endif
 		</main>
 
-		<aside class="min-h-0 overflow-hidden border-l bg-background">
+		<aside
+			class="bg-background min-h-0 overflow-hidden border-l"
+		>
 			@if ($inspector)
 				<div
 					class="flex h-full min-h-0 flex-col overflow-hidden"
@@ -198,8 +304,14 @@
 					x-data="{ formLanguage: @js($inspector['form']->defaultLanguage) }"
 					x-on:form-language-change="formLanguage = $event.detail.value"
 				>
-					<div class="flex h-13 shrink-0 items-center justify-between gap-2 border-b px-4">
-						<x-narsil::ui.heading.heading-root class="truncate" level="h2" variant="h6">
+					<div
+						class="h-13 flex shrink-0 items-center justify-between gap-2 border-b px-4"
+					>
+						<x-narsil::ui.heading.heading-root
+							class="truncate"
+							level="h2"
+							variant="h6"
+						>
 							{{ $inspector['label'] }}
 						</x-narsil::ui.heading.heading-root>
 						<x-narsil::ui.button.button-root
@@ -210,7 +322,9 @@
 							wire:loading.attr="disabled"
 							wire:target="saveNode"
 						>
-							<x-narsil::ui.icon.icon-root name="fa-regular-floppy-disk" />
+							<x-narsil::ui.icon.icon-root
+								name="fa-regular-floppy-disk"
+							/>
 							{{ trans('narsil::ui.save') }}
 						</x-narsil::ui.button.button-root>
 					</div>
@@ -221,7 +335,9 @@
 							:value="$inspector['form']->defaultLanguage"
 						/>
 					@endif
-					<div class="min-w-0 grow overflow-x-hidden overflow-y-auto p-4 [&_[data-slot=collapsible-root]]:min-w-0 [&_[data-slot=field-root]]:min-w-0">
+					<div
+						class="min-w-0 grow overflow-y-auto overflow-x-hidden p-4 [&_[data-slot=collapsible-root]]:min-w-0 [&_[data-slot=field-root]]:min-w-0"
+					>
 						<x-narsil::ui.form.form-tabs
 							:form-data="$blockData"
 							:languages="$inspector['form']->languages"
@@ -238,8 +354,14 @@
 					x-data="{ formLanguage: @js($bootstrap['pageForm']->defaultLanguage) }"
 					x-on:form-language-change="formLanguage = $event.detail.value"
 				>
-					<div class="flex h-13 shrink-0 items-center justify-between gap-2 border-b px-4">
-						<x-narsil::ui.heading.heading-root class="truncate" level="h2" variant="h6">
+					<div
+						class="h-13 flex shrink-0 items-center justify-between gap-2 border-b px-4"
+					>
+						<x-narsil::ui.heading.heading-root
+							class="truncate"
+							level="h2"
+							variant="h6"
+						>
 							{{ $bootstrap['sitePageTitle'] ?? trans('narsil-cms::live-editor.pages.title') }}
 						</x-narsil::ui.heading.heading-root>
 						<x-narsil::ui.button.button-root
@@ -249,7 +371,9 @@
 							wire:loading.attr="disabled"
 							wire:target="savePage"
 						>
-							<x-narsil::ui.icon.icon-root name="fa-regular-floppy-disk" />
+							<x-narsil::ui.icon.icon-root
+								name="fa-regular-floppy-disk"
+							/>
 							{{ trans('narsil::ui.save') }}
 						</x-narsil::ui.button.button-root>
 					</div>
@@ -260,7 +384,9 @@
 							:value="$bootstrap['pageForm']->defaultLanguage"
 						/>
 					@endif
-					<div class="min-w-0 grow overflow-x-hidden overflow-y-auto p-4">
+					<div
+						class="min-w-0 grow overflow-y-auto overflow-x-hidden p-4"
+					>
 						<x-narsil::ui.form.form-tabs
 							:form-data="$pageData"
 							:languages="$bootstrap['pageForm']->languages"

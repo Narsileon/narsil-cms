@@ -1,6 +1,6 @@
 <x-narsil::ui.collapsible.collapsible-root
 	:open="true"
-	class="group col-span-full rounded border"
+	{{ $attributes->twMerge('group col-span-full rounded border') }}
 >
 	<x-narsil::ui.collapsible.collapsible-trigger
 		:disabled="!data_get($fieldset, 'collapsible', false)"
