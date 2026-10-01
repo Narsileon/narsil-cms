@@ -21,9 +21,20 @@ CMS provides content-management models and backend features.
 │   ├── css/  # Stylesheets
 │   ├── js/  # Alpine and Livewire browser integrations
 │   │   └── live-editor/  # Live Editor preview bridge and Alpine adapter
+│   │       └── core/  # Shared preview logic
 │   └── views/  # Blade pages and components
+│       ├── components/  # Blade component groups
+│       │   └── blocks/  # CMS feature blocks
+│       │       ├── input/  # Input builder components
+│       │       ├── live-editor/  # Live Editor components
+│       │       └── status/  # Status components
+│       ├── live-editor/  # Live Editor preview views
+│       └── pages/  # CMS pages
+│           ├── resources/  # Resource pages
+│           └── summary/  # Summary pages
 ├── routes/  # HTTP routes
 └── src/  # PHP source
+    ├── Agents/  # AI agents
     ├── Console/  # Console commands
     │   └── Commands/  # Console commands
     │       └── stubs/  # Command stubs
@@ -94,18 +105,26 @@ CMS provides content-management models and backend features.
     │   ├── Resources/  # Resource contract implementations
     │   └── Tables/  # Table contract implementations
     ├── Jobs/  # Background jobs
+    ├── Livewire/  # Livewire components
     ├── Models/  # Eloquent models
     │   ├── Collections/  # Collection models
     │   ├── Entities/  # Entity models
     │   ├── Globals/  # Globals models
     │   ├── Hosts/  # Host models
+    │   ├── Pages/  # Page models
     │   └── Sites/  # Site models
     ├── Observers/  # Eloquent model observers
     ├── Policies/  # Eloquent model policies
     ├── Providers/  # Laravel service providers
     ├── Services/  # Application services
-    │   └── LiveEditor/  # Live editor classes
+    │   ├── Ai/  # AI services
+    │   ├── LiveEditor/  # Live Editor services
+    │   ├── Pages/  # Page services
+    │   └── Sites/  # Site services
     ├── Support/  # Application support code
     │   └── Facades/  # Service facades
-    └── Traits/  # Shared traits
+    ├── Traits/  # Shared traits
+    └── View/  # Blade view components
+        └── Components/  # CMS component groups
+            └── Blocks/  # CMS feature blocks
 ```
