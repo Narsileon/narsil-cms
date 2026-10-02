@@ -79,6 +79,7 @@ CMS provides content-management models and backend features.
     │   │       └── Inputs/  # Input data objects
     │   ├── Middleware/  # HTTP middleware
     │   └── Resources/  # HTTP response resources
+    │       ├── Frontend/  # Extensible frontend page and layout resources
     │       ├── LiveEditor/  # Live editor HTTP resources
     │       ├── SitePages/  # Site pages HTTP resources
     │       └── Sites/  # Site HTTP resources
