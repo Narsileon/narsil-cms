@@ -1,5 +1,5 @@
 <div
-	{{ $attributes->twMerge('relative col-span-full flex flex-col items-center justify-center rounded px-4 py-2') }}
+	{{ $attributes->except('options')->twMerge('relative col-span-full flex flex-col items-center justify-center rounded px-4 py-2') }}
 	data-builder-id="{{ $builderKey }}"
 	data-builder-name="{{ $name }}"
 	data-builder-path="{{ $id }}"
