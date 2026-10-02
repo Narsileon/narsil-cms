@@ -25,9 +25,6 @@ CMS provides content-management models and backend features.
 │   └── views/  # Blade pages and components
 │       ├── components/  # Blade component groups
 │       │   └── blocks/  # CMS feature blocks
-│       │       ├── input/  # Input builder components
-│       │       ├── live-editor/  # Live Editor components
-│       │       └── status/  # Status components
 │       ├── live-editor/  # Live Editor preview views
 │       └── pages/  # CMS pages
 │           ├── resources/  # Resource pages

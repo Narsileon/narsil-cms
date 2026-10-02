@@ -126,6 +126,7 @@ use Narsil\Cms\View\Components\Blocks\Input\InputBuilderFieldset;
 use Narsil\Cms\View\Components\Blocks\Input\InputBuilderItem;
 use Narsil\Cms\View\Components\Blocks\LiveEditor\ContentTreeNode;
 use Narsil\Cms\View\Components\Blocks\LiveEditor\PageTreeItem;
+use Narsil\Cms\View\Components\Blocks\OrganizationSchema\OrganizationSchemaRoot;
 use Narsil\Cms\View\Components\Blocks\Status\StatusCell;
 
 #endregion
@@ -148,6 +149,7 @@ class ServiceProvider extends NarsilServiceProvider
         Blade::component(InputBuilderItem::class, 'narsil-cms::blocks.input.input-builder-item');
         Blade::component(ContentTreeNode::class, 'narsil-cms::blocks.live-editor.content-tree-node');
         Blade::component(PageTreeItem::class, 'narsil-cms::blocks.live-editor.page-tree-item');
+        Blade::component(OrganizationSchemaRoot::class, 'narsil-cms::blocks.organization-schema.organization-schema-root');
         Blade::component(StatusCell::class, 'narsil-cms::blocks.status.status-cell');
 
         $this->bootNarsilRoutes(base_path('/vendor/narsil/base/routes/users.php'));
